@@ -1,16 +1,16 @@
 {
-  "native_shapes": 88,
-  "mesh_records": 90,
-  "printed_parts": 15,
+  "native_shapes": 75,
+  "mesh_records": 77,
+  "printed_parts": 14,
   "coupons": 2,
-  "stl_files": 17,
-  "three_mf_files": 17,
+  "stl_files": 16,
+  "three_mf_files": 16,
   "omitted_components": [
     "Buck_0",
     "IMU"
   ],
-  "native_sha256": "18fa122362ade3920a77771ac50905dbb5c55c69703d354193028283b190929e",
-  "printed_step_sha256": "d164466049dad3fb5af6d7e064e3c41006a45ac628bb45f1c9d4b9c2cf272c57",
+  "native_sha256": "3d59fa5f7288b1d2c4510b38fd9c930a68245addeac0fe54912ff083580a773a",
+  "printed_step_sha256": "e277000deb113ab7f549e34fdf868746d104975443b35f2c811407321cda6e9d",
   "native_reopen_valid": true,
-  "step_solids": 15
+  "step_solids": 14
 }

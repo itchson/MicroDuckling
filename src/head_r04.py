@@ -5,14 +5,14 @@ the builder's documented -10mm head offset. The torso and rocker datums stay fix
 """
 import math
 import FreeCAD as A, Part
-from upper_bill_r06 import fixed_upper_bill
+from direct_mount_r07 import integrated_upper_bill, socket_y, spline_y
 
 
 def build_head(api):
     V=A.Vector
     box,cyl,union,rounded,rounded_x,rounded_y=(api[n] for n in ['box','cyl','union','rounded','rounded_x','rounded_y'])
     add,finish,at_plane,mirror,lead,hexy=(api[n] for n in ['add','finish','at_plane','mirror','lead','hexy'])
-    servo_y,horn_y,screw_y,screw_z=(api[n] for n in ['servo_y','horn_y','screw_y','screw_z'])
+    servo_y,screw_y,screw_z=(api[n] for n in ['servo_y','screw_y','screw_z'])
     install,HW,mounts,P=(api[n] for n in ['install_model','HW','hardware_mounts','P'])
     black,steel,orange=(api[n] for n in ['black','steel','orange'])
     rear,front,half=P['head_rear_x'],P['head_front_x'],P['head_halfwidth']
@@ -59,16 +59,9 @@ def build_head(api):
     # The fixed upper bill uses global head coordinates; add() applies the legacy
     # head shift, so bring each candidate back into this builder's source frame.
     face_global=face.copy();face_global.translate(V(0,0,P['head_shift_z']))
-    upper_bill_parts=fixed_upper_bill(face_global)
-    for shape in upper_bill_parts.values():shape.translate(V(0,0,-P['head_shift_z']))
-    face=upper_bill_parts.pop('FacePanel')
-    add('FacePanel',face,'head',color=black,note='Registered camera face with four original rear screw bosses plus two captive-M2 nut bosses and locating slots for the fixed upper bill. Upper bill screws are accessed from the front; nuts load from the rear before hood assembly. Nominal fit requires physical checking.')
-    for name,shape in upper_bill_parts.items():
-        if name=='UpperBill':
-            add(name,shape,'head',color=orange,note='Fixed 50 mm-wide upper bill, 2.2 mm plate, keyed to the FacePanel with 0.15 mm clearance per slot side. Two front M2x8 screws retain captive M2 nuts. Minimum modeled closed-jaw clearance 4.10 mm; jaw 0..12 degrees and neck +/-45 degrees checked. Physical fit unverified.')
-        else:
-            add(name,shape,'head','hardware',steel,.13 if 'Screw' in name else .10,
-                'Nominal M2x8 front-access screw for upper bill.' if 'Screw' in name else 'Nominal M2 captive hex nut, 4 mm across flats and 1.6 mm thick; rear-loaded FacePanel pocket.')
+    face=integrated_upper_bill(face_global)
+    face.translate(V(0,0,-P['head_shift_z']))
+    add('FacePanel',face,'head',color=black,note='One connected printed face and flat upper mouth. Full-width fused 2.2 mm plate replaces the separate keyed bill, front screws and captive nuts. Four original rear face screws remain. Orange display region denotes optional paint on the same print. Nominal closed-jaw gap 4.10 mm; actual print fit unverified.')
     # A chamfered-square surround matches the shells; keep the optical bore circular.
     def bezel_wire(x,halfsize,corner):
         yz=[(-halfsize+corner,-halfsize),(halfsize-corner,-halfsize),
@@ -114,7 +107,8 @@ def build_head(api):
     trace('bracket',frame)
     for y in [-13,13]:frame=frame.fuse(cyl(5,y,92,3.2,17)).cut(cyl(5,y,91.8,1.15,17.5))
     trace('neck posts',frame)
-    mouth=servo_y(pivot,-13,100);add('ServoMouth',mouth,'head','hardware',black,13.4)
+    mouth=servo_y(pivot,-13,100);add('ServoMouth',mouth,'head','hardware',black,13.32)
+    add('OutputSplineMouth',spline_y(pivot,15.5,100,4),'jaw','hardware',steel,.08,'Illustrative unverified output teeth; rotates with jaw. Included in complete servo mass.')
     for x in [pivot+v for v in api['earxs']]:
         width=4.6 if x<-20 else 6.6
         frame=frame.fuse(rounded_y(x-width/2,2.5,95,width,3,13,1.2).cut(cyl(x,2.3,100,1.15,3.5,V(0,1,0))))
@@ -139,18 +133,15 @@ def build_head(api):
     rim=rounded(jawrear,-27,91,jawlength,54,.9,5).cut(rounded(jawrear+1.2,-25.8,90.8,jawlength-2.4,51.6,1.3,3.8))
     rim=rim.common(union([box(pivot+2,-28,90.8,35-pivot,56,2),box(jawrear-1,23.5,90.8,jawlength+2,4.5,2),box(jawrear-1,-28,90.8,jawlength+2,4.5,2)]))
     jaw=union([jaw,rim,ear,mirror(ear)]).cut(cutout)
-    for y in [23.8,-27.2]:jaw=jaw.cut(cyl(pivot,y,100,2.3 if y>0 else 1.15,3.5,V(0,1,0)))
-    jaw=jaw.fuse(box(pivot+2,22.5,97,14,2,6))
-    for x in [pivot+7,pivot+11]:jaw=jaw.cut(cyl(x,22.3,100,.9,5,V(0,1,0))).cut(cyl(x,24.5,100,1.8,4,V(0,1,0)))
-    add('Jaw',jaw,'jaw',color=orange,note='54mm-wide shortened hinged beak. Pivot moves6mm forward to shorten the head package; neck cutout, stock horn and passive pivot remain mechanical interfaces. Proposed opening0..12deg requires physical fitting.')
-    horn=horn_y(pivot,20.1,100);horn.rotate(V(pivot,20.1,100),V(0,1,0),-90)
-    add('MouthHorn',horn,'jaw','hardware','#d1d2cd',.45)
+    jaw=jaw.cut(cyl(pivot,-27.2,100,1.15,3.5,V(0,1,0)))
+    jaw=jaw.fuse(cyl(pivot,16,100,4.5,11,V(0,1,0)))
+    jaw=socket_y(jaw,pivot,16,100,27,24.5)
+    add('Jaw',jaw,'jaw',color=orange,note='54 mm hinged beak with integrated direct spline hub and opposite passive pivot. Illustrative unverified 20-tooth 4.8/4.30 mm profile, 0.06 mm radial allowance, 3.5 mm nominal shaft overlap. Axial screw retains hub; no horn arm or arm screws. Physical fit, tooth strength and opening require bench testing.')
     add('HeadHood',hood,'head',note='52mm frontal width,64mm depth,52mm height. Faceted roof, matching pivot reliefs,0.8mm outside/0.4mm inside edge rolls, ribs and registered camera face. Rear face-screw ports and removable side screws.')
     screw_y('JawPassivePin',pivot,15.2,100,12,'head',-1,2)
     nut=hexy(pivot,15.3,100,4,2.5).cut(cyl(pivot,15.1,100,.85,2.9,V(0,1,0)))
     add('JawPassiveLocknut',mirror(nut),'head','hardware',steel,.12,'M2 nominal locknut and short passive pivot; set axial endplay without clamping jaw. Verify selected hardware dimensions.')
-    for index,x in enumerate([pivot+7,pivot+11]):screw_y('MouthHornScrew'+str([-15,-11][index]),x,20.5,100,4,'jaw',1,1.6)
-    screw_y('MouthShaftScrew',pivot,17.5,100,5,'jaw',1,2)
+    screw_y('MouthShaftScrew',pivot,17.5,100,7,'jaw',1,2)
     for sg in [1,-1]:screw_y('HoodScrew'+str(sg),side_x,20,113,6,'head',sg,2)
     for y in [-15,15]:screw_z('CameraClampScrew'+str(y),16,y,128.1,6,'head')
     for y in [-12,12]:

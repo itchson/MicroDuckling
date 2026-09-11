@@ -12,24 +12,24 @@
 
 MicroDuckling is an independent hobby robot project inspired by [Microduck from Pollen Robotics / Hugging Face](https://pollen-robotics.com/microduck/). The goal is a **small, affordable robot that people can build with printed parts and accessible electronics**, then make better as a community.
 
-The design pairs a big faceted head and a small white body with smooth orange rocker feet. Four MG90S servos move the left leg, right leg, neck and mouth. The upper bill stays fixed while the lower jaw opens. A local browser experiment runs rigid-body physics, searches gait patterns and approaches camera-visible targets. **NVIDIA Isaac Sim / Isaac Lab** and useful movements on real hardware remain development goals.
+The design pairs a big faceted head and a small white body with smooth orange rocker feet. Four MG90S servos move the left leg, right leg, neck and mouth. The fixed upper bill is part of the face print, while the lower jaw opens. Printed-part assembly connections use M2 fasteners. Integrated sockets in the legs, neck carrier and jaw engage the servo output splines directly; their provisional profile still needs qualification against the actual servo batch. A local browser experiment runs rigid-body physics, searches gait patterns and approaches camera-visible targets. **NVIDIA Isaac Sim / Isaac Lab** and useful movements on real hardware remain development goals.
 
 **This is an early CAD prototype, not a proven walking kit.** Contributions that uncover a fit problem, reduce cost, simplify assembly or improve the simulation are part of the project’s purpose.
 
-<p align="center"><img src="assets/renders/assembled.png" alt="R06 mechanical design and electronics visuals, assembled three-quarter view" width="880"></p>
-<p align="center"><em>R06 mechanical design with separately licensed electronics visuals. The mascot is an illustration; neither image is a photograph of a working robot.</em></p>
+<p align="center"><img src="assets/renders/assembled.png" alt="R07 mechanical design and electronics visuals, assembled three-quarter view" width="880"></p>
+<p align="center"><em>R07 mechanical design with separately licensed electronics visuals. The mascot is an illustration; neither image is a photograph of a working robot.</em></p>
 
 ## Where it stands
 
 | Area | Current state |
 | --- | --- |
-| Mechanical design | R06: 15 robot print parts, two fit coupons, four servo joints |
-| Size and mass | About 136 mm tall; 248 g estimated complete mass, not measured |
+| Mechanical design | R07: 14 robot print parts, two fit coupons, integrated spline sockets and a one-piece face/upper bill |
+| Size and mass | About 136 mm tall; 249 g estimated complete mass, not measured |
 | CAD checks | Printable mesh checks and sampled clearance reviews completed on the source design |
 | Physical assembly | Not yet verified with printed parts and the specified hardware |
 | Electronics and firmware | Four direct ESP32-CAM PWM signals and one shared 5 V regulator; I/O source and wiring supplied, hardware application/testing unfinished |
 | Walking | Browser contact-model experiments; physical walking, servo temperature and traction need bench tests |
-| Simulation | Physical gait search and successful geometric-camera approach regression tests; Isaac Lab scaffold remains unexecuted |
+| Simulation | Physical gait search and geometric-camera approach checks tied to each asset revision; Isaac Lab scaffold remains unexecuted |
 | Affordability | Proposed build with budget regulator: about A$100–110 including battery and print material; alternative mounts and power testing required |
 
 Australian prices checked on 11 September 2026. The budget alternative uses different boards from the current CAD reference and excludes shipping, charger and tools. See [parts and costs](docs/parts-research.md), the [BOM](docs/bom.md) and the [engineering review](docs/engineering-review.md).
@@ -37,11 +37,11 @@ Australian prices checked on 11 September 2026. The budget alternative uses diff
 ## Start exploring
 
 - **Inspect the design:** open [the mechanical FreeCAD model](cad/MicroDuckling_R05_mechanical.FCStd) or [the printed-part STEP](cad/MicroDuckling_R05_printed.step).
-- **Browse print files:** [STL](cad/stl/) and [3MF](cad/3mf/). Start with the two fit coupons and the [hardware measurement checklist](docs/hardware-measurements.md); a full print is not yet qualified.
-- **Understand the assembly:** read the [assembly review](docs/design-and-assembly.md) and [R06 changes](docs/r06-simplified-design.md).
+- **Browse print files:** [STL](cad/stl/) and [3MF](cad/3mf/). Start with the clearance and spline fit coupons and the [hardware measurement checklist](docs/hardware-measurements.md); a full print is not yet qualified.
+- **Understand the assembly:** read the [assembly review](docs/design-and-assembly.md) and [R07 changes](docs/r07-direct-mount-design.md).
 - **Work on simulation:** start with the [simulation guide](docs/simulation.md) and [roadmap](ROADMAP.md).
 
-The viewer includes **90 assembly records plus two fit coupons**: 88 mechanical records and two separately supplied component visuals. The IMU adapts an Adafruit PCB under CC BY-SA 3.0; the shared regulator is an original approximation. The PCA9685 and second regulator were removed. Native mechanical CAD and printed-part STEP stay separate, while mass accounts for the complete intended robot. See [license scope](docs/licensing.md) and [direct wiring](docs/electronics.md).
+The viewer includes **77 assembly records plus two fit coupons**: 75 mechanical records and two separately supplied component visuals. The four horn arms and separate upper-bill fasteners are absent from R07. The IMU adapts an Adafruit PCB under CC BY-SA 3.0; the shared regulator is an original approximation. The PCA9685 and second regulator were removed. Native mechanical CAD and printed-part STEP stay separate, while mass accounts for the complete intended robot. See [license scope](docs/licensing.md) and [direct wiring](docs/electronics.md).
 
 ### Run the CAD viewer locally
 
@@ -74,7 +74,7 @@ npm run build
 
 ## Help a little duckling grow
 
-You do not need to solve the whole robot to contribute. A measured servo horn, a clearly photographed fit failure, a cheaper power option, a better assembly step or a reproducible simulation result can all help.
+You do not need to solve the whole robot to contribute. A measured servo spline, a clearly photographed fit failure, a cheaper power option, a better assembly step or a reproducible simulation result can all help.
 
 Read [CONTRIBUTING](CONTRIBUTING.md), browse the [roadmap](ROADMAP.md), or [open an issue](https://github.com/itchson/MicroDuckling/issues/new/choose). Please include what you actually tested and distinguish measured results from estimates. The [conduct](CODE_OF_CONDUCT.md) and [governance](GOVERNANCE.md) documents explain how we work together.
 

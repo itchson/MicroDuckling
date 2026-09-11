@@ -80,9 +80,7 @@ export function separation(p:Part):T.Vector3 {
   if(p.name==='CameraCradle'||p.name.startsWith('CameraCradleScrew'))return new T.Vector3(48,0,68);
   if(p.name==='CameraBoardClamp'||p.name.startsWith('CameraClampScrew'))return new T.Vector3(36,-24,82);
   if(p.name==='ESP32CAM')return new T.Vector3(26,-38,68);
-  if(p.name.startsWith('ServoController'))return new T.Vector3(70,0,10);
   if(/^Buck_?0/.test(p.name))return new T.Vector3(-12,30,65);
-  if(/^Buck_?1/.test(p.name))return new T.Vector3(0,-55,0);
   if(p.link==='head')return new T.Vector3(0,Math.sign(c.y)*8,46);
   if(p.name.startsWith('BodyShell'))return new T.Vector3(0,Math.sign(c.y)*58,0);
   if(p.name==='Battery')return new T.Vector3(-44,0,0);
@@ -93,7 +91,7 @@ export function separation(p:Part):T.Vector3 {
   return new T.Vector3();
 }
 export const isPrintable=(p:Part)=>p.kind==='print'||p.kind==='coupon';
-export const isShell=(p:Part)=>p.name.startsWith('BodyShell')||['HeadHood','FacePanel','CameraRing','UpperBill','Jaw'].includes(p.name)||['BodyScrew','BodyNut','HoodScrew','FaceScrew'].some(prefix=>p.name.startsWith(prefix));
+export const isShell=(p:Part)=>p.name.startsWith('BodyShell')||['HeadHood','FacePanel','CameraRing','Jaw'].includes(p.name)||['BodyScrew','BodyNut','HoodScrew','FaceScrew'].some(prefix=>p.name.startsWith(prefix));
 export function isVisible(p:Part,view:{mode:Mode;hidden:string[];onlyPrint:boolean;internals:boolean}) {
   return !view.hidden.includes(p.name)&&(!view.onlyPrint||isPrintable(p))&&(!view.internals||!isShell(p))&&(view.mode==='grid'?isPrintable(p):p.kind!=='coupon');
 }

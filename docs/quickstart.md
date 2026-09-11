@@ -2,7 +2,7 @@
 
 MicroDuckling is an engineering prototype. The public files support inspection, modification and fit experiments; they are not a tested assembly kit. Browser walking and camera approach are model experiments; a working hardware application and Isaac-trained policy are not supplied.
 
-1. Read the [engineering review](engineering-review.md) and [R06 changes](r06-simplified-design.md).
+1. Read the [engineering review](engineering-review.md) and [R07 changes](r07-direct-mount-design.md).
 2. Inspect the printed parts in `cad/stl/`, the coupons in `cad/coupons/`, and the geometry-only files in `cad/3mf/`. The 3MF files have no printer profiles.
 3. Select the exact parts in the [BOM](bom.md) and fill out the [measurement worksheet](hardware-measurements.md). Start with the coupons before printing the whole robot.
 4. Follow [build and validation](build.md) to regenerate local CAD or run the numerical tests.

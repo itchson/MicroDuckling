@@ -4,8 +4,9 @@ import type {LocomotionGait} from './locomotion-controller';
 import type {RockingProgress} from './rocking-trainer';
 import type {GoalDisplay} from './approach';
 import type {VisionObservation,VisionParameters} from './vision';
+import type {ManualGaitSettings,ExperimentSettings} from './experiment-settings';
 export type RunMode='paused'|'pose'|'gait'|'walk-learning'|'camera'|'camera-learning';
-export type EnvironmentSettings={groundFriction:number;massScale:number};
+export type EnvironmentSettings={groundFriction:number;massScale:number;footFriction?:number};
 export type VisionProgress={trial:number;score:number;bestScore:number|null;parameters:VisionParameters;visibleFraction:number;coverageFraction:number;eligible:boolean;fall:boolean;goal:GoalDisplay};
 export type SimulationCommand=
  | {type:'init';asset:PhysicsAsset}
@@ -13,6 +14,9 @@ export type SimulationCommand=
  | {type:'reset'}
  | {type:'environment';settings:EnvironmentSettings}
  | {type:'pose';angles:JointAngles}
+ | {type:'gait';settings:ManualGaitSettings}
+ | {type:'reference'}
+ | {type:'experiment';settings:ExperimentSettings}
  | {type:'target';position:Vec3}
  | {type:'observation';observation:VisionObservation;runId:number;frameTime:number};
 export type SimulationEvent=

@@ -7,7 +7,7 @@ rs=[r for r in d['parts'] if r['kind']!='coupon'];ss={r['name']:D.getObject(r.ge
 out={'static_overlaps':[],'motion_overlaps':[],'combined_jaw_neck_overlaps':[],'reopened_solids_valid':all(s.isValid() for s in ss.values()),'notes':'Nominal CAD solids including sourced PCB outlines and modeled fasteners. Samples only, not continuous motion or positive-clearance proof. Illustrative flexible harness routes excluded from static and motion tests; actual wiring, plugs, tolerance and full assembly access unverified.'}
 out['source_cad_sha256']=hashlib.sha256((O/'MicroDuckling_R01.FCStd').read_bytes()).hexdigest()
 out['source_assembly_sha256']=hashlib.sha256((O/'assembly.json').read_bytes()).hexdigest()
-drive_engagement={frozenset(pair) for pair in [('ServoLeft','ShaftScrewLeft'),('ServoRight','ShaftScrewRight'),('ServoNeck','NeckShaftScrew'),('ServoMouth','MouthShaftScrew')]}
+out['servo_output_motion_scope']='Output spline shafts are separate parts on the driven links. Complete servo cases and crowns remain fixed and are checked at every joint sample. Actual output bearings and spline tolerances remain unverified.'
 for a,b in itertools.combinations(rs,2):
     if a['kind']=='harness' or b['kind']=='harness':continue
     if not ss[a['name']].BoundBox.intersect(ss[b['name']].BoundBox):continue
@@ -26,7 +26,6 @@ for link,piv,axis,angles in motions:
         for a in moving:
             s=ss[a['name']].copy();s.rotate(piv,axis,angle)
             for b in fixed:
-                if frozenset((a['name'],b['name'])) in drive_engagement:continue
                 q=ss[b['name']]
                 if s.BoundBox.intersect(q.BoundBox):
                     vol=s.common(q).Volume

@@ -3,6 +3,7 @@ import {BrowserPhysics,type PhysicsAsset,type SimulationFrame,type Vec3} from '.
 import {createGoalState,goalMetrics,goalScore,type GoalState,type GoalMetrics} from './goal-metrics.ts';
 import {visionTargets,type VisionObservation,type VisionParameters} from './vision.ts';
 import type {LocomotionGait} from './locomotion-controller.ts';
+import {DEFAULT_EXPERIMENT,type SearchSettings} from './experiment-settings.ts';
 
 export type GoalDisplay=Omit<GoalMetrics,'state'>;
 export type ApproachResult={frame:SimulationFrame;goal:GoalDisplay;finished:boolean;score:number;observations:number;visibleFraction:number;coverageFraction:number;eligible:boolean};
@@ -25,8 +26,10 @@ export class ApproachEpisode {
   private visibleSeconds=0;
   private coveredSeconds=0;
   private result:ApproachResult;
-  constructor(engine:BrowserPhysics,asset:PhysicsAsset,gait:LocomotionGait,parameters:VisionParameters,target:Vec3,options:{seed?:number;seconds?:number}={}){
+  private search:SearchSettings;
+  constructor(engine:BrowserPhysics,asset:PhysicsAsset,gait:LocomotionGait,parameters:VisionParameters,target:Vec3,options:{seed?:number;seconds?:number;search?:SearchSettings}={}){
     this.engine=engine;this.gait=gait;this.parameters=parameters;this.target=target;this.maxSeconds=options.seconds??60;
+    this.search=options.search??DEFAULT_EXPERIMENT;
     engine.reset({seed:options.seed??2026,perturbationRad:.002});engine.setTarget(target,[.025,.025,.05]);
     for(let i=0;i<60;i++)engine.step(1/60,ZERO);
     const frame=engine.frame();this.state=createGoalState(frame,target,{rootLocalComM:asset.links.find(link=>link.name==='body')!.comM});
@@ -51,7 +54,7 @@ export class ApproachEpisode {
     // Keep 60 Hz actuator commands while holding the captured image for 100 ms.
     for(let i=0;i<6;i++){
       const time=frame.time-this.state.initialTime;
-      const commands=visionTargets(filtered,this.parameters,this.gait,time,1/60,this.neck,this.stopped);this.neck=commands.neck_yaw;
+      const commands=visionTargets(filtered,this.parameters,this.gait,time,1/60,this.neck,this.stopped,this.search);this.neck=commands.neck_yaw;
       const before=frame.time;frame=this.engine.step(1/60,commands);const dt=frame.time-before;
       this.coveredSeconds+=dt;if(observation.visible)this.visibleSeconds+=dt;
       const measured=goalMetrics(frame,this.target,this.state.initialDistanceM,dt,this.state);this.state=measured.state;

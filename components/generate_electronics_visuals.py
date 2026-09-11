@@ -226,7 +226,7 @@ def main():
         notices.append(notice)
         records.append(record)
         checks.append({"name": name, "vertices": len(mesh["positions"]) // 3, "triangles": len(mesh["indices"]) // 3, "material_groups": len(mesh["groups"]), "bbox_mm": bbox, "complete_material_coverage": True, "mass_estimate_preserved": record["mass_g"] == source_records[name]["mass_g"], "com_estimate_preserved": record["com_mm"] == source_records[name]["com_mm"]})
-    (out / "records.json").write_text(json.dumps({"schema_version": 1, "units": "mm", "coordinate_system": "MicroDuckling R06 CAD assembly coordinates", "mass_estimates_scope": "full_physical_assembly", "parts": records}, indent=2) + "\n", encoding="utf-8", newline="\n")
+    (out / "records.json").write_text(json.dumps({"schema_version": 1, "units": "mm", "coordinate_system": "MicroDuckling CAD assembly coordinates", "mass_estimates_scope": "full_physical_assembly", "parts": records}, indent=2) + "\n", encoding="utf-8", newline="\n")
     (out / "NOTICE.json").write_text(json.dumps({"schema_version": 1, "assets": notices, "collection_note": "Individual asset licenses apply. Adafruit mesh adaptations remain CC-BY-SA-3.0. Original Pololu approximations and this generator are Apache-2.0; no license is asserted over the represented commercial hardware."}, indent=2) + "\n", encoding="utf-8", newline="\n")
     (out / "validation.json").write_text(json.dumps({"parts": checks, "part_count": len(checks), "pololu_step_or_prior_mesh_used": False}, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps(checks, indent=2))

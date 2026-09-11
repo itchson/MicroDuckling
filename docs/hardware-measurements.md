@@ -1,6 +1,6 @@
 # Hardware measurement worksheet
 
-**No physical measurements are recorded yet.** Leave result cells blank until measured. CAD values below are hypotheses. Label servos **L**, **R**, **N**, **M** for left/right hip, neck and mouth; keep each servo's stock horn and center screw together.
+**No physical measurements are recorded yet.** Leave result cells blank until measured. CAD values below are hypotheses. Label servos **L**, **R**, **N**, **M** for left/right hip, neck and mouth; keep each servo's supplied center screw identified with its servo. Stock horns can serve as measurement references but are not installed in R07.
 
 | Identification | Record |
 |---|---|
@@ -10,7 +10,7 @@
 | Printer, material, orientation, layer height | |
 | Power supply/pack, instruments and test conditions | |
 
-Use millimetres and grams. For servos define **A** as the flat base opposite the shaft, **B** as the short case end nearest the shaft, and **C** as a marked long side. Heights run from A toward the shaft. Distinguish the rectangular case, mounting ears, fixed crown, spline and seated horn. Measure unpowered external geometry; do not force an unknown screw or open the gearcase to identify it.
+Use millimetres and grams. For servos define **A** as the flat base opposite the shaft, **B** as the short case end nearest the shaft, and **C** as a marked long side. Heights run from A toward the shaft. Distinguish the rectangular case, mounting ears, fixed crown, spline and fully seated direct socket. Measure unpowered external geometry; do not force an unknown screw or open the gearcase to identify it.
 
 ## Servo geometry
 
@@ -27,20 +27,24 @@ Use millimetres and grams. For servos define **A** as the flat base opposite the
 | Lead exit, cable size and plugged connector envelope | unknown | | | | |
 | Installed mass, including stated lead length | 13.4 g | | | | |
 
-Hole pitch is not the ear's total span. Locate shaft centers from measured tangents and shaft radii consistently. Photograph the crown and horn beside a ruler in the same plane.
+Hole pitch is not the ear's total span. Locate shaft centers from measured tangents and shaft radii consistently. Photograph the crown and output spline beside a scale in the same plane; include a square-on macro view for tooth counting.
 
-## Horn, screw and thrust stack
+## Direct spline, screw and thrust stack
+
+The actual printed leg, neck carrier and jaw sockets now use a configurable 20T profile with 4.8 mm major and 4.30 mm root diameters. **These are unverified assumptions, not a measured MG90S standard.** Use the spline coupon before printing or loading a complete interface. Record several servos from the same pack; the model name does not establish interchangeable output shafts.
 
 | Measurement | L | R | N | M |
 |---|---|---|---|---|
-| Stock horn identity; both arm lengths and widths | | | | |
-| Hub outline, underside projection and arm thickness | | | | |
-| A to seated inner/outer arm faces and screw-head top | | | | |
-| Selected horn holes: radius, diameter, thread use | | | | |
-| Center screw thread, under-head length and usable engagement | | | | |
-| Full sweep clearance, axial play and radial rocking | | | | |
+| Tooth count, major diameter and root diameter | | | | |
+| Tooth tip/root widths and flank shape; macro photograph reference | | | | |
+| Usable spline height and shoulder/crown outline | | | | |
+| Socket's actual printed allowance and seated depth | | | | |
+| A to seated socket outer face and screw-head top | | | | |
+| Center screw diameter/pitch, under-head length and usable engagement | | | | |
+| Backlash, axial play, radial rocking and full sweep clearance | | | | |
+| Repeat assembly and representative load/wear result | | | | |
 
-The model's Ø8.5 mm hub, 2.4 mm arm thickness and 7/11 mm hole radii are provisional. Check both arms of a double-arm horn. Do not add an arbitrary printed stack under the stock center screw. For the neck, record support top → actual thrust shim → carrier shoulder and verify support without axial preload. The nominal shim is 0.20 mm; a gap alone does not carry weight.
+Do not use the retaining screw to force an incorrect tooth profile onto the shaft. Confirm the socket seats on its intended shoulder and does not bottom on the shaft tip; check screw engagement and blind depth separately. For the neck, record support top → actual thrust shim → carrier shoulder and verify support without axial preload. The nominal shim is 0.20 mm; a gap alone does not carry weight. See [R07 interface parameters](r07-direct-mount-design.md) and the [spline experiment](../experiments/spline-mount/README.md).
 
 | Fastener location | Nominal intent | Actual thread / head / length | Grip stack / engagement / tip clearance | Result |
 |---|---|---|---|---|
@@ -49,10 +53,12 @@ The model's Ø8.5 mm hub, 2.4 mm arm thickness and 7/11 mm hole radii are provis
 | Passive jaw pivot | M2×12 with locknut; 0.2 mm nominal endplay | | | |
 | Servo regulator / IMU mounts | M2×6 | | | |
 | Camera clamp / cradle | M2×6 | | | |
-| Hood, face, shells and neck attachments | Verify each source location | | | |
-| Horn-to-print screws and stock center screws | Match actual supplied parts | | | |
+| Hood, face, shells and neck attachments | M2; check source length and pilot or captive-nut location | | | |
+| Four direct-socket center retaining screws | Vendor-specific thread; 2 mm CAD envelope is not an M2 specification | | | |
 
-Nominal cylindrical CAD screws do not identify supplied threads. For a straight stack, engagement is under-head length minus unthreaded grip length; include washers, recesses and gaps. Verify blind depth and tip clearance. The thin clearance coupon checks diameters, not thread retention: use a representative-depth pilot sample for stripping, cracking and repeated assembly tests.
+Printed-part assembly fasteners are nominal M2. Common CAD passing holes are Ø2.30 mm, and common printed pilots are Ø1.70 mm (0.85 mm radius). Qualify the pilots with the selected 2 mm thread-forming fastener, printer and material; record cracking, stripping and repeated assembly in a representative-depth sample. The clearance coupon supplies Ø2.1/2.2/2.3/2.4 mm passing holes and Ø1.6/1.7/1.8 mm pilot trials. Captive M2 nuts apply only at modeled pockets; retain the passive jaw pivot's M2 locknut. No nut is assumed behind a plain printed pilot.
+
+Nominal cylindrical CAD screws do not model threads. The four servo-output center screws are vendor-specific despite their 2 mm visual envelope; measure their thread rather than substituting an M2 screw by appearance. For a straight stack, engagement is under-head length minus unthreaded grip length; include washers, recesses and gaps. Verify blind depth and tip clearance. The thin clearance coupon checks diameters, not thread retention: use a representative-depth pilot sample for stripping, cracking and repeated assembly tests.
 
 ## Electronics, camera and battery
 
@@ -70,8 +76,8 @@ Use the [BOM](bom.md) only as a reference column. Measure camera carrier size, l
 
 | Check | Observation / measurement | Status |
 |---|---|---|
-| Servo saddles seat on ears without distorting cases; horns fully seat | | |
-| Full horn and printed-part sweeps: hips ±12°, neck ±45°, jaw 0–12° | | |
+| Servo saddles seat on ears without distorting cases; direct sockets fully seat | | |
+| Full direct-socket and printed-part sweeps: hips ±12°, neck ±45°, jaw 0–12° | | |
 | All screw, nut, driver and component insertion paths in assembly order | | |
 | Loose hood/face module closes; face screws accessible with module removed | | |
 | Board insulation, solder projections and release space for every plug | | |

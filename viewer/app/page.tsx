@@ -226,7 +226,7 @@ export default function Home(){
 
   return <main className="cad-app">
 
-    <header className="topbar"><div className="brand"><img className="brand-logo" src="/brand/microduckling-mascot.png" alt=""/><div><strong>MicroDuckling</strong><span>R06 prototype · {data?.revision??'CAD'}</span></div></div>
+    <header className="topbar"><div className="brand"><img className="brand-logo" src="/brand/microduckling-mascot.png" alt=""/><div><strong>MicroDuckling</strong><span>R07 prototype · {data?.revision??'CAD'}</span></div></div>
       <nav aria-label="Workspace">{modes.map(({id,label,Icon})=><Button key={id} variant={!simulation&&(mode===id||(id==='assembly'&&mode==='explode'))?'default':'ghost'} aria-pressed={!simulation&&(mode===id||(id==='assembly'&&mode==='explode'))} onClick={()=>{setSimulation(false);setMode(id==='assembly'&&amount>0?'explode':id);setInternals(false);setHidden([]);setSelected(null)}}><Icon size={17}/>{label}</Button>)}<Button variant={simulation?'default':'ghost'} aria-pressed={simulation} disabled={!data} onClick={()=>{setSimulationLoaded(true);setSimulation(true)}}><FlaskConical size={17}/>Simulation</Button></nav>
 
       <div className="header-actions">{!simulation&&<><Button variant="outline" aria-expanded={partsOpen} aria-controls="parts-panel" onClick={()=>setPartsOpen(v=>!v)}><PanelLeft size={16}/>Parts</Button><Button variant="outline" onClick={reset}><RotateCcw size={16}/>Reset</Button></>}<a href="https://github.com/itchson/MicroDuckling" target="_blank" rel="noreferrer">GitHub ↗</a></div>

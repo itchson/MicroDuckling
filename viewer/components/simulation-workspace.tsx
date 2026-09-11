@@ -12,6 +12,7 @@ import type {RockingProgress} from '../lib/rocking-trainer';
 import type {GoalDisplay} from '../lib/approach';
 import {detectTarget,type VisionParameters} from '../lib/vision';
 import type {RunMode,SimulationCommand,SimulationEvent,VisionProgress,EnvironmentSettings} from '../lib/simulation-protocol';
+import {DEFAULT_MANUAL_GAIT,DEFAULT_EXPERIMENT,targetFromGround,type ManualGaitSettings,type ExperimentSettings} from '../lib/experiment-settings';
 
 const CAMERA_WIDTH=96,CAMERA_HEIGHT=72,CAMERA_FOV=50;
 const descriptions:Record<RunMode,string>={paused:'Paused',pose:'Servo pose',gait:'Gait playback','walk-learning':'Searching gaits',camera:'Camera approach','camera-learning':'Learning camera control'};
@@ -25,9 +26,12 @@ export function SimulationWorkspace({data,visible}:{data:Assembly;visible:boolea
   const ready=physicsReady&&graphicsReady;
   const [stats,setStats]=useState<SimulationFrame|null>(null),[progress,setProgress]=useState<RockingProgress|null>(null),[goal,setGoal]=useState<GoalDisplay|null>(null);
   const [history,setHistory]=useState<number[]>([]),[visionProgress,setVisionProgress]=useState<VisionProgress|null>(null);
-  const [policy,setPolicy]=useState<Policy|null>(null),[seen,setSeen]=useState(false),[targetSide,setTargetSide]=useState(0);
+  const [policy,setPolicy]=useState<Policy|null>(null),[seen,setSeen]=useState(false),[targetMm,setTargetMm]=useState<Vec3>([180,0,50]);
+  const placing=useRef(false),[placeTarget,setPlaceTarget]=useState(false),commitTarget=useRef<(position:Vec3)=>void>(()=>{});
+  const [tuning,setTuning]=useState<ManualGaitSettings>({...DEFAULT_MANUAL_GAIT}),[gaitLabel,setGaitLabel]=useState('Reference gait');
+  const [experiment,setExperiment]=useState<ExperimentSettings>({...DEFAULT_EXPERIMENT});
   const [bow,setBow]=useState(0),[neck,setNeck]=useState(0),[jaw,setJaw]=useState(0);
-  const [environment,setEnvironment]=useState<EnvironmentSettings>({groundFriction:.7,massScale:1});
+  const [environment,setEnvironment]=useState<EnvironmentSettings>({groundFriction:.7,massScale:1,footFriction:.9});
   const contactsVisible=useRef(true),[showContacts,setShowContacts]=useState(true);
   const send=(command:SimulationCommand)=>worker.current?.postMessage(command);
   useEffect(()=>{if(!visible)worker.current?.postMessage({type:'run',mode:'paused'} satisfies SimulationCommand);},[visible]);
@@ -50,7 +54,7 @@ export function SimulationWorkspace({data,visible}:{data:Assembly;visible:boolea
           setStats(message.frame);lastStats=performance.now();
         }
       }else if(message.type==='mode'){active.current=message.mode;setMode(message.mode);}
-      else if(message.type==='training'){setProgress(message.progress);setHistory(values=>[...values,message.progress.best.score]);}
+      else if(message.type==='training'){setProgress(message.progress);setGaitLabel('Best evaluated gait');setHistory(values=>[...values,message.progress.best.score]);}
       else if(message.type==='vision-training')setVisionProgress(message.progress);
       else if(message.type==='policy')setPolicy({gait:message.gait,vision:message.vision});
       else if(message.type==='error')setError(message.message);
@@ -84,6 +88,26 @@ export function SimulationWorkspace({data,visible}:{data:Assembly;visible:boolea
     const floor=new T.Mesh(new T.PlaneGeometry(6000,6000),new T.MeshStandardMaterial({color:0x192837,roughness:1}));floor.position.z=-.3;scene.add(floor);
     const grid=new T.GridHelper(3000,60,0x405465,0x273a4b);grid.rotation.x=Math.PI/2;scene.add(grid);
     const target=new T.Mesh(new T.BoxGeometry(50,50,100),new T.MeshBasicMaterial({color:0xec19df}));scene.add(target);
+    const area=new T.LineLoop(new T.BufferGeometry().setFromPoints([[160,-400,1],[600,-400,1],[600,400,1],[160,400,1]].map(p=>new T.Vector3(p[0],p[1],p[2]))),new T.LineBasicMaterial({color:0xffbd77}));area.visible=false;scene.add(area);
+    const picker=new T.Raycaster(),pointer=new T.Vector2(),dragOffset=new T.Vector2(),groundPlane=new T.Plane(new T.Vector3(0,0,1),0),picked=new T.Vector3();
+    let dragging=false;
+    const aim=(event:PointerEvent)=>{const rect=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);picker.setFromCamera(pointer,camera);};
+    const previewTarget=(event:PointerEvent)=>{aim(event);if(!picker.ray.intersectPlane(groundPlane,picked))return;const p=targetFromGround(picked.x+dragOffset.x,picked.y+dragOffset.y);targetPosition.current=[p[0]*1000,p[1]*1000,50];setTargetMm([...targetPosition.current]);};
+    const down=(event:PointerEvent)=>{
+      if(event.button!==0||!latest.current)return;aim(event);
+      if(!placing.current&&!picker.intersectObject(target).length)return;
+      dragOffset.set(0,0);if(!placing.current&&picker.ray.intersectPlane(groundPlane,picked))dragOffset.set(targetPosition.current[0]-picked.x,targetPosition.current[1]-picked.y);
+      event.stopImmediatePropagation();event.preventDefault();dragging=true;controls.enabled=false;
+      active.current='paused';worker.current?.postMessage({type:'run',mode:'paused'} satisfies SimulationCommand);
+      renderer.domElement.setPointerCapture(event.pointerId);previewTarget(event);
+    };
+    const move=(event:PointerEvent)=>{if(!dragging)return;event.stopImmediatePropagation();previewTarget(event);};
+    const up=(event:PointerEvent)=>{if(!dragging)return;event.stopImmediatePropagation();dragging=false;controls.enabled=true;
+      if(renderer.domElement.hasPointerCapture(event.pointerId))renderer.domElement.releasePointerCapture(event.pointerId);
+      commitTarget.current(targetPosition.current);placing.current=false;setPlaceTarget(false);
+    };
+    renderer.domElement.addEventListener('pointerdown',down,true);renderer.domElement.addEventListener('pointermove',move,true);
+    renderer.domElement.addEventListener('pointerup',up,true);renderer.domElement.addEventListener('pointercancel',up,true);
     const comMarker=new T.Mesh(new T.SphereGeometry(2.3,12,8),new T.MeshBasicMaterial({color:0x7be1e3,depthTest:false}));comMarker.renderOrder=10;comMarker.visible=false;scene.add(comMarker);
     const contactGeometry=new T.SphereGeometry(1.5,8,6),contactMaterial=new T.MeshBasicMaterial({color:0xffc476,depthTest:false});
     const contactMarkers=new T.InstancedMesh(contactGeometry,contactMaterial,128);contactMarkers.count=0;contactMarkers.renderOrder=11;contactMarkers.frustumCulled=false;scene.add(contactMarkers);
@@ -114,7 +138,7 @@ export function SimulationWorkspace({data,visible}:{data:Assembly;visible:boolea
           if(link==='head')headMatrix.copy(matrix);
         }
       }
-      target.position.fromArray(targetPosition.current);controls.update();
+      target.position.fromArray(targetPosition.current);area.visible=placing.current||dragging;controls.update();
       const contact=current?.frame.contacts;
       comMarker.visible=!!contact&&contactsVisible.current;contactMarkers.visible=contactsVisible.current;
       if(contact){
@@ -130,10 +154,10 @@ export function SimulationWorkspace({data,visible}:{data:Assembly;visible:boolea
         sensorForward.set(1,0,0).transformDirection(headMatrix);sensorUp.set(0,0,1).transformDirection(headMatrix);
         sensor.position.copy(sensorPosition);sensor.up.copy(sensorUp);sensor.lookAt(sensorPosition.clone().add(sensorForward));
         const savedComVisibility=comMarker.visible,savedContactVisibility=contactMarkers.visible;
-        comMarker.visible=false;contactMarkers.visible=false;
+        comMarker.visible=false;contactMarkers.visible=false;const areaVisible=area.visible;area.visible=false;
         renderer.setRenderTarget(renderTarget);renderer.render(scene,sensor);
         renderer.readRenderTargetPixels(renderTarget,0,0,CAMERA_WIDTH,CAMERA_HEIGHT,pixels);renderer.setRenderTarget(null);
-        comMarker.visible=savedComVisibility;contactMarkers.visible=savedContactVisibility;
+        comMarker.visible=savedComVisibility;contactMarkers.visible=savedContactVisibility;area.visible=areaVisible;
         const observation=detectTarget(pixels,CAMERA_WIDTH,CAMERA_HEIGHT,CAMERA_FOV*Math.PI/180);setSeen(observation.visible);
         if(captureKey!==lastCapture&&(active.current==='camera'||active.current==='camera-learning'))worker.current?.postMessage({type:'observation',observation,runId:current.runId,frameTime:current.frame.time} satisfies SimulationCommand);
         for(let row=0;row<CAMERA_HEIGHT;row++)flipped.set(pixels.subarray(row*CAMERA_WIDTH*4,(row+1)*CAMERA_WIDTH*4),(CAMERA_HEIGHT-1-row)*CAMERA_WIDTH*4);
@@ -144,6 +168,9 @@ export function SimulationWorkspace({data,visible}:{data:Assembly;visible:boolea
     animation=requestAnimationFrame(draw);
     return()=>{
       disposed=true;controller.abort();cancelAnimationFrame(animation);observer.disconnect();controls.dispose();
+      renderer.domElement.removeEventListener('pointerdown',down,true);renderer.domElement.removeEventListener('pointermove',move,true);
+      renderer.domElement.removeEventListener('pointerup',up,true);renderer.domElement.removeEventListener('pointercancel',up,true);
+      area.geometry.dispose();area.material.dispose();
       for(const group of meshes.values())group.forEach(disposeCadMesh);
       for(const mesh of [floor,grid,target,comMarker]){mesh.geometry.dispose();(mesh.material as T.Material).dispose();}
       contactGeometry.dispose();contactMaterial.dispose();contactMarkers.dispose();
@@ -151,15 +178,18 @@ export function SimulationWorkspace({data,visible}:{data:Assembly;visible:boolea
     };
   },[data]);
 
-  const moveTarget=(side:number)=>{
-    setTargetSide(side);setVisionProgress(null);targetPosition.current=[180,side,50];send({type:'target',position:[.18,side/1000,.05]});
-  };
+  const moveTarget=(position:Vec3)=>{
+    const p=targetFromGround(position[0],position[1]);const mm:Vec3=[p[0]*1000,p[1]*1000,50];
+    setTargetMm(mm);setVisionProgress(null);setGoal(null);targetPosition.current=mm;active.current='paused';latest.current=null;send({type:'target',position:p});
+  };commitTarget.current=moveTarget;
+  const changeExperiment=(settings:ExperimentSettings)=>{setExperiment(settings);setVisionProgress(null);setGoal(null);send({type:'experiment',settings});};
+  const applyGait=(reference=false)=>{setProgress(null);setHistory([]);setVisionProgress(null);setGoal(null);setGaitLabel(reference?'Reference gait':'Custom gait');send(reference?{type:'reference'}:{type:'gait',settings:tuning});};
   const changeEnvironment=(settings:EnvironmentSettings)=>{
     setEnvironment(settings);setPhysicsReady(false);setProgress(null);setHistory([]);setVisionProgress(null);
     send({type:'environment',settings});
   };
   const download=()=>{
-    const blob=new Blob([JSON.stringify({schemaVersion:1,createdAt:new Date().toISOString(),scope:'Browser experiment only; not a hardware or Isaac policy',asset:asset.current,environment,policy,walkTraining:progress,cameraTraining:visionProgress},null,2)],{type:'application/json'});
+    const blob=new Blob([JSON.stringify({schemaVersion:2,createdAt:new Date().toISOString(),scope:'Browser experiment only; not a hardware or Isaac policy',asset:asset.current,environment,experiment,targetM:targetMm.map(v=>v/1000),manualGaitDraft:tuning,policy,walkTraining:progress,cameraTraining:visionProgress},null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='microduckling-experiment.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
   };
   const chart=history.length>1?history.map((value,index)=>{
@@ -179,13 +209,35 @@ export function SimulationWorkspace({data,visible}:{data:Assembly;visible:boolea
         <div className="foot-loads">{(['left_leg','right_leg'] as const).map((leg,index)=>{const foot=stats?.contacts?.feet[leg];return <div key={leg} className={foot?.inContact?'loaded':''}><strong>{index===0?'Left foot':'Right foot'}</strong><span>{foot?.inContact?`${foot.normalForceN?.toFixed(2)??'—'} N estimated`:'No contact'}</span><small>{((foot?.slipSpeedMps??0)*1000).toFixed(1)} mm/s slip</small></div>;})}</div>
         <p className="help">Ground support {stats?.contacts?.groundNormalForceN?.toFixed(2)??'—'} N · weight {(stats?.contacts?.weightN??data.mass_g/1000*9.81).toFixed(2)} N</p>
         <Button variant="outline" aria-pressed={showContacts} onClick={()=>{contactsVisible.current=!showContacts;setShowContacts(!showContacts);}}>{showContacts?'Hide':'Show'} contact markers</Button><small className="contact-legend">Cyan: centre of mass · amber: loaded contacts</small>
-        <details className="environment-settings"><summary>Surface & mass settings</summary><div className="joint"><div><label>Ground friction μ</label><output>{environment.groundFriction.toFixed(2)}</output></div><Slider aria-label="Ground friction coefficient" min={0} max={1.2} step={.05} value={[environment.groundFriction]} onValueChange={value=>changeEnvironment({...environment,groundFriction:Array.isArray(value)?value[0]:value})}/></div><div className="joint"><div><label>Mass scale</label><output>{Math.round(environment.massScale*100)}%</output></div><Slider aria-label="Simulation mass scale" min={.5} max={1.5} step={.05} value={[environment.massScale]} onValueChange={value=>changeEnvironment({...environment,massScale:Array.isArray(value)?value[0]:value})}/></div><p className="help">Gravity 9.81 m/s² · tread μ 0.90 · effective foot–floor μ {Math.min(.9,environment.groundFriction).toFixed(2)}. Coefficients are starting estimates. Changing settings resets training scores.</p></details>
+        <details className="environment-settings"><summary>Surface & mass settings</summary><div className="joint"><div><label>Ground friction μ</label><output>{environment.groundFriction.toFixed(2)}</output></div><Slider aria-label="Ground friction coefficient" min={0} max={1.2} step={.05} value={[environment.groundFriction]} onValueChange={value=>changeEnvironment({...environment,groundFriction:Array.isArray(value)?value[0]:value})}/></div><div className="joint"><div><label>Mass scale</label><output>{Math.round(environment.massScale*100)}%</output></div><Slider aria-label="Simulation mass scale" min={.5} max={1.5} step={.05} value={[environment.massScale]} onValueChange={value=>changeEnvironment({...environment,massScale:Array.isArray(value)?value[0]:value})}/></div><div className="joint"><div><label>Foot friction μ</label><output>{(environment.footFriction??.9).toFixed(2)}</output></div><Slider aria-label="Foot friction coefficient" disabled={!ready} min={0} max={1.5} step={.05} value={[environment.footFriction??.9]} onValueChange={value=>changeEnvironment({...environment,footFriction:Array.isArray(value)?value[0]:value})}/></div><p className="help">Gravity 9.81 m/s² · effective foot–floor μ {Math.min(environment.footFriction??.9,environment.groundFriction).toFixed(2)}. Coefficients are starting estimates. Changing settings resets training scores.</p></details>
       </section>
-      <section><div className="section-heading"><h2>Learn a gait</h2><FlaskConical size={17}/></div><p className="help">Search 14-second physical trials for sustained forward travel and balance. The bundled gait is evaluated alongside neutral before searching.</p>
-        <Button disabled={!ready||mode==='walk-learning'} onClick={()=>run('walk-learning')}>Start gait search</Button><Button variant="outline" disabled={!ready} onClick={()=>run('gait')}><Play size={15}/>{progress?'Play best gait':'Try reference gait'}</Button>
+      <section><div className="section-heading"><h2>Step & balance</h2><span>{gaitLabel}</span></div>
+        <p className="help">Tune a custom gait, then apply it for playback, approach or the next gait search.</p>
+        {([
+          {key:'swingDeg',label:'Step swing',min:0,max:12,step:.5,unit:'°'},
+          {key:'leanDeg',label:'Forward lean',min:-12,max:12,step:.5,unit:'°'},
+          {key:'frequencyHz',label:'Step pace',min:.3,max:4.5,step:.1,unit:' Hz'},
+          {key:'phaseDeg',label:'Left–right phase',min:0,max:360,step:5,unit:'°'},
+          {key:'duty',label:'Step timing',min:.1,max:.9,step:.05,unit:''},
+          {key:'headSwayDeg',label:'Head sway · gait only',min:0,max:45,step:1,unit:'°'},
+        ] as const).map(control=><div className="joint" key={control.key}><div><label>{control.label}</label><output>{tuning[control.key].toFixed(control.step<1?control.key==='duty'?2:1:0)}{control.unit}</output></div><Slider aria-label={control.label} disabled={!ready} min={control.min} max={control.max} step={control.step} value={[tuning[control.key]]} onValueChange={value=>setTuning({...tuning,[control.key]:Array.isArray(value)?value[0]:value})}/></div>)}
+        <p className="help">Effective swing: ±{Math.min(tuning.swingDeg,12-Math.abs(tuning.leanDeg)).toFixed(1)}° around the lean command. Total hip travel stays within ±12°. Lean is a servo command; contact determines actual body tilt. 180° phase alternates the legs; 0° moves them together.</p>
+        <Button disabled={!ready} onClick={()=>applyGait()}>Apply custom gait</Button><Button variant="outline" disabled={!ready} onClick={()=>applyGait(true)}>Restore reference</Button>
+      </section>
+      <section><div className="section-heading"><h2>Learn a gait</h2><FlaskConical size={17}/></div><p className="help">Search 14-second physical trials for sustained forward travel and balance. Your selected gait is evaluated alongside neutral before searching.</p>
+        <Button disabled={!ready||mode==='walk-learning'} onClick={()=>run('walk-learning')}>Start gait search</Button><Button variant="outline" disabled={!ready} onClick={()=>run('gait')}><Play size={15}/>Play selected gait</Button>
         {progress&&<div className="experiment-result" aria-live="polite"><strong>Generation {progress.generation} / 12</strong><span>{progress.episodesEvaluated} measured episodes</span><span>{(progress.bestDistanceM*1000).toFixed(2)} mm best · {progress.best.fall?'fell':'upright'}</span><span>{(progress.improvementM*1000).toFixed(2)} mm gain over neutral</span>{chart&&<svg viewBox="0 0 250 65" role="img" aria-label="Best episode reward by generation"><polyline points={chart} fill="none" stroke="#ffa660" strokeWidth="2"/></svg>}<span>{(progress.best.lateForwardSpeedMps*1000).toFixed(1)} mm/s sustained speed</span><small>{progress.bestOrigin==='search'?(progress.improvedOverSeed?'Search improved on the supplied gait.':'Search candidate leads the score; speed improvement is not established.'):'The supplied reference or neutral still leads; no new improvement yet.'}</small></div>}
       </section>
-      <section><h2>See and approach</h2><p className="help">Use camera pixels to steer and stop. Training compares 12 settings in trials of up to 60 simulated seconds, scored by actual approach and balance.</p><div className="target-options" aria-label="Target position">{[40,0,-40].map((side,i)=><Button key={side} variant={side===targetSide?'default':'outline'} disabled={!ready} onClick={()=>moveTarget(side)}>{['Left','Ahead','Right'][i]}</Button>)}</div>
+      <section><h2>See and approach</h2><p className="help">Drag the magenta target, or choose a point on the ground. Moving it starts a fresh episode. Camera search scans for its color before approaching.</p>
+        <Button variant={placeTarget?'default':'outline'} disabled={!ready} aria-pressed={placeTarget} onClick={()=>{placing.current=!placeTarget;setPlaceTarget(!placeTarget);}}>{placeTarget?'Click the ground…':'Place target on ground'}</Button>
+        <div className="target-options" aria-label="Target presets">{[40,0,-40].map((side,i)=><Button key={side} variant={side===targetMm[1]&&targetMm[0]===180?'default':'outline'} disabled={!ready} onClick={()=>moveTarget([180,side,50])}>{['Left','Ahead','Right'][i]}</Button>)}</div>
+        {([{axis:0,label:'Target forward',min:160,max:600},{axis:1,label:'Target left / right',min:-400,max:400}] as const).map(control=><div className="joint" key={control.axis}><div><label>{control.label}</label><output>{Math.round(targetMm[control.axis])} mm</output></div><Slider aria-label={control.label} disabled={!ready} min={control.min} max={control.max} step={1} value={[targetMm[control.axis]]} onValueChange={value=>{const next=[...targetMm] as Vec3;next[control.axis]=Array.isArray(value)?value[0]:value;moveTarget(next);}}/></div>)}
+        <p className="help">Forward training area: 160–600 mm ahead, up to 400 mm either side. Positive side values are left. The block stays on the ground. Distant targets can need longer trials and better steering.</p>
+        <details className="environment-settings"><summary>Search & trial settings</summary>{([
+          {key:'cameraSeconds',label:'Trial time limit',min:15,max:120,step:5,unit:' s'},
+          {key:'scanAmplitudeDeg',label:'Search sweep each side',min:0,max:45,step:5,unit:'°'},
+          {key:'scanPeriodSeconds',label:'Search sweep period',min:2,max:12,step:1,unit:' s'},
+        ] as const).map(control=><div className="joint" key={control.key}><div><label>{control.label}</label><output>{experiment[control.key]}{control.unit}</output></div><Slider aria-label={control.label} disabled={!ready} min={control.min} max={control.max} step={control.step} value={[experiment[control.key]]} onValueChange={value=>changeExperiment({...experiment,[control.key]:Array.isArray(value)?value[0]:value})}/></div>)}<p className="help">Training compares 12 camera-control settings, with up to {experiment.cameraSeconds} simulated seconds per trial. Changing search settings pauses and resets the episode.</p></details>
         <Button disabled={!ready||mode==='camera-learning'} onClick={()=>run('camera-learning')}>Train to target</Button><Button variant="outline" disabled={!ready} onClick={()=>run('camera')}>Try approach</Button>
         {goal&&<div className="experiment-result" aria-live="polite"><strong>{goal.success?'Target reached':goal.fallen?'Trial ended: fall':goal.nearTarget?'Holding near target':'Approaching target'}</strong><span>{(goal.progressM*1000).toFixed(1)} mm closer · {(goal.distanceM*1000).toFixed(0)} mm remaining centre distance</span><span>{goal.holdSeconds.toFixed(1)} / 1.5 s stable in the stopping zone</span><small>Success requires physical travel, an upright body and alignment with the target. Looking at it alone earns no progress.</small></div>}
         {visionProgress&&<div className="experiment-result" aria-live="polite"><strong>Trial {visionProgress.trial} / 12</strong><span>Score {visionProgress.score.toFixed(2)} · best {visionProgress.bestScore?.toFixed(2)??'—'}</span><span>{visionProgress.goal.success?'Reached target':visionProgress.fall?'Fell':'Target not reached'} · {(visionProgress.goal.progressM*1000).toFixed(1)} mm closer</span><span>Target visible {(visionProgress.visibleFraction*100).toFixed(0)}% of trial</span><span>Camera coverage {(visionProgress.coverageFraction*100).toFixed(0)}%{visionProgress.fall?' · fell':''}</span>{!visionProgress.eligible&&<span>Trial excluded: a fall or insufficient fresh camera frames.</span>}</div>}

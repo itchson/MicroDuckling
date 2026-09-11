@@ -1,10 +1,10 @@
 # Engineering review
 
-**R06 is the active CAD prototype.** See [R06 changes](r06-simplified-design.md) for the upper bill and electronics simplification. The historical R05 evidence below does not describe the new assembly. No physical assembly, electrical load/thermal test, Isaac runtime execution or hardware gait is reported. Browser physics and policy-search experiments do not establish those results. The following summarizes the original R05 engineering checks and distinguishes them from checks of the public export.
+**R07 is the active CAD prototype.** See [R07 changes](r07-direct-mount-design.md) for the integrated face/upper bill and direct spline sockets. The historical R05 evidence below does not describe the new assembly. No physical assembly, electrical load/thermal test, Isaac runtime execution or hardware gait is reported. Browser physics and policy-search experiments do not establish those results. The following summarizes the original R05 engineering checks and distinguishes them from checks of the public export.
 
 ## Original detailed CAD review
 
-The original 2026-09-11 R05 assembly used detailed purchased-component references. Its nominal mass is 257.28 g and neutral COM is approximately (0.19, 0.57, 57.23) mm in the global CAD frame. Source CAD SHA-256: `4819acd1b9158d1ec77f48f93f5091425a44d6252d6c162664b00be08dc9bd09`. Source assembly JSON SHA-256: `68bd9fd40488ea97935b10021dbdd4c666b5d1f31ce9d6946a4177c1063c7f72`. Those hashes identify the historical R05 build. Current [assembly metadata](../cad/assembly.json) records the R06 source identities and publication omissions.
+The original 2026-09-11 R05 assembly used detailed purchased-component references. Its nominal mass is 257.28 g and neutral COM is approximately (0.19, 0.57, 57.23) mm in the global CAD frame. Source CAD SHA-256: `4819acd1b9158d1ec77f48f93f5091425a44d6252d6c162664b00be08dc9bd09`. Source assembly JSON SHA-256: `68bd9fd40488ea97935b10021dbdd4c666b5d1f31ce9d6946a4177c1063c7f72`. Those hashes identify the historical R05 build. Current [assembly metadata](../cad/assembly.json) records the current source identities and publication omissions.
 
 | Original check | Reported result and scope |
 |---|---|
@@ -31,4 +31,4 @@ Regenerating local full CAD uses [separately downloaded references](../reference
 
 ## Before a build or gait claim
 
-Measure the four actual servos and horns, test representative printed pilots, verify every installed component/tool path, finish the harness and battery restraint, and measure current, voltage and temperature under simultaneous motion. Weigh completed links and qualify traction and structural strength. Then verify the Isaac import, contacts and actuator model, train and evaluate policies, and test bounded physical motion. The [hardware worksheet](hardware-measurements.md) and [simulation guide](simulation.md) define those next steps.
+Measure the four actual servos and output splines, test representative printed pilots, verify every installed component/tool path, finish the harness and battery restraint, and measure current, voltage and temperature under simultaneous motion. Weigh completed links and qualify traction and structural strength. Then verify the Isaac import, contacts and actuator model, train and evaluate policies, and test bounded physical motion. The [hardware worksheet](hardware-measurements.md) and [simulation guide](simulation.md) define those next steps.

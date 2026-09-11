@@ -11,7 +11,15 @@
       78,
       37
     ],
-    "design_revision": "R06 upper bill and single 5 V rail",
+    "design_revision": "R07 integrated face bill and direct servo sockets",
+    "direct_spline": {
+      "teeth": 20,
+      "outside_diameter_mm": 4.8,
+      "root_diameter_mm": 4.3,
+      "radial_clearance_mm": 0.06,
+      "socket_depth_mm": 3.8,
+      "fit_status": "UNVERIFIED illustrative radial tooth profile; measure actual servo batch"
+    },
     "case_running_clearance": 0.3,
     "shell_register_clearance": 0.3,
     "servo_signal_source": "ESP32-CAM GPIO; pin assignment requires firmware review",
@@ -23,13 +31,9 @@
     "servo_case_h": 28.5,
     "shaft_offset_ASSUMED": 6.2,
     "shaft_tip_ASSUMED": 32.5,
-    "horn_face_ASSUMED": 40.6,
     "ear_pitch_ASSUMED": 27.7,
     "ear_depth_ASSUMED": 18.5,
     "ear_thickness_ASSUMED": 2.8,
-    "horn_hub_d_ASSUMED": 8.5,
-    "horn_reach_ASSUMED": 14.0,
-    "horn_width_ASSUMED": 6.0,
     "leg_y": 42.6,
     "leg_thickness": 3.6,
     "foot_radius": 110.0,
@@ -72,19 +76,19 @@
       "link": "body",
       "kind": "hardware",
       "color": "#25282b",
-      "mass_g": 13.4,
+      "mass_g": 13.32,
       "com_mm": [
-        4.972868365758693,
-        21.027823463229208,
-        37.99999999999999
+        5.0178794137350335,
+        20.878728439223252,
+        38.000000000000014
       ],
-      "volume_mm3": 8069.255061095414,
+      "volume_mm3": 7996.8727663567015,
       "dimensions_mm": [
         32.1,
-        32.5,
+        28.5,
         12.400000000000002
       ],
-      "note": "Conservative nominal MG90S envelope; lug pitch, turret, shaft and horn require actual sample measurements."
+      "note": "Case/crown portion of 13.4 g nominal complete servo; 0.08 g output shaft is on the driven link. Conservative nominal MG90S envelope; lug pitch, turret, shaft require actual sample measurements."
     },
     {
       "name": "ServoRight",
@@ -92,19 +96,59 @@
       "link": "body",
       "kind": "hardware",
       "color": "#25282b",
-      "mass_g": 13.4,
+      "mass_g": 13.32,
       "com_mm": [
-        4.972868365758692,
-        -21.027823463229208,
-        37.99999999999999
+        5.0178794137350335,
+        -20.878728439223252,
+        38.000000000000014
       ],
-      "volume_mm3": 8069.255061095414,
+      "volume_mm3": 7996.8727663567015,
       "dimensions_mm": [
         32.1,
-        32.5,
+        28.5,
         12.400000000000002
       ],
       "note": ""
+    },
+    {
+      "name": "OutputSplineLeft",
+      "object_name": "OutputSplineLeft",
+      "link": "left_leg",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.08,
+      "com_mm": [
+        5.201814248631344e-18,
+        37.499999999999986,
+        38.000000000000014
+      ],
+      "volume_mm3": 68.01185690988741,
+      "dimensions_mm": [
+        4.7885400305338806,
+        4.0,
+        4.7885400305338806
+      ],
+      "note": "Illustrative unverified output teeth; rotates with left leg. Included in complete servo mass."
+    },
+    {
+      "name": "OutputSplineRight",
+      "object_name": "OutputSplineRight",
+      "link": "right_leg",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.08,
+      "com_mm": [
+        5.201814248631344e-18,
+        -37.499999999999986,
+        38.000000000000014
+      ],
+      "volume_mm3": 68.01185690988741,
+      "dimensions_mm": [
+        4.7885400305338806,
+        4.0,
+        4.7885400305338806
+      ],
+      "note": "Illustrative unverified output teeth; rotates with right leg. Included in complete servo mass."
     },
     {
       "name": "ServoNeck",
@@ -112,19 +156,39 @@
       "link": "body",
       "kind": "hardware",
       "color": "#25282b",
-      "mass_g": 13.4,
+      "mass_g": 13.32,
       "com_mm": [
-        4.972868365758695,
-        9.4835833124569e-16,
-        55.02782346322921
+        5.0178794137350335,
+        1.3736608066425208e-15,
+        54.87872843922325
       ],
-      "volume_mm3": 8069.255061095408,
+      "volume_mm3": 7996.872766356699,
       "dimensions_mm": [
         32.1,
         12.400000000000004,
-        32.5
+        28.5
       ],
       "note": ""
+    },
+    {
+      "name": "OutputSplineNeck",
+      "object_name": "OutputSplineNeck",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.08,
+      "com_mm": [
+        -3.397569655850284e-17,
+        3.4030825293413654e-15,
+        71.50000000000007
+      ],
+      "volume_mm3": 68.01185690988736,
+      "dimensions_mm": [
+        4.7885400305338806,
+        4.7885400305338806,
+        4.0
+      ],
+      "note": "Illustrative unverified output teeth; rotates with head. Included in complete servo mass."
     },
     {
       "name": "Battery",
@@ -184,7 +248,7 @@
         32.0,
         0.20000000000000284
       ],
-      "note": "Nominal0.2mm PTFE thrust washer closes support-to-shoulder gap; select thickness against actual fully seated horn stack so shoulder bears without axial preload."
+      "note": "Nominal0.2mm PTFE thrust washer closes support-to-shoulder gap; select thickness against actual fully seated socket stack so shoulder bears without axial preload."
     },
     {
       "name": "Buck_0MountScrew0",
@@ -292,19 +356,19 @@
       "link": "left_leg",
       "kind": "print",
       "color": "#f87712",
-      "mass_g": 14.006802119942066,
+      "mass_g": 15.232104138072446,
       "com_mm": [
-        0.7387902914443308,
-        33.863569341250695,
-        8.723327732520149
+        0.6793342559026573,
+        34.463313971492354,
+        10.872092471280725
       ],
-      "volume_mm3": 11295.808161243602,
+      "volume_mm3": 12283.954950058423,
       "dimensions_mm": [
         81.81228084116033,
         81.81228084116032,
         47.14152980263155
       ],
-      "note": "Single rigid printed leg and spherical rocker foot; stock servo horn fixed to inner flat face. Horn position/hole/small screw length require coupon measurement."
+      "note": "Single rigid leg, rocker foot and integral direct spline hub. Illustrative unverified 20-tooth 4.8/4.30 mm profile, 0.06 mm radial allowance; 3.5 mm nominal shaft overlap and axial center screw. Physical fit and torque capacity require coupon and loaded bench testing."
     },
     {
       "name": "TreadLeft",
@@ -327,66 +391,6 @@
       "note": "0.6mm equivalent conforming traction layer. Start localized thin silicone strips; coefficient and compression must be measured."
     },
     {
-      "name": "HornLeft",
-      "object_name": "HornLeft",
-      "link": "left_leg",
-      "kind": "hardware",
-      "color": "#d1d2cd",
-      "mass_g": 0.45,
-      "com_mm": [
-        -9.181336945054898e-17,
-        41.400000000000006,
-        32.13253785012427
-      ],
-      "volume_mm3": 300.5760267489407,
-      "dimensions_mm": [
-        8.5,
-        2.40000000000002,
-        21.25
-      ],
-      "note": "Illustrative stock horn, deliberately no tight outline pocket. Interface dimensions unverified."
-    },
-    {
-      "name": "HornScrewLeft0",
-      "object_name": "HornScrewLeft0",
-      "link": "left_leg",
-      "kind": "hardware",
-      "color": "#8d9398",
-      "mass_g": 0.13,
-      "com_mm": [
-        -5.3546971484026095e-17,
-        44.460169791298206,
-        27.000000000000004
-      ],
-      "volume_mm3": 17.762564863396683,
-      "dimensions_mm": [
-        3.2,
-        5.399999999999999,
-        3.200000000000003
-      ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
-    },
-    {
-      "name": "HornScrewLeft1",
-      "object_name": "HornScrewLeft1",
-      "link": "left_leg",
-      "kind": "hardware",
-      "color": "#8d9398",
-      "mass_g": 0.13,
-      "com_mm": [
-        -3.256764027058862e-17,
-        44.4601697912982,
-        31.000000000000004
-      ],
-      "volume_mm3": 17.762564863396683,
-      "dimensions_mm": [
-        3.2,
-        5.399999999999999,
-        3.200000000000003
-      ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
-    },
-    {
       "name": "ShaftScrewLeft",
       "object_name": "ShaftScrewLeft",
       "link": "left_leg",
@@ -394,17 +398,17 @@
       "color": "#8d9398",
       "mass_g": 0.13,
       "com_mm": [
-        2.4030453278035685e-17,
-        41.70771513353117,
-        38.00000000000001
+        1.805616415588493e-17,
+        42.594072819644374,
+        38.0
       ],
-      "volume_mm3": 31.76150172779281,
+      "volume_mm3": 37.10220923889546,
       "dimensions_mm": [
         4.0,
-        6.399999999999999,
+        8.100000000000001,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "Vendor-specific servo output retaining screw; displayed 2 mm diameter is an UNVERIFIED envelope, not an M2 thread specification. Match actual spline thread and available engagement."
     },
     {
       "name": "LegFootRight",
@@ -412,19 +416,19 @@
       "link": "right_leg",
       "kind": "print",
       "color": "#f87712",
-      "mass_g": 14.006802087578459,
+      "mass_g": 15.232104066059149,
       "com_mm": [
-        0.738790295514636,
-        -33.863569313869945,
-        8.723327719654899
+        0.6793342613818772,
+        -34.463313929212994,
+        10.87209244188124
       ],
-      "volume_mm3": 11295.808135143918,
+      "volume_mm3": 12283.954891983185,
       "dimensions_mm": [
         81.81228084116033,
         81.81228084116032,
         47.14152980263155
       ],
-      "note": "Single rigid printed leg and spherical rocker foot; stock servo horn fixed to inner flat face. Horn position/hole/small screw length require coupon measurement."
+      "note": "Single rigid leg, rocker foot and integral direct spline hub. Illustrative unverified 20-tooth 4.8/4.30 mm profile, 0.06 mm radial allowance; 3.5 mm nominal shaft overlap and axial center screw. Physical fit and torque capacity require coupon and loaded bench testing."
     },
     {
       "name": "TreadRight",
@@ -447,66 +451,6 @@
       "note": "0.6mm equivalent conforming traction layer. Start localized thin silicone strips; coefficient and compression must be measured."
     },
     {
-      "name": "HornRight",
-      "object_name": "HornRight",
-      "link": "right_leg",
-      "kind": "hardware",
-      "color": "#d1d2cd",
-      "mass_g": 0.45,
-      "com_mm": [
-        -1.390921057786187e-16,
-        -41.4,
-        32.132537850124265
-      ],
-      "volume_mm3": 300.57602674894076,
-      "dimensions_mm": [
-        8.5,
-        2.40000000000002,
-        21.25
-      ],
-      "note": "Illustrative stock horn, deliberately no tight outline pocket. Interface dimensions unverified."
-    },
-    {
-      "name": "HornScrewRight0",
-      "object_name": "HornScrewRight0",
-      "link": "right_leg",
-      "kind": "hardware",
-      "color": "#8d9398",
-      "mass_g": 0.13,
-      "com_mm": [
-        -5.5220063800074346e-17,
-        -44.460169791298206,
-        27.000000000000004
-      ],
-      "volume_mm3": 17.762564863396697,
-      "dimensions_mm": [
-        3.2,
-        5.399999999999999,
-        3.200000000000003
-      ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
-    },
-    {
-      "name": "HornScrewRight1",
-      "object_name": "HornScrewRight1",
-      "link": "right_leg",
-      "kind": "hardware",
-      "color": "#8d9398",
-      "mass_g": 0.13,
-      "com_mm": [
-        -3.4240732586636883e-17,
-        -44.46016979129819,
-        30.999999999999996
-      ],
-      "volume_mm3": 17.762564863396697,
-      "dimensions_mm": [
-        3.2,
-        5.399999999999999,
-        3.200000000000003
-      ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
-    },
-    {
       "name": "ShaftScrewRight",
       "object_name": "ShaftScrewRight",
       "link": "right_leg",
@@ -514,17 +458,17 @@
       "color": "#8d9398",
       "mass_g": 0.13,
       "com_mm": [
-        1.9388277062262607e-17,
-        -41.70771513353116,
-        38.00000000000001
+        1.4246308935042597e-17,
+        -42.594072819644374,
+        38.0
       ],
-      "volume_mm3": 31.761501727792805,
+      "volume_mm3": 37.102209238895455,
       "dimensions_mm": [
         4.0,
-        6.399999999999999,
+        8.100000000000001,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "Vendor-specific servo output retaining screw; displayed 2 mm diameter is an UNVERIFIED envelope, not an M2 thread specification. Match actual spline thread and available engagement."
     },
     {
       "name": "BodyScrew-261",
@@ -544,7 +488,7 @@
         13.399999999999999,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "M2 nominal fastener; thread not modeled. Clearance/pilot or captive-nut interface requires physical fit testing."
     },
     {
       "name": "BodyNut-261",
@@ -584,7 +528,7 @@
         13.399999999999999,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "M2 nominal fastener; thread not modeled. Clearance/pilot or captive-nut interface requires physical fit testing."
     },
     {
       "name": "BodyNut-26-1",
@@ -624,7 +568,7 @@
         13.399999999999999,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "M2 nominal fastener; thread not modeled. Clearance/pilot or captive-nut interface requires physical fit testing."
     },
     {
       "name": "BodyNut171",
@@ -664,7 +608,7 @@
         13.399999999999999,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "M2 nominal fastener; thread not modeled. Clearance/pilot or captive-nut interface requires physical fit testing."
     },
     {
       "name": "BodyNut17-1",
@@ -732,39 +676,19 @@
       "link": "head",
       "kind": "print",
       "color": "#25282b",
-      "mass_g": 7.298634572069558,
+      "mass_g": 9.079844216209816,
       "com_mm": [
-        -0.3521296757072626,
-        -1.2583898430902967,
-        77.84881031430075
+        -0.6498949444366092,
+        -1.0484935647788785,
+        77.5058140740809
       ],
-      "volume_mm3": 5885.99562263674,
+      "volume_mm3": 7322.455013072433,
       "dimensions_mm": [
         34.0,
         36.0,
-        10.700000000000031
+        12.000000000000028
       ],
-      "note": "Slip thrust shoulder0.20mm above fixed support with nominal0.20mm PTFE shim; journal diametral clearance0.9mm. Shim thickness must match actual seated horn to carry weight without preload. Cable notch separate from output shaft."
-    },
-    {
-      "name": "NeckHorn",
-      "object_name": "NeckHorn",
-      "link": "head",
-      "kind": "hardware",
-      "color": "#d1d2cd",
-      "mass_g": 0.45,
-      "com_mm": [
-        -5.867462149875744,
-        7.439951062168242e-16,
-        75.19999999999999
-      ],
-      "volume_mm3": 300.5760267489402,
-      "dimensions_mm": [
-        21.25,
-        8.5,
-        2.4000000000000057
-      ],
-      "note": "Stock horn attaches carrier via underside open radial screw slots; check actual seated stack."
+      "note": "Slip thrust shoulder0.20mm above fixed support with nominal0.20mm PTFE shim; journal diametral clearance0.9mm. Integral direct spline socket reaches the output shaft; shim thickness must match actual seated socket to carry weight without preload. Spline fit and strength unverified. Cable notch separate from output shaft."
     },
     {
       "name": "FacePanel",
@@ -772,119 +696,19 @@
       "link": "head",
       "kind": "print",
       "color": "#25282b",
-      "mass_g": 4.387671916138477,
+      "mass_g": 5.412994355233511,
       "com_mm": [
-        28.653403644333263,
-        -1.2209034530906984e-15,
-        106.8153127686727
+        30.33301322021645,
+        3.7840710149695695e-15,
+        102.80211193443289
       ],
-      "volume_mm3": 3538.445093660062,
+      "volume_mm3": 4365.318028414122,
       "dimensions_mm": [
-        6.200000000000006,
-        49.0,
+        16.0,
+        50.0,
         48.8
       ],
-      "note": "Registered camera face with four original rear screw bosses plus two captive-M2 nut bosses and locating slots for the fixed upper bill. Upper bill screws are accessed from the front; nuts load from the rear before hood assembly. Nominal fit requires physical checking."
-    },
-    {
-      "name": "UpperBill",
-      "object_name": "UpperBill",
-      "link": "head",
-      "kind": "print",
-      "color": "#f87712",
-      "mass_g": 1.575783530595415,
-      "com_mm": [
-        34.46055658176458,
-        9.195205176170201e-16,
-        87.80864099175835
-      ],
-      "volume_mm3": 1270.7931698350121,
-      "dimensions_mm": [
-        11.600000000000001,
-        50.0,
-        9.200000000000003
-      ],
-      "note": "Fixed 50 mm-wide upper bill, 2.2 mm plate, keyed to the FacePanel with 0.15 mm clearance per slot side. Two front M2x8 screws retain captive M2 nuts. Minimum modeled closed-jaw clearance 4.10 mm; jaw 0..12 degrees and neck +/-45 degrees checked. Physical fit unverified."
-    },
-    {
-      "name": "UpperBillScrewLeft",
-      "object_name": "UpperBillScrewLeft",
-      "link": "head",
-      "kind": "hardware",
-      "color": "#8d9398",
-      "mass_g": 0.13,
-      "com_mm": [
-        30.466055020012405,
-        13.499999999999998,
-        92.0
-      ],
-      "volume_mm3": 41.79653406152204,
-      "dimensions_mm": [
-        9.399999999999999,
-        4.0,
-        4.0
-      ],
-      "note": "Nominal M2x8 front-access screw for upper bill."
-    },
-    {
-      "name": "UpperBillNutLeft",
-      "object_name": "UpperBillNutLeft",
-      "link": "head",
-      "kind": "hardware",
-      "color": "#8d9398",
-      "mass_g": 0.1,
-      "com_mm": [
-        25.199999999999996,
-        13.500000000000002,
-        92.00000000000001
-      ],
-      "volume_mm3": 16.62848089594921,
-      "dimensions_mm": [
-        1.600000000000005,
-        4.0,
-        4.618802153517009
-      ],
-      "note": "Nominal M2 captive hex nut, 4 mm across flats and 1.6 mm thick; rear-loaded FacePanel pocket."
-    },
-    {
-      "name": "UpperBillScrewRight",
-      "object_name": "UpperBillScrewRight",
-      "link": "head",
-      "kind": "hardware",
-      "color": "#8d9398",
-      "mass_g": 0.13,
-      "com_mm": [
-        30.466055020012405,
-        -13.499999999999998,
-        92.0
-      ],
-      "volume_mm3": 41.79653406152204,
-      "dimensions_mm": [
-        9.399999999999999,
-        4.0,
-        4.0
-      ],
-      "note": "Nominal M2x8 front-access screw for upper bill."
-    },
-    {
-      "name": "UpperBillNutRight",
-      "object_name": "UpperBillNutRight",
-      "link": "head",
-      "kind": "hardware",
-      "color": "#8d9398",
-      "mass_g": 0.1,
-      "com_mm": [
-        25.199999999999996,
-        -13.500000000000005,
-        92.00000000000001
-      ],
-      "volume_mm3": 16.62848089594921,
-      "dimensions_mm": [
-        1.600000000000005,
-        4.0,
-        4.618802153517009
-      ],
-      "note": "Nominal M2 captive hex nut, 4 mm across flats and 1.6 mm thick; rear-loaded FacePanel pocket."
+      "note": "One connected printed face and flat upper mouth. Full-width fused 2.2 mm plate replaces the separate keyed bill, front screws and captive nuts. Four original rear face screws remain. Orange display region denotes optional paint on the same print. Nominal closed-jaw gap 4.10 mm; actual print fit unverified."
     },
     {
       "name": "CameraRing",
@@ -1015,19 +839,39 @@
       "link": "head",
       "kind": "hardware",
       "color": "#25282b",
-      "mass_g": 13.4,
+      "mass_g": 13.32,
       "com_mm": [
-        -11.027131634241307,
-        1.0278234632292162,
+        -10.982120586264971,
+        0.8787284392232534,
         90.0
       ],
-      "volume_mm3": 8069.255061095422,
+      "volume_mm3": 7996.872766356713,
       "dimensions_mm": [
         32.1,
-        32.5,
+        28.5,
         12.400000000000006
       ],
       "note": ""
+    },
+    {
+      "name": "OutputSplineMouth",
+      "object_name": "OutputSplineMouth",
+      "link": "jaw",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.08,
+      "com_mm": [
+        -16.000000000000004,
+        17.500000000000007,
+        90.00000000000001
+      ],
+      "volume_mm3": 68.01185690988738,
+      "dimensions_mm": [
+        4.7885400305338806,
+        4.0,
+        4.7885400305338806
+      ],
+      "note": "Illustrative unverified output teeth; rotates with jaw. Included in complete servo mass."
     },
     {
       "name": "HeadFrame",
@@ -1055,39 +899,19 @@
       "link": "jaw",
       "kind": "print",
       "color": "#f87712",
-      "mass_g": 4.6292687050055585,
+      "mass_g": 5.015232341211337,
       "com_mm": [
-        0.5561617035119929,
-        0.47708750620170876,
-        84.13660249829985
+        -1.0118755534171393,
+        1.9290391593510714,
+        84.58739227883025
       ],
-      "volume_mm3": 3733.2812137141605,
+      "volume_mm3": 4044.5422106543037,
       "dimensions_mm": [
         62.0,
         54.00000000011006,
         18.65913760233917
       ],
-      "note": "54mm-wide shortened hinged beak. Pivot moves6mm forward to shorten the head package; neck cutout, stock horn and passive pivot remain mechanical interfaces. Proposed opening0..12deg requires physical fitting."
-    },
-    {
-      "name": "MouthHorn",
-      "object_name": "MouthHorn",
-      "link": "jaw",
-      "kind": "hardware",
-      "color": "#d1d2cd",
-      "mass_g": 0.45,
-      "com_mm": [
-        -10.132537850124223,
-        21.29999999999999,
-        90.0
-      ],
-      "volume_mm3": 300.57602674893974,
-      "dimensions_mm": [
-        21.25,
-        2.3999999999999986,
-        8.5
-      ],
-      "note": ""
+      "note": "54 mm hinged beak with integrated direct spline hub and opposite passive pivot. Illustrative unverified 20-tooth 4.8/4.30 mm profile, 0.06 mm radial allowance, 3.5 mm nominal shaft overlap. Axial screw retains hub; no horn arm or arm screws. Physical fit, tooth strength and opening require bench testing."
     },
     {
       "name": "HeadHood",
@@ -1127,7 +951,7 @@
         13.399999999999999,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "M2 nominal fastener; thread not modeled. Clearance/pilot or captive-nut interface requires physical fit testing."
     },
     {
       "name": "JawPassiveLocknut",
@@ -1150,46 +974,6 @@
       "note": "M2 nominal locknut and short passive pivot; set axial endplay without clamping jaw. Verify selected hardware dimensions."
     },
     {
-      "name": "MouthHornScrew-15",
-      "object_name": "MouthHornScrew_15",
-      "link": "jaw",
-      "kind": "hardware",
-      "color": "#8d9398",
-      "mass_g": 0.13,
-      "com_mm": [
-        -9.000000000000002,
-        23.960169791298195,
-        89.99999999999999
-      ],
-      "volume_mm3": 17.762564863396687,
-      "dimensions_mm": [
-        3.1999999999999993,
-        5.399999999999999,
-        3.1999999999999886
-      ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
-    },
-    {
-      "name": "MouthHornScrew-11",
-      "object_name": "MouthHornScrew_11",
-      "link": "jaw",
-      "kind": "hardware",
-      "color": "#8d9398",
-      "mass_g": 0.13,
-      "com_mm": [
-        -5.0,
-        23.960169791298195,
-        90.0
-      ],
-      "volume_mm3": 17.762564863396687,
-      "dimensions_mm": [
-        3.1999999999999997,
-        5.399999999999999,
-        3.1999999999999886
-      ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
-    },
-    {
       "name": "MouthShaftScrew",
       "object_name": "MouthShaftScrew",
       "link": "jaw",
@@ -1198,16 +982,16 @@
       "mass_g": 0.13,
       "com_mm": [
         -16.0,
-        21.60771513353116,
-        90.0
+        22.76416184971098,
+        89.99999999999997
       ],
-      "volume_mm3": 31.76150172779282,
+      "volume_mm3": 38.04468703497242,
       "dimensions_mm": [
         4.0,
-        6.399999999999999,
+        8.399999999999999,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "Vendor-specific servo output retaining screw; displayed 2 mm diameter is an UNVERIFIED envelope, not an M2 thread specification. Match actual spline thread and available engagement."
     },
     {
       "name": "HoodScrew1",
@@ -1227,7 +1011,7 @@
         7.399999999999999,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "M2 nominal fastener; thread not modeled. Clearance/pilot or captive-nut interface requires physical fit testing."
     },
     {
       "name": "HoodScrew-1",
@@ -1247,7 +1031,7 @@
         7.399999999999999,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "M2 nominal fastener; thread not modeled. Clearance/pilot or captive-nut interface requires physical fit testing."
     },
     {
       "name": "CameraClampScrew-15",
@@ -1267,7 +1051,7 @@
         4.0,
         7.300000000000011
       ],
-      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+      "note": "M2 nominal screw; selected head, pilot and engagement strength require physical fit testing."
     },
     {
       "name": "CameraClampScrew15",
@@ -1287,7 +1071,7 @@
         4.0,
         7.300000000000011
       ],
-      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+      "note": "M2 nominal screw; selected head, pilot and engagement strength require physical fit testing."
     },
     {
       "name": "CameraCradleScrew-12",
@@ -1347,7 +1131,7 @@
         9.4,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "M2 nominal fastener; thread not modeled. Clearance/pilot or captive-nut interface requires physical fit testing."
     },
     {
       "name": "MouthMountNut0",
@@ -1387,7 +1171,7 @@
         9.4,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "M2 nominal fastener; thread not modeled. Clearance/pilot or captive-nut interface requires physical fit testing."
     },
     {
       "name": "MouthMountNut1",
@@ -1507,7 +1291,7 @@
         4.0,
         7.299999999999997
       ],
-      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+      "note": "M2 nominal screw; selected head, pilot and engagement strength require physical fit testing."
     },
     {
       "name": "IMUMountScrew1",
@@ -1527,7 +1311,7 @@
         4.0,
         7.299999999999997
       ],
-      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+      "note": "M2 nominal screw; selected head, pilot and engagement strength require physical fit testing."
     },
     {
       "name": "HeadFrameScrew-13",
@@ -1547,7 +1331,7 @@
         4.0,
         21.299999999999997
       ],
-      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+      "note": "M2 nominal screw; selected head, pilot and engagement strength require physical fit testing."
     },
     {
       "name": "HeadFrameScrew13",
@@ -1567,47 +1351,7 @@
         4.0,
         21.299999999999997
       ],
-      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
-    },
-    {
-      "name": "NeckHornScrew-7",
-      "object_name": "NeckHornScrew_7",
-      "link": "head",
-      "kind": "hardware",
-      "color": "#8d9398",
-      "mass_g": 0.16,
-      "com_mm": [
-        -7.000000000000001,
-        1.5016257753601476e-18,
-        79.8318181818182
-      ],
-      "volume_mm3": 26.54017473752657,
-      "dimensions_mm": [
-        3.1999999999999993,
-        3.2,
-        9.299999999999997
-      ],
-      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
-    },
-    {
-      "name": "NeckHornScrew-11",
-      "object_name": "NeckHornScrew_11",
-      "link": "head",
-      "kind": "hardware",
-      "color": "#8d9398",
-      "mass_g": 0.16,
-      "com_mm": [
-        -10.999999999999998,
-        5.051463854307536e-18,
-        79.83181818181818
-      ],
-      "volume_mm3": 26.54017473752657,
-      "dimensions_mm": [
-        3.1999999999999993,
-        3.2,
-        9.299999999999997
-      ],
-      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+      "note": "M2 nominal screw; selected head, pilot and engagement strength require physical fit testing."
     },
     {
       "name": "NeckMountScrew-8.649999999999999",
@@ -1627,7 +1371,7 @@
         4.0,
         7.299999999999997
       ],
-      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+      "note": "M2 nominal screw; selected head, pilot and engagement strength require physical fit testing."
     },
     {
       "name": "NeckMountScrew19.05",
@@ -1647,7 +1391,7 @@
         4.0,
         7.299999999999997
       ],
-      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+      "note": "M2 nominal screw; selected head, pilot and engagement strength require physical fit testing."
     },
     {
       "name": "NeckSupportScrew-12",
@@ -1667,7 +1411,7 @@
         4.0,
         5.299999999999997
       ],
-      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+      "note": "M2 nominal screw; selected head, pilot and engagement strength require physical fit testing."
     },
     {
       "name": "NeckSupportScrew12",
@@ -1687,7 +1431,7 @@
         4.0,
         5.299999999999997
       ],
-      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+      "note": "M2 nominal screw; selected head, pilot and engagement strength require physical fit testing."
     },
     {
       "name": "NeckShaftScrew",
@@ -1697,17 +1441,17 @@
       "color": "#8d9398",
       "mass_g": 0.16,
       "com_mm": [
-        -3.386701744150967e-16,
-        9.827001117813253e-18,
-        75.74375
+        -3.782819339455827e-16,
+        5.768496436231158e-18,
+        77.88591549295774
       ],
-      "volume_mm3": 30.15928947446201,
+      "volume_mm3": 44.61061568097505,
       "dimensions_mm": [
         4.0,
         4.0,
-        5.700000000000003
+        10.299999999999997
       ],
-      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+      "note": "Vendor-specific servo output retaining screw; displayed 2 mm diameter is an UNVERIFIED envelope, not an M2 thread specification. Match actual spline thread and available engagement."
     },
     {
       "name": "HipMountScrew1_0",
@@ -1727,7 +1471,7 @@
         7.399999999999999,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "M2 nominal fastener; thread not modeled. Clearance/pilot or captive-nut interface requires physical fit testing."
     },
     {
       "name": "HipMountScrew1_1",
@@ -1747,7 +1491,7 @@
         7.399999999999999,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "M2 nominal fastener; thread not modeled. Clearance/pilot or captive-nut interface requires physical fit testing."
     },
     {
       "name": "HipMountScrew-1_0",
@@ -1767,7 +1511,7 @@
         7.399999999999999,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "M2 nominal fastener; thread not modeled. Clearance/pilot or captive-nut interface requires physical fit testing."
     },
     {
       "name": "HipMountScrew-1_1",
@@ -1787,7 +1531,7 @@
         7.399999999999999,
         4.0
       ],
-      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+      "note": "M2 nominal fastener; thread not modeled. Clearance/pilot or captive-nut interface requires physical fit testing."
     },
     {
       "name": "HarnessBody",
@@ -1850,24 +1594,24 @@
       "note": "Indicative10mm-wide camera flex corridor from current FFC region to sensor rear, clear of rigid parts in neutral CAD. Small terminal gaps are intentional: actual flex width, length, contact insertion and smooth minimum-radius bends require measurement; not a manufactured ribbon design."
     },
     {
-      "name": "LegHornCoupon",
-      "object_name": "LegHornCoupon",
+      "name": "SplineFitCoupon",
+      "object_name": "SplineFitCoupon",
       "link": "body",
       "kind": "coupon",
       "color": "#f87712",
       "mass_g": 0,
       "com_mm": [
-        6.213223825143855e-07,
-        44.374863561735225,
-        33.1324078833552
+        -2.820887737388417e-16,
+        5.190856932491792,
+        -4.096971984235835e-16
       ],
-      "volume_mm3": 1050.9727156571694,
+      "volume_mm3": 849.9483350473299,
       "dimensions_mm": [
-        19.48305960526309,
-        3.719036305075143,
-        28.91669958684554
+        11.0,
+        10.2,
+        11.0
       ],
-      "note": "Extracted from actual leg; test stock horn seated depth and slot/screw fit."
+      "note": "Representative integral hip hub: identical radial profile, 3.8 mm socket, entry chamfer, center bore and screw counterbore. All tooth dimensions unverified; measure and fit actual servo before printing full parts. Coupon is not a load qualification."
     },
     {
       "name": "ClearanceCoupon",
@@ -1890,11 +1634,11 @@
       "note": "MG90S body windows0.30/0.45mm per side; clearance holes2.1/2.2/2.3/2.4mm; pilot sizing holes1.6/1.7/1.8mm. Thin coupon checks diameter only, engagement strength requires representative-depth sample."
     }
   ],
-  "mass_g": 247.95720357885753,
+  "mass_g": 248.66451976431432,
   "com_mm": [
-    -0.6724323582898675,
-    0.7607682500580277,
-    58.19288390862638
+    -0.7793694255751039,
+    0.7215982187744582,
+    58.0137697159922
   ],
   "status": "ENGINEERING PROTOTYPE - hardware fit and walking unverified",
   "public_preview": {
@@ -1909,10 +1653,10 @@
     "mass_estimates_note": "mass_g and com_mm retain the complete physical assembly estimates, including omitted boards; they are not totals of the public preview meshes.",
     "native_file": "MicroDuckling_R05_mechanical.FCStd",
     "printed_step_file": "MicroDuckling_R05_printed.step",
-    "native_sha256": "18fa122362ade3920a77771ac50905dbb5c55c69703d354193028283b190929e",
-    "source_cad_sha256": "bd71323fee85fd0322c69b06cc53cc04d79f9aa2572e0da3ea3471888d955147",
-    "source_assembly_sha256": "41168c4c3069f5b4140498b62989711b80285d3d7e00fede4c3af9377711df2d",
-    "assembled_part_count": 88,
+    "native_sha256": "3d59fa5f7288b1d2c4510b38fd9c930a68245addeac0fe54912ff083580a773a",
+    "source_cad_sha256": "17b99033089d89afdc286bdb62c34ef949b9b0605b4e2c1970973a0934e19fcc",
+    "source_assembly_sha256": "bc3902b9297c82400a112ec02cc24b47cd1c6bcc019c32e04703e054f3a85f0b",
+    "assembled_part_count": 75,
     "coupon_count": 2
   }
 }

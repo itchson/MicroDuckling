@@ -6,17 +6,17 @@ from pathlib import Path
 import math, json, sys
 from body_r04 import body_solids
 import hardware_r02 as HW
+from direct_mount_r07 import DEFAULTS as SPLINE, spline_y, socket_y
 from build_paths import BUILD_ROOT as R
 O=R/'cad'
 for p in [O,O/'meshes',O/'stl',O/'coupons',O/'simulation_meshes']:p.mkdir(parents=True,exist_ok=True)
 V=A.Vector
 P=dict(body_rx=38.,body_ry=39.,body_rz=18.5,body_x=3.,body_z=46.5,wall=1.3,
-       body_dimensions_mm=[76,78,37],design_revision='R06 upper bill and single 5 V rail',case_running_clearance=.30,shell_register_clearance=.30,
+       body_dimensions_mm=[76,78,37],design_revision='R07 integrated face bill and direct servo sockets', direct_spline=SPLINE,case_running_clearance=.30,shell_register_clearance=.30,
        servo_signal_source='ESP32-CAM GPIO; pin assignment requires firmware review',power_topology='Single shared 5 V regulator for servos and ESP32-CAM',
        hip_z=38.,servo_y=7.,servo_case_l=22.8,servo_case_w=12.4,servo_case_h=28.5,
-       shaft_offset_ASSUMED=6.2,shaft_tip_ASSUMED=32.5,horn_face_ASSUMED=40.6,
+       shaft_offset_ASSUMED=6.2,shaft_tip_ASSUMED=32.5,
        ear_pitch_ASSUMED=27.7,ear_depth_ASSUMED=18.5,ear_thickness_ASSUMED=2.8,
-       horn_hub_d_ASSUMED=8.5,horn_reach_ASSUMED=14.,horn_width_ASSUMED=6.,
        leg_y=42.6,leg_thickness=3.6,foot_radius=110.,foot_thickness=2.2,tread_thickness=.6,
        hip_limit_deg=12.,neck_limit_deg=45.,jaw_limit_deg=12.,
        head_shift_z=-10.,head_base_z=84.,head_front_x=31.,head_rear_x=-33.,head_halfwidth=26.,head_shoulder_inset_mm=8.,head_shoulder_height_mm=10.,
@@ -89,6 +89,19 @@ def add(name,s,link='body',kind='print',color=white,mass=None,note='',components
     if kind in ['print','coupon'] and not mesh.isSolid():raise RuntimeError('OPEN PRINT MESH '+name)
     vs,fs=mesh.Topology
     payload=dict(positions=[round(c,5) for v in vs for c in v],indices=[n for f in fs for n in f])
+    if name=='FacePanel':
+        # Optional painted bill region on the SAME mesh and single printed solid.
+        # Partition original surface triangles once; no overlaid surface geometry.
+        face_triangles=[];bill_triangles=[]
+        for triangle in fs:
+            centroid=sum((vs[index] for index in triangle),V())/3
+            target=bill_triangles if centroid.x>30.2001 and centroid.z<88.21 else face_triangles
+            target.extend(triangle)
+        payload['indices']=face_triangles+bill_triangles
+        payload['materials']=[dict(name='Face print',color=black,roughness=.6,metalness=0),
+                              dict(name='Optional orange bill paint',color=orange,roughness=.6,metalness=0)]
+        payload['groups']=[dict(start=0,count=len(face_triangles),materialIndex=0),
+                           dict(start=len(face_triangles),count=len(bill_triangles),materialIndex=1)]
     if components:
         payload=dict(positions=[],indices=[],materials=[],groups=[])
         for component in components:
@@ -109,20 +122,16 @@ def add(name,s,link='body',kind='print',color=white,mass=None,note='',components
     print(name,round(m,2),'g',flush=True);return s
 def screw_y(name,x,y,z,length,link='body',sign=1,diam=2):
     s=union([cyl(x,y,z,diam/2,length,V(0,1,0)),cyl(x,y+length,z,diam,1.4,V(0,1,0))]);s=s.cut(cyl(x,y+length+.4,z,.7,1.3,V(0,1,0)))
-    return add(name,s if sign==1 else mirror(s),link,'hardware',steel,.13,'Schematic fastener; nominal diameter and installation direction, threads not modeled.')
+    note=('Vendor-specific servo output retaining screw; displayed 2 mm diameter is an UNVERIFIED envelope, not an M2 thread specification. Match actual spline thread and available engagement.' if 'ShaftScrew' in name else 'M2 nominal fastener; thread not modeled. Clearance/pilot or captive-nut interface requires physical fit testing.')
+    return add(name,s if sign==1 else mirror(s),link,'hardware',steel,.13,note)
 def servo_y(x,y,z):
     # x,z are output axis; y is flat base. Noncircular twin-lobe crown, conservative envelope.
     case=box(x-6.2,y,z-6.2,22.8,25.8,12.4)
     ears=box(x-10.85,y+18.5,z-6.2,32.1,2.8,12.4)
     crown=union([cyl(x,y+25.8,z,6.2,2.7,V(0,1,0)),cyl(x+8,y+25.8,z,3.2,2.7,V(0,1,0))])
-    s=union([case,ears,crown,cyl(x,y+28.5,z,2.4,4,V(0,1,0))])
+    s=union([case,ears,crown])
     for xx in [x+5.2-13.85,x+5.2+13.85]:s=s.cut(cyl(xx,y+18.3,z,1.1,3.3,V(0,1,0)))
     return s
-def horn_y(x,y,z):
-    s=union([cyl(x,y,z,4.25,2.4,V(0,1,0)),box(x-3,y,z-14,6,2.4,14),cyl(x,y,z-14,3,2.4,V(0,1,0))])
-    for zz in [z,z-7,z-11]:s=s.cut(cyl(x,y-.1,zz,1.1 if zz==z else .65,2.6,V(0,1,0)))
-    return s
-
 hardware_mounts={}
 def install_model(name,model,origin,link,mass,basis=((1,0,0),(0,1,0),(0,0,1))):
     matrix=A.Matrix()
@@ -138,17 +147,21 @@ def install_model(name,model,origin,link,mass,basis=((1,0,0),(0,1,0),(0,0,1))):
     records[-1]['material_groups']=len(components)
     hardware_mounts[name]=[(matrix.multVec(V(h[0],h[1],0)),h[2]) for h in model.get('mount_holes',[])]
     return result
-# Motors and common chassis: open gear end, separate stock horn, no tight crown ring.
+# Motors and common chassis: open gear end, integral printed direct drive sockets, open crown clearance.
 hip=P['hip_z']; earxs=[5.2-13.85,5.2+13.85]
 leftservo=servo_y(0,5,hip)
-add('ServoLeft',leftservo,kind='hardware',color=black,mass=13.4,note='Conservative nominal MG90S envelope; lug pitch, turret, shaft and horn require actual sample measurements.')
-add('ServoRight',mirror(leftservo),kind='hardware',color=black,mass=13.4)
+add('ServoLeft',leftservo,kind='hardware',color=black,mass=13.32,note='Case/crown portion of 13.4 g nominal complete servo; 0.08 g output shaft is on the driven link. Conservative nominal MG90S envelope; lug pitch, turret, shaft require actual sample measurements.')
+add('ServoRight',mirror(leftservo),kind='hardware',color=black,mass=13.32)
+add('OutputSplineLeft',spline_y(0,33.5,hip,4),'left_leg','hardware',steel,.08,'Illustrative unverified output teeth; rotates with left leg. Included in complete servo mass.')
+add('OutputSplineRight',mirror(spline_y(0,33.5,hip,4)),'right_leg','hardware',steel,.08,'Illustrative unverified output teeth; rotates with right leg. Included in complete servo mass.')
 # Compact layout derived from the user's physical three-servo arrangement.
 # The14mm central case gap accepts12.4mm neck width with0.8mm air each side.
 body_geometry=body_solids()
 chassis=rounded(-30,-30,30,51,60,2.4,3)
 neck=servo_y(0,0,0);neck.rotate(V(),V(1,0,0),90);neck.translate(V(0,0,41))
-add('ServoNeck',neck,kind='hardware',color=black,mass=13.4)
+add('ServoNeck',neck,kind='hardware',color=black,mass=13.32)
+neckshaft=spline_y(0,28.5,0,4);neckshaft.rotate(V(),V(1,0,0),90);neckshaft.translate(V(0,0,51))
+add('OutputSplineNeck',neckshaft,'head','hardware',steel,.08,'Illustrative unverified output teeth; rotates with head. Included in complete servo mass.')
 battery=box(-31,-21.5,36.5,23,43,13);battery=battery.makeFillet(.65,battery.Edges)
 # Physical pack shape and foil label occupy the selected43x23x13mm envelope.
 foil=box(-30,-16,49.48,21,32,.02)
@@ -166,7 +179,7 @@ for xx in earxs:
     post=rounded(xx-3.3,-7.5,49.9,6.6,15,9.6,1.1).cut(cyl(xx,0,55.8,.85,4.2))
     chassis=chassis.fuse(post)
 chassis=union([chassis,box(19,-3,39,4,6,12),box(-12,-15,50,5,30,2),box(-14,-3,49.8,6,6,3)])
-# Hip-ear pillars retain stock cases, with open crown and replaceable actual horns.
+# Hip-ear pillars retain stock cases, with open crown and integral print sockets.
 for sg in [1,-1]:
     for xx in earxs:
         post=rounded_y(xx-3.3,22.5,30,6.6,3,15,1.1)
@@ -191,7 +204,7 @@ for yy in [-12,12]:
     boss=box(-5,yy-3.5,49.8,6,7,2.5).fuse(box(-11,-15 if yy<0 else 6.5,50,12,8.5,2.3))
     chassis=chassis.fuse(boss).cut(cyl(-2,yy,50,.85,2.5))
 add('FixedNeckSupport',support,note='Removable annular head support. Install after lowering neck servo into open central gap; two M2x4 screws into1.7mm pilot holes that require physical coupon testing.')
-add('ThrustShim',cyl(0,0,73.7,16,.2).cut(cyl(0,0,73.6,12.25,.4)),kind='hardware',color='#dad9d2',mass=.14,note='Nominal0.2mm PTFE thrust washer closes support-to-shoulder gap; select thickness against actual fully seated horn stack so shoulder bears without axial preload.')
+add('ThrustShim',cyl(0,0,73.7,16,.2).cut(cyl(0,0,73.6,12.25,.4)),kind='hardware',color='#dad9d2',mass=.14,note='Nominal0.2mm PTFE thrust washer closes support-to-shoulder gap; select thickness against actual fully seated socket stack so shoulder bears without axial preload.')
 print('CORE BEFORE CUT',chassis.Volume,len(chassis.Solids),flush=True)
 for n in ['ServoLeft','ServoRight','ServoNeck','Battery','IMU']:
     chassis=chassis.cut(shapes[n]);print('CORE CUT',n,chassis.Volume,len(chassis.Solids),flush=True)
@@ -256,18 +269,15 @@ leg=Part.Face(outline).extrude(V(0,3.6,0))
 leg=finish('Leg upright edge rolls',leg,.55,lambda e:at_plane('Y',40.6)(e) or at_plane('Y',44.2)(e))
 leg=leg.fuse(sole).fuse(polyextr([(-8,37,3),(8,37,3),(4,37,25),(-4,37,25)],(0,3.8,0)))
 leg=leg.common(outer)
-leg=leg.cut(cyl(0,40.4,38,5,4,V(0,1,0)))
-# Open radial slot accepts stock arm hole variants; no printed spline or restrictive horn outline.
-leg=leg.cut(sloty(0,40.4,38,1.0,4,-13,-5.5))
-leg=leg.cut(sloty(0,42.6,38,1.8,2,-13,-6))
-leg=leg.cut(box(-4,37.9,20,8,2.7,23))
+# Integral hub reaches inboard to the actual modeled output teeth; 0.5 mm
+# nominal axial clearance remains between hub entry and the servo crown.
+leg=leg.fuse(cyl(0,34,38,5.5,10.2,V(0,1,0)))
+leg=socket_y(leg,0,34,38,44.2,42.2)
 for side,sg in [('Left',1),('Right',-1)]:
     link=side.lower()+'_leg';q=leg if sg==1 else mirror(leg)
-    add('LegFoot'+side,q,link,color=orange,note='Single rigid printed leg and spherical rocker foot; stock servo horn fixed to inner flat face. Horn position/hole/small screw length require coupon measurement.')
+    add('LegFoot'+side,q,link,color=orange,note='Single rigid leg, rocker foot and integral direct spline hub. Illustrative unverified 20-tooth 4.8/4.30 mm profile, 0.06 mm radial allowance; 3.5 mm nominal shaft overlap and axial center screw. Physical fit and torque capacity require coupon and loaded bench testing.')
     add('Tread'+side,tread if sg==1 else mirror(tread),link,'tread',black,.9,'0.6mm equivalent conforming traction layer. Start localized thin silicone strips; coefficient and compression must be measured.')
-    h=horn_y(0,38.2,38);add('Horn'+side,h if sg==1 else mirror(h),link,'hardware','#d1d2cd',.45,'Illustrative stock horn, deliberately no tight outline pocket. Interface dimensions unverified.')
-    for j,zz in enumerate([27,31]):screw_y('HornScrew'+side+str(j),0,39,zz,4,link,sg,1.6)
-    screw_y('ShaftScrew'+side,0,35.6,38,5,link,sg,2)
+    screw_y('ShaftScrew'+side,0,35.5,38,6.7,link,sg,2)
 # Removable rounded body clamshells; wingless and without a tail.
 outerbody=body_geometry['outer'];innerbody=body_geometry['inner']
 body=outerbody.cut(innerbody)
@@ -318,29 +328,29 @@ add('BodyShellLeft',bodyL,note='Compact faceted torso with flat panels, chamfere
 add('BodyShellRight',bodyR)
 # Neck journal and hollow rotating head carrier. Slip bearing carries head weight on frame.
 carrier=union([cyl(0,0,81.3,11.8,2.7),cyl(0,0,83.9,16,6.1),rounded(-18,-18,90,36,36,2,4)])
-carrier=carrier.cut(cyl(0,0,80,6,13))
-carrier=carrier.cut(box(-18,-4,83.8,24,8,2.9))
-# Radial open cable passage avoids the central horn/shaft; strap wiring clear of yaw sweep.
+carrier=carrier.fuse(cyl(0,0,80,5.5,12))
+# Form a Y-axis socket then rigidly rotate it onto the vertical neck output.
+carrier.rotate(V(),V(1,0,0),-90)
+carrier=socket_y(carrier,0,80,0,92,90.5)
+carrier.rotate(V(),V(1,0,0),90)
+# Radial open cable passage avoids the central socket/shaft; strap wiring clear of yaw sweep.
 carrier=carrier.cut(box(-9,5,80,19.8,5,15))
 for yy in [-13,13]:carrier=carrier.cut(cyl(5,yy,87.8,.85,4.5))
-for xx in [-7,-11]:carrier=carrier.cut(cyl(xx,0,86.4,.9,6))
 carrier=carrier.cut(box(14.5,-19,89.9,6,38,4))
-add('NeckCarrier',carrier,'head',color=black,note='Slip thrust shoulder0.20mm above fixed support with nominal0.20mm PTFE shim; journal diametral clearance0.9mm. Shim thickness must match actual seated horn to carry weight without preload. Cable notch separate from output shaft.')
-nh=horn_y(0,0,0);nh.rotate(V(),V(1,0,0),90);nh.rotate(V(),V(0,0,1),90);nh.translate(V(0,0,84))
-add('NeckHorn',nh,'head','hardware','#d1d2cd',.45,'Stock horn attaches carrier via underside open radial screw slots; check actual seated stack.')
+add('NeckCarrier',carrier,'head',color=black,note='Slip thrust shoulder0.20mm above fixed support with nominal0.20mm PTFE shim; journal diametral clearance0.9mm. Integral direct spline socket reaches the output shaft; shim thickness must match actual seated socket to carry weight without preload. Spline fit and strength unverified. Cable notch separate from output shaft.')
 # Narrow head is a separately authored assembly; purchased geometry is never scaled.
 def screw_z(name,x,y,z,length,link,diam=2):
     screw=union([cyl(x,y,z,diam/2,length),cyl(x,y,z+length,diam,1.3)])
-    return add(name,screw,link,'hardware',steel,.16,'Nominal screw; selected head, pilot and engagement strength require physical fit testing.')
+    note=('Vendor-specific servo output retaining screw; displayed 2 mm diameter is an UNVERIFIED envelope, not an M2 thread specification. Match actual spline thread and available engagement.' if 'ShaftScrew' in name else 'M2 nominal screw; selected head, pilot and engagement strength require physical fit testing.')
+    return add(name,screw,link,'hardware',steel,.16,note)
 from head_r04 import build_head
 build_head(globals())
 for i,(point,diam) in enumerate(hardware_mounts['IMU']):
     screw_z('IMUMountScrew'+str(i),point.x,point.y,49.8,6,'body')
 for yy in [-13,13]:screw_z('HeadFrameScrew'+str(yy),5,yy,89,20,'head')
-for xx in [-7,-11]:screw_z('NeckHornScrew'+str(xx),xx,0,84,8,'head',1.6)
 for xx in earxs:screw_z('NeckMountScrew'+str(xx),xx,0,56.3,6,'body')
 for yy in [-12,12]:screw_z('NeckSupportScrew'+str(yy),-2,yy,50.3,4,'body')
-screw_z('NeckShaftScrew',0,0,82,4.4,'head')
+screw_z('NeckShaftScrew',0,0,81.5,9,'head')
 for sg in [1,-1]:
     for k,xx in enumerate(earxs):screw_y('HipMountScrew'+str(sg)+'_'+str(k),xx,22.3,38,6,'body',sg,2)
 # Flexible harnesses are schematic cable routes, never rectangular volume proxies.
@@ -373,7 +383,7 @@ ribbon=polyextr([(x,-5,z-P['head_shift_z']) for x,z in flex_profile],(0,10,0))
 add('HarnessCameraRibbon',ribbon,'head','harness','#b57928',.1,
     'Indicative10mm-wide camera flex corridor from current FFC region to sensor rear, clear of rigid parts in neutral CAD. Small terminal gaps are intentional: actual flex width, length, contact insertion and smooth minimum-radius bends require measurement; not a manufactured ribbon design.')
 # Actual interface extractions for first cheap fit checks.
-add('LegHornCoupon',shapes['LegFootLeft'].common(box(-11,42.5,22,22,4,27)).removeSplitter(),kind='coupon',color=orange,mass=0,note='Extracted from actual leg; test stock horn seated depth and slot/screw fit.')
+add('SplineFitCoupon',socket_y(cyl(0,0,0,5.5,10.2,V(0,1,0)),0,0,0,10.2,8.2),kind='coupon',color=orange,mass=0,note='Representative integral hip hub: identical radial profile, 3.8 mm socket, entry chamfer, center bore and screw counterbore. All tooth dimensions unverified; measure and fit actual servo before printing full parts. Coupon is not a load qualification.')
 coupon=rounded(0,0,0,59,28,2,2)
 for i,gap in enumerate([.3,.45]):
     xx=2+i*28;coupon=coupon.fuse(box(xx,2,2,26.8,16.4,4)).cut(box(xx+2-gap,4-gap,-.1,22.8+gap*2,12.4+gap*2,6.2))

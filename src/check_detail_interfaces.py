@@ -21,7 +21,7 @@ for y in [-p['face_mount_y'],p['face_mount_y']]:
                           overlap_mm3=volume,clear=volume<.001))
 gap=D.BodyShellLeft.Shape.distToShape(D.BodyShellRight.Shape)[0]
 solids={r['name']:D.getObject(r.get('object_name',r['name'])).Shape for r in assembly['parts']}
-clearance_pairs=[('ESP32CAM','HeadHood'),('UpperBill','Jaw'),('UpperBill','CameraRing'),
+clearance_pairs=[('ESP32CAM','HeadHood'),('FacePanel','Jaw'),
                  ('CameraBoardClamp','HeadHood'),('Buck_0','BodyShellLeft'),
                  ('Buck_0','ServoLeft'),
                  ('IMU','BodyShellLeft'),('IMU','BodyShellRight'),

@@ -6,11 +6,11 @@ You do not need to own the full robot or know every part of robotics to help. Me
 
 ## Start here
 
-Read the [README](README.md) for the current scope and the [roadmap](ROADMAP.md) for the next stages. The R05 prototype uses four MG90S servos, 14 robot print parts and two fit coupons. Its roughly 257 g total mass is a CAD estimate. Geometry and static simulation checks do not establish physical fit, electrical performance or walking capability.
+Read the [README](README.md) for the current scope and the [roadmap](ROADMAP.md) for the next stages. The R07 prototype uses four MG90S servos with integrated direct-mount sockets, a one-piece face/upper bill and two fit coupons. Its complete mass is a CAD estimate. The default 20-tooth socket profile is unverified against the supplied servo batch. Geometry and static simulation checks do not establish physical fit, electrical performance or walking capability.
 
 Useful first contributions include:
 
-- Measure an actual servo, horn, fastener or board using the [hardware worksheet](docs/hardware-measurements.md).
+- Measure an actual servo, output spline, fastener or board using the [hardware worksheet](docs/hardware-measurements.md).
 - Print a fit coupon and report the dimensions, settings and result, including failures.
 - Identify an unclear assembly step or reproduce a documented software check.
 - Improve a diagram, explanation, setup instruction or translation.
@@ -35,7 +35,7 @@ Use the bug / fit report form for a reproducible problem and the proposal form f
 
 Keep unrelated changes separate. Include editable source for new designs where possible. Avoid adding dependency folders, caches, temporary exports or large recordings when a small example will explain the result.
 
-For mechanical changes, review [engineering checks and their limits](docs/engineering-review.md) and the [R06 refinement notes](docs/r06-simplified-design.md). A collision check is evidence about the modeled geometry, not proof of strength, cable flexibility or assembly access with real parts. For simulation changes, follow [simulation documentation](docs/simulation.md) and distinguish static validation, an actual Isaac Sim run, training and physical evaluation in your report.
+For mechanical changes, review [engineering checks and their limits](docs/engineering-review.md) and the [R07 refinement notes](docs/r07-direct-mount-design.md). A collision check is evidence about the modeled geometry, not proof of strength, cable flexibility or assembly access with real parts. For simulation changes, follow [simulation documentation](docs/simulation.md) and distinguish static validation, an actual Isaac Sim run, training and physical evaluation in your report.
 
 ## Credit and review
 

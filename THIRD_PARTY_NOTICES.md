@@ -41,3 +41,5 @@ The CAD source can load the following manufacturer files for local engineering r
 The [input manifest](references/inputs.json) records download URLs, SHA-256 hashes and upstream notice files. The fetch script also saves notices alongside each local input. Preserve complete upstream READMEs, licenses, creator attribution and change descriptions when redistributing the Adafruit adaptations. Their inclusion in the viewer does not change the license of the separate printed-part exports.
 
 FreeCAD, NumPy, trimesh, Isaac Lab, Isaac Sim and their dependencies are installed separately. Isaac Lab v2.3.2 uses [BSD-3-Clause](https://github.com/isaac-sim/IsaacLab/blob/v2.3.2/LICENSE). The simulation scaffold uses its APIs and invokes its installed training scripts; it does not bundle those packages.
+
+The offline geometric-camera tests use [three-mesh-bvh](https://github.com/gkjohnson/three-mesh-bvh), copyright 2018 Garrett Johnson, under its MIT license. It is installed as a development dependency with its upstream license; no library source is copied into this repository.

@@ -3,6 +3,7 @@
 // used by the controller. The target is unlit magenta in the WebGL scene too.
 import {readFileSync} from 'node:fs';
 import * as T from 'three';
+import {MeshBVH,acceleratedRaycast} from 'three-mesh-bvh';
 export const WIDTH=96,HEIGHT=72,FOV=50;
 export class CpuCamera {
   constructor(asset){
@@ -11,11 +12,14 @@ export class CpuCamera {
     this.meshes=assembly.parts.filter(p=>p.kind!=='coupon').map(part=>{
       const source=JSON.parse(readFileSync(new URL(`../public/cad/meshes/${part.name}.json`,import.meta.url)));
       const geometry=new T.BufferGeometry();geometry.setAttribute('position',new T.Float32BufferAttribute(source.positions,3));geometry.setIndex(source.indices);geometry.computeBoundingBox();geometry.computeBoundingSphere();
-      const mesh=new T.Mesh(geometry,new T.MeshBasicMaterial({side:T.FrontSide}));mesh.name=part.name;mesh.userData.link=part.link;mesh.matrixAutoUpdate=false;return mesh;
+      // The integrated face surrounds the lens's bounding box. Accelerate exact
+      // triangle queries without changing its topology or source index order.
+      geometry.boundsTree=new MeshBVH(geometry,{indirect:true});
+      const mesh=new T.Mesh(geometry,new T.MeshBasicMaterial({side:T.FrontSide}));mesh.raycast=acceleratedRaycast;mesh.name=part.name;mesh.userData.link=part.link;mesh.matrixAutoUpdate=false;return mesh;
     });
     this.target=new T.Mesh(new T.BoxGeometry(50,50,100),new T.MeshBasicMaterial());
     this.sensor=new T.PerspectiveCamera(FOV,WIDTH/HEIGHT,.1,5000);this.sensor.up.set(0,0,1);
-    this.ray=new T.Raycaster();this.ray.near=.1;this.pixels=new Uint8Array(WIDTH*HEIGHT*4);
+    this.ray=new T.Raycaster();this.ray.near=.1;this.ray.firstHitOnly=true;this.pixels=new Uint8Array(WIDTH*HEIGHT*4);
   }
   capture(frame,targetPosition){
     const matrices={};

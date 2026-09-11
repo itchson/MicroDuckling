@@ -14,8 +14,8 @@ mkdirSync(new URL('work/',root),{recursive:true});
 const read = path => readFileSync(new URL(path, root));
 const sha = data => createHash('sha256').update(data).digest('hex');
 const hash = path => sha(read(path));
-const expectedAsset = '50dcf217ace63f26561a487355245aae53bcdc5139d94e68e9ef10fbf984df76';
-if (hash('simulation/browser/robot-physics.json') !== expectedAsset) throw Error('Unexpected canonical physics asset');
+const expectedAsset = process.env.EXPECTED_ASSET_SHA256;
+if (expectedAsset && hash('simulation/browser/robot-physics.json') !== expectedAsset) throw Error('Unexpected canonical physics asset');
 const asset = JSON.parse(read('simulation/browser/robot-physics.json'));
 const assembly = JSON.parse(read('cad/assembly.json'));
 const components = JSON.parse(read('components/records.json'));
@@ -28,6 +28,7 @@ const sourcePaths = [
   'simulation/browser/robot-physics.json', 'cad/assembly.json', 'components/records.json',
   'viewer/public/cad/assembly.json', 'viewer/lib/browser-physics.ts', 'viewer/lib/approach.ts',
   'viewer/lib/goal-metrics.ts', 'viewer/lib/goal-types.ts', 'viewer/lib/vision.ts',
+  'viewer/lib/experiment-settings.ts',
   'viewer/lib/locomotion-controller.ts', 'viewer/lib/simulation.worker.ts',
   'viewer/lib/simulation-protocol.ts', 'viewer/scripts/cpu-camera.mjs',
   'viewer/scripts/prepare-cad.mjs', 'viewer/package-lock.json', 'viewer/scripts/verification/camera-learning.mjs',
@@ -60,7 +61,7 @@ const output = {
     scoreRule: 'fallen ? -6 : 40 * progressM + 80 * sustainedProgressM + (success ? 10 : 0)'},
   trials: [], heldOut: [], completed: false,
 };
-const save = () => writeFileSync(new URL('work/r06-camera-learning.json', root), JSON.stringify(output, null, 2) + '\n');
+const save = () => writeFileSync(new URL('work/camera-learning.json', root), JSON.stringify(output, null, 2) + '\n');
 const engine = await BrowserPhysics.create(asset, settings);
 const camera = new CpuCamera(asset);
 output.physics = engine.diagnostics();

@@ -1,0 +1,5144 @@
+{
+  "revision": "R07",
+  "source_cad_sha256": "17b99033089d89afdc286bdb62c34ef949b9b0605b4e2c1970973a0934e19fcc",
+  "source_assembly_sha256": "bc3902b9297c82400a112ec02cc24b47cd1c6bcc019c32e04703e054f3a85f0b",
+  "public_native_sha256": "3d59fa5f7288b1d2c4510b38fd9c930a68245addeac0fe54912ff083580a773a",
+  "assembled_parts": 77,
+  "printed_parts": 14,
+  "coupons": 2,
+  "mass_g": 248.66451976431432,
+  "com_mm": [
+    -0.7793694255751039,
+    0.7215982187744582,
+    58.0137697159922
+  ],
+  "physical_fit_qualified": false,
+  "static_overlap_note": "35 nominal static engagements remain, including four output shaft/retaining screw pairs. Motion audits check full cases with no servo-pair exemption. Thread meshes and physical fastener fits are not qualified.",
+  "export_checks": {
+    "native_shapes": 75,
+    "mesh_records": 77,
+    "printed_parts": 14,
+    "coupons": 2,
+    "stl_files": 16,
+    "three_mf_files": 16,
+    "omitted_components": [
+      "Buck_0",
+      "IMU"
+    ],
+    "native_sha256": "3d59fa5f7288b1d2c4510b38fd9c930a68245addeac0fe54912ff083580a773a",
+    "printed_step_sha256": "e277000deb113ab7f549e34fdf868746d104975443b35f2c811407321cda6e9d",
+    "native_reopen_valid": true,
+    "step_solids": 14
+  },
+  "mesh_checks": [
+    {
+      "name": "BodyShellLeft",
+      "kind": "print",
+      "source_stl": "cad/stl/BodyShellLeft.stl",
+      "source_stl_sha256": "f1fdc07a4d40c7be08f8201f7681cb97c4deaaf26645a3610f4ade8fb08e4926",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 4744,
+      "faces": 9496,
+      "dimensions_mm": [
+        76.0,
+        40.25,
+        37.0
+      ],
+      "mesh_volume_mm3": 11548.597948970448,
+      "cad_volume_mm3": 11548.854791463473,
+      "cad_volume_relative_error": 2.2239650395022925e-05,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "0179be99505c05d2b15e60550ae12a9827d145b18fbc3fa738861ad7c140f49f"
+    },
+    {
+      "name": "BodyShellRight",
+      "kind": "print",
+      "source_stl": "cad/stl/BodyShellRight.stl",
+      "source_stl_sha256": "f3fc361b25fe0e883297619828f90edd1dfd879e66e801bd8a1d44851c037715",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 4441,
+      "faces": 8890,
+      "dimensions_mm": [
+        76.0,
+        38.849998474121094,
+        37.0
+      ],
+      "mesh_volume_mm3": 11231.915295800043,
+      "cad_volume_mm3": 11232.17264844944,
+      "cad_volume_relative_error": 2.2912098794319365e-05,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "58b79e65d20ea01312a611505959c0ba8ec2548bda56e9f36af5bf6448072f15"
+    },
+    {
+      "name": "CameraBoardClamp",
+      "kind": "print",
+      "source_stl": "cad/stl/CameraBoardClamp.stl",
+      "source_stl_sha256": "b636e29d9c64c44e83ad92632130a400398e4498b57ed983449a3e33c79253cf",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 432,
+      "faces": 868,
+      "dimensions_mm": [
+        5.40000057220459,
+        32.400001525878906,
+        1.1999969482421875
+      ],
+      "mesh_volume_mm3": 199.48640621346317,
+      "cad_volume_mm3": 199.4758413978107,
+      "cad_volume_relative_error": 5.296288301593793e-05,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "4dbd9c4a8c74bc0fc1ddbc2772d99f4d746866f58e02228318fa170bdd1e23e2"
+    },
+    {
+      "name": "CameraCradle",
+      "kind": "print",
+      "source_stl": "cad/stl/CameraCradle.stl",
+      "source_stl_sha256": "f68cc0554cb05d53af971abf9b46f90faf0bf137c6f39d52d7cefc53a8238b7d",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 728,
+      "faces": 1464,
+      "dimensions_mm": [
+        3.0999984741210938,
+        30.0,
+        13.600006103515625
+      ],
+      "mesh_volume_mm3": 363.1659875281886,
+      "cad_volume_mm3": 363.17687921584115,
+      "cad_volume_relative_error": 2.9990035918718994e-05,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "bbc8687e264efb15774f9329aff530a375c873832b4494ef1314bc9c26fa99e0"
+    },
+    {
+      "name": "CameraRing",
+      "kind": "print",
+      "source_stl": "cad/stl/CameraRing.stl",
+      "source_stl_sha256": "264805d347bf45a61b1183aaa8d178bb26d11144e6810e277569360cecb6d66c",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 2972,
+      "faces": 5944,
+      "dimensions_mm": [
+        5.599998474121094,
+        27.0,
+        27.0
+      ],
+      "mesh_volume_mm3": 1904.3374114783173,
+      "cad_volume_mm3": 1903.2008410034728,
+      "cad_volume_relative_error": 0.0005971889305415146,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "f9552eb4da150683059e3b40176309c8cef12bfcbac3869a1da0c1b31c73cd17"
+    },
+    {
+      "name": "Chassis",
+      "kind": "print",
+      "source_stl": "cad/stl/Chassis.stl",
+      "source_stl_sha256": "50c55b4619b22654a25c2bfb0da942d2f57bebbd9bd941bae221b7c87b2f7cc9",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 12560,
+      "faces": 25244,
+      "dimensions_mm": [
+        57.0,
+        68.0,
+        32.5
+      ],
+      "mesh_volume_mm3": 19233.759855950135,
+      "cad_volume_mm3": 19234.454591034857,
+      "cad_volume_relative_error": 3.611930254814772e-05,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "4f30b4d11833f8ce9a0fa93ad11099940b4155ed901895a660d645277ea25ca7"
+    },
+    {
+      "name": "ClearanceCoupon",
+      "kind": "coupon",
+      "source_stl": "cad/coupons/ClearanceCoupon.stl",
+      "source_stl_sha256": "c6f761655ac09a3fdfa99bfd10589cd319b58f188e743cd49881447954b6ca42",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 1164,
+      "faces": 2360,
+      "dimensions_mm": [
+        59.0,
+        28.0,
+        6.0
+      ],
+      "mesh_volume_mm3": 3051.324165284182,
+      "cad_volume_mm3": 3051.295355714933,
+      "cad_volume_relative_error": 9.441750433974555e-06,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "5d077c339902a79175fee93a5050e35fb62b47c249611c3179a8cc023f2fc97b"
+    },
+    {
+      "name": "FacePanel",
+      "kind": "print",
+      "source_stl": "cad/stl/FacePanel.stl",
+      "source_stl_sha256": "f68b565c3076b7d60ba8d4681907f2cb30847b7e4928db4c89103a583486a270",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 2428,
+      "faces": 4856,
+      "dimensions_mm": [
+        16.0,
+        50.0,
+        48.80000305175781
+      ],
+      "mesh_volume_mm3": 4364.763158796131,
+      "cad_volume_mm3": 4365.318028414122,
+      "cad_volume_relative_error": 0.00012710863547138015,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "6f34499d6807058dc64c32f5ff359790981a1ec0ed1137cf78b2ee9996b0c471"
+    },
+    {
+      "name": "FixedNeckSupport",
+      "kind": "print",
+      "source_stl": "cad/stl/FixedNeckSupport.stl",
+      "source_stl_sha256": "0d6946d4504432fc62a52a1e640a8124b16f4b43abc792547e3ca1429326a894",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 1176,
+      "faces": 2360,
+      "dimensions_mm": [
+        32.0,
+        33.0,
+        21.39999771118164
+      ],
+      "mesh_volume_mm3": 1721.0255505571993,
+      "cad_volume_mm3": 1721.917169570383,
+      "cad_volume_relative_error": 0.0005178059833193123,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "02adbf513ef9aa4085ebb9c62d2db14883acd56456500b2badbcaffd934ac672"
+    },
+    {
+      "name": "HeadFrame",
+      "kind": "print",
+      "source_stl": "cad/stl/HeadFrame.stl",
+      "source_stl_sha256": "91e6d38084288964edb339c1ffdcb5ed351bedff1d7a37ec7cc45234329f8a84",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 3054,
+      "faces": 6144,
+      "dimensions_mm": [
+        58.0,
+        48.79999923706055,
+        42.400001525878906
+      ],
+      "mesh_volume_mm3": 8515.28719844046,
+      "cad_volume_mm3": 8516.253350333856,
+      "cad_volume_relative_error": 0.00011344799804004265,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "f9b504d68dd79b5a1160787db96c49c803e391ec71591cee7e6a6fa21d8b1644"
+    },
+    {
+      "name": "HeadHood",
+      "kind": "print",
+      "source_stl": "cad/stl/HeadHood.stl",
+      "source_stl_sha256": "3d4935ccfb3a0de8a027398c77608908040c85e80c79b30c0d31d4cdf681800d",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 13285,
+      "faces": 26606,
+      "dimensions_mm": [
+        64.0,
+        52.0,
+        52.0
+      ],
+      "mesh_volume_mm3": 14467.752809448115,
+      "cad_volume_mm3": 14467.784732311706,
+      "cad_volume_relative_error": 2.206479027816362e-06,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "9610ac05d2eaf0371cc911883cb01dc83a1faab9395b188254d3c1985fbcfc37"
+    },
+    {
+      "name": "Jaw",
+      "kind": "print",
+      "source_stl": "cad/stl/Jaw.stl",
+      "source_stl_sha256": "8c6a8aef85f4dc1559dfc4cd855e0c3dd7d5f79017d911ddccea1f4c45ee8cdf",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 4395,
+      "faces": 8794,
+      "dimensions_mm": [
+        62.0,
+        54.0,
+        17.991943359375
+      ],
+      "mesh_volume_mm3": 4043.983599760366,
+      "cad_volume_mm3": 4044.5422106543037,
+      "cad_volume_relative_error": 0.00013811473952882053,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "9a94478c97adf0ccba25d3b25d79a1515f044913e9e7bb78807a79894ae840b5"
+    },
+    {
+      "name": "LegFootLeft",
+      "kind": "print",
+      "source_stl": "cad/stl/LegFootLeft.stl",
+      "source_stl_sha256": "bdea1a6c112c7c4a9a9618e7f733222baeae2b16fd84a0dfdb6f85f6dda6d916",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 16288,
+      "faces": 32576,
+      "dimensions_mm": [
+        70.0,
+        52.0,
+        46.39093780517578
+      ],
+      "mesh_volume_mm3": 12275.588091118783,
+      "cad_volume_mm3": 12283.954950058423,
+      "cad_volume_relative_error": 0.0006811209397670765,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "c3a8b12de37ca812dfac645108d0156f43e3c0fe3695d0281cef5012e5ca9de2"
+    },
+    {
+      "name": "LegFootRight",
+      "kind": "print",
+      "source_stl": "cad/stl/LegFootRight.stl",
+      "source_stl_sha256": "103ef223179544c65216516a6d98c586d3b7ccb7c6a75df285479ed0bfa93787",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 16288,
+      "faces": 32576,
+      "dimensions_mm": [
+        70.0,
+        52.0,
+        46.39093780517578
+      ],
+      "mesh_volume_mm3": 12275.588087082675,
+      "cad_volume_mm3": 12283.954891983185,
+      "cad_volume_relative_error": 0.0006811165438233918,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "4771546c6f33c883e5ce506e54c616f8a34b8da467d65e78ef20141c3b916c3d"
+    },
+    {
+      "name": "NeckCarrier",
+      "kind": "print",
+      "source_stl": "cad/stl/NeckCarrier.stl",
+      "source_stl_sha256": "a14008247c59b42a52898ca5f5a386657157edf761369af0a16dc7decd410817",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 1326,
+      "faces": 2656,
+      "dimensions_mm": [
+        34.0,
+        36.0,
+        12.0
+      ],
+      "mesh_volume_mm3": 7315.801997392541,
+      "cad_volume_mm3": 7322.455013072433,
+      "cad_volume_relative_error": 0.0009085772009543806,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "d8c9aaa194f340f1f20b61c7992d245e821e02fb368cdcbec1a02042aa3320e7"
+    },
+    {
+      "name": "SplineFitCoupon",
+      "kind": "coupon",
+      "source_stl": "cad/coupons/SplineFitCoupon.stl",
+      "source_stl_sha256": "2b69f9e000bdb3c7137bba7defde2a3dd90596b217de7fd6232e94ee07b468dd",
+      "watertight": true,
+      "winding_consistent": true,
+      "positive_volume": true,
+      "connected_components": 1,
+      "vertices": 693,
+      "faces": 1386,
+      "dimensions_mm": [
+        10.988924026489258,
+        10.199999809265137,
+        11.0
+      ],
+      "mesh_volume_mm3": 848.72044148519,
+      "cad_volume_mm3": 849.9483350473299,
+      "cad_volume_relative_error": 0.0014446684716095542,
+      "3mf_roundtrip_counts_match": true,
+      "3mf_roundtrip_vertices_and_faces_exact": true,
+      "3mf_roundtrip_volume_matches": true,
+      "3mf_unit": "millimeter",
+      "3mf_sha256": "398257ecd39e20b64c285090f4b057e99434a675317c368e9301b2bee4f7834e"
+    }
+  ],
+  "checks": {
+    "intersections": {
+      "static_overlaps": [
+        {
+          "a": "OutputSplineLeft",
+          "b": "ShaftScrewLeft",
+          "volume_mm3": 6.2832,
+          "same_link": true
+        },
+        {
+          "a": "OutputSplineRight",
+          "b": "ShaftScrewRight",
+          "volume_mm3": 6.2832,
+          "same_link": true
+        },
+        {
+          "a": "OutputSplineNeck",
+          "b": "NeckShaftScrew",
+          "volume_mm3": 6.2832,
+          "same_link": true
+        },
+        {
+          "a": "Buck_0MountScrew0",
+          "b": "Chassis",
+          "volume_mm3": 7.0928,
+          "same_link": true
+        },
+        {
+          "a": "Buck_0MountScrew1",
+          "b": "Chassis",
+          "volume_mm3": 7.0928,
+          "same_link": true
+        },
+        {
+          "a": "Chassis",
+          "b": "IMUMountScrew0",
+          "volume_mm3": 9.5609,
+          "same_link": true
+        },
+        {
+          "a": "Chassis",
+          "b": "IMUMountScrew1",
+          "volume_mm3": 9.5613,
+          "same_link": true
+        },
+        {
+          "a": "Chassis",
+          "b": "NeckMountScrew-8.649999999999999",
+          "volume_mm3": 2.7897,
+          "same_link": true
+        },
+        {
+          "a": "Chassis",
+          "b": "NeckMountScrew19.05",
+          "volume_mm3": 2.7897,
+          "same_link": true
+        },
+        {
+          "a": "Chassis",
+          "b": "NeckSupportScrew-12",
+          "volume_mm3": 1.7436,
+          "same_link": true
+        },
+        {
+          "a": "Chassis",
+          "b": "NeckSupportScrew12",
+          "volume_mm3": 1.7436,
+          "same_link": true
+        },
+        {
+          "a": "Chassis",
+          "b": "HipMountScrew1_0",
+          "volume_mm3": 2.6271,
+          "same_link": true
+        },
+        {
+          "a": "Chassis",
+          "b": "HipMountScrew1_1",
+          "volume_mm3": 2.5082,
+          "same_link": true
+        },
+        {
+          "a": "Chassis",
+          "b": "HipMountScrew-1_0",
+          "volume_mm3": 2.6271,
+          "same_link": true
+        },
+        {
+          "a": "Chassis",
+          "b": "HipMountScrew-1_1",
+          "volume_mm3": 2.5082,
+          "same_link": true
+        },
+        {
+          "a": "BodyScrew-261",
+          "b": "BodyNut-261",
+          "volume_mm3": 1.3949,
+          "same_link": true
+        },
+        {
+          "a": "BodyScrew-26-1",
+          "b": "BodyNut-26-1",
+          "volume_mm3": 1.3949,
+          "same_link": true
+        },
+        {
+          "a": "BodyScrew171",
+          "b": "BodyNut171",
+          "volume_mm3": 1.3949,
+          "same_link": true
+        },
+        {
+          "a": "BodyScrew17-1",
+          "b": "BodyNut17-1",
+          "volume_mm3": 1.3949,
+          "same_link": true
+        },
+        {
+          "a": "NeckCarrier",
+          "b": "HeadFrameScrew-13",
+          "volume_mm3": 2.6154,
+          "same_link": true
+        },
+        {
+          "a": "NeckCarrier",
+          "b": "HeadFrameScrew13",
+          "volume_mm3": 2.6154,
+          "same_link": true
+        },
+        {
+          "a": "FacePanel",
+          "b": "CameraCradleScrew-12",
+          "volume_mm3": 3.6615,
+          "same_link": true
+        },
+        {
+          "a": "FacePanel",
+          "b": "CameraCradleScrew12",
+          "volume_mm3": 3.6615,
+          "same_link": true
+        },
+        {
+          "a": "FacePanel",
+          "b": "FaceScrew-20_102",
+          "volume_mm3": 2.0723,
+          "same_link": true
+        },
+        {
+          "a": "FacePanel",
+          "b": "FaceScrew-20_119",
+          "volume_mm3": 2.0723,
+          "same_link": true
+        },
+        {
+          "a": "FacePanel",
+          "b": "FaceScrew20_102",
+          "volume_mm3": 2.0723,
+          "same_link": true
+        },
+        {
+          "a": "FacePanel",
+          "b": "FaceScrew20_119",
+          "volume_mm3": 2.0723,
+          "same_link": true
+        },
+        {
+          "a": "OutputSplineMouth",
+          "b": "MouthShaftScrew",
+          "volume_mm3": 6.2832,
+          "same_link": true
+        },
+        {
+          "a": "HeadFrame",
+          "b": "HoodScrew1",
+          "volume_mm3": 3.8359,
+          "same_link": true
+        },
+        {
+          "a": "HeadFrame",
+          "b": "HoodScrew-1",
+          "volume_mm3": 3.8359,
+          "same_link": true
+        },
+        {
+          "a": "HeadFrame",
+          "b": "CameraClampScrew-15",
+          "volume_mm3": 4.1839,
+          "same_link": true
+        },
+        {
+          "a": "HeadFrame",
+          "b": "CameraClampScrew15",
+          "volume_mm3": 4.1839,
+          "same_link": true
+        },
+        {
+          "a": "JawPassivePin",
+          "b": "JawPassiveLocknut",
+          "volume_mm3": 2.1795,
+          "same_link": true
+        },
+        {
+          "a": "MouthMountScrew0",
+          "b": "MouthMountNut0",
+          "volume_mm3": 1.3949,
+          "same_link": true
+        },
+        {
+          "a": "MouthMountScrew1",
+          "b": "MouthMountNut1",
+          "volume_mm3": 1.3949,
+          "same_link": true
+        }
+      ],
+      "motion_overlaps": [],
+      "combined_jaw_neck_overlaps": [],
+      "reopened_solids_valid": true,
+      "notes": "Nominal CAD solids including sourced PCB outlines and modeled fasteners. Samples only, not continuous motion or positive-clearance proof. Illustrative flexible harness routes excluded from static and motion tests; actual wiring, plugs, tolerance and full assembly access unverified.",
+      "source_cad_sha256": "17b99033089d89afdc286bdb62c34ef949b9b0605b4e2c1970973a0934e19fcc",
+      "source_assembly_sha256": "bc3902b9297c82400a112ec02cc24b47cd1c6bcc019c32e04703e054f3a85f0b",
+      "servo_output_motion_scope": "Output spline shafts are separate parts on the driven links. Complete servo cases and crowns remain fixed and are checked at every joint sample. Actual output bearings and spline tolerances remain unverified."
+    },
+    "direct_interfaces": {
+      "source_cad_sha256": "17b99033089d89afdc286bdb62c34ef949b9b0605b4e2c1970973a0934e19fcc",
+      "source_assembly_sha256": "bc3902b9297c82400a112ec02cc24b47cd1c6bcc019c32e04703e054f3a85f0b",
+      "fit_status": "UNVERIFIED: illustrative radial tooth hypothesis, not a measured manufacturer spline. These tests prove only nominal CAD consistency; printer resolution, actual fits and loaded tooth life need physical tests.",
+      "retired_parts_absent": true,
+      "interfaces": [
+        {
+          "part": "LegFootLeft",
+          "servo": "ServoLeft",
+          "output_shaft_part": "OutputSplineLeft",
+          "output_shaft_link": "left_leg",
+          "one_connected_solid": true,
+          "socket_entry_mm": [
+            0,
+            36,
+            38
+          ],
+          "socket_axis": [
+            0,
+            1,
+            0
+          ],
+          "shaft_socket_overlap_mm": 3.5,
+          "nominal_socket_depth_mm": 3.8,
+          "nominal_tip_room_mm": 0.3,
+          "nominal_radial_allowance_mm": 0.06,
+          "minimum_hub_radial_wall_mm": 3.04,
+          "shaft_intersection_mm3": 0.0,
+          "case_crown_gap_mm": 0.5,
+          "tooth_valley_and_crest_probes_passed": 20,
+          "sampled_shaft_distance_mm": 0.03602880617931764
+        },
+        {
+          "part": "LegFootRight",
+          "servo": "ServoRight",
+          "output_shaft_part": "OutputSplineRight",
+          "output_shaft_link": "right_leg",
+          "one_connected_solid": true,
+          "socket_entry_mm": [
+            0,
+            -36,
+            38
+          ],
+          "socket_axis": [
+            0,
+            -1,
+            0
+          ],
+          "shaft_socket_overlap_mm": 3.5,
+          "nominal_socket_depth_mm": 3.8,
+          "nominal_tip_room_mm": 0.3,
+          "nominal_radial_allowance_mm": 0.06,
+          "minimum_hub_radial_wall_mm": 3.04,
+          "shaft_intersection_mm3": 0.0,
+          "case_crown_gap_mm": 0.5,
+          "tooth_valley_and_crest_probes_passed": 20,
+          "sampled_shaft_distance_mm": 0.03602880617931764
+        },
+        {
+          "part": "NeckCarrier",
+          "servo": "ServoNeck",
+          "output_shaft_part": "OutputSplineNeck",
+          "output_shaft_link": "head",
+          "one_connected_solid": true,
+          "socket_entry_mm": [
+            0,
+            0,
+            70
+          ],
+          "socket_axis": [
+            0,
+            0,
+            1
+          ],
+          "shaft_socket_overlap_mm": 3.5,
+          "nominal_socket_depth_mm": 3.8,
+          "nominal_tip_room_mm": 0.3,
+          "nominal_radial_allowance_mm": 0.06,
+          "minimum_hub_radial_wall_mm": 3.04,
+          "shaft_intersection_mm3": 0.0,
+          "case_crown_gap_mm": 0.5,
+          "tooth_valley_and_crest_probes_passed": 20,
+          "sampled_shaft_distance_mm": 0.03602880617931929
+        },
+        {
+          "part": "Jaw",
+          "servo": "ServoMouth",
+          "output_shaft_part": "OutputSplineMouth",
+          "output_shaft_link": "jaw",
+          "one_connected_solid": true,
+          "socket_entry_mm": [
+            -16,
+            16,
+            90
+          ],
+          "socket_axis": [
+            0,
+            1,
+            0
+          ],
+          "shaft_socket_overlap_mm": 3.5,
+          "nominal_socket_depth_mm": 3.8,
+          "nominal_tip_room_mm": 0.3,
+          "nominal_radial_allowance_mm": 0.06,
+          "minimum_hub_radial_wall_mm": 2.04,
+          "shaft_intersection_mm3": 0.0,
+          "case_crown_gap_mm": 0.5,
+          "tooth_valley_and_crest_probes_passed": 20,
+          "sampled_shaft_distance_mm": 0.036028806179304575
+        }
+      ],
+      "integrated_face": {
+        "single_connected_solid": true,
+        "upper_bill_plate_thickness_mm": 2.2,
+        "plate_material_volume_mm3": 1146.3382857142865,
+        "jaw_samples": [
+          {
+            "jaw_angle_deg": 0,
+            "bill_gap_mm": 4.099999999999994,
+            "face_intersection_mm3": 0.0
+          },
+          {
+            "jaw_angle_deg": 1,
+            "bill_gap_mm": 4.958337943819346,
+            "face_intersection_mm3": 0.0
+          },
+          {
+            "jaw_angle_deg": 2,
+            "bill_gap_mm": 5.813227464001307,
+            "face_intersection_mm3": 0.0
+          },
+          {
+            "jaw_angle_deg": 3,
+            "bill_gap_mm": 6.66493449849277,
+            "face_intersection_mm3": 0.0
+          },
+          {
+            "jaw_angle_deg": 4,
+            "bill_gap_mm": 7.511855907582817,
+            "face_intersection_mm3": 0.0
+          },
+          {
+            "jaw_angle_deg": 5,
+            "bill_gap_mm": 8.316169075972674,
+            "face_intersection_mm3": 0.0
+          },
+          {
+            "jaw_angle_deg": 6,
+            "bill_gap_mm": 9.09024965187147,
+            "face_intersection_mm3": 0.0
+          },
+          {
+            "jaw_angle_deg": 7,
+            "bill_gap_mm": 9.867494821131242,
+            "face_intersection_mm3": 0.0
+          },
+          {
+            "jaw_angle_deg": 8,
+            "bill_gap_mm": 10.646921272869536,
+            "face_intersection_mm3": 0.0
+          },
+          {
+            "jaw_angle_deg": 9,
+            "bill_gap_mm": 11.4277450647814,
+            "face_intersection_mm3": 0.0
+          },
+          {
+            "jaw_angle_deg": 10,
+            "bill_gap_mm": 12.20931943738418,
+            "face_intersection_mm3": 0.0
+          },
+          {
+            "jaw_angle_deg": 11,
+            "bill_gap_mm": 12.991094452158256,
+            "face_intersection_mm3": 0.0
+          },
+          {
+            "jaw_angle_deg": 12,
+            "bill_gap_mm": 13.772590075086057,
+            "face_intersection_mm3": 0.0
+          }
+        ]
+      }
+    },
+    "insertion_paths": {
+      "source_cad_sha256": "17b99033089d89afdc286bdb62c34ef949b9b0605b4e2c1970973a0934e19fcc",
+      "source_assembly_sha256": "bc3902b9297c82400a112ec02cc24b47cd1c6bcc019c32e04703e054f3a85f0b",
+      "scope": "Rigid component vs named bare frame,2mm straight/<=1mm stepped samples; reverse for insertion. The assembled mouth case/output/jaw module vs bare head frame unseats0.5mm outward then drops before passive pin and carrier attachment. Mouth case plus geared output vs one-piece jaw first withdraws4mm leftward from its socket, then lowers through the jaw opening; passive pin and head frame must be absent. Servo regulator disengages2mm rearward then lifts before battery/IMU/neck support. Neighboring boards, hood, clamps and harness absent; full installed-neighbor order/tool access still unverified.",
+      "paths": [
+        {
+          "part": "Battery",
+          "mounting_frame": "Chassis",
+          "direction_out": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "step_mm": 2,
+          "sampled_offsets_mm": [
+            [
+              -0.0,
+              0.0,
+              0.0
+            ],
+            [
+              -2.0,
+              0.0,
+              0.0
+            ],
+            [
+              -4.0,
+              0.0,
+              0.0
+            ],
+            [
+              -6.0,
+              0.0,
+              0.0
+            ],
+            [
+              -8.0,
+              0.0,
+              0.0
+            ],
+            [
+              -10.0,
+              0.0,
+              0.0
+            ],
+            [
+              -12.0,
+              0.0,
+              0.0
+            ],
+            [
+              -14.0,
+              0.0,
+              0.0
+            ],
+            [
+              -16.0,
+              0.0,
+              0.0
+            ],
+            [
+              -18.0,
+              0.0,
+              0.0
+            ],
+            [
+              -20.0,
+              0.0,
+              0.0
+            ],
+            [
+              -22.0,
+              0.0,
+              0.0
+            ],
+            [
+              -24.0,
+              0.0,
+              0.0
+            ],
+            [
+              -26.0,
+              0.0,
+              0.0
+            ],
+            [
+              -28.0,
+              0.0,
+              0.0
+            ],
+            [
+              -30.0,
+              0.0,
+              0.0
+            ],
+            [
+              -32.0,
+              0.0,
+              0.0
+            ],
+            [
+              -34.0,
+              0.0,
+              0.0
+            ],
+            [
+              -36.0,
+              0.0,
+              0.0
+            ],
+            [
+              -38.0,
+              0.0,
+              0.0
+            ],
+            [
+              -40.0,
+              0.0,
+              0.0
+            ],
+            [
+              -42.0,
+              0.0,
+              0.0
+            ],
+            [
+              -44.0,
+              0.0,
+              0.0
+            ],
+            [
+              -46.0,
+              0.0,
+              0.0
+            ],
+            [
+              -48.0,
+              0.0,
+              0.0
+            ],
+            [
+              -50.0,
+              0.0,
+              0.0
+            ],
+            [
+              -52.0,
+              0.0,
+              0.0
+            ],
+            [
+              -54.0,
+              0.0,
+              0.0
+            ],
+            [
+              -56.0,
+              0.0,
+              0.0
+            ],
+            [
+              -58.0,
+              0.0,
+              0.0
+            ],
+            [
+              -60.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "collisions": []
+        },
+        {
+          "part": "ServoLeft",
+          "mounting_frame": "Chassis",
+          "direction_out": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "step_mm": 2,
+          "sampled_offsets_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0
+            ],
+            [
+              0.0,
+              8.0,
+              0.0
+            ],
+            [
+              0.0,
+              10.0,
+              0.0
+            ],
+            [
+              0.0,
+              12.0,
+              0.0
+            ],
+            [
+              0.0,
+              14.0,
+              0.0
+            ],
+            [
+              0.0,
+              16.0,
+              0.0
+            ],
+            [
+              0.0,
+              18.0,
+              0.0
+            ],
+            [
+              0.0,
+              20.0,
+              0.0
+            ],
+            [
+              0.0,
+              22.0,
+              0.0
+            ],
+            [
+              0.0,
+              24.0,
+              0.0
+            ],
+            [
+              0.0,
+              26.0,
+              0.0
+            ],
+            [
+              0.0,
+              28.0,
+              0.0
+            ],
+            [
+              0.0,
+              30.0,
+              0.0
+            ],
+            [
+              0.0,
+              32.0,
+              0.0
+            ],
+            [
+              0.0,
+              34.0,
+              0.0
+            ],
+            [
+              0.0,
+              36.0,
+              0.0
+            ],
+            [
+              0.0,
+              38.0,
+              0.0
+            ],
+            [
+              0.0,
+              40.0,
+              0.0
+            ],
+            [
+              0.0,
+              42.0,
+              0.0
+            ],
+            [
+              0.0,
+              44.0,
+              0.0
+            ],
+            [
+              0.0,
+              46.0,
+              0.0
+            ],
+            [
+              0.0,
+              48.0,
+              0.0
+            ],
+            [
+              0.0,
+              50.0,
+              0.0
+            ]
+          ],
+          "collisions": []
+        },
+        {
+          "part": "ServoRight",
+          "mounting_frame": "Chassis",
+          "direction_out": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "step_mm": 2,
+          "sampled_offsets_mm": [
+            [
+              0.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -2.0,
+              0.0
+            ],
+            [
+              0.0,
+              -4.0,
+              0.0
+            ],
+            [
+              0.0,
+              -6.0,
+              0.0
+            ],
+            [
+              0.0,
+              -8.0,
+              0.0
+            ],
+            [
+              0.0,
+              -10.0,
+              0.0
+            ],
+            [
+              0.0,
+              -12.0,
+              0.0
+            ],
+            [
+              0.0,
+              -14.0,
+              0.0
+            ],
+            [
+              0.0,
+              -16.0,
+              0.0
+            ],
+            [
+              0.0,
+              -18.0,
+              0.0
+            ],
+            [
+              0.0,
+              -20.0,
+              0.0
+            ],
+            [
+              0.0,
+              -22.0,
+              0.0
+            ],
+            [
+              0.0,
+              -24.0,
+              0.0
+            ],
+            [
+              0.0,
+              -26.0,
+              0.0
+            ],
+            [
+              0.0,
+              -28.0,
+              0.0
+            ],
+            [
+              0.0,
+              -30.0,
+              0.0
+            ],
+            [
+              0.0,
+              -32.0,
+              0.0
+            ],
+            [
+              0.0,
+              -34.0,
+              0.0
+            ],
+            [
+              0.0,
+              -36.0,
+              0.0
+            ],
+            [
+              0.0,
+              -38.0,
+              0.0
+            ],
+            [
+              0.0,
+              -40.0,
+              0.0
+            ],
+            [
+              0.0,
+              -42.0,
+              0.0
+            ],
+            [
+              0.0,
+              -44.0,
+              0.0
+            ],
+            [
+              0.0,
+              -46.0,
+              0.0
+            ],
+            [
+              0.0,
+              -48.0,
+              0.0
+            ],
+            [
+              0.0,
+              -50.0,
+              0.0
+            ]
+          ],
+          "collisions": []
+        },
+        {
+          "part": "ServoNeck",
+          "mounting_frame": "Chassis",
+          "direction_out": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "step_mm": 2,
+          "sampled_offsets_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              2.0
+            ],
+            [
+              0.0,
+              0.0,
+              4.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0
+            ],
+            [
+              0.0,
+              0.0,
+              8.0
+            ],
+            [
+              0.0,
+              0.0,
+              10.0
+            ],
+            [
+              0.0,
+              0.0,
+              12.0
+            ],
+            [
+              0.0,
+              0.0,
+              14.0
+            ],
+            [
+              0.0,
+              0.0,
+              16.0
+            ],
+            [
+              0.0,
+              0.0,
+              18.0
+            ],
+            [
+              0.0,
+              0.0,
+              20.0
+            ],
+            [
+              0.0,
+              0.0,
+              22.0
+            ],
+            [
+              0.0,
+              0.0,
+              24.0
+            ],
+            [
+              0.0,
+              0.0,
+              26.0
+            ],
+            [
+              0.0,
+              0.0,
+              28.0
+            ],
+            [
+              0.0,
+              0.0,
+              30.0
+            ],
+            [
+              0.0,
+              0.0,
+              32.0
+            ],
+            [
+              0.0,
+              0.0,
+              34.0
+            ],
+            [
+              0.0,
+              0.0,
+              36.0
+            ],
+            [
+              0.0,
+              0.0,
+              38.0
+            ],
+            [
+              0.0,
+              0.0,
+              40.0
+            ],
+            [
+              0.0,
+              0.0,
+              42.0
+            ],
+            [
+              0.0,
+              0.0,
+              44.0
+            ],
+            [
+              0.0,
+              0.0,
+              46.0
+            ],
+            [
+              0.0,
+              0.0,
+              48.0
+            ],
+            [
+              0.0,
+              0.0,
+              50.0
+            ]
+          ],
+          "collisions": []
+        },
+        {
+          "part": "IMU",
+          "mounting_frame": "Chassis",
+          "direction_out": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "step_mm": 2,
+          "sampled_offsets_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              2.0
+            ],
+            [
+              0.0,
+              0.0,
+              4.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0
+            ],
+            [
+              0.0,
+              0.0,
+              8.0
+            ],
+            [
+              0.0,
+              0.0,
+              10.0
+            ],
+            [
+              0.0,
+              0.0,
+              12.0
+            ],
+            [
+              0.0,
+              0.0,
+              14.0
+            ],
+            [
+              0.0,
+              0.0,
+              16.0
+            ],
+            [
+              0.0,
+              0.0,
+              18.0
+            ],
+            [
+              0.0,
+              0.0,
+              20.0
+            ],
+            [
+              0.0,
+              0.0,
+              22.0
+            ],
+            [
+              0.0,
+              0.0,
+              24.0
+            ],
+            [
+              0.0,
+              0.0,
+              26.0
+            ],
+            [
+              0.0,
+              0.0,
+              28.0
+            ],
+            [
+              0.0,
+              0.0,
+              30.0
+            ],
+            [
+              0.0,
+              0.0,
+              32.0
+            ],
+            [
+              0.0,
+              0.0,
+              34.0
+            ],
+            [
+              0.0,
+              0.0,
+              36.0
+            ],
+            [
+              0.0,
+              0.0,
+              38.0
+            ],
+            [
+              0.0,
+              0.0,
+              40.0
+            ]
+          ],
+          "collisions": []
+        },
+        {
+          "part": "ESP32CAM",
+          "mounting_frame": "HeadFrame",
+          "direction_out": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "step_mm": 2,
+          "sampled_offsets_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              2.0
+            ],
+            [
+              0.0,
+              0.0,
+              4.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0
+            ],
+            [
+              0.0,
+              0.0,
+              8.0
+            ],
+            [
+              0.0,
+              0.0,
+              10.0
+            ],
+            [
+              0.0,
+              0.0,
+              12.0
+            ],
+            [
+              0.0,
+              0.0,
+              14.0
+            ],
+            [
+              0.0,
+              0.0,
+              16.0
+            ],
+            [
+              0.0,
+              0.0,
+              18.0
+            ],
+            [
+              0.0,
+              0.0,
+              20.0
+            ],
+            [
+              0.0,
+              0.0,
+              22.0
+            ],
+            [
+              0.0,
+              0.0,
+              24.0
+            ],
+            [
+              0.0,
+              0.0,
+              26.0
+            ],
+            [
+              0.0,
+              0.0,
+              28.0
+            ],
+            [
+              0.0,
+              0.0,
+              30.0
+            ],
+            [
+              0.0,
+              0.0,
+              32.0
+            ],
+            [
+              0.0,
+              0.0,
+              34.0
+            ],
+            [
+              0.0,
+              0.0,
+              36.0
+            ],
+            [
+              0.0,
+              0.0,
+              38.0
+            ],
+            [
+              0.0,
+              0.0,
+              40.0
+            ],
+            [
+              0.0,
+              0.0,
+              42.0
+            ],
+            [
+              0.0,
+              0.0,
+              44.0
+            ],
+            [
+              0.0,
+              0.0,
+              46.0
+            ],
+            [
+              0.0,
+              0.0,
+              48.0
+            ],
+            [
+              0.0,
+              0.0,
+              50.0
+            ],
+            [
+              0.0,
+              0.0,
+              52.0
+            ],
+            [
+              0.0,
+              0.0,
+              54.0
+            ],
+            [
+              0.0,
+              0.0,
+              56.0
+            ],
+            [
+              0.0,
+              0.0,
+              58.0
+            ],
+            [
+              0.0,
+              0.0,
+              60.0
+            ]
+          ],
+          "collisions": []
+        },
+        {
+          "part": "Buck_0",
+          "mounting_frame": "Chassis",
+          "direction_out": null,
+          "step_mm": 1,
+          "sampled_offsets_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              -0.5,
+              0.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            [
+              -1.5,
+              0.0,
+              0.0
+            ],
+            [
+              -2.0,
+              0.0,
+              0.0
+            ],
+            [
+              -2.0,
+              0.0,
+              1.0
+            ],
+            [
+              -2.0,
+              0.0,
+              2.0
+            ],
+            [
+              -2.0,
+              0.0,
+              3.0
+            ],
+            [
+              -2.0,
+              0.0,
+              4.0
+            ],
+            [
+              -2.0,
+              0.0,
+              5.0
+            ],
+            [
+              -2.0,
+              0.0,
+              6.0
+            ],
+            [
+              -2.0,
+              0.0,
+              7.0
+            ],
+            [
+              -2.0,
+              0.0,
+              8.0
+            ],
+            [
+              -2.0,
+              0.0,
+              9.0
+            ],
+            [
+              -2.0,
+              0.0,
+              10.0
+            ],
+            [
+              -2.0,
+              0.0,
+              11.0
+            ],
+            [
+              -2.0,
+              0.0,
+              12.0
+            ],
+            [
+              -2.0,
+              0.0,
+              13.0
+            ],
+            [
+              -2.0,
+              0.0,
+              14.0
+            ],
+            [
+              -2.0,
+              0.0,
+              15.0
+            ],
+            [
+              -2.0,
+              0.0,
+              16.0
+            ],
+            [
+              -2.0,
+              0.0,
+              17.0
+            ],
+            [
+              -2.0,
+              0.0,
+              18.0
+            ],
+            [
+              -2.0,
+              0.0,
+              19.0
+            ],
+            [
+              -2.0,
+              0.0,
+              20.0
+            ],
+            [
+              -2.0,
+              0.0,
+              21.0
+            ],
+            [
+              -2.0,
+              0.0,
+              22.0
+            ],
+            [
+              -2.0,
+              0.0,
+              23.0
+            ],
+            [
+              -2.0,
+              0.0,
+              24.0
+            ],
+            [
+              -2.0,
+              0.0,
+              25.0
+            ],
+            [
+              -2.0,
+              0.0,
+              26.0
+            ],
+            [
+              -2.0,
+              0.0,
+              27.0
+            ],
+            [
+              -2.0,
+              0.0,
+              28.0
+            ],
+            [
+              -2.0,
+              0.0,
+              29.0
+            ],
+            [
+              -2.0,
+              0.0,
+              30.0
+            ],
+            [
+              -2.0,
+              0.0,
+              31.0
+            ],
+            [
+              -2.0,
+              0.0,
+              32.0
+            ],
+            [
+              -2.0,
+              0.0,
+              33.0
+            ],
+            [
+              -2.0,
+              0.0,
+              34.0
+            ],
+            [
+              -2.0,
+              0.0,
+              35.0
+            ],
+            [
+              -2.0,
+              0.0,
+              36.0
+            ],
+            [
+              -2.0,
+              0.0,
+              37.0
+            ],
+            [
+              -2.0,
+              0.0,
+              38.0
+            ],
+            [
+              -2.0,
+              0.0,
+              39.0
+            ],
+            [
+              -2.0,
+              0.0,
+              40.0
+            ],
+            [
+              -2.0,
+              0.0,
+              41.0
+            ],
+            [
+              -2.0,
+              0.0,
+              42.0
+            ],
+            [
+              -2.0,
+              0.0,
+              43.0
+            ],
+            [
+              -2.0,
+              0.0,
+              44.0
+            ],
+            [
+              -2.0,
+              0.0,
+              45.0
+            ],
+            [
+              -2.0,
+              0.0,
+              46.0
+            ],
+            [
+              -2.0,
+              0.0,
+              47.0
+            ],
+            [
+              -2.0,
+              0.0,
+              48.0
+            ],
+            [
+              -2.0,
+              0.0,
+              49.0
+            ],
+            [
+              -2.0,
+              0.0,
+              50.0
+            ],
+            [
+              -2.0,
+              0.0,
+              51.0
+            ],
+            [
+              -2.0,
+              0.0,
+              52.0
+            ],
+            [
+              -2.0,
+              0.0,
+              53.0
+            ],
+            [
+              -2.0,
+              0.0,
+              54.0
+            ],
+            [
+              -2.0,
+              0.0,
+              55.0
+            ],
+            [
+              -2.0,
+              0.0,
+              56.0
+            ],
+            [
+              -2.0,
+              0.0,
+              57.0
+            ],
+            [
+              -2.0,
+              0.0,
+              58.0
+            ],
+            [
+              -2.0,
+              0.0,
+              59.0
+            ],
+            [
+              -2.0,
+              0.0,
+              60.0
+            ]
+          ],
+          "collisions": []
+        },
+        {
+          "part": "LegFootLeft",
+          "mounting_frame": "ServoLeft",
+          "direction_out": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "step_mm": 2,
+          "sampled_offsets_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              3.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0,
+              0.0
+            ],
+            [
+              0.0,
+              5.0,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0
+            ],
+            [
+              0.0,
+              7.0,
+              0.0
+            ],
+            [
+              0.0,
+              8.0,
+              0.0
+            ],
+            [
+              0.0,
+              9.0,
+              0.0
+            ],
+            [
+              0.0,
+              10.0,
+              0.0
+            ],
+            [
+              0.0,
+              11.0,
+              0.0
+            ],
+            [
+              0.0,
+              12.0,
+              0.0
+            ],
+            [
+              0.0,
+              13.0,
+              0.0
+            ],
+            [
+              0.0,
+              14.0,
+              0.0
+            ]
+          ],
+          "collisions": []
+        },
+        {
+          "part": "LegFootRight",
+          "mounting_frame": "ServoRight",
+          "direction_out": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "step_mm": 2,
+          "sampled_offsets_mm": [
+            [
+              0.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            [
+              0.0,
+              -2.0,
+              0.0
+            ],
+            [
+              0.0,
+              -3.0,
+              0.0
+            ],
+            [
+              0.0,
+              -4.0,
+              0.0
+            ],
+            [
+              0.0,
+              -5.0,
+              0.0
+            ],
+            [
+              0.0,
+              -6.0,
+              0.0
+            ],
+            [
+              0.0,
+              -7.0,
+              0.0
+            ],
+            [
+              0.0,
+              -8.0,
+              0.0
+            ],
+            [
+              0.0,
+              -9.0,
+              0.0
+            ],
+            [
+              0.0,
+              -10.0,
+              0.0
+            ],
+            [
+              0.0,
+              -11.0,
+              0.0
+            ],
+            [
+              0.0,
+              -12.0,
+              0.0
+            ],
+            [
+              0.0,
+              -13.0,
+              0.0
+            ],
+            [
+              0.0,
+              -14.0,
+              0.0
+            ]
+          ],
+          "collisions": []
+        },
+        {
+          "part": "NeckCarrier",
+          "mounting_frame": "ServoNeck",
+          "direction_out": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "step_mm": 2,
+          "sampled_offsets_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0,
+              2.0
+            ],
+            [
+              0.0,
+              0.0,
+              3.0
+            ],
+            [
+              0.0,
+              0.0,
+              4.0
+            ],
+            [
+              0.0,
+              0.0,
+              5.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0
+            ],
+            [
+              0.0,
+              0.0,
+              7.0
+            ],
+            [
+              0.0,
+              0.0,
+              8.0
+            ],
+            [
+              0.0,
+              0.0,
+              9.0
+            ],
+            [
+              0.0,
+              0.0,
+              10.0
+            ],
+            [
+              0.0,
+              0.0,
+              11.0
+            ],
+            [
+              0.0,
+              0.0,
+              12.0
+            ],
+            [
+              0.0,
+              0.0,
+              13.0
+            ],
+            [
+              0.0,
+              0.0,
+              14.0
+            ]
+          ],
+          "collisions": []
+        },
+        {
+          "part": "ServoMouth",
+          "mounting_frame": "Jaw",
+          "direction_out": null,
+          "step_mm": 1,
+          "sampled_offsets_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.5,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.5,
+              0.0
+            ],
+            [
+              0.0,
+              -2.0,
+              0.0
+            ],
+            [
+              0.0,
+              -2.5,
+              0.0
+            ],
+            [
+              0.0,
+              -3.0,
+              0.0
+            ],
+            [
+              0.0,
+              -3.5,
+              0.0
+            ],
+            [
+              0.0,
+              -4.0,
+              0.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -1.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -2.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -3.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -4.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -5.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -6.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -7.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -8.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -9.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -10.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -11.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -12.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -13.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -14.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -15.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -16.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -17.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -18.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -19.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -20.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -21.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -22.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -23.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -24.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -25.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -26.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -27.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -28.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -29.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -30.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -31.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -32.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -33.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -34.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -35.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -36.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -37.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -38.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -39.0
+            ],
+            [
+              0.0,
+              -4.0,
+              -40.0
+            ]
+          ],
+          "collisions": []
+        },
+        {
+          "part": "MouthJawModule",
+          "mounting_frame": "HeadFrame",
+          "direction_out": null,
+          "step_mm": 1,
+          "sampled_offsets_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.25,
+              0.0
+            ],
+            [
+              0.0,
+              0.5,
+              0.0
+            ],
+            [
+              0.0,
+              0.5,
+              -1.0
+            ],
+            [
+              0.0,
+              0.5,
+              -2.0
+            ],
+            [
+              0.0,
+              0.5,
+              -3.0
+            ],
+            [
+              0.0,
+              0.5,
+              -4.0
+            ],
+            [
+              0.0,
+              0.5,
+              -5.0
+            ],
+            [
+              0.0,
+              0.5,
+              -6.0
+            ],
+            [
+              0.0,
+              0.5,
+              -7.0
+            ],
+            [
+              0.0,
+              0.5,
+              -8.0
+            ],
+            [
+              0.0,
+              0.5,
+              -9.0
+            ],
+            [
+              0.0,
+              0.5,
+              -10.0
+            ],
+            [
+              0.0,
+              0.5,
+              -11.0
+            ],
+            [
+              0.0,
+              0.5,
+              -12.0
+            ],
+            [
+              0.0,
+              0.5,
+              -13.0
+            ],
+            [
+              0.0,
+              0.5,
+              -14.0
+            ],
+            [
+              0.0,
+              0.5,
+              -15.0
+            ],
+            [
+              0.0,
+              0.5,
+              -16.0
+            ],
+            [
+              0.0,
+              0.5,
+              -17.0
+            ],
+            [
+              0.0,
+              0.5,
+              -18.0
+            ],
+            [
+              0.0,
+              0.5,
+              -19.0
+            ],
+            [
+              0.0,
+              0.5,
+              -20.0
+            ],
+            [
+              0.0,
+              0.5,
+              -21.0
+            ],
+            [
+              0.0,
+              0.5,
+              -22.0
+            ],
+            [
+              0.0,
+              0.5,
+              -23.0
+            ],
+            [
+              0.0,
+              0.5,
+              -24.0
+            ],
+            [
+              0.0,
+              0.5,
+              -25.0
+            ],
+            [
+              0.0,
+              0.5,
+              -26.0
+            ],
+            [
+              0.0,
+              0.5,
+              -27.0
+            ],
+            [
+              0.0,
+              0.5,
+              -28.0
+            ],
+            [
+              0.0,
+              0.5,
+              -29.0
+            ],
+            [
+              0.0,
+              0.5,
+              -30.0
+            ],
+            [
+              0.0,
+              0.5,
+              -31.0
+            ],
+            [
+              0.0,
+              0.5,
+              -32.0
+            ],
+            [
+              0.0,
+              0.5,
+              -33.0
+            ],
+            [
+              0.0,
+              0.5,
+              -34.0
+            ],
+            [
+              0.0,
+              0.5,
+              -35.0
+            ],
+            [
+              0.0,
+              0.5,
+              -36.0
+            ],
+            [
+              0.0,
+              0.5,
+              -37.0
+            ],
+            [
+              0.0,
+              0.5,
+              -38.0
+            ],
+            [
+              0.0,
+              0.5,
+              -39.0
+            ],
+            [
+              0.0,
+              0.5,
+              -40.0
+            ]
+          ],
+          "collisions": []
+        },
+        {
+          "part": "ServoMouth",
+          "mounting_frame": "HeadFrame",
+          "direction_out": null,
+          "step_mm": 1,
+          "sampled_offsets_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.25,
+              0.0
+            ],
+            [
+              0.0,
+              0.5,
+              0.0
+            ],
+            [
+              0.0,
+              0.5,
+              -1.0
+            ],
+            [
+              0.0,
+              0.5,
+              -2.0
+            ],
+            [
+              0.0,
+              0.5,
+              -3.0
+            ],
+            [
+              0.0,
+              0.5,
+              -4.0
+            ],
+            [
+              0.0,
+              0.5,
+              -5.0
+            ],
+            [
+              0.0,
+              0.5,
+              -6.0
+            ],
+            [
+              0.0,
+              0.5,
+              -7.0
+            ],
+            [
+              0.0,
+              0.5,
+              -8.0
+            ],
+            [
+              0.0,
+              0.5,
+              -9.0
+            ],
+            [
+              0.0,
+              0.5,
+              -10.0
+            ],
+            [
+              0.0,
+              0.5,
+              -11.0
+            ],
+            [
+              0.0,
+              0.5,
+              -12.0
+            ],
+            [
+              0.0,
+              0.5,
+              -13.0
+            ],
+            [
+              0.0,
+              0.5,
+              -14.0
+            ],
+            [
+              0.0,
+              0.5,
+              -15.0
+            ],
+            [
+              0.0,
+              0.5,
+              -16.0
+            ],
+            [
+              0.0,
+              0.5,
+              -17.0
+            ],
+            [
+              0.0,
+              0.5,
+              -18.0
+            ],
+            [
+              0.0,
+              0.5,
+              -19.0
+            ],
+            [
+              0.0,
+              0.5,
+              -20.0
+            ],
+            [
+              0.0,
+              0.5,
+              -21.0
+            ],
+            [
+              0.0,
+              0.5,
+              -22.0
+            ],
+            [
+              0.0,
+              0.5,
+              -23.0
+            ],
+            [
+              0.0,
+              0.5,
+              -24.0
+            ],
+            [
+              0.0,
+              0.5,
+              -25.0
+            ],
+            [
+              0.0,
+              0.5,
+              -26.0
+            ],
+            [
+              0.0,
+              0.5,
+              -27.0
+            ],
+            [
+              0.0,
+              0.5,
+              -28.0
+            ],
+            [
+              0.0,
+              0.5,
+              -29.0
+            ],
+            [
+              0.0,
+              0.5,
+              -30.0
+            ],
+            [
+              0.0,
+              0.5,
+              -31.0
+            ],
+            [
+              0.0,
+              0.5,
+              -32.0
+            ],
+            [
+              0.0,
+              0.5,
+              -33.0
+            ],
+            [
+              0.0,
+              0.5,
+              -34.0
+            ],
+            [
+              0.0,
+              0.5,
+              -35.0
+            ],
+            [
+              0.0,
+              0.5,
+              -36.0
+            ],
+            [
+              0.0,
+              0.5,
+              -37.0
+            ],
+            [
+              0.0,
+              0.5,
+              -38.0
+            ],
+            [
+              0.0,
+              0.5,
+              -39.0
+            ],
+            [
+              0.0,
+              0.5,
+              -40.0
+            ]
+          ],
+          "collisions": []
+        },
+        {
+          "part": "CameraBoardClamp",
+          "mounting_frame": "HeadFrame",
+          "direction_out": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "step_mm": 2,
+          "sampled_offsets_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              2.0
+            ],
+            [
+              0.0,
+              0.0,
+              4.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0
+            ],
+            [
+              0.0,
+              0.0,
+              8.0
+            ],
+            [
+              0.0,
+              0.0,
+              10.0
+            ],
+            [
+              0.0,
+              0.0,
+              12.0
+            ],
+            [
+              0.0,
+              0.0,
+              14.0
+            ],
+            [
+              0.0,
+              0.0,
+              16.0
+            ],
+            [
+              0.0,
+              0.0,
+              18.0
+            ],
+            [
+              0.0,
+              0.0,
+              20.0
+            ],
+            [
+              0.0,
+              0.0,
+              22.0
+            ],
+            [
+              0.0,
+              0.0,
+              24.0
+            ],
+            [
+              0.0,
+              0.0,
+              26.0
+            ],
+            [
+              0.0,
+              0.0,
+              28.0
+            ],
+            [
+              0.0,
+              0.0,
+              30.0
+            ],
+            [
+              0.0,
+              0.0,
+              32.0
+            ],
+            [
+              0.0,
+              0.0,
+              34.0
+            ],
+            [
+              0.0,
+              0.0,
+              36.0
+            ],
+            [
+              0.0,
+              0.0,
+              38.0
+            ],
+            [
+              0.0,
+              0.0,
+              40.0
+            ]
+          ],
+          "collisions": []
+        },
+        {
+          "part": "CameraCradle",
+          "mounting_frame": "FacePanel",
+          "direction_out": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "step_mm": 2,
+          "sampled_offsets_mm": [
+            [
+              -0.0,
+              0.0,
+              0.0
+            ],
+            [
+              -2.0,
+              0.0,
+              0.0
+            ],
+            [
+              -4.0,
+              0.0,
+              0.0
+            ],
+            [
+              -6.0,
+              0.0,
+              0.0
+            ],
+            [
+              -8.0,
+              0.0,
+              0.0
+            ],
+            [
+              -10.0,
+              0.0,
+              0.0
+            ],
+            [
+              -12.0,
+              0.0,
+              0.0
+            ],
+            [
+              -14.0,
+              0.0,
+              0.0
+            ],
+            [
+              -16.0,
+              0.0,
+              0.0
+            ],
+            [
+              -18.0,
+              0.0,
+              0.0
+            ],
+            [
+              -20.0,
+              0.0,
+              0.0
+            ],
+            [
+              -22.0,
+              0.0,
+              0.0
+            ],
+            [
+              -24.0,
+              0.0,
+              0.0
+            ],
+            [
+              -26.0,
+              0.0,
+              0.0
+            ],
+            [
+              -28.0,
+              0.0,
+              0.0
+            ],
+            [
+              -30.0,
+              0.0,
+              0.0
+            ],
+            [
+              -32.0,
+              0.0,
+              0.0
+            ],
+            [
+              -34.0,
+              0.0,
+              0.0
+            ],
+            [
+              -36.0,
+              0.0,
+              0.0
+            ],
+            [
+              -38.0,
+              0.0,
+              0.0
+            ],
+            [
+              -40.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "collisions": []
+        }
+      ]
+    },
+    "detail_interfaces": {
+      "source_cad_sha256": "17b99033089d89afdc286bdb62c34ef949b9b0605b4e2c1970973a0934e19fcc",
+      "loose_hood_rear_access": [
+        {
+          "y_mm": -20,
+          "z_mm": 92.0,
+          "path_diameter_mm": 4.2,
+          "overlap_mm3": 0.0,
+          "clear": true
+        },
+        {
+          "y_mm": -20,
+          "z_mm": 109.0,
+          "path_diameter_mm": 4.2,
+          "overlap_mm3": 0.0,
+          "clear": true
+        },
+        {
+          "y_mm": 20,
+          "z_mm": 92.0,
+          "path_diameter_mm": 4.2,
+          "overlap_mm3": 0.0,
+          "clear": true
+        },
+        {
+          "y_mm": 20,
+          "z_mm": 109.0,
+          "path_diameter_mm": 4.2,
+          "overlap_mm3": 0.0,
+          "clear": true
+        }
+      ],
+      "body_shell_minimum_distance_mm": 0.299999999999986,
+      "rear_cable_access": {
+        "probe_bounds_mm": [
+          -36,
+          -4,
+          41,
+          -31.5,
+          4,
+          45
+        ],
+        "nominal_aperture_mm": [
+          14,
+          10
+        ],
+        "shell_overlap_mm3": {
+          "BodyShellLeft": 0.0,
+          "BodyShellRight": 0.0
+        },
+        "scope": "Straight cable corridor through both rear shell halves and locating lip. Actual battery leads, connector insertion and strain relief are not qualified."
+      },
+      "selected_electronics_clearances": [
+        {
+          "a": "ESP32CAM",
+          "b": "HeadHood",
+          "distance_mm": 4.301162633521291
+        },
+        {
+          "a": "FacePanel",
+          "b": "Jaw",
+          "distance_mm": 4.016217125604638
+        },
+        {
+          "a": "CameraBoardClamp",
+          "b": "HeadHood",
+          "distance_mm": 7.152758294498167
+        },
+        {
+          "a": "Buck_0",
+          "b": "BodyShellLeft",
+          "distance_mm": 1.1200000000000117
+        },
+        {
+          "a": "Buck_0",
+          "b": "ServoLeft",
+          "distance_mm": 0.6000000000000014
+        },
+        {
+          "a": "IMU",
+          "b": "BodyShellLeft",
+          "distance_mm": 0.943316336335247
+        },
+        {
+          "a": "IMU",
+          "b": "BodyShellRight",
+          "distance_mm": 2.2328708539357076
+        },
+        {
+          "a": "ServoNeck",
+          "b": "BodyShellLeft",
+          "distance_mm": 1.3536986370680903
+        },
+        {
+          "a": "ServoNeck",
+          "b": "BodyShellRight",
+          "distance_mm": 1.4468541427149149
+        },
+        {
+          "a": "BatteryStrap",
+          "b": "Chassis",
+          "distance_mm": 0.2499999999999929
+        },
+        {
+          "a": "BatteryStrap",
+          "b": "Battery",
+          "distance_mm": 0.10000000000000142
+        }
+      ],
+      "scope": "Nominal rigid geometry. Rear access is checked with the hood off the frame; the lower paths are blocked by the installed mouth servo. Actual tools, fastener heads, print compensation and tolerance stacks remain unverified."
+    },
+    "harness": {
+      "source_cad_sha256": "17b99033089d89afdc286bdb62c34ef949b9b0605b4e2c1970973a0934e19fcc",
+      "source_assembly_sha256": "bc3902b9297c82400a112ec02cc24b47cd1c6bcc019c32e04703e054f3a85f0b",
+      "pose": "saved neutral pose",
+      "unexplained_intersection_limit_mm3": 0.01,
+      "scope": "Neutral-pose intersections of saved nominal harness solids against all non-harness assembled parts, plus intersections between distinct cable solids. Coupons are excluded. This is not flexible-cable simulation or a clearance, connector retention, strain-relief, bend-radius, electrical, or motion qualification.",
+      "pairs": [
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "ServoLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "ServoRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "OutputSplineLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "OutputSplineRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "ServoNeck",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "OutputSplineNeck",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "Battery",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "IMU",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "FixedNeckSupport",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "ThrustShim",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "Buck_0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "Buck_0MountScrew0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "Buck_0MountScrew1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "Chassis",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "BatteryStrap",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "BatteryPad",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "LegFootLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "TreadLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "ShaftScrewLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "LegFootRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "TreadRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "ShaftScrewRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "BodyScrew-261",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "BodyNut-261",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "BodyScrew-26-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "BodyNut-26-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "BodyScrew171",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "BodyNut171",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "BodyScrew17-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "BodyNut17-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "BodyShellLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "BodyShellRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "NeckCarrier",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "FacePanel",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "CameraRing",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "ESP32CAM",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "OV2640Camera",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "CameraBoardClamp",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "CameraCradle",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "ServoMouth",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "OutputSplineMouth",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "HeadFrame",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "Jaw",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "HeadHood",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "JawPassivePin",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "JawPassiveLocknut",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "MouthShaftScrew",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "HoodScrew1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "HoodScrew-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "CameraClampScrew-15",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "CameraClampScrew15",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "CameraCradleScrew-12",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "CameraCradleScrew12",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "MouthMountScrew0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "MouthMountNut0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "MouthMountScrew1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "MouthMountNut1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "FaceScrew-20_102",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "FaceScrew-20_119",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "FaceScrew20_102",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "FaceScrew20_119",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "IMUMountScrew0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "IMUMountScrew1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "HeadFrameScrew-13",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "HeadFrameScrew13",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "NeckMountScrew-8.649999999999999",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "NeckMountScrew19.05",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "NeckSupportScrew-12",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "NeckSupportScrew12",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "NeckShaftScrew",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "HipMountScrew1_0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "HipMountScrew1_1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "HipMountScrew-1_0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessBody",
+          "rigid_part": "HipMountScrew-1_1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "ServoLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "ServoRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "OutputSplineLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "OutputSplineRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "ServoNeck",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "OutputSplineNeck",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "Battery",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "IMU",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "FixedNeckSupport",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "ThrustShim",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "Buck_0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "Buck_0MountScrew0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "Buck_0MountScrew1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "Chassis",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "BatteryStrap",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "BatteryPad",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "LegFootLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "TreadLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "ShaftScrewLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "LegFootRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "TreadRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "ShaftScrewRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "BodyScrew-261",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "BodyNut-261",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "BodyScrew-26-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "BodyNut-26-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "BodyScrew171",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "BodyNut171",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "BodyScrew17-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "BodyNut17-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "BodyShellLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "BodyShellRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "NeckCarrier",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "FacePanel",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "CameraRing",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "ESP32CAM",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "OV2640Camera",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "CameraBoardClamp",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "CameraCradle",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "ServoMouth",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "OutputSplineMouth",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "HeadFrame",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "Jaw",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "HeadHood",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "JawPassivePin",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "JawPassiveLocknut",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "MouthShaftScrew",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "HoodScrew1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "HoodScrew-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "CameraClampScrew-15",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "CameraClampScrew15",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "CameraCradleScrew-12",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "CameraCradleScrew12",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "MouthMountScrew0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "MouthMountNut0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "MouthMountScrew1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "MouthMountNut1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "FaceScrew-20_102",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "FaceScrew-20_119",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "FaceScrew20_102",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "FaceScrew20_119",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "IMUMountScrew0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "IMUMountScrew1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "HeadFrameScrew-13",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "HeadFrameScrew13",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "NeckMountScrew-8.649999999999999",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "NeckMountScrew19.05",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "NeckSupportScrew-12",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "NeckSupportScrew12",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "NeckShaftScrew",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "HipMountScrew1_0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "HipMountScrew1_1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "HipMountScrew-1_0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessHead",
+          "rigid_part": "HipMountScrew-1_1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "ServoLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "ServoRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "OutputSplineLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "OutputSplineRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "ServoNeck",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "OutputSplineNeck",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "Battery",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "IMU",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "FixedNeckSupport",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "ThrustShim",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "Buck_0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "Buck_0MountScrew0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "Buck_0MountScrew1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "Chassis",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "BatteryStrap",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "BatteryPad",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "LegFootLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "TreadLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "ShaftScrewLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "LegFootRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "TreadRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "ShaftScrewRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "BodyScrew-261",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "BodyNut-261",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "BodyScrew-26-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "BodyNut-26-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "BodyScrew171",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "BodyNut171",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "BodyScrew17-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "BodyNut17-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "BodyShellLeft",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "BodyShellRight",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "NeckCarrier",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "FacePanel",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "CameraRing",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "ESP32CAM",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "OV2640Camera",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "CameraBoardClamp",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "CameraCradle",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "ServoMouth",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "OutputSplineMouth",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "HeadFrame",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "Jaw",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "HeadHood",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "JawPassivePin",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "JawPassiveLocknut",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "MouthShaftScrew",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "HoodScrew1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "HoodScrew-1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "CameraClampScrew-15",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "CameraClampScrew15",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "CameraCradleScrew-12",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "CameraCradleScrew12",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "MouthMountScrew0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "MouthMountNut0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "MouthMountScrew1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "MouthMountNut1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "FaceScrew-20_102",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "FaceScrew-20_119",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "FaceScrew20_102",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "FaceScrew20_119",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "IMUMountScrew0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "IMUMountScrew1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "HeadFrameScrew-13",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "HeadFrameScrew13",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "NeckMountScrew-8.649999999999999",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "NeckMountScrew19.05",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "NeckSupportScrew-12",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "NeckSupportScrew12",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "NeckShaftScrew",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "HipMountScrew1_0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "HipMountScrew1_1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "HipMountScrew-1_0",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        },
+        {
+          "harness": "HarnessCameraRibbon",
+          "rigid_part": "HipMountScrew-1_1",
+          "overlap_mm3": 0.0,
+          "maximum_overlap_mm3": 0.01,
+          "passed": true
+        }
+      ],
+      "cable_pairs": [
+        {
+          "a": "HarnessBody",
+          "a_solid": 0,
+          "b": "HarnessBody",
+          "b_solid": 1,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessBody",
+          "a_solid": 0,
+          "b": "HarnessBody",
+          "b_solid": 2,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessBody",
+          "a_solid": 0,
+          "b": "HarnessHead",
+          "b_solid": 0,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessBody",
+          "a_solid": 0,
+          "b": "HarnessHead",
+          "b_solid": 1,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessBody",
+          "a_solid": 0,
+          "b": "HarnessHead",
+          "b_solid": 2,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessBody",
+          "a_solid": 0,
+          "b": "HarnessCameraRibbon",
+          "b_solid": 0,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessBody",
+          "a_solid": 1,
+          "b": "HarnessBody",
+          "b_solid": 2,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessBody",
+          "a_solid": 1,
+          "b": "HarnessHead",
+          "b_solid": 0,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessBody",
+          "a_solid": 1,
+          "b": "HarnessHead",
+          "b_solid": 1,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessBody",
+          "a_solid": 1,
+          "b": "HarnessHead",
+          "b_solid": 2,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessBody",
+          "a_solid": 1,
+          "b": "HarnessCameraRibbon",
+          "b_solid": 0,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessBody",
+          "a_solid": 2,
+          "b": "HarnessHead",
+          "b_solid": 0,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessBody",
+          "a_solid": 2,
+          "b": "HarnessHead",
+          "b_solid": 1,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessBody",
+          "a_solid": 2,
+          "b": "HarnessHead",
+          "b_solid": 2,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessBody",
+          "a_solid": 2,
+          "b": "HarnessCameraRibbon",
+          "b_solid": 0,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessHead",
+          "a_solid": 0,
+          "b": "HarnessHead",
+          "b_solid": 1,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessHead",
+          "a_solid": 0,
+          "b": "HarnessHead",
+          "b_solid": 2,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessHead",
+          "a_solid": 0,
+          "b": "HarnessCameraRibbon",
+          "b_solid": 0,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessHead",
+          "a_solid": 1,
+          "b": "HarnessHead",
+          "b_solid": 2,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessHead",
+          "a_solid": 1,
+          "b": "HarnessCameraRibbon",
+          "b_solid": 0,
+          "overlap_mm3": 0.0,
+          "passed": true
+        },
+        {
+          "a": "HarnessHead",
+          "a_solid": 2,
+          "b": "HarnessCameraRibbon",
+          "b_solid": 0,
+          "overlap_mm3": 0.0,
+          "passed": true
+        }
+      ],
+      "failures": [],
+      "passed": true,
+      "harness_count": 3,
+      "rigid_part_count": 74,
+      "checked_pair_count": 222
+    },
+    "display_surfaces": {
+      "source_cad_sha256": "17b99033089d89afdc286bdb62c34ef949b9b0605b4e2c1970973a0934e19fcc",
+      "source_hardware_sha256": "f7122aa8ac92a3c0757a4920ee1ba922c1883a78ceac881a3f67190e00720dc4",
+      "scope": "Same-facing exposed planar overlap between different material groups. Battery uses exported display triangles; PCBs use the component solids that generate their display meshes. Outward surface samples exclude enclosed mating surfaces. This does not test the browser renderer.",
+      "components": [
+        {
+          "name": "Battery",
+          "checked_coplanar_pairs": 0,
+          "findings": []
+        },
+        {
+          "name": "ESP32CAM",
+          "checked_coplanar_pairs": 46,
+          "findings": []
+        },
+        {
+          "name": "IMU",
+          "checked_coplanar_pairs": 58,
+          "findings": []
+        },
+        {
+          "name": "Buck_0",
+          "checked_coplanar_pairs": 0,
+          "findings": []
+        }
+      ]
+    }
+  }
+}

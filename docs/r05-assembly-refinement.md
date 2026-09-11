@@ -1,6 +1,6 @@
 # R05 assembly refinement
 
-Historical revision; see [R06 changes](r06-simplified-design.md) for the current build.
+Historical revision; see [R07 changes](r07-direct-mount-design.md) for the current build.
 
 R05 retains the compact R04 head, torso proportions and four MG90S joints. It addresses assembly defects identified in the saved nominal CAD. It remains an engineering prototype without physical fit, powered operation or walking validation.
 

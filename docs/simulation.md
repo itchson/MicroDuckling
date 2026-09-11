@@ -1,10 +1,10 @@
 # Simulation experiments and Isaac scaffold
 
-The viewer runs rigid-body physics, searches bounded gait parameters and tests image-guided approach. Its browser model is separate from the Isaac Lab scaffold. No Isaac runtime execution, Isaac-trained policy or physical walking result is supplied.
+The viewer runs rigid-body physics, searches bounded gait parameters and tests image-guided approach. Its browser model is separate from the Isaac Lab scaffold. No Isaac runtime execution, Isaac-trained policy or physical walking result is supplied. R06 traces below are retained as historical evidence and do not certify changed R07 assets; consult the [R07 design record](r07-direct-mount-design.md) for matching checks.
 
 ## Browser contact and weight
 
-Five articulated rigid bodies and four revolute joints move under gravity. Continuous hulls derived from the actual tread meshes plus interior contact envelopes give nine robot colliders. The default is 600 Hz integration with 16 solver iterations. The old 109-box contact layout remains an explicit comparison option; its apparent gait speed was sensitive to timestep and is not the default. Mass, COM and inertia derive from the complete current CAD, including the upper bill and simplified electronics. Collider geometry does not add mass again.
+Five articulated rigid bodies and four revolute joints move under gravity. Continuous hulls derived from the actual tread meshes plus interior contact envelopes give nine robot colliders. The default is 600 Hz integration with 16 solver iterations. The old 109-box contact layout remains an explicit comparison option; its apparent gait speed was sensitive to timestep and is not the default. Mass, COM and inertia derive from the complete current CAD, including the integral face/upper bill, direct servo sockets and simplified electronics. Collider geometry does not add mass again.
 
 The interface shows COM, loaded contacts, slip speed, weight and estimated support. Ground friction and mass scaling restart the experiment so old scores do not describe a changed environment. Debug markers are excluded from the robot's camera image. See [contact physics and force definitions](browser-contact-physics.md): support uses momentum balance; per-foot loads use solver-impulse shares and are estimates. Tangential force is unavailable, rather than displayed as a false zero.
 
@@ -12,11 +12,13 @@ Self-collision is disabled because the interior envelopes are not exact outer sh
 
 ## Gait search
 
-**Try reference gait** plays a bundled, physically evaluated rocking gait with out-of-phase hips and a free camera-controlled neck. Replaying this reference is not labeled new learning. **Start gait search** evaluates neutral and the supplied seed, then runs up to 12 generations of 12 physical, 14-second candidate episodes. A phase-aware cross-entropy search varies frequency, bias, amplitude, duty, harmonics, phase and jaw motion. Each episode settles for one second before measurement.
+**Step & balance** offers a custom swing, forward lean, pace, left/right phase, step timing and optional head sway. **Apply custom gait** selects those settings for playback, camera approach and the next search seed. Swing automatically shrinks as lean approaches the ±12° hip limit; commanded lean is not guaranteed body tilt. Camera tracking takes control of the neck during approach. **Restore reference** returns to the bundled gait, and **Play selected gait** runs whichever controller is selected.
+
+Replaying the reference is not labeled new learning. **Start gait search** evaluates neutral and the selected seed, then runs up to 12 generations of 12 physical, 14-second candidate episodes. A phase-aware cross-entropy search varies frequency, bias, amplitude, duty, harmonics, phase and jaw motion. Each episode settles for one second before measurement. Search can change the custom seed settings; the sliders remain an editable draft until applied again.
 
 The score rewards sustained late-episode COM velocity and net forward travel with lateral, heading and tilt costs. Falls are rejected. The interface reports actual episodes, speed, displacement and whether a newly searched candidate improved on the supplied seed. Parameter search in this small controller family is not a trained Isaac neural policy. Use held-out surfaces, loads and reset seeds before judging robustness.
 
-The [R06 gait evidence](validation/r06-locomotion-summary.json) evaluates 12 thirty-second trials across three reset seeds, 600/1000 Hz and 16/24 solver iterations. There were no falls; mean forward travel was 234.6–239.8 mm, within −0.8% to +1.4% of the default setup. Open-loop lateral drift reached 58.2 mm, so straight walking still benefits from feedback. An eight-generation search evaluated 98 real episodes and improved 14-second travel from 112.6 to 146.1 mm on its training seed; the 31.2% late-speed gain is an in-sample result, not held-out or hardware validation. Exact candidates are in the [training record](validation/r06-locomotion-training-results.json).
+Historical [R06 gait evidence](validation/r06-locomotion-summary.json) evaluates 12 thirty-second trials across three reset seeds, 600/1000 Hz and 16/24 solver iterations. There were no falls; mean forward travel was 234.6–239.8 mm, within −0.8% to +1.4% of the default setup. Open-loop lateral drift reached 58.2 mm, so straight walking still benefits from feedback. An eight-generation search evaluated 98 real episodes and improved 14-second travel from 112.6 to 146.1 mm on its training seed; the 31.2% late-speed gain is an in-sample result, not held-out or hardware validation. Exact candidates are in the [training record](validation/r06-locomotion-training-results.json).
 
 Reproduce these longer checks from the repository root:
 
@@ -29,11 +31,19 @@ node --experimental-strip-types viewer/scripts/verification/training.mjs
 
 The synthetic camera uses 96 × 72 pixels, a 50° vertical field of view and the modeled head/lens transform. A color heuristic extracts the largest magenta region's bearing and width. The actor receives those image measurements, gait time and issued neck-command history; it receives no target coordinates, body pose or joint-angle telemetry.
 
-**Train to target** compares 12 bounded settings for head tracking, differential hip steering, amplitude and image-width stopping. Trials last up to 60 simulated seconds. The target is a 50 × 50 × 100 mm block, initially 180 mm forward and optionally 40 mm left or right. Its height keeps it in view as the robot approaches with a horizontal camera.
+Drag the magenta block or enable **Place target on ground** and click the floor. Sliders also position it precisely in a forward training area: 160–600 mm ahead and up to 400 mm either side. The 50 × 50 × 100 mm block stays on the ground. Moving it pauses and resets the episode, invalidating old camera frames. Left/ahead/right presets remain available.
+
+**Search & trial settings** adjusts the head's lost-target sweep (0–45° each side), sweep period (2–12 seconds) and episode limit (15–120 simulated seconds). Search uses camera pixels; no target coordinates reach the actor. Wider or more distant placements can need longer trials and better steering. This bounded frontal workspace is not a demonstrated all-direction navigation system.
+
+**Train to target** compares 12 bounded settings for head tracking, differential hip steering, amplitude and image-width stopping. The default time limit remains 60 seconds. Ground friction, foot friction and mass scale are editable; changing them resets old scores while retaining the selected gait. **Save experiment** includes the target, environment, search settings, selected policy, custom-gait draft and measured results.
+
+The matching [R07 approach record](validation/r07-camera-approach.json) contains **12 successful episodes** across six positions and two reset seeds. It includes 280 mm-forward / 80 mm-left, 240 mm-forward / 100 mm-right, and an initially out-of-view 180 mm-forward / 160 mm-left target. Completion took 8.65–29.55 simulated seconds, with no falls. These finite cases do not prove every placement or custom gait succeeds.
+
+The [R07 camera search](validation/r07-camera-learning.json) evaluates 12 candidates: eight succeed and four time out, with no falls. The selected candidate improves score by 0.71 over the already-working initial controller and succeeds in all six held-out target/seed cases. The offline camera uses exact CAD triangle intersections accelerated by a BVH; regression checks compare hits with ordinary triangle raycasting. Interactive WebGL and pointer-drag QA remain separate from these automated tests.
 
 The environment scores signed physical closing and retained progress, rather than apparent image area. Success requires at least 25 mm progress, a body-COM range of 110–130 mm, body heading within 20°, tilt within 15°, and 1.5 continuous seconds meeting those requirements. The controller's stop latch uses only filtered apparent width. Turning the head to look at the object while standing still cannot satisfy success.
 
-The [R06 camera search record](validation/r06-camera-learning.json) evaluates all 12 candidate settings: eight succeed and four time out, with no falls. The selected candidate improves score from 16.75 to 17.38 and succeeds in all six held-out target/seed cases. The starting policy already succeeds; this demonstrates parameter refinement, not learning approach from scratch. Reproduce after preparing the viewer assets with `node --experimental-strip-types viewer/scripts/verification/camera-learning.mjs` from the repository root. Default parameters remain the separately tested reference settings.
+The historical [R06 camera search record](validation/r06-camera-learning.json) evaluates all 12 candidate settings: eight succeed and four time out, with no falls. The selected candidate improves score from 16.75 to 17.38 and succeeds in all six held-out target/seed cases. The starting policy already succeeds; this demonstrates parameter refinement, not learning approach from scratch. Reproduce after preparing the viewer assets with `node --experimental-strip-types viewer/scripts/verification/camera-learning.mjs` from the repository root. Default parameters remain the separately tested reference settings.
 
 Each image carries the episode ID and exact simulated frame time. A matching image advances six 60 Hz command updates, with 600 Hz physics underneath. Missing or stale images do not advance time or accrue dwell/reward. Training can render faster than real time; playback captures at roughly 10 Hz. Switching workspace tabs pauses the experiment. **Save experiment** exports the environment, controller and measured results, not a hardware or Isaac policy.
 
@@ -47,7 +57,7 @@ npm run build
 node --experimental-strip-types scripts/evaluate-approach.mjs
 ```
 
-The [current six-episode record](validation/r06-camera-approach.json) reports six successes in 7.77–9.47 simulated seconds after the R06 mass update. The evaluator writes reproducible parameters, asset hash and episode traces under ignored `work/`. Re-run it whenever CAD, contact geometry, camera optics or controllers change.
+The historical [R06 six-episode record](validation/r06-camera-approach.json) reports six successes in 7.77–9.47 simulated seconds after the R06 mass update. The evaluator writes reproducible parameters, asset hash and episode traces under ignored `work/`. Re-run it whenever CAD, contact geometry, camera optics or controllers change.
 
 ## Isaac Lab scaffold
 
@@ -62,7 +72,7 @@ The existing API target is **Isaac Lab v2.3.2 with Isaac Sim 5.1**, as listed in
 | `neck_yaw` | body → head | local Z | ±45° |
 | `jaw_pitch` | head → jaw | local Y | 0–12° |
 
-The body is a floating rigid body. CAD axes are X forward, Y left, Z up. Lengths/meshes are millimetres; export converts translations and COM once to metres and uses mesh scale 0.001. Mass is kilograms and inertia is kg·m². Component inertia tensors are combined about link COMs using the parallel-axis theorem. Servo cases belong to the link holding the case; horns belong to rotating links.
+The body is a floating rigid body. CAD axes are X forward, Y left, Z up. Lengths/meshes are millimetres; export converts translations and COM once to metres and uses mesh scale 0.001. Mass is kilograms and inertia is kg·m². Component inertia tensors are combined about link COMs using the parallel-axis theorem. Servo cases belong to the link holding the case. The four separately modeled output shafts belong to their driven links and rotate with the direct spline sockets, which are part of the rotating printed legs, neck carrier and jaw.
 
 Each curved sole uses a two-dimensional grid of tangent boxes, with rounded corner cells inset and slight overlap to reduce gaps. Other links use simple interior collision primitives. These approximate contact geometry and omit some exterior surfaces; inspect cooking, seams and fall contacts in the simulator. The initial physics step is 2 ms, command interval 20 ms, contact offset 0.2 mm, rest offset zero. Compare 1 ms and finer sole segmentation before accepting behavior.
 

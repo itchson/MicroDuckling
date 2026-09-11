@@ -4,19 +4,19 @@ The aim is a small, affordable hobby robot that is easy to build and rewarding t
 
 This is a sequence of learning and validation stages, not a schedule. Work can overlap, and measurements may require changes to earlier designs. Contributions that reduce cost, simplify assembly or make results easier to reproduce are welcome throughout.
 
-## Current baseline: R06 design prototype
+## Current baseline: R07 design prototype
 
-- Four MG90S joints, 15 robot print parts and two fit coupons.
-- Approximately 248 g estimated total mass; this is not a measured build weight.
+- Four MG90S joints, 14 robot print parts with direct spline sockets and an integrated face/upper bill, plus two fit coupons.
+- Approximately 249 g complete mass is derived from the current CAD; this is not a measured build weight.
 - CAD, mesh, sampled motion and assembly-access checks, plus a static simulation scaffold and tests.
-- A local browser physics experiment, bounded gait search and synthetic-camera controller experiments; model-based gait and camera-approach tests now pass; physical transfer remains unproven.
+- A local browser physics experiment, bounded gait search and synthetic-camera controller experiments; each geometry revision needs matching model-based gait and camera-approach checks; physical transfer remains unproven.
 - No qualified physical assembly, completed firmware, Isaac Sim runtime or training result, or demonstrated physical walking.
 
-The [engineering review](docs/engineering-review.md) and [R06 notes](docs/r06-simplified-design.md) describe the current checks and exclusions. The following stages describe work still needed.
+The [engineering review](docs/engineering-review.md) and [R07 notes](docs/r07-direct-mount-design.md) describe the current checks and exclusions. The following stages describe work still needed.
 
 ## 1. Measure the actual hardware
 
-Record dimensions and masses for the actual servos, seated horns, screws, electronics, connectors and battery. Resolve differences between purchased parts, manufacturer references and CAD assumptions. Keep part identity and measuring method with each result.
+Record dimensions and masses for the actual servos, output splines, seated direct sockets, screws, electronics, connectors and battery. Resolve differences between purchased parts, manufacturer references and CAD assumptions. Keep part identity and measuring method with each result.
 
 **Useful outcome:** a completed [measurement worksheet](docs/hardware-measurements.md), a list of discrepancies and CAD updates supported by those measurements.
 

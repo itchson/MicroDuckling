@@ -10,7 +10,7 @@ Australian prices checked **11 September 2026**; project estimates and material 
 
 | Qty | Part | Line cost | Basis / limitation |
 |---:|---|---:|---|
-| 4 | Positional MG90S-type servos, horns and screws | A$20 | Project estimate for all four. Measure the actual cases, horns and peak current. |
+| 4 | Positional MG90S-type servos and matching center screws | A$20 | Project estimate for all four. Measure the actual cases, output splines and peak current; stock horn arms are not installed. |
 | 1 | ESP32-CAM with OV2640 camera | A$30 | Project estimate; [Phipps OV2640 board](https://www.phippselectronics.com/product/esp32-cam-wifi-bluethooth-development-board-with-ov2640-camera-module/) was A$29.95. |
 | 1 | 2S 450 mAh LiPo candidate | A$16.95 | [Aus Electronics Direct PB4174](https://www.auselectronicsdirect.com.au/7.4v-450mah-lipo-2s-battery-pack-with-jst-connecto), **56 × 30 × 10 mm**. It does not match the existing 43 × 23 × 13 mm tray reference; connector/current suitability also needs checking. |
 | 1 | Shared 5 V regulator candidate, DFRobot DFR0753 | A$16.80 | [Core Electronics](https://core-electronics.com.au/dc-dc-buck-converter-6-14v-to-5v-8a.html). Advertised 6–14 V input, up to 8 A output. A cost candidate, not a qualified replacement for the Pololu mount or a verified enclosed 8 A supply. |
@@ -30,13 +30,13 @@ Charging equipment is separate. A [SkyRC B6neo at FPVFaster](https://www.fpvfast
 
 | Qty | Reference component | CAD / qualification |
 |---:|---|---|
-| 4 | MG90S with matching horns and centre screws | [TowerPro reference](https://towerpro.com.tw/product/mg90s-3/). Measure all four actual servos. |
+| 4 | MG90S with matching centre screws | [TowerPro reference](https://towerpro.com.tw/product/mg90s-3/). Measure all four actual servos. |
 | 1 | Ai-Thinker ESP32-CAM with ordinary OV2640 flex camera | [Manufacturer V1.0 datasheet, mirrored](https://wiki.diustou.com/cn/w/upload/b/be/Esp32-cam_product_specification_zh.pdf). Nominal board 27 × 40.5 mm; drawing says 40 mm long. Header rows are 22.86 mm apart at 2.54 mm pitch; no dedicated mounting holes. |
 | 1 | Adafruit LSM6DS3TR-C IMU, product 4503 | [Product](https://www.adafruit.com/product/4503). 25.4 × 17.78 mm, two Ø2.5 mm mounts 20.32 mm apart. The A$4.60 MPU-6050 allowance does not buy this exact board. |
 | 1 | Pololu D24V50F5, product 2851, Buck_0 | [Manufacturer](https://www.pololu.com/product/2851/specs). 17.78 × 20.32 mm, two diagonal Ø2.18 mm mounts; populated on both sides. Retained reference for the shared 5 V rail. |
 | 1 | Gens ace GEA4502S60XT3, 2S 450 mAh | [Manufacturer](https://gensace.de/products/gea4502s60xt3). Existing packaging reference 43 × 23 × 13 mm and 28 g. Confirm delivered pack and connector dimensions. |
-| — | Horns, small screws/nuts and nominal 0.20 mm thrust shim | Threads, engagement and shim stack require measurement; see [hardware worksheet](hardware-measurements.md). |
-| 15 + 2 | Printed parts and fit coupons | cad/stl/, cad/coupons/ and geometry-only cad/3mf/. |
+| — | Vendor-matched direct-mount retaining screws, M2 assembly screws/nuts and nominal 0.20 mm thrust shim | M2 assembly screws use printed pilots or modeled nut pockets; servo-output center threads remain vendor-specific. Engagement and shim stack require measurement; see [hardware worksheet](hardware-measurements.md). |
+| 14 + 2 | Printed parts and fit coupons | cad/stl/, cad/coupons/ and geometry-only cad/3mf/. |
 
 The Adafruit PCA9685 and Pololu D24V10F5 are superseded R05 references, not parts to purchase for the revised direct-PWM/shared-supply layout. The revised CAD omits both; historical reports may retain their names.
 

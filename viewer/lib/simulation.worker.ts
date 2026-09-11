@@ -5,6 +5,7 @@ import {CAMERA_WADDLE_GAIT,locomotionTargets,type LocomotionGait} from './locomo
 import {RockingTrainer} from './rocking-trainer.ts';
 import {ApproachEpisode,type ApproachResult} from './approach.ts';
 import type {RunMode,SimulationCommand,SimulationEvent,EnvironmentSettings} from './simulation-protocol';
+import {manualGait,validateTarget,validateExperiment,DEFAULT_EXPERIMENT} from './experiment-settings.ts';
 
 const send=(event:SimulationEvent)=>postMessage(event);
 let engine:BrowserPhysics|undefined,trainer:RockingTrainer|undefined,approach:ApproachEpisode|undefined,mode:RunMode='paused',runId=0,configuration=0;
@@ -13,6 +14,7 @@ let gait:LocomotionGait=structuredClone(CAMERA_WADDLE_GAIT),vision={...DEFAULT_V
 let pose:JointAngles={left_hip:0,right_hip:0,neck_yaw:0,jaw_pitch:0};
 let target:Vec3=[.18,0,.05],trial=0,bestScore:number|null=null;
 let searchTimer:ReturnType<typeof setTimeout>|undefined;
+let experiment={...DEFAULT_EXPERIMENT};
 const frame=(result?:ApproachResult)=>{if(engine)send({type:'frame',frame:result?.frame??engine.frame(),runId,goal:result?.goal});};
 const setMode=(value:RunMode)=>{mode=value;send({type:'mode',mode});};
 function reset(){runId++;approach=undefined;engine!.reset({seed:2026});engine!.setTarget(target,[.025,.025,.05]);frame();}
@@ -27,7 +29,7 @@ function learnGeneration(){
 }
 function startCameraTrial(){
   runId++;candidate=mode==='camera-learning'?proposeVisionParameters(vision,trial):{...vision};
-  approach=new ApproachEpisode(engine!,physicsAsset!,gait,candidate,target,{seed:2026,seconds:60});frame(approach.current());
+  approach=new ApproachEpisode(engine!,physicsAsset!,gait,candidate,target,{seed:2026,seconds:experiment.cameraSeconds,search:experiment});frame(approach.current());
 }
 function finishCameraTrial(result:ApproachResult){
   if(mode==='camera-learning'){
@@ -41,9 +43,9 @@ function fail(error:unknown){clearTimeout(searchTimer);setMode('paused');send({t
 async function configurePhysics(){
   if(!physicsAsset)return;
   const ticket=++configuration;clearTimeout(searchTimer);setMode('paused');engine?.dispose();engine=undefined;approach=undefined;
-  const created=await BrowserPhysics.create(physicsAsset,{...environment,footFriction:.9,bodyFriction:.35});
+  const created=await BrowserPhysics.create(physicsAsset,{...environment,footFriction:environment.footFriction??.9,bodyFriction:.35});
   if(ticket!==configuration){created.dispose();return;}engine=created;
-  trainer=undefined;gait=structuredClone(CAMERA_WADDLE_GAIT);vision={...DEFAULT_VISION_PARAMETERS};reset();
+  trainer=undefined;vision={...DEFAULT_VISION_PARAMETERS};reset();
   send({type:'ready',frame:engine.frame(),runId});policy();
 }
 
@@ -61,7 +63,12 @@ onmessage=async(event:MessageEvent<SimulationCommand>)=>{
       return;
     }
     if(message.type==='pose'){pose=message.angles;return;}
-    if(message.type==='target'){clearTimeout(searchTimer);target=message.position;setMode('paused');reset();return;}
+    if(message.type==='gait'||message.type==='reference'){
+      const next=message.type==='gait'?manualGait(message.settings):structuredClone(CAMERA_WADDLE_GAIT);
+      clearTimeout(searchTimer);gait=next;trainer=undefined;vision={...DEFAULT_VISION_PARAMETERS};setMode('paused');reset();policy();return;
+    }
+    if(message.type==='experiment'){experiment=validateExperiment(message.settings);clearTimeout(searchTimer);setMode('paused');reset();return;}
+    if(message.type==='target'){const next=validateTarget(message.position);clearTimeout(searchTimer);target=next;setMode('paused');reset();return;}
     if(message.type==='reset'){clearTimeout(searchTimer);setMode('paused');reset();return;}
     if(message.type==='run'){
       clearTimeout(searchTimer);setMode(message.mode);

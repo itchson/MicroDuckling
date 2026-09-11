@@ -2,6 +2,7 @@
 // Image-only synthetic-camera experiment. No target world coordinates enter this API.
 import {locomotionTargets} from './locomotion-controller.ts';
 import type {Gait,JointAngles} from './browser-physics.ts';
+import {DEFAULT_EXPERIMENT,type SearchSettings} from './experiment-settings.ts';
 
 export type VisionObservation = {visible: boolean; bearingRad: number; areaFraction: number;widthFraction?:number};
 export type VisionParameters = {headGain: number; turnGain: number; forwardScale: number;stopWidthFraction?:number};
@@ -48,7 +49,7 @@ export function detectTarget(pixels: Uint8Array,width: number,height: number,ver
  * turnGain may have either sign: the effect of differential hip bias depends on
  * contact dynamics and must be evaluated rather than assumed to steer correctly.
  */
-export function visionTargets(observation: VisionObservation,params: VisionParameters,gait: Gait,time: number,dt: number,previousNeckRad: number,stopLatch=false): JointAngles {
+export function visionTargets(observation: VisionObservation,params: VisionParameters,gait: Gait,time: number,dt: number,previousNeckRad: number,stopLatch=false,search:SearchSettings=DEFAULT_EXPERIMENT): JointAngles {
   finite(time,'time');finite(previousNeckRad,'previousNeckRad');finite(dt,'dt');
   if(dt<0||dt>1)throw Error('dt must be between zero and one second');
   for(const [key,value] of Object.entries(params))finite(value,key);
@@ -56,7 +57,8 @@ export function visionTargets(observation: VisionObservation,params: VisionParam
   if(observation.areaFraction<0||observation.areaFraction>1)throw Error('areaFraction must be in [0, 1]');
   const previous=clamp(previousNeckRad,-NECK_LIMIT,NECK_LIMIT);
   if(!observation.visible){
-    const scan=NECK_LIMIT*Math.sin(2*Math.PI*time/6);
+    if(!Number.isFinite(search.scanAmplitudeDeg)||search.scanAmplitudeDeg<0||search.scanAmplitudeDeg>45||!Number.isFinite(search.scanPeriodSeconds)||search.scanPeriodSeconds<2||search.scanPeriodSeconds>12)throw Error('Invalid camera search sweep');
+    const scan=search.scanAmplitudeDeg*Math.PI/180*Math.sin(2*Math.PI*time/search.scanPeriodSeconds);
     return {left_hip:0,right_hip:0,neck_yaw:clamp(previous+clamp(scan-previous,-.8*dt,.8*dt),-NECK_LIMIT,NECK_LIMIT),jaw_pitch:0};
   }
   const bearing=clamp(observation.bearingRad,-Math.PI/2,Math.PI/2);

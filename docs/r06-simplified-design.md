@@ -1,5 +1,7 @@
 # R06: upper bill and simpler electronics
 
+Historical revision. R07 replaces the separate upper bill with an integral face feature and replaces horn attachments with direct spline sockets. See [R07 changes](r07-direct-mount-design.md) for the current build. The dimensions, part counts and simulation evidence below describe R06 only.
+
 R06 adds a fixed upper bill and adopts direct ESP32-CAM servo signals with one shared 5 V regulator. The robot still has four MG90S joints. The PCA9685, its four screws, its front frame/posts and the separate logic regulator cradle have been removed. The battery and IMU stay low in the body; the ESP32-CAM, flex camera and mouth servo stay in the head.
 
 ## Upper bill
@@ -22,6 +24,6 @@ The [configurable spline experiment](../experiments/spline-mount/README.md) prep
 
 The browser uses continuous tread hulls, 600 Hz integration and 16 solver iterations. Foot-load estimates, slip, loaded contact markers and the centre of mass are visible. Camera training evaluates actual travel and a stable stopping zone; looking at the target alone earns no approach reward. See [the simulation guide](simulation.md) for evidence and limitations.
 
-There are 15 robot print parts plus two assembly fit coupons, 88 assembled mechanical records and two separately licensed component visuals. Stable `MicroDuckling_R05_*` download filenames are retained for existing links; their manifest and source parameters identify the current R06 revision.
+There are 15 robot print parts plus two assembly fit coupons, 88 assembled mechanical records and two separately licensed component visuals. Stable `MicroDuckling_R05_*` download filenames are retained for existing links; the R06 manifest and source parameters identify that historical revision.
 
-The complete nominal mass is **247.96 g**, with global COM **(−0.67, 0.76, 58.19) mm**. The [frozen CAD review](validation/r06-cad.json) records source/export hashes and check counts. The [six camera-approach traces](validation/r06-camera-approach.json) use the regenerated mass/inertia and current CAD camera meshes: all six reach the stopping zone in 7.77–9.47 simulated seconds, with no falls. These are model results, not hardware measurements.
+The complete nominal mass is **247.96 g**, with global COM **(−0.67, 0.76, 58.19) mm**. The [frozen CAD review](validation/r06-cad.json) records source/export hashes and check counts. The [six camera-approach traces](validation/r06-camera-approach.json) use the R06 mass/inertia and R06 CAD camera meshes: all six reach the stopping zone in 7.77–9.47 simulated seconds, with no falls. These are model results, not hardware measurements.

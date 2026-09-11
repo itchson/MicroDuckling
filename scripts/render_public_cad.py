@@ -122,8 +122,8 @@ def main():
     if {record["name"] for record in component_records} != board_names:
         raise ValueError("Expected the two separately licensed component visuals")
     records = mechanical_records + component_records
-    if len(records) != 90 or len({record["name"] for record in records}) != len(records):
-        raise ValueError("Expected 90 unique assembled parts")
+    if len(records) != 77 or len({record["name"] for record in records}) != len(records):
+        raise ValueError("Expected 77 unique assembled parts")
     source_manifest_sha256 = {
         "cad/assembly.json": hashlib.sha256((args.cad / "assembly.json").read_bytes()).hexdigest(),
         "components/records.json": hashlib.sha256((args.components / "records.json").read_bytes()).hexdigest(),
