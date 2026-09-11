@@ -1,6 +1,6 @@
 # Hardware measurement worksheet
 
-**No physical measurements are recorded yet.** Leave result cells blank until measured. CAD values below are hypotheses. Label servos **L**, **R**, **N**, **M** for left/right hip, neck and mouth; keep each servo's supplied center screw identified with its servo. Stock horns can serve as measurement references but are not installed in R07.
+**No physical measurements are recorded yet.** Leave result cells blank until measured. CAD values below are hypotheses. Label servos **L**, **R**, **N**, **M** for left/right hip, neck and mouth; keep each servo's supplied center screw identified with its servo. Stock horns can serve as measurement references but are not installed in R08.
 
 | Identification | Record |
 |---|---|
@@ -44,7 +44,7 @@ The actual printed leg, neck carrier and jaw sockets now use a configurable 20T 
 | Backlash, axial play, radial rocking and full sweep clearance | | | | |
 | Repeat assembly and representative load/wear result | | | | |
 
-Do not use the retaining screw to force an incorrect tooth profile onto the shaft. Confirm the socket seats on its intended shoulder and does not bottom on the shaft tip; check screw engagement and blind depth separately. For the neck, record support top → actual thrust shim → carrier shoulder and verify support without axial preload. The nominal shim is 0.20 mm; a gap alone does not carry weight. See [R07 interface parameters](r07-direct-mount-design.md) and the [spline experiment](../experiments/spline-mount/README.md).
+Do not use the retaining screw to force an incorrect tooth profile onto the shaft. Confirm the socket seats on its intended shoulder and does not bottom on the shaft tip; check screw engagement and blind depth separately. For the neck, record support top → actual thrust shim → carrier shoulder and verify support without axial preload. The nominal shim is 0.20 mm; a gap alone does not carry weight. See [direct-spline interface parameters retained from R07](r07-direct-mount-design.md) and the [spline experiment](../experiments/spline-mount/README.md).
 
 | Fastener location | Nominal intent | Actual thread / head / length | Grip stack / engagement / tip clearance | Result |
 |---|---|---|---|---|
@@ -53,6 +53,7 @@ Do not use the retaining screw to force an incorrect tooth profile onto the shaf
 | Passive jaw pivot | M2×12 with locknut; 0.2 mm nominal endplay | | | |
 | Servo regulator / IMU mounts | M2×6 | | | |
 | Camera clamp / cradle | M2×6 | | | |
+| Upper-mouth base to hood | 2 × M2×8 countersunk, captive M2 nuts; 90° head reference | | | |
 | Hood, face, shells and neck attachments | M2; check source length and pilot or captive-nut location | | | |
 | Four direct-socket center retaining screws | Vendor-specific thread; 2 mm CAD envelope is not an M2 specification | | | |
 
@@ -80,6 +81,7 @@ Use the [BOM](bom.md) only as a reference column. Measure camera carrier size, l
 | Full direct-socket and printed-part sweeps: hips ±12°, neck ±45°, jaw 0–12° | | |
 | All screw, nut, driver and component insertion paths in assembly order | | |
 | Loose hood/face module closes; face screws accessible with module removed | | |
+| Upper-mouth registers seat, captive nuts load and countersunk heads sit flush; jaw gap remains free | | |
 | Board insulation, solder projections and release space for every plug | | |
 | Battery pad and restraint fit; pack removable without pulling leads | | |
 | Rear access, wire gauge, connectors, strain relief and neck service loop | | |

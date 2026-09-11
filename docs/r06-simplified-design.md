@@ -1,6 +1,6 @@
 # R06: upper bill and simpler electronics
 
-Historical revision. R07 replaces the separate upper bill with an integral face feature and replaces horn attachments with direct spline sockets. See [R07 changes](r07-direct-mount-design.md) for the current build. The dimensions, part counts and simulation evidence below describe R06 only.
+Historical revision. R07 replaces the separate upper bill with an integral face feature and replaces horn attachments with direct spline sockets. See [R08 changes](r08-upper-mouth-design.md) for the current build. The dimensions, part counts and simulation evidence below describe R06 only.
 
 R06 adds a fixed upper bill and adopts direct ESP32-CAM servo signals with one shared 5 V regulator. The robot still has four MG90S joints. The PCA9685, its four screws, its front frame/posts and the separate logic regulator cradle have been removed. The battery and IMU stay low in the body; the ESP32-CAM, flex camera and mouth servo stay in the head.
 

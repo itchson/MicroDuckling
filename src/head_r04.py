@@ -5,7 +5,8 @@ the builder's documented -10mm head offset. The torso and rocker datums stay fix
 """
 import math
 import FreeCAD as A, Part
-from direct_mount_r07 import integrated_upper_bill, socket_y, spline_y
+from direct_mount_r07 import socket_y, spline_y
+from upper_mouth_r08 import build_upper_mouth, PARAMETERS as UPPER_MOUTH_PARAMETERS
 
 
 def build_head(api):
@@ -56,12 +57,7 @@ def build_head(api):
             face=face.fuse(boss.cut(lead(24,y,z,.85,.2,V(1,0,0))))
     for y in [-12,12]:face=face.fuse(cyl(24,y,121,2.8,5.2,V(1,0,0)).cut(cyl(23.8,y,121,.85,5,V(1,0,0))))
     face=face.cut(cyl(28.8,0,121,9.8,3,V(1,0,0)))
-    # The fixed upper bill uses global head coordinates; add() applies the legacy
-    # head shift, so bring each candidate back into this builder's source frame.
-    face_global=face.copy();face_global.translate(V(0,0,P['head_shift_z']))
-    face=integrated_upper_bill(face_global)
-    face.translate(V(0,0,-P['head_shift_z']))
-    add('FacePanel',face,'head',color=black,note='One connected printed face and flat upper mouth. Full-width fused 2.2 mm plate replaces the separate keyed bill, front screws and captive nuts. Four original rear face screws remain. Orange display region denotes optional paint on the same print. Nominal closed-jaw gap 4.10 mm; actual print fit unverified.')
+    add('FacePanel',face,'head',color=black,note='Independent registered camera face, attached by four original rear face screws. Upper mouth is a separate base attached to HeadHood, with no FacePanel mounting interface.')
     # A chamfered-square surround matches the shells; keep the optical bore circular.
     def bezel_wire(x,halfsize,corner):
         yz=[(-halfsize+corner,-halfsize),(halfsize-corner,-halfsize),
@@ -137,7 +133,16 @@ def build_head(api):
     jaw=jaw.fuse(cyl(pivot,16,100,4.5,11,V(0,1,0)))
     jaw=socket_y(jaw,pivot,16,100,27,24.5)
     add('Jaw',jaw,'jaw',color=orange,note='54 mm hinged beak with integrated direct spline hub and opposite passive pivot. Illustrative unverified 20-tooth 4.8/4.30 mm profile, 0.06 mm radial allowance, 3.5 mm nominal shaft overlap. Axial screw retains hub; no horn arm or arm screws. Physical fit, tooth strength and opening require bench testing.')
-    add('HeadHood',hood,'head',note='52mm frontal width,64mm depth,52mm height. Faceted roof, matching pivot reliefs,0.8mm outside/0.4mm inside edge rolls, ribs and registered camera face. Rear face-screw ports and removable side screws.')
+    hood_global=hood.copy();hood_global.translate(V(0,0,P['head_shift_z']))
+    hood_global,upper_base,upper_hardware=build_upper_mouth(hood_global,rounded)
+    hood=hood_global;hood.translate(V(0,0,-P['head_shift_z']))
+    upper_base.translate(V(0,0,-P['head_shift_z']))
+    add('UpperMouthBase',upper_base,'head',color=orange,note='Separate 54 mm-wide upper mouth base, front X36 mm matching the lower jaw, 2 mm plate. Two registered posts seat beneath the front HeadHood rim with 0.15 mm radial and 0.2 mm axial allowance. Flush M2x8 countersunk screws retain captive M2 nuts in the hood. No attachment to FacePanel. Nominal closed lip gap 1.0 mm; physical fit unverified.')
+    for name,shape in upper_hardware.items():
+        shape.translate(V(0,0,-P['head_shift_z']))
+        add(name,shape,'head','hardware',steel,.13 if 'Screw' in name else .10,
+            'Nominal M2x8 countersunk screw driven from underside before jaw installation.' if 'Screw' in name else 'Nominal M2 hex nut in 4.2 mm AF hood pocket; load through open front before FacePanel and electronics.')
+    add('HeadHood',hood,'head',note='52mm frontal width,64mm depth,52mm height. Front underside bosses and captive M2 nut pockets retain registered UpperMouthBase. Faceted roof, matching pivot reliefs,0.8mm outside/0.4mm inside edge rolls, ribs and registered camera face. Rear face-screw ports and removable side screws.')
     screw_y('JawPassivePin',pivot,15.2,100,12,'head',-1,2)
     nut=hexy(pivot,15.3,100,4,2.5).cut(cyl(pivot,15.1,100,.85,2.9,V(0,1,0)))
     add('JawPassiveLocknut',mirror(nut),'head','hardware',steel,.12,'M2 nominal locknut and short passive pivot; set axial endplay without clamping jaw. Verify selected hardware dimensions.')

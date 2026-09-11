@@ -112,14 +112,14 @@ def validate():
     assembly = json.loads((cad / 'assembly.json').read_text(encoding='utf-8'))
     records = assembly['parts']
     names = {r['name'] for r in records}
-    require(len(names) == len(records) == 77, 'Review the 77-record mechanical manifest when the design changes')
-    require(not any('Horn' in name or name.startswith('UpperBill') for name in names), 'Retired horn or separate upper-bill geometry remains')
-    require({'FacePanel', 'LegFootLeft', 'LegFootRight', 'NeckCarrier', 'Jaw', 'SplineFitCoupon'} <= names, 'Missing integrated direct-mount parts')
+    require(len(names) == len(records) == 82, 'Review the 82-record mechanical manifest when the design changes')
+    require(not any('Horn' in name or name.startswith('UpperBill') for name in names), 'Retired horn or upper-bill mounting geometry remains')
+    require({'UpperMouthBase', 'FacePanel', 'LegFootLeft', 'LegFootRight', 'NeckCarrier', 'Jaw', 'SplineFitCoupon'} <= names, 'Missing integrated direct-mount parts')
     require(not names & COMPONENT_LICENSES.keys(), 'Electronics geometry in the mechanical-only assembly')
     require(assembly.get('public_preview'), 'Missing public-preview scope')
     require({p.stem for p in (cad / 'meshes').glob('*.json')} == names, 'Stale or missing preview meshes')
     printables = {r['name'] for r in records if r['kind'] in ('print', 'coupon')}
-    require(len(printables) == 16, 'Review printable allowlist when the design changes')
+    require(len(printables) == 17, 'Review printable allowlist when the design changes')
     for ext in ('stl', '3mf'):
         require({p.stem for p in (cad / ext).glob('*.' + ext)} == printables, 'Missing or extra ' + ext)
     for name in sorted(names):
@@ -154,7 +154,7 @@ def validate():
         require(hashlib.sha256((cad / filename).read_bytes()).hexdigest() == checks[key], 'Stale export check: ' + filename)
     provenance = json.loads((ROOT / 'assets/renders/render_provenance.json').read_text(encoding='utf-8'))
     render_paths = {r['name']: f"cad/meshes/{r['name']}.json" for r in records if r['kind'] != 'coupon'} | COMPONENT_PATHS
-    require(provenance['assembled_part_count'] == 77 and provenance['mechanical_part_count'] == 75 and provenance['component_part_count'] == 2, 'Render part count mismatch')
+    require(provenance['assembled_part_count'] == 82 and provenance['mechanical_part_count'] == 80 and provenance['component_part_count'] == 2, 'Render part count mismatch')
     require(provenance['coupons_rendered'] is False and provenance['omitted_components'] == [], 'Render exclusions mismatch')
     require(provenance['license'] == 'CC-BY-SA-3.0' and provenance['license_url'] == 'https://creativecommons.org/licenses/by-sa/3.0/', 'Missing composite render license')
     require(sha256(ROOT / 'assets/renders/LICENSE-CC-BY-SA-3.0.txt') == sha256(ROOT / 'components/licenses/adafruit-lsm6ds3/license.txt'), 'Missing or changed composite render license text')

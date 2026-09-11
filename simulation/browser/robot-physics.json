@@ -5,8 +5,8 @@
   "upAxis": "z",
   "forwardAxis": "x",
   "provenance": {
-    "manifestSha256": "96e0e107a25d1f3daac954c9de96cd736b3c23931b949df67023b4b28c9bd0c2",
-    "sourceCadSha256": "17b99033089d89afdc286bdb62c34ef949b9b0605b4e2c1970973a0934e19fcc",
+    "manifestSha256": "e1cd76be98166f6f04cf4c11670ba83a5f13263381d7728b18f56d9e9b9ca550",
+    "sourceCadSha256": "a1a6c8a7332c9530263d75288a925779abc95bf7812bcf1e36d3bd767c2bd87c",
     "massScope": "Full intended assembly including electronics; mass and collision geometry are independent",
     "status": "CAD estimates; approximate contacts and unmeasured servo model. Browser Rapier experiment, not Isaac Sim or a hardware-qualified controller.",
     "soleConvexHull": {
@@ -12966,39 +12966,39 @@
     },
     {
       "name": "head",
-      "massKg": 0.07460070421032912,
+      "massKg": 0.07627567463537435,
       "comM": [
-        0.0026551170073077393,
-        4.6140194551583e-05,
-        0.020096404013045868
+        0.00296557216897466,
+        4.512698212638414e-05,
+        0.019717779325929385
       ],
       "inertiaKgM2": [
         [
-          3.4634125868419285e-05,
-          -2.1978420452678454e-07,
-          -2.2970740593212915e-06
+          3.578868868750879e-05,
+          -2.1871558960702916e-07,
+          -1.823346651067076e-06
         ],
         [
-          -2.1978420452678454e-07,
-          4.707119461470972e-05,
-          -1.0247420770419923e-07
+          -2.1871558960702916e-07,
+          4.7736012053844635e-05,
+          -1.0377746833435627e-07
         ],
         [
-          -2.2970740593212915e-06,
-          -1.0247420770419923e-07,
-          4.069151823422588e-05
+          -1.823346651067076e-06,
+          -1.0377746833435627e-07,
+          4.1545615857122375e-05
         ]
       ],
       "principalInertiaKgM2": [
-        3.3857170835568e-05,
-        4.146394792913639e-05,
-        4.7075719952650494e-05
+        3.525521033287844e-05,
+        4.207425400262522e-05,
+        4.774085226297217e-05
       ],
       "inertiaFrame": [
-        0.6950625574040654,
-        -0.10815013411243161,
-        0.12032407478838517,
-        0.7005096050824018
+        0.6966841620911283,
+        -0.09318017708614108,
+        0.10590257680328297,
+        0.7033727867326136
       ],
       "colliders": [
         {
@@ -13265,5 +13265,5 @@
     },
     "description": "One convex hull per public tread for browser contacts; original tangent boxes retained for explicit comparison. Other links use approximate interior boxes; self-collision excluded."
   },
-  "totalMassKg": 0.24866451976431428
+  "totalMassKg": 0.2503394901893595
 }

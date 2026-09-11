@@ -19,7 +19,7 @@ import trimesh
 PRINT_PARTS = {
     "BodyShellLeft", "BodyShellRight", "CameraBoardClamp", "CameraCradle",
     "CameraRing", "Chassis", "FacePanel", "FixedNeckSupport", "HeadFrame",
-    "HeadHood", "Jaw", "LegFootLeft", "LegFootRight", "NeckCarrier",
+    "HeadHood", "UpperMouthBase", "Jaw", "LegFootLeft", "LegFootRight", "NeckCarrier",
 }
 COUPONS = {"SplineFitCoupon", "ClearanceCoupon"}
 NAMESPACE = "http://schemas.microsoft.com/3dmanufacturing/core/2015/02"

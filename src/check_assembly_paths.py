@@ -8,7 +8,9 @@ from pathlib import Path
 from build_paths import BUILD_ROOT as R
 O=R/'cad';d=json.loads((O/'assembly.json').read_text());D=A.openDocument(str(O/'MicroDuckling_R01.FCStd'));V=A.Vector
 ss={r['name']:D.getObject(r.get('object_name',r['name'])).Shape for r in d['parts'] if r['kind']!='coupon'}
-cases=[('Battery','Chassis',V(-1,0,0),range(0,61,2)),
+cases=[('UpperMouthBase','HeadHood',V(0,0,-1),range(0,41)),
+       ('UpperMouthBase','FacePanel',V(0,0,-1),range(0,41)),
+       ('Battery','Chassis',V(-1,0,0),range(0,61,2)),
        ('ServoLeft','Chassis',V(0,1,0),range(0,51,2)),
        ('ServoRight','Chassis',V(0,-1,0),range(0,51,2)),
        ('ServoNeck','Chassis',V(0,0,1),range(0,51,2)),
@@ -23,6 +25,11 @@ cases=[('Battery','Chassis',V(-1,0,0),range(0,61,2)),
        ('ServoMouth','HeadFrame',None,[V(0,i*.25,0) for i in range(3)]+[V(0,.5,-i) for i in range(1,41)]),
        ('CameraBoardClamp','HeadFrame',V(0,0,1),range(0,41,2)),
        ('CameraCradle','FacePanel',V(-1,0,0),range(0,41,2))]
+for side,sign in [('Left',1),('Right',-1)]:
+    offsets=[V(0,0,i*.5) for i in range(7)]
+    offsets += [V(0,-sign*i,3) for i in range(1,9)]
+    offsets += [V(i,-sign*8,3) for i in range(1,31)]
+    cases.append(('UpperMouthNut'+side,'HeadHood',None,offsets))
 results=[]
 for name,frame,axis,steps in cases:
     collisions=[]
@@ -33,7 +40,7 @@ for name,frame,axis,steps in cases:
         q.translate(offset);v=q.common(ss[frame]).Volume
         if v>.01:collisions.append(dict(offset_mm=list(offset),volume_mm3=v))
     results.append(dict(part=name,mounting_frame=frame,direction_out=list(axis) if axis is not None else None,
-                        step_mm=2 if axis is not None else 1,
+                        step_mm=max((steps[i]-steps[i-1])*axis.Length for i in range(1,len(steps))) if axis is not None else max((steps[i]-steps[i-1]).Length for i in range(1,len(steps))),
                         sampled_offsets_mm=[list(axis*s if axis is not None else s) for s in steps],collisions=collisions))
     print(name,len(collisions),flush=True)
-(O/'assembly_paths.json').write_text(json.dumps(dict(source_cad_sha256=hashlib.sha256((O/'MicroDuckling_R01.FCStd').read_bytes()).hexdigest(),source_assembly_sha256=hashlib.sha256((O/'assembly.json').read_bytes()).hexdigest(),scope='Rigid component vs named bare frame,2mm straight/<=1mm stepped samples; reverse for insertion. The assembled mouth case/output/jaw module vs bare head frame unseats0.5mm outward then drops before passive pin and carrier attachment. Mouth case plus geared output vs one-piece jaw first withdraws4mm leftward from its socket, then lowers through the jaw opening; passive pin and head frame must be absent. Servo regulator disengages2mm rearward then lifts before battery/IMU/neck support. Neighboring boards, hood, clamps and harness absent; full installed-neighbor order/tool access still unverified.',paths=results),indent=2))
+(O/'assembly_paths.json').write_text(json.dumps(dict(source_cad_sha256=hashlib.sha256((O/'MicroDuckling_R01.FCStd').read_bytes()).hexdigest(),source_assembly_sha256=hashlib.sha256((O/'assembly.json').read_bytes()).hexdigest(),scope='Rigid component vs named bare frame,1-2mm straight/<=1mm stepped samples; reverse for insertion. Upper mouth base drops from the loose hood; M2 nuts lift3mm, shift8mm inward and exit through the open front before FacePanel/electronics installation. The assembled mouth case/output/jaw module vs bare head frame unseats0.5mm outward then drops before passive pin and carrier attachment. Mouth case plus geared output vs one-piece jaw first withdraws4mm leftward from its socket, then lowers through the jaw opening; passive pin and head frame must be absent. Servo regulator disengages2mm rearward then lifts before battery/IMU/neck support. Neighboring boards, hood, clamps and harness absent; full installed-neighbor order/tool access still unverified.',paths=results),indent=2))

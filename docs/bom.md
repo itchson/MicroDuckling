@@ -36,7 +36,8 @@ Charging equipment is separate. A [SkyRC B6neo at FPVFaster](https://www.fpvfast
 | 1 | Pololu D24V50F5, product 2851, Buck_0 | [Manufacturer](https://www.pololu.com/product/2851/specs). 17.78 × 20.32 mm, two diagonal Ø2.18 mm mounts; populated on both sides. Retained reference for the shared 5 V rail. |
 | 1 | Gens ace GEA4502S60XT3, 2S 450 mAh | [Manufacturer](https://gensace.de/products/gea4502s60xt3). Existing packaging reference 43 × 23 × 13 mm and 28 g. Confirm delivered pack and connector dimensions. |
 | — | Vendor-matched direct-mount retaining screws, M2 assembly screws/nuts and nominal 0.20 mm thrust shim | M2 assembly screws use printed pilots or modeled nut pockets; servo-output center threads remain vendor-specific. Engagement and shim stack require measurement; see [hardware worksheet](hardware-measurements.md). |
-| 14 + 2 | Printed parts and fit coupons | cad/stl/, cad/coupons/ and geometry-only cad/3mf/. |
+| 2 | M2×8 countersunk screws with matching M2 nuts for upper-mouth mount | Nominal 90°/Ø4 mm head reference; included in the consumed-fastener allowance. Verify delivered dimensions and countersink fit. |
+| 15 + 2 | Printed parts and fit coupons | cad/stl/, cad/coupons/ and geometry-only cad/3mf/. |
 
 The Adafruit PCA9685 and Pololu D24V10F5 are superseded R05 references, not parts to purchase for the revised direct-PWM/shared-supply layout. The revised CAD omits both; historical reports may retain their names.
 

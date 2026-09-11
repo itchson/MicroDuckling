@@ -23,7 +23,7 @@ RETIRED |= {"HornLeft", "HornRight", "NeckHorn", "MouthHorn", "LegHornCoupon",
 PRINT_PARTS = {
     "BodyShellLeft", "BodyShellRight", "CameraBoardClamp", "CameraCradle",
     "CameraRing", "Chassis", "FacePanel", "FixedNeckSupport", "HeadFrame",
-    "HeadHood", "Jaw", "LegFootLeft", "LegFootRight", "NeckCarrier",
+    "HeadHood", "UpperMouthBase", "Jaw", "LegFootLeft", "LegFootRight", "NeckCarrier",
 }
 COUPONS = {"SplineFitCoupon", "ClearanceCoupon"}
 PRIVATE_PATH = re.compile(r"(?<![A-Za-z0-9])[A-Za-z]:[/\\]|/Users/|/home/", re.IGNORECASE)
@@ -106,7 +106,7 @@ def main():
     # from being retained in the public FCStd ZIP container.
     original = App.openDocument(str(source / "cad/MicroDuckling_R01.FCStd"))
     public = App.newDocument("MicroDuckling_R05_mechanical")
-    public.Label = "MicroDuckling R07 mechanical preview"
+    public.Label = "MicroDuckling R08 mechanical preview"
     public.License = "Apache-2.0"
     public.LicenseURL = "https://www.apache.org/licenses/LICENSE-2.0"
     public.Comment = "Engineering prototype. Two reference PCB models omitted from mechanical CAD; separate public component visuals are provided. Fit and walking unverified."

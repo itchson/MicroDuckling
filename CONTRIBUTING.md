@@ -6,7 +6,7 @@ You do not need to own the full robot or know every part of robotics to help. Me
 
 ## Start here
 
-Read the [README](README.md) for the current scope and the [roadmap](ROADMAP.md) for the next stages. The R07 prototype uses four MG90S servos with integrated direct-mount sockets, a one-piece face/upper bill and two fit coupons. Its complete mass is a CAD estimate. The default 20-tooth socket profile is unverified against the supplied servo batch. Geometry and static simulation checks do not establish physical fit, electrical performance or walking capability.
+Read the [README](README.md) for the current scope and the [roadmap](ROADMAP.md) for the next stages. The R08 prototype uses four MG90S servos with integrated direct-mount sockets, a separate shell-mounted upper-mouth base and two fit coupons. Its complete mass is a CAD estimate. The default 20-tooth socket profile is unverified against the supplied servo batch. Geometry and static simulation checks do not establish physical fit, electrical performance or walking capability.
 
 Useful first contributions include:
 
@@ -35,7 +35,7 @@ Use the bug / fit report form for a reproducible problem and the proposal form f
 
 Keep unrelated changes separate. Include editable source for new designs where possible. Avoid adding dependency folders, caches, temporary exports or large recordings when a small example will explain the result.
 
-For mechanical changes, review [engineering checks and their limits](docs/engineering-review.md) and the [R07 refinement notes](docs/r07-direct-mount-design.md). A collision check is evidence about the modeled geometry, not proof of strength, cable flexibility or assembly access with real parts. For simulation changes, follow [simulation documentation](docs/simulation.md) and distinguish static validation, an actual Isaac Sim run, training and physical evaluation in your report.
+For mechanical changes, review [engineering checks and their limits](docs/engineering-review.md) and the [R08 refinement notes](docs/r08-upper-mouth-design.md). A collision check is evidence about the modeled geometry, not proof of strength, cable flexibility or assembly access with real parts. For simulation changes, follow [simulation documentation](docs/simulation.md) and distinguish static validation, an actual Isaac Sim run, training and physical evaluation in your report.
 
 ## Credit and review
 

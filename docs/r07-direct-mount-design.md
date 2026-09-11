@@ -1,5 +1,7 @@
 # R07: direct servo sockets and a one-piece face
 
+Historical revision. [R08](r08-upper-mouth-design.md) retains the direct servo sockets but replaces the fused face/upper bill with a separate upper-mouth base mounted to the head hood. The counts, clearances, assembly paths and simulation results below describe R07 only.
+
 R07 removes all four servo horn arms from the assembled robot. Female spline sockets are built into `LegFootLeft`, `LegFootRight`, `NeckCarrier` and `Jaw`, so each printed part engages its servo output directly. Four central retaining screws remain. The fixed upper bill is fused into `FacePanel` as one connected printable solid; the separate upper-bill part, locating keys, screws and nuts are removed.
 
 ## Direct output interfaces
@@ -43,10 +45,10 @@ A single-material face print gives the face and upper bill the same color. Paint
 
 ## Checks and simulation
 
-The [R07 CAD record](validation/r07-cad.json) contains the native/export hashes, printable mesh round trips and detailed checks. The updated [simulation record](validation/r07-camera-approach.json) reports 12 successful image-guided approach episodes across six target placements and two seeds. The viewer provides ground target placement, custom swing/lean/pace/phase/timing, friction and camera-search settings; see [simulation controls](simulation.md).
+The [R07 CAD record](validation/r07-cad.json) contains the native/export hashes, printable mesh round trips and detailed checks. The R07 [simulation record](validation/r07-camera-approach.json) reports 12 successful image-guided approach episodes across six target placements and two seeds. The viewer provides ground target placement, custom swing/lean/pace/phase/timing, friction and camera-search settings; see [simulation controls](simulation.md).
 
 The revised assembly has **14 robot print parts and two coupons**, with **77 assembled records** (75 mechanical and two separate electronics visuals). Complete nominal mass is **248.66 g** and global neutral COM is **(−0.78, 0.72, 58.01) mm**. These estimates include modeled hardware and full-density plastic; they are not measurements of a printed build.
 
 Native interface checks report zero neutral overlap between each direct socket and its matching modeled servo, with all 20 tooth crest/valley samples passing at every output. The nominal 0.06 mm radial profile allowance gives a measured CAD minimum gap of about 0.036 mm normal to the tooth flanks; radial allowance is not the same as surface-normal clearance. These compare the authored mating profiles; they do not establish hardware fit. All 15 sampled nominal assembly paths report zero collisions, including the complete jaw/servo module against the bare head frame. These isolated paths do not establish every installed-neighbor or tool-access sequence. Simulation checks must use the matching regenerated CAD, mass properties and asset hashes. Historical [R06 evidence](r06-simplified-design.md) remains available but does not establish results for R07. Nominal solid, clearance and mesh checks do not qualify the physical spline fit, tooth strength, screw retention or powered operation.
 
-Stable `MicroDuckling_R05_*` CAD download filenames remain for existing links; the source revision and manifest identify the actual R07 geometry. See [assembly](design-and-assembly.md), [measurement worksheet](hardware-measurements.md), [simulation](simulation.md) and the unchanged [direct PWM/shared supply wiring](electronics.md).
+Stable `MicroDuckling_R05_*` CAD download filenames remain for existing links; the source revision and manifest identified the R07 geometry for that revision. See [assembly](design-and-assembly.md), [measurement worksheet](hardware-measurements.md), [simulation](simulation.md) and the unchanged [direct PWM/shared supply wiring](electronics.md).

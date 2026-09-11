@@ -1,10 +1,11 @@
-"""Nominal R07 direct sockets and integral face. Does not certify physical fit."""
+"""Nominal R08 direct sockets and shell-mounted upper mouth. Does not certify physical fit."""
 import hashlib
 import json
 import math
 import FreeCAD as A
 import Part
 from build_paths import BUILD_ROOT
+from upper_mouth_r08 import hex_z
 
 V=A.Vector
 C=BUILD_ROOT/'cad'
@@ -53,20 +54,46 @@ for name,servo,entry,axis,outer_radius in definitions:
     assert all(profile_checks),'Socket must contain real alternating internal tooth surfaces'
     interfaces.append(report)
 face=shapes['FacePanel']; assert len(face.Solids)==1 and face.isValid()
-bill=face.common(Part.makeBox(11,51,2.2,V(29.4,-25.5,86)))
-assert bill.Volume>900
+bill=shapes['UpperMouthBase']; hood=shapes['HeadHood']; jaw=shapes['Jaw']
+assert len(bill.Solids)==1 and bill.isValid()
+assert abs(bill.BoundBox.XMax-jaw.BoundBox.XMax)<1e-5
+assert abs(bill.BoundBox.YLength-jaw.BoundBox.YLength)<1e-5
+assert bill.common(hood).Volume<1e-5
+assert bill.distToShape(face)[0]>.25
+assert face.BoundBox.XMax<31
+mounts=[]
+for side in ['Left','Right']:
+    screw=shapes['UpperMouthScrew'+side]; nut=shapes['UpperMouthNut'+side]
+    seated_area=sum(a.common(b).Area for a in screw.Faces for b in bill.Faces
+                    if isinstance(a.Surface,Part.Cone) and isinstance(b.Surface,Part.Cone))
+    assert screw.common(bill).Volume<1e-5
+    assert seated_area>1, 'Countersunk head must bear on its conical seat'
+    assert abs(screw.BoundBox.ZMin-bill.BoundBox.ZMin)<1e-5
+    assert screw.common(hood).Volume<1e-5
+    assert nut.common(hood).Volume<1e-5
+    y=22 if side=='Left' else -22
+    driver=hex_z(18,y,67,1.3,16.49)
+    tool_intersections={name:driver.common(shapes[name]).Volume for name in ['UpperMouthBase','HeadHood','UpperMouthScrew'+side]}
+    assert max(tool_intersections.values())<1e-5
+    mounts.append(dict(driver_hex_af_mm=1.3,driver_probe_intersections_mm3=tool_intersections,
+                       driver_scope='Straight underside driver on loose hood/base subassembly; jaw, FacePanel, electronics and body absent. Actual tool and handling access unverified.',side=side,fastener='M2x8 countersunk with M2 captive nut',
+                       head_flush=True,head_seat_contact_area_mm2=seated_area,
+                       printed_clearance_hole_mm=2.3,countersink_included_angle_deg=90,head_rim_height_mm=.2,head_total_height_mm=1.2,
+                       register_radial_allowance_mm=.15,register_axial_allowance_mm=.2))
 gaps=[]
 for angle in range(13):
-    jaw=shapes['Jaw'].copy();jaw.rotate(V(-16,0,90),V(0,1,0),angle)
-    gaps.append(dict(jaw_angle_deg=angle,bill_gap_mm=bill.distToShape(jaw)[0],
-                     face_intersection_mm3=face.common(jaw).Volume))
-assert min(row['bill_gap_mm'] for row in gaps)>=4.09
-assert max(row['face_intersection_mm3'] for row in gaps)<1e-5
+    moved=jaw.copy();moved.rotate(V(-16,0,90),V(0,1,0),angle)
+    gaps.append(dict(jaw_angle_deg=angle,bill_gap_mm=bill.distToShape(moved)[0],
+                     base_intersection_mm3=bill.common(moved).Volume))
+assert min(row['bill_gap_mm'] for row in gaps)>=.99
+assert max(row['base_intersection_mm3'] for row in gaps)<1e-5
 result=dict(source_cad_sha256=hashlib.sha256((C/'MicroDuckling_R01.FCStd').read_bytes()).hexdigest(),
             source_assembly_sha256=hashlib.sha256((C/'assembly.json').read_bytes()).hexdigest(),
             fit_status='UNVERIFIED: illustrative radial tooth hypothesis, not a measured manufacturer spline. These tests prove only nominal CAD consistency; printer resolution, actual fits and loaded tooth life need physical tests.',
             retired_parts_absent=True,interfaces=interfaces,
-            integrated_face=dict(single_connected_solid=True,upper_bill_plate_thickness_mm=2.2,
-                                 plate_material_volume_mm3=bill.Volume, jaw_samples=gaps))
+            shell_upper_mouth=dict(separate_connected_print=True,upper_plate_thickness_mm=2.0,
+                front_x_mm=bill.BoundBox.XMax,width_mm=bill.BoundBox.YLength,
+                same_front_and_width_as_jaw=True,face_clearance_mm=bill.distToShape(face)[0],
+                hood_intersection_mm3=bill.common(hood).Volume,mounts=mounts,jaw_samples=gaps))
 (C/'direct_interface_checks.json').write_text(json.dumps(result,indent=2),encoding='utf-8',newline='\n')
 print(json.dumps(result,indent=2))

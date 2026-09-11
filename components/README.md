@@ -1,6 +1,6 @@
 # Separately licensed component visuals
 
-Two assets complete the active R07 viewer: the body IMU and shared 5 V regulator. The PCA9685 and separate logic regulator were removed from the robot. Coordinates are assembly millimetres. Keep each mesh with its record, attribution and license.
+Two assets complete the active R08 viewer: the body IMU and shared 5 V regulator. The PCA9685 and separate logic regulator were removed from the robot. Coordinates are assembly millimetres. Keep each mesh with its record, attribution and license.
 
 | Asset | Representation | License |
 |---|---|---|

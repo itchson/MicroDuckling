@@ -42,16 +42,3 @@ def socket_y(shape, x, y, z, outer_end, head_seat, parameters=None):
                          p['outside_diameter_mm']/2+p['radial_clearance_mm'], .35,
                          V(x,y-.01,z), V(0,1,0))
     return shape.cut(lead).removeSplitter()
-
-
-def integrated_upper_bill(face):
-    """One connected face and flat upper mouth; assembly-global coordinates."""
-    points = [(29.4,-23.6,86),(33,-25,86),(38,-25,86),(40,-23,86),
-              (40,23,86),(38,25,86),(33,25,86),(29.4,23.6,86)]
-    vertices = [V(*p) for p in points]
-    plate = Part.Face(Part.makePolygon(vertices+vertices[:1])).extrude(V(0,0,2.2))
-    # Actual overlap with the face skin creates a continuous load path across its width.
-    result = face.fuse(plate).removeSplitter()
-    if not result.isValid() or len(result.Solids) != 1:
-        raise ValueError('Integrated face/bill must be a single valid connected solid')
-    return result

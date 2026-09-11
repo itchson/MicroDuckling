@@ -1,6 +1,6 @@
 # Direct output-shaft fit experiments
 
-The [R07 canonical design](../../docs/r07-direct-mount-design.md) now puts female spline sockets directly into both legs, the neck carrier and the lower jaw. No projecting horn arms are installed. Its default 20T/4.8 mm major/4.30 mm root profile is provisional until measured against the actual servo batch. The public spline coupon tests that integrated interface; the separate experiment below also explores replaceable hex inserts as a possible future refinement.
+The current design retains the [R07 direct mounts](../../docs/r07-direct-mount-design.md), with female spline sockets built directly into both legs, the neck carrier and the lower jaw. No projecting horn arms are installed. Its default 20T/4.8 mm major/4.30 mm root profile is provisional until measured against the actual servo batch. The public spline coupon tests that integrated interface; the separate experiment below also explores replaceable hex inserts as a possible future refinement.
 
 A confirmed matching metal female insert remains an option if printed teeth cannot carry repeated loads. It is not a required component of the current model. The direct printed sockets have no verified cyclic-torque rating. Retain the four-servo arrangement, neck thrust support and jaw's passive pivot.
 

@@ -7,12 +7,13 @@ import math, json, sys
 from body_r04 import body_solids
 import hardware_r02 as HW
 from direct_mount_r07 import DEFAULTS as SPLINE, spline_y, socket_y
+from upper_mouth_r08 import PARAMETERS as UPPER_MOUTH
 from build_paths import BUILD_ROOT as R
 O=R/'cad'
 for p in [O,O/'meshes',O/'stl',O/'coupons',O/'simulation_meshes']:p.mkdir(parents=True,exist_ok=True)
 V=A.Vector
 P=dict(body_rx=38.,body_ry=39.,body_rz=18.5,body_x=3.,body_z=46.5,wall=1.3,
-       body_dimensions_mm=[76,78,37],design_revision='R07 integrated face bill and direct servo sockets', direct_spline=SPLINE,case_running_clearance=.30,shell_register_clearance=.30,
+       body_dimensions_mm=[76,78,37],design_revision='R08 shell-mounted upper mouth and direct servo sockets', direct_spline=SPLINE,upper_mouth=UPPER_MOUTH,case_running_clearance=.30,shell_register_clearance=.30,
        servo_signal_source='ESP32-CAM GPIO; pin assignment requires firmware review',power_topology='Single shared 5 V regulator for servos and ESP32-CAM',
        hip_z=38.,servo_y=7.,servo_case_l=22.8,servo_case_w=12.4,servo_case_h=28.5,
        shaft_offset_ASSUMED=6.2,shaft_tip_ASSUMED=32.5,
@@ -89,19 +90,6 @@ def add(name,s,link='body',kind='print',color=white,mass=None,note='',components
     if kind in ['print','coupon'] and not mesh.isSolid():raise RuntimeError('OPEN PRINT MESH '+name)
     vs,fs=mesh.Topology
     payload=dict(positions=[round(c,5) for v in vs for c in v],indices=[n for f in fs for n in f])
-    if name=='FacePanel':
-        # Optional painted bill region on the SAME mesh and single printed solid.
-        # Partition original surface triangles once; no overlaid surface geometry.
-        face_triangles=[];bill_triangles=[]
-        for triangle in fs:
-            centroid=sum((vs[index] for index in triangle),V())/3
-            target=bill_triangles if centroid.x>30.2001 and centroid.z<88.21 else face_triangles
-            target.extend(triangle)
-        payload['indices']=face_triangles+bill_triangles
-        payload['materials']=[dict(name='Face print',color=black,roughness=.6,metalness=0),
-                              dict(name='Optional orange bill paint',color=orange,roughness=.6,metalness=0)]
-        payload['groups']=[dict(start=0,count=len(face_triangles),materialIndex=0),
-                           dict(start=len(face_triangles),count=len(bill_triangles),materialIndex=1)]
     if components:
         payload=dict(positions=[],indices=[],materials=[],groups=[])
         for component in components:

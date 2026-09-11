@@ -4,8 +4,8 @@
     "components/meshes/*.json"
   ],
   "geometry_modified": false,
-  "assembled_part_count": 77,
-  "mechanical_part_count": 75,
+  "assembled_part_count": 82,
+  "mechanical_part_count": 80,
   "component_part_count": 2,
   "omitted_components": [],
   "coupons_rendered": false,
@@ -51,7 +51,7 @@
     "BodyShellLeft": "c689c5630c571fd74faf3c7e525a5005a4d2965ab5e4311a5c02d8c8c413c975",
     "BodyShellRight": "95c106237acff497188c2f1d13c9958531cc4827af366e7f88c3e73969152140",
     "NeckCarrier": "8246a72692291f82b3a26f6fce6e0ecc8d776ef35018a83514b997fb993db98a",
-    "FacePanel": "ce4783026dc49071d31ea20e430fccb894e9ed1e4eae6da2c7b3455474b6c36c",
+    "FacePanel": "d2271a345744c6ae48a1ef2ae02a45ae6988aa45c15a0b81ef1eca5d5a340bb6",
     "CameraRing": "192087edae4695e9e2c0e8c5690eca3696a2b06793206985622b98f44b2aa398",
     "ESP32CAM": "8cc5b57ac7516fda4e7755d39cb25019257638a85aec7a39f890a8d1a4e765ad",
     "OV2640Camera": "3c5cb6011c0880d0ae498ce245f399f2d9eed94e02332a625e0ee596903eea16",
@@ -61,7 +61,12 @@
     "OutputSplineMouth": "fc9e95ec94861ec688568044c2f505f07f480d0cc082452366ab741baee8bb2c",
     "HeadFrame": "2ff86c9782383562bcea148629b9498728b27c1df8bd48f2d85d846a87df78d7",
     "Jaw": "6f91f42b42075a117812613142b4baf3ae7fcb8f9d2df2590ce11420d180f452",
-    "HeadHood": "be9bed5f9d1450ee1f72616c289b8f38d18909f35825b367006c23ef3a5c78aa",
+    "UpperMouthBase": "f17d9babdffda1c340f95e4da32a5a403231fc1565dc727ff9b8e19126275908",
+    "UpperMouthScrewLeft": "ca600736ef2ecb30f6800ffbbf305fc8c4d5d1eebf29888caab2409915b04ca0",
+    "UpperMouthNutLeft": "db8f034d9df3e2a1d4bd50c50a7a01b1326e99b6e171235fb38b3ece69ab3100",
+    "UpperMouthScrewRight": "b06859691e7578b8befa8da6239a3e3d7de7263ec1701cbd1efee60873674b11",
+    "UpperMouthNutRight": "a371838ad84fcce5c0b95cfc4ef2d7f03a26156aedd628e93044b38aa5ef1008",
+    "HeadHood": "b0476090ff2b010c10e25bbf41b8730e43bb538d400d9d11f1d11e9bed1d0b87",
     "JawPassivePin": "54ca29546d5cc1fbbfbf74d9eb544ec6b28509626a7fa639319cd26c34aa2106",
     "JawPassiveLocknut": "ee6e37263de8d8dbad5ecbc744d62cf8ff2dfc9fcbf5abc821fccd0a81992c24",
     "MouthShaftScrew": "e29dacb6ccf15d1acdcabe4fa4f50760b9e6e5b24fd6553532a914bfe05b5cc1",
@@ -140,6 +145,11 @@
     "OutputSplineMouth": "cad/meshes/OutputSplineMouth.json",
     "HeadFrame": "cad/meshes/HeadFrame.json",
     "Jaw": "cad/meshes/Jaw.json",
+    "UpperMouthBase": "cad/meshes/UpperMouthBase.json",
+    "UpperMouthScrewLeft": "cad/meshes/UpperMouthScrewLeft.json",
+    "UpperMouthNutLeft": "cad/meshes/UpperMouthNutLeft.json",
+    "UpperMouthScrewRight": "cad/meshes/UpperMouthScrewRight.json",
+    "UpperMouthNutRight": "cad/meshes/UpperMouthNutRight.json",
     "HeadHood": "cad/meshes/HeadHood.json",
     "JawPassivePin": "cad/meshes/JawPassivePin.json",
     "JawPassiveLocknut": "cad/meshes/JawPassiveLocknut.json",
@@ -178,7 +188,7 @@
     "Buck_0": "components/meshes/Buck_0.json"
   },
   "source_manifest_sha256": {
-    "cad/assembly.json": "376eef6f0ad23bf867eec6e36e0cd827cf790bda464e5b2fe46190f1a4a9bda0",
+    "cad/assembly.json": "2494a2a49c3af33f83b5265bfd5df5e68881f98cf5b12f14e2a5d959eaf6bfac",
     "components/records.json": "f9925977f626653d082a1d20251ad04a3c81287f31c86ed4e4f22a8d7e8c612f",
     "components/NOTICE.json": "53e4c2bdef96deb64f090060fbbd8993935c5c9b2266fec3ace95f085833f07b"
   },
@@ -237,6 +247,11 @@
       108,
       0,
       90
+    ],
+    "UpperMouthBase": [
+      115.2,
+      0,
+      21.6
     ],
     "NeckCarrier": [
       0,
@@ -299,7 +314,7 @@
       130.8
     ],
     "CameraRing": [
-      92,
+      116,
       0,
       90
     ],
@@ -403,6 +418,16 @@
       -103.2,
       -14.4
     ],
+    "UpperMouthScrewLeft": [
+      115.2,
+      0,
+      37.6
+    ],
+    "UpperMouthScrewRight": [
+      115.2,
+      0,
+      37.6
+    ],
     "HoodScrew-1": [
       0,
       -14.4,
@@ -464,23 +489,23 @@
       65.15553952776355
     ],
     "FaceScrew-20_102": [
-      108,
-      -16,
+      100,
+      0,
       90
     ],
     "FaceScrew-20_119": [
-      108,
-      -16,
+      100,
+      0,
       90
     ],
     "FaceScrew20_102": [
-      108,
-      16,
+      100,
+      0,
       90
     ],
     "FaceScrew20_119": [
-      108,
-      16,
+      100,
+      0,
       90
     ],
     "Buck_0MountScrew0": [
@@ -567,18 +592,28 @@
       0,
       14.4,
       42.8
+    ],
+    "UpperMouthNutLeft": [
+      130.0070531675994,
+      2.445609382035938,
+      27.14708673470879
+    ],
+    "UpperMouthNutRight": [
+      130.0070531675994,
+      -2.445609382035938,
+      27.14708673470879
     ]
   },
   "exploded_layout": {
     "source": "viewer/lib/explode.ts",
     "source_sha256": {
       "viewer/lib/explode.ts": "5d32a2bf4f7d23ac25a293403eda755a01e50b75388f8166429eb358db6e3e63",
-      "viewer/lib/robot.ts": "8a595f0ba280c7141cc1af67266fc7d95527f5c024d8234d704dd89d0ee94696"
+      "viewer/lib/robot.ts": "2f42ed9695cd9ecc7f104719763831383807f8b44610d6beb40cb65e7cc214a9"
     },
     "amount": 1,
     "gap_mm": 5,
     "joint_angles_deg": {},
-    "part_count": 77
+    "part_count": 82
   },
   "license": "CC-BY-SA-3.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",

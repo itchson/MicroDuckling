@@ -36,13 +36,13 @@ python scripts/fetch_reference_inputs.py --verify
 
 On Linux, use the same script paths with your configured FreeCAD Python interpreter. FreeCAD distribution layouts differ; the import check above is the prerequisite, not an assumed installation path.
 
-Edit parameters and construction logic in `src/build_cad.py`, `src/body_r04.py`, `src/head_r04.py`, `src/electronics_r04.py` and `src/direct_mount_r07.py`. The module suffixes record their introduction; the active `design_revision` is R07. The parameter spreadsheet in the resulting document is a record, not a live parametric rebuild interface.
+Edit parameters and construction logic in `src/build_cad.py`, `src/body_r04.py`, `src/head_r04.py`, `src/electronics_r04.py`, `src/direct_mount_r07.py` and `src/upper_mouth_r08.py`. The module suffixes record their introduction; the active `design_revision` is R08. The parameter spreadsheet in the resulting document is a record, not a live parametric rebuild interface.
 
 The builder writes `build/local/cad/MicroDuckling_R01.FCStd`, `build/local/cad/assembly.json`, part meshes and a print-only STEP. `R01` is a legacy filename; check `design_revision` for the actual revision. The full scene includes locally downloaded electronics. These full assemblies, input files and detailed hardware meshes are intentionally Git-ignored. Published geometry is curated separately; see [license scope](licensing.md). A successful local build does not authorize publishing every generated file.
 
 All CAD checks and simulation tools use the same `build/local/` root. To use a different generated-output directory, set `MICRODUCKLING_BUILD_ROOT` before invoking them. Keep it separate from the repository's public files; in-repository output roots are limited to `build/` or `work/`. The manufacturer input cache remains in the repository's `references/components_r02/`.
 
-To validate and package the 16 current print/coupon meshes locally, then generate a separate public review export:
+To validate and package the 17 current print/coupon meshes locally, then generate a separate public review export:
 
 ```powershell
 python scripts/package_printables.py --source build/local

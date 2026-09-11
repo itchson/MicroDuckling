@@ -12,19 +12,19 @@
 
 MicroDuckling is an independent hobby robot project inspired by [Microduck from Pollen Robotics / Hugging Face](https://pollen-robotics.com/microduck/). The goal is a **small, affordable robot that people can build with printed parts and accessible electronics**, then make better as a community.
 
-The design pairs a big faceted head and a small white body with smooth orange rocker feet. Four MG90S servos move the left leg, right leg, neck and mouth. The fixed upper bill is part of the face print, while the lower jaw opens. Printed-part assembly connections use M2 fasteners. Integrated sockets in the legs, neck carrier and jaw engage the servo output splines directly; their provisional profile still needs qualification against the actual servo batch. A local browser experiment runs rigid-body physics, searches gait patterns and approaches camera-visible targets. **NVIDIA Isaac Sim / Isaac Lab** and useful movements on real hardware remain development goals.
+The design pairs a big faceted head and a small white body with smooth orange rocker feet. Four MG90S servos move the left leg, right leg, neck and mouth. A separate upper-mouth base mounts beneath the front of the head hood, while the lower jaw opens. The face panel is independent of the upper mouth. Printed-part assembly connections use M2 fasteners. Integrated sockets in the legs, neck carrier and jaw engage the servo output splines directly; their provisional profile still needs qualification against the actual servo batch. A local browser experiment runs rigid-body physics, searches gait patterns and approaches camera-visible targets. **NVIDIA Isaac Sim / Isaac Lab** and useful movements on real hardware remain development goals.
 
 **This is an early CAD prototype, not a proven walking kit.** Contributions that uncover a fit problem, reduce cost, simplify assembly or improve the simulation are part of the project’s purpose.
 
-<p align="center"><img src="assets/renders/assembled.png" alt="R07 mechanical design and electronics visuals, assembled three-quarter view" width="880"></p>
-<p align="center"><em>R07 mechanical design with separately licensed electronics visuals. The mascot is an illustration; neither image is a photograph of a working robot.</em></p>
+<p align="center"><img src="assets/renders/assembled.png" alt="R08 mechanical design and electronics visuals, assembled three-quarter view" width="880"></p>
+<p align="center"><em>R08 mechanical design with separately licensed electronics visuals. The mascot is an illustration; neither image is a photograph of a working robot.</em></p>
 
 ## Where it stands
 
 | Area | Current state |
 | --- | --- |
-| Mechanical design | R07: 14 robot print parts, two fit coupons, integrated spline sockets and a one-piece face/upper bill |
-| Size and mass | About 136 mm tall; 249 g estimated complete mass, not measured |
+| Mechanical design | R08: 15 robot print parts, two fit coupons, shell-mounted upper-mouth base and integrated direct servo sockets |
+| Size and mass | About 136 mm tall; 250 g estimated complete mass, not measured |
 | CAD checks | Printable mesh checks and sampled clearance reviews completed on the source design |
 | Physical assembly | Not yet verified with printed parts and the specified hardware |
 | Electronics and firmware | Four direct ESP32-CAM PWM signals and one shared 5 V regulator; I/O source and wiring supplied, hardware application/testing unfinished |
@@ -38,10 +38,10 @@ Australian prices checked on 11 September 2026. The budget alternative uses diff
 
 - **Inspect the design:** open [the mechanical FreeCAD model](cad/MicroDuckling_R05_mechanical.FCStd) or [the printed-part STEP](cad/MicroDuckling_R05_printed.step).
 - **Browse print files:** [STL](cad/stl/) and [3MF](cad/3mf/). Start with the clearance and spline fit coupons and the [hardware measurement checklist](docs/hardware-measurements.md); a full print is not yet qualified.
-- **Understand the assembly:** read the [assembly review](docs/design-and-assembly.md) and [R07 changes](docs/r07-direct-mount-design.md).
+- **Understand the assembly:** read the [assembly review](docs/design-and-assembly.md) and [R08 changes](docs/r08-upper-mouth-design.md).
 - **Work on simulation:** start with the [simulation guide](docs/simulation.md) and [roadmap](ROADMAP.md).
 
-The viewer includes **77 assembly records plus two fit coupons**: 75 mechanical records and two separately supplied component visuals. The four horn arms and separate upper-bill fasteners are absent from R07. The IMU adapts an Adafruit PCB under CC BY-SA 3.0; the shared regulator is an original approximation. The PCA9685 and second regulator were removed. Native mechanical CAD and printed-part STEP stay separate, while mass accounts for the complete intended robot. See [license scope](docs/licensing.md) and [direct wiring](docs/electronics.md).
+The viewer includes **82 assembly records plus two fit coupons**: 80 mechanical records and two separately supplied component visuals. R08 retains direct servo sockets without horn arms; its upper-mouth base mounts to the head shell using M2 fasteners. The IMU adapts an Adafruit PCB under CC BY-SA 3.0; the shared regulator is an original approximation. The PCA9685 and second regulator were removed. Native mechanical CAD and printed-part STEP stay separate, while mass accounts for the complete intended robot. See [license scope](docs/licensing.md) and [direct wiring](docs/electronics.md).
 
 ### Run the CAD viewer locally
 

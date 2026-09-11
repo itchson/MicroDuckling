@@ -1,6 +1,6 @@
 # Engineering review
 
-**R07 is the active CAD prototype.** See [R07 changes](r07-direct-mount-design.md) for the integrated face/upper bill and direct spline sockets. The historical R05 evidence below does not describe the new assembly. No physical assembly, electrical load/thermal test, Isaac runtime execution or hardware gait is reported. Browser physics and policy-search experiments do not establish those results. The following summarizes the original R05 engineering checks and distinguishes them from checks of the public export.
+**R08 is the active CAD prototype.** See [R08 changes](r08-upper-mouth-design.md) for the separate shell-mounted upper-mouth base; direct spline sockets are retained. The historical R05 evidence below does not describe the new assembly. No physical assembly, electrical load/thermal test, Isaac runtime execution or hardware gait is reported. Browser physics and policy-search experiments do not establish those results. The following summarizes the original R05 engineering checks and distinguishes them from checks of the public export.
 
 ## Original detailed CAD review
 

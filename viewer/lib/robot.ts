@@ -74,6 +74,7 @@ export function separation(p:Part):T.Vector3 {
   if(p.link==='left_leg')return new T.Vector3(0,44,-8);
   if(p.link==='right_leg')return new T.Vector3(0,-44,-8);
   if(p.link==='jaw')return new T.Vector3(36,0,34);
+  if(p.name.startsWith('UpperMouth'))return new T.Vector3(64,0,12);
   if(p.name==='HeadHood')return new T.Vector3(-10,0,90);
   if(['FacePanel','CameraRing'].includes(p.name)||p.name.startsWith('FaceScrew'))return new T.Vector3(60,0,50);
   if(p.name==='OV2640Camera')return new T.Vector3(82,0,55);
@@ -91,7 +92,7 @@ export function separation(p:Part):T.Vector3 {
   return new T.Vector3();
 }
 export const isPrintable=(p:Part)=>p.kind==='print'||p.kind==='coupon';
-export const isShell=(p:Part)=>p.name.startsWith('BodyShell')||['HeadHood','FacePanel','CameraRing','Jaw'].includes(p.name)||['BodyScrew','BodyNut','HoodScrew','FaceScrew'].some(prefix=>p.name.startsWith(prefix));
+export const isShell=(p:Part)=>p.name.startsWith('BodyShell')||['HeadHood','FacePanel','CameraRing','UpperMouthBase','Jaw'].includes(p.name)||['BodyScrew','BodyNut','HoodScrew','FaceScrew','UpperMouth'].some(prefix=>p.name.startsWith(prefix));
 export function isVisible(p:Part,view:{mode:Mode;hidden:string[];onlyPrint:boolean;internals:boolean}) {
   return !view.hidden.includes(p.name)&&(!view.onlyPrint||isPrintable(p))&&(!view.internals||!isShell(p))&&(view.mode==='grid'?isPrintable(p):p.kind!=='coupon');
 }

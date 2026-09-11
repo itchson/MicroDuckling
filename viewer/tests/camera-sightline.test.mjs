@@ -11,8 +11,9 @@ test('assembled lens sightline reaches all three target positions through the ac
     const mesh=new T.Mesh(geometry,new T.MeshBasicMaterial({side:T.FrontSide}));mesh.name=part.name;mesh.updateMatrixWorld(true);return mesh;
   });
   try{
-    assert.equal(meshes.length,77);
-    assert.ok(meshes.every(mesh=>!mesh.name.includes('Horn')&&!mesh.name.startsWith('UpperBill')),'Integrated design must not retain horn arms or a separate upper bill');
+    assert.equal(meshes.length,82);
+    assert.ok(meshes.every(mesh=>!mesh.name.includes('Horn')&&!mesh.name.startsWith('UpperBill')),'Design must not retain horn arms or the retired upper-bill mounting');
+    assert.equal(data.parts.find(part=>part.name==='UpperMouthBase')?.link,'head','Upper mouth base moves with the top shell');
     for(const [name,link] of [['OutputSplineLeft','left_leg'],['OutputSplineRight','right_leg'],['OutputSplineNeck','head'],['OutputSplineMouth','jaw']]){
       assert.equal(data.parts.find(part=>part.name===name)?.link,link,'Output teeth must rotate with their driven socket');
     }

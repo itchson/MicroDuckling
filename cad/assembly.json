@@ -11,7 +11,7 @@
       78,
       37
     ],
-    "design_revision": "R07 integrated face bill and direct servo sockets",
+    "design_revision": "R08 shell-mounted upper mouth and direct servo sockets",
     "direct_spline": {
       "teeth": 20,
       "outside_diameter_mm": 4.8,
@@ -19,6 +19,28 @@
       "radial_clearance_mm": 0.06,
       "socket_depth_mm": 3.8,
       "fit_status": "UNVERIFIED illustrative radial tooth profile; measure actual servo batch"
+    },
+    "upper_mouth": {
+      "front_x": 36.0,
+      "rear_x": 14.5,
+      "width": 54.0,
+      "bottom_z": 82.9,
+      "plate_thickness": 2.0,
+      "corner_radius": 5.0,
+      "mount_x": 18.0,
+      "mount_y": 22.0,
+      "register_radius": 2.6,
+      "register_height": 1.2,
+      "register_radial_clearance": 0.15,
+      "register_end_clearance": 0.2,
+      "screw_clearance_diameter": 2.3,
+      "nut_pocket_af": 4.2,
+      "nut_af": 4.0,
+      "nut_bottom_z": 87.5,
+      "screw_length": 8.0,
+      "head_rim_height": 0.2,
+      "head_cone_height": 1.0,
+      "closed_lip_gap": 1.0
     },
     "case_running_clearance": 0.3,
     "shell_register_clearance": 0.3,
@@ -696,19 +718,19 @@
       "link": "head",
       "kind": "print",
       "color": "#25282b",
-      "mass_g": 5.412994355233511,
+      "mass_g": 4.094555990732471,
       "com_mm": [
-        30.33301322021645,
-        3.7840710149695695e-15,
-        102.80211193443289
+        28.80242576464496,
+        -1.688099427769852e-15,
+        107.85835970073376
       ],
-      "volume_mm3": 4365.318028414122,
+      "volume_mm3": 3302.0612828487665,
       "dimensions_mm": [
-        16.0,
-        50.0,
+        6.200000000000006,
+        49.0,
         48.8
       ],
-      "note": "One connected printed face and flat upper mouth. Full-width fused 2.2 mm plate replaces the separate keyed bill, front screws and captive nuts. Four original rear face screws remain. Orange display region denotes optional paint on the same print. Nominal closed-jaw gap 4.10 mm; actual print fit unverified."
+      "note": "Independent registered camera face, attached by four original rear face screws. Upper mouth is a separate base attached to HeadHood, with no FacePanel mounting interface."
     },
     {
       "name": "CameraRing",
@@ -914,24 +936,124 @@
       "note": "54 mm hinged beak with integrated direct spline hub and opposite passive pivot. Illustrative unverified 20-tooth 4.8/4.30 mm profile, 0.06 mm radial allowance, 3.5 mm nominal shaft overlap. Axial screw retains hub; no horn arm or arm screws. Physical fit, tooth strength and opening require bench testing."
     },
     {
+      "name": "UpperMouthBase",
+      "object_name": "UpperMouthBase",
+      "link": "head",
+      "kind": "print",
+      "color": "#f87712",
+      "mass_g": 2.320624985822159,
+      "com_mm": [
+        26.919166010985474,
+        -1.1086380407684416e-15,
+        83.93876161563747
+      ],
+      "volume_mm3": 1871.4717627598056,
+      "dimensions_mm": [
+        21.5,
+        54.0,
+        3.2000000000000313
+      ],
+      "note": "Separate 54 mm-wide upper mouth base, front X36 mm matching the lower jaw, 2 mm plate. Two registered posts seat beneath the front HeadHood rim with 0.15 mm radial and 0.2 mm axial allowance. Flush M2x8 countersunk screws retain captive M2 nuts in the hood. No attachment to FacePanel. Nominal closed lip gap 1.0 mm; physical fit unverified."
+    },
+    {
+      "name": "UpperMouthScrewLeft",
+      "object_name": "UpperMouthScrewLeft",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        17.999999999999993,
+        22.000000000000004,
+        86.28306612807575
+      ],
+      "volume_mm3": 30.32833726622122,
+      "dimensions_mm": [
+        4.0,
+        4.0,
+        8.0
+      ],
+      "note": "Nominal M2x8 countersunk screw driven from underside before jaw installation."
+    },
+    {
+      "name": "UpperMouthNutLeft",
+      "object_name": "UpperMouthNutLeft",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.1,
+      "com_mm": [
+        18.0,
+        22.0,
+        88.30000000000001
+      ],
+      "volume_mm3": 18.538569229331827,
+      "dimensions_mm": [
+        4.618802153517008,
+        4.0,
+        1.5999999999999943
+      ],
+      "note": "Nominal M2 hex nut in 4.2 mm AF hood pocket; load through open front before FacePanel and electronics."
+    },
+    {
+      "name": "UpperMouthScrewRight",
+      "object_name": "UpperMouthScrewRight",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        17.999999999999993,
+        -21.999999999999996,
+        86.28306612807575
+      ],
+      "volume_mm3": 30.32833726622122,
+      "dimensions_mm": [
+        4.0,
+        4.0,
+        8.0
+      ],
+      "note": "Nominal M2x8 countersunk screw driven from underside before jaw installation."
+    },
+    {
+      "name": "UpperMouthNutRight",
+      "object_name": "UpperMouthNutRight",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.1,
+      "com_mm": [
+        18.0,
+        -22.0,
+        88.30000000000001
+      ],
+      "volume_mm3": 18.538569229331827,
+      "dimensions_mm": [
+        4.618802153517008,
+        4.0,
+        1.5999999999999943
+      ],
+      "note": "Nominal M2 hex nut in 4.2 mm AF hood pocket; load through open front before FacePanel and electronics."
+    },
+    {
       "name": "HeadHood",
       "object_name": "HeadHood",
       "link": "head",
       "kind": "print",
       "color": "#eee9df",
-      "mass_g": 17.940053068066515,
+      "mass_g": 18.152836871790633,
       "com_mm": [
-        -5.3453982631302726,
-        1.0460476235661664e-13,
-        117.1406240887849
+        -5.082363416046065,
+        3.54820353904576e-14,
+        116.79931156503235
       ],
-      "volume_mm3": 14467.784732311706,
+      "volume_mm3": 14639.384574024703,
       "dimensions_mm": [
         64.0,
         52.0,
         52.0
       ],
-      "note": "52mm frontal width,64mm depth,52mm height. Faceted roof, matching pivot reliefs,0.8mm outside/0.4mm inside edge rolls, ribs and registered camera face. Rear face-screw ports and removable side screws."
+      "note": "52mm frontal width,64mm depth,52mm height. Front underside bosses and captive M2 nut pockets retain registered UpperMouthBase. Faceted roof, matching pivot reliefs,0.8mm outside/0.4mm inside edge rolls, ribs and registered camera face. Rear face-screw ports and removable side screws."
     },
     {
       "name": "JawPassivePin",
@@ -1634,11 +1756,11 @@
       "note": "MG90S body windows0.30/0.45mm per side; clearance holes2.1/2.2/2.3/2.4mm; pilot sizing holes1.6/1.7/1.8mm. Thin coupon checks diameter only, engagement strength requires representative-depth sample."
     }
   ],
-  "mass_g": 248.66451976431432,
+  "mass_g": 250.33949018935954,
   "com_mm": [
-    -0.7793694255751039,
-    0.7215982187744582,
-    58.0137697159922
+    -0.6617977229315737,
+    0.7167701523982762,
+    58.1799732757289
   ],
   "status": "ENGINEERING PROTOTYPE - hardware fit and walking unverified",
   "public_preview": {
@@ -1653,10 +1775,10 @@
     "mass_estimates_note": "mass_g and com_mm retain the complete physical assembly estimates, including omitted boards; they are not totals of the public preview meshes.",
     "native_file": "MicroDuckling_R05_mechanical.FCStd",
     "printed_step_file": "MicroDuckling_R05_printed.step",
-    "native_sha256": "3d59fa5f7288b1d2c4510b38fd9c930a68245addeac0fe54912ff083580a773a",
-    "source_cad_sha256": "17b99033089d89afdc286bdb62c34ef949b9b0605b4e2c1970973a0934e19fcc",
-    "source_assembly_sha256": "bc3902b9297c82400a112ec02cc24b47cd1c6bcc019c32e04703e054f3a85f0b",
-    "assembled_part_count": 75,
+    "native_sha256": "f25c336da394748d3040c58e4e149a4fb2a127c99ab1815ffc41a653f653918d",
+    "source_cad_sha256": "a1a6c8a7332c9530263d75288a925779abc95bf7812bcf1e36d3bd767c2bd87c",
+    "source_assembly_sha256": "4aecf2274e325f6484389ed223b3215790a9468c99cf9b4813eba05a0f032ede",
+    "assembled_part_count": 80,
     "coupon_count": 2
   }
 }
