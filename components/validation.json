@@ -1,0 +1,82 @@
+{
+  "parts": [
+    {
+      "name": "IMU",
+      "vertices": 15284,
+      "triangles": 30372,
+      "material_groups": 16,
+      "bbox_mm": [
+        -30.4,
+        -12.7,
+        54.165,
+        -12.62,
+        12.7,
+        58.8
+      ],
+      "complete_material_coverage": true,
+      "mass_estimate_preserved": true,
+      "com_estimate_preserved": true
+    },
+    {
+      "name": "ServoController",
+      "vertices": 51248,
+      "triangles": 102252,
+      "material_groups": 27,
+      "bbox_mm": [
+        24.0,
+        -31.115,
+        31.4,
+        37.1,
+        31.115,
+        56.8
+      ],
+      "complete_material_coverage": true,
+      "mass_estimate_preserved": true,
+      "com_estimate_preserved": true
+    },
+    {
+      "name": "Buck_0",
+      "vertices": 6822,
+      "triangles": 13492,
+      "material_groups": 59,
+      "bbox_mm": [
+        4.305,
+        10.0,
+        44.8,
+        13.1,
+        30.32,
+        62.58
+      ],
+      "complete_material_coverage": true,
+      "mass_estimate_preserved": true,
+      "com_estimate_preserved": true
+    },
+    {
+      "name": "Buck_1",
+      "vertices": 5116,
+      "triangles": 10080,
+      "material_groups": 56,
+      "bbox_mm": [
+        -4.0,
+        -30.0,
+        46.96,
+        8.7,
+        -12.22,
+        50.55
+      ],
+      "complete_material_coverage": true,
+      "mass_estimate_preserved": true,
+      "com_estimate_preserved": true
+    }
+  ],
+  "part_count": 4,
+  "pololu_step_or_prior_mesh_used": false,
+  "adafruit_meshes_byte_identical_to_reviewed_source": true,
+  "private_path_scan_passed": true,
+  "visual_review": {
+    "file": "review/electronics.png",
+    "inspected": true,
+    "result": "All four board models render correctly with separate material groups; no missing geometry or unexpected branding visible."
+  },
+  "status": "complete"
+}

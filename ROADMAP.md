@@ -9,6 +9,7 @@ This is a sequence of learning and validation stages, not a schedule. Work can o
 - Four MG90S joints, 14 robot print parts and two fit coupons.
 - Approximately 257 g estimated total mass; this is not a measured build weight.
 - CAD, mesh, sampled motion and assembly-access checks, plus a static simulation scaffold and tests.
+- A local browser physics experiment, bounded gait search and synthetic-camera controller experiments; useful walking and object approach remain unproven.
 - No qualified physical assembly, completed firmware, Isaac Sim runtime or training result, or demonstrated physical walking.
 
 The [engineering review](docs/engineering-review.md) and [R05 notes](docs/r05-assembly-refinement.md) describe the current checks and exclusions. The following stages describe work still needed.
@@ -49,7 +50,7 @@ Implement and document controller setup, joint calibration, bounded position com
 
 Confirm a supported Isaac Sim / Isaac Lab setup, import the robot, inspect joints and collisions, and exercise physics before training. Compare the model with measured mass, actuator and contact behavior. Run small training experiments, then evaluate across seeds and held-out parameters with recorded configurations and metrics.
 
-**Useful outcome:** a reproducible runtime and training workflow, with logs distinguishing import checks, diagnostic motion and learned behavior. Successful static tests are the starting point; there is no trained policy yet.
+**Useful outcome:** a reproducible Isaac runtime and training workflow, with logs distinguishing import checks, diagnostic motion and learned behavior. The browser parameter search is an early experiment; there is no trained Isaac policy yet.
 
 **Ways to help:** simulation integration, reinforcement learning, system identification and experiment documentation. Start with the [simulation notes](docs/simulation.md), including their version and runtime limitations.
 

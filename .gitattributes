@@ -7,3 +7,6 @@
 *.step text eol=lf -diff
 cad/** linguist-generated=true
 cad/meshes/*.json -diff
+components/meshes/*.json -text -diff
+# Upstream notices keep their exact bytes and intentional whitespace.
+/components/licenses/** -text -whitespace

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "name": "IMU",
+      "license": "CC-BY-SA-3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "author": "Limor Fried/Ladyada for Adafruit Industries",
+      "title": "Adafruit LSM6DS3TR-C 6-DoF Accel + Gyro IMU - STEMMA QT / Qwiic PCB",
+      "source_url": "https://github.com/adafruit/Adafruit-LSM6DS3TR-C-PCB",
+      "source_board_file": "Adafruit_LSM6DS3.brd",
+      "source_board_sha256": "7a51838fd1cd4c5454fbd59fff928d67bd5fff31385b1db71daac461e2c5344d",
+      "adaptation_author": "MicroDuckling contributors",
+      "adaptation_changes": "Adapted Eagle board outlines, holes, pads and package positions into colored 3D meshes; generic component heights and fitted connectors were added; meshes placed rigidly in the MicroDuckling assembly. Not manufacturer mechanical CAD.",
+      "upstream_notice_directory": "licenses/adafruit-lsm6ds3",
+      "mesh_path": "meshes/IMU.json",
+      "mesh_sha256": "4b9656a745dd9f5b203613328225bdcfdeba0d17921295b886b27a67e68e5104"
+    },
+    {
+      "name": "ServoController",
+      "license": "CC-BY-SA-3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "author": "Limor Fried/Ladyada for Adafruit Industries",
+      "title": "Adafruit 16-Channel PWM Servo Driver PCB Eagle Files",
+      "source_url": "https://github.com/adafruit/Adafruit-16-Channel-PWM-Servo-Driver-PCB",
+      "source_board_file": "Adafruit PCA9685 rev C.brd",
+      "source_board_sha256": "803e6388dd025d2ef9312a7fbe731b7fd5edbd495ca3e93b6ade830a58212da0",
+      "adaptation_author": "MicroDuckling contributors",
+      "adaptation_changes": "Adapted Eagle board outlines, holes, pads and package positions into colored 3D meshes; generic component heights and fitted connectors were added; meshes placed rigidly in the MicroDuckling assembly. Not manufacturer mechanical CAD.",
+      "upstream_notice_directory": "licenses/adafruit-pca9685",
+      "mesh_path": "meshes/ServoController.json",
+      "mesh_sha256": "ee636c00c8cf86c226f37f94070d62a11657188a3c7dda6427c9155381fc978c"
+    },
+    {
+      "name": "Buck_0",
+      "license": "Apache-2.0",
+      "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+      "author": "MicroDuckling contributors",
+      "title": "Original visual approximation of Pololu D24V50F5",
+      "source_urls_for_facts_and_visual_reference": [
+        "https://www.pololu.com/product/2851",
+        "https://www.pololu.com/file/0J1436/d24v50f5-step-down-voltage-regulator-dimensions.pdf",
+        "https://www.pololu.com/product/2851/pictures"
+      ],
+      "creation_method": "Independent hand-authored boxes, cylinders, chamfered polygons, holes and generic component leads; no Pololu STEP/old mesh read or derivative geometry",
+      "trademark_note": "Product names identify the represented hardware; no manufacturer endorsement or copied branding is implied.",
+      "mesh_path": "meshes/Buck_0.json",
+      "mesh_sha256": "985c7d88c75c66ec079526a34ee9fbabee0dca1cd368d744fc2aeb8b6a96228b"
+    },
+    {
+      "name": "Buck_1",
+      "license": "Apache-2.0",
+      "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+      "author": "MicroDuckling contributors",
+      "title": "Original visual approximation of Pololu D24V10F5",
+      "source_urls_for_facts_and_visual_reference": [
+        "https://www.pololu.com/product/2831/specs",
+        "https://www.pololu.com/product/2831/pictures"
+      ],
+      "creation_method": "Independent hand-authored boxes, cylinders, chamfered polygons, holes and generic component leads; no Pololu STEP/old mesh read or derivative geometry",
+      "trademark_note": "Product names identify the represented hardware; no manufacturer endorsement or copied branding is implied.",
+      "mesh_path": "meshes/Buck_1.json",
+      "mesh_sha256": "ff35a396aba55edd0b22fa24aa62d78ccba88f975d664e549c555b4699679279"
+    }
+  ],
+  "collection_note": "Individual asset licenses apply. Adafruit mesh adaptations remain CC-BY-SA-3.0. Original Pololu approximations and this generator are Apache-2.0; no license is asserted over the represented commercial hardware."
+}

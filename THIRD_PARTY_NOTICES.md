@@ -10,9 +10,24 @@ The [Microduck runtime](https://github.com/pollen-robotics/microduck) and [train
 
 React, Three.js, Base UI, Lucide, Tailwind CSS and other installed dependencies retain their respective licenses. The package manifests and lockfile identify the dependency versions; their packages supply the applicable notices.
 
+The browser physics module uses `@dimforge/rapier3d-compat` 0.20.0, the official JavaScript/WebAssembly bindings for [Rapier](https://github.com/dimforge/rapier). The installed package and [upstream license](https://github.com/dimforge/rapier/blob/master/LICENSE) identify Apache-2.0. It is installed through npm, not copied into this repository as vendored source. Preserve applicable dependency notices when distributing built viewer bundles.
+
+## Included electronics visuals and renders
+
+`components/meshes/IMU.json` adapts **Adafruit LSM6DS3TR-C 6-DoF Accel + Gyro IMU - STEMMA QT / Qwiic PCB**; `components/meshes/ServoController.json` adapts **Adafruit 16-Channel PWM Servo Driver PCB Eagle Files**. Both original designs are by **Limor Fried/Ladyada for Adafruit Industries** and both mesh adaptations retain **CC-BY-SA-3.0**. MicroDuckling contributors converted Eagle outlines, holes, pads and package positions to colored 3D meshes, added approximate heights and fitted connectors, and placed the boards in the assembly. These are not manufacturer mechanical CAD.
+
+Source titles, URLs, board hashes, mesh hashes and changes are recorded in [components/NOTICE.json](components/NOTICE.json). The complete upstream notices are included without replacing their hardware-specific terms:
+
+- [LSM6DS3TR-C README](components/licenses/adafruit-lsm6ds3/README.md), [CC hardware license](components/licenses/adafruit-lsm6ds3/license.txt), and [additional upstream MIT notice](components/licenses/adafruit-lsm6ds3/LICENSE).
+- [PCA9685 README](components/licenses/adafruit-pca9685/README.md) and [CC hardware license](components/licenses/adafruit-pca9685/license.txt).
+
+`components/meshes/Buck_0.json` and `Buck_1.json` are **Apache-2.0 original visual approximations by MicroDuckling contributors** of the Pololu D24V50F5 and D24V10F5. Published dimensions and photographs informed generic geometry. No manufacturer STEP, prior regulator mesh, photograph, drawing image, logo or silkscreen is included. Product names identify represented hardware and do not imply endorsement or a license over that hardware.
+
+Electronics-inclusive assembled/exploded renders and their derivative thumbnails are released as composite artwork under [CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/). Attribution: **MicroDuckling contributors — robot design, mesh adaptations and rendering; Limor Fried/Ladyada for Adafruit Industries — original IMU and PCA9685 PCB designs**, with source details in the component notice above. Keep this attribution and license with redistributed images. See [render provenance](assets/renders/render_provenance.json) for asset inputs. The separately identified [AI-generated mascot](assets/brand/PROVENANCE.md) and independent mechanical source remain under the project's Apache-2.0 terms.
+
 ## Downloaded component references
 
-The CAD source can load the following manufacturer files for local engineering review. Those inputs and their detailed derived geometry are not included in the public repository. Their licenses are not replaced by MicroDuckling's Apache license.
+The CAD source can load the following manufacturer files for local engineering review. The original downloaded inputs remain outside the public repository; the separately licensed Adafruit adaptations are included as described above. Pololu STEP-derived meshes remain excluded. The project's Apache license does not replace upstream terms.
 
 | Component | Source | Terms and attribution |
 |---|---|---|
@@ -23,6 +38,6 @@ The CAD source can load the following manufacturer files for local engineering r
 | Ai-Thinker ESP32-CAM | [Manufacturer datasheet mirrored by LCSC](https://datasheet.lcsc.com/lcsc/Ai-Thinker-ESP32-CAM-C277946.pdf) | Nominal dimensions inform a project-created approximate representation; the PDF and its illustrations are not distributed here. |
 | ESP32-CAM pin mapping | [Espressif camera example](https://github.com/espressif/arduino-esp32/blob/master/libraries/ESP32/examples/Camera/CameraWebServer/camera_pins.h) | Reference link; the complete example header is not included. |
 
-The [input manifest](references/inputs.json) records download URLs, SHA-256 hashes and upstream notice files. The fetch script saves notices alongside each downloaded input. Adafruit's board-derived representations preserve the hardware license: extracting XY features, adding approximate heights and applying rigid placement do not make them solely Apache-licensed. Preserve complete upstream READMEs, licenses, creator attribution and change descriptions when redistributing those assets.
+The [input manifest](references/inputs.json) records download URLs, SHA-256 hashes and upstream notice files. The fetch script also saves notices alongside each local input. Preserve complete upstream READMEs, licenses, creator attribution and change descriptions when redistributing the Adafruit adaptations. Their inclusion in the viewer does not change the license of the separate printed-part exports.
 
 FreeCAD, NumPy, trimesh, Isaac Lab, Isaac Sim and their dependencies are installed separately. Isaac Lab v2.3.2 uses [BSD-3-Clause](https://github.com/isaac-sim/IsaacLab/blob/v2.3.2/LICENSE). The simulation scaffold uses its APIs and invokes its installed training scripts; it does not bundle those packages.

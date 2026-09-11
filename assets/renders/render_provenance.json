@@ -1,19 +1,19 @@
 {
-  "geometry_source": "cad/meshes/*.json",
-  "geometry_modified": false,
-  "assembled_part_count": 87,
-  "omitted_components": [
-    "Buck_0",
-    "Buck_1",
-    "IMU",
-    "ServoController"
+  "geometry_source": [
+    "cad/meshes/*.json",
+    "components/meshes/*.json"
   ],
+  "geometry_modified": false,
+  "assembled_part_count": 91,
+  "mechanical_part_count": 87,
+  "component_part_count": 4,
+  "omitted_components": [],
   "coupons_rendered": false,
   "engine": "Blender Cycles OptiX",
   "samples": 64,
   "resolution": [
-    1800,
-    1600
+    2400,
+    2000
   ],
   "renders": [
     "assembled.png",
@@ -106,443 +106,583 @@
     "HipMountScrew-1_1": "1048fe665c4433046b45b48766488f8158d77643fa04502b8593ba00d91e159f",
     "HarnessBody": "c38665f50c1a91627ddd7095f5a46adbeb0d3dbbc5b12ff39136e0f70ddafbfd",
     "HarnessHead": "e3cb20e9ef082b9007c9b69c66410fe103306b00ba8fa802023c1c6a1bc4273a",
-    "HarnessCameraRibbon": "8a26b0e225d13d841f57b54be8760d175d529115df59f01405dad479f48021fd"
+    "HarnessCameraRibbon": "8a26b0e225d13d841f57b54be8760d175d529115df59f01405dad479f48021fd",
+    "IMU": "4b9656a745dd9f5b203613328225bdcfdeba0d17921295b886b27a67e68e5104",
+    "ServoController": "ee636c00c8cf86c226f37f94070d62a11657188a3c7dda6427c9155381fc978c",
+    "Buck_0": "985c7d88c75c66ec079526a34ee9fbabee0dca1cd368d744fc2aeb8b6a96228b",
+    "Buck_1": "ff35a396aba55edd0b22fa24aa62d78ccba88f975d664e549c555b4699679279"
+  },
+  "mesh_paths": {
+    "ServoLeft": "cad/meshes/ServoLeft.json",
+    "ServoRight": "cad/meshes/ServoRight.json",
+    "ServoNeck": "cad/meshes/ServoNeck.json",
+    "Battery": "cad/meshes/Battery.json",
+    "FixedNeckSupport": "cad/meshes/FixedNeckSupport.json",
+    "ThrustShim": "cad/meshes/ThrustShim.json",
+    "ServoControllerMountScrew0": "cad/meshes/ServoControllerMountScrew0.json",
+    "ServoControllerMountScrew1": "cad/meshes/ServoControllerMountScrew1.json",
+    "ServoControllerMountScrew2": "cad/meshes/ServoControllerMountScrew2.json",
+    "ServoControllerMountScrew3": "cad/meshes/ServoControllerMountScrew3.json",
+    "Buck_0MountScrew0": "cad/meshes/Buck_0MountScrew0.json",
+    "Buck_0MountScrew1": "cad/meshes/Buck_0MountScrew1.json",
+    "Chassis": "cad/meshes/Chassis.json",
+    "BatteryStrap": "cad/meshes/BatteryStrap.json",
+    "BatteryPad": "cad/meshes/BatteryPad.json",
+    "LegFootLeft": "cad/meshes/LegFootLeft.json",
+    "TreadLeft": "cad/meshes/TreadLeft.json",
+    "HornLeft": "cad/meshes/HornLeft.json",
+    "HornScrewLeft0": "cad/meshes/HornScrewLeft0.json",
+    "HornScrewLeft1": "cad/meshes/HornScrewLeft1.json",
+    "ShaftScrewLeft": "cad/meshes/ShaftScrewLeft.json",
+    "LegFootRight": "cad/meshes/LegFootRight.json",
+    "TreadRight": "cad/meshes/TreadRight.json",
+    "HornRight": "cad/meshes/HornRight.json",
+    "HornScrewRight0": "cad/meshes/HornScrewRight0.json",
+    "HornScrewRight1": "cad/meshes/HornScrewRight1.json",
+    "ShaftScrewRight": "cad/meshes/ShaftScrewRight.json",
+    "BodyScrew-261": "cad/meshes/BodyScrew-261.json",
+    "BodyNut-261": "cad/meshes/BodyNut-261.json",
+    "BodyScrew-26-1": "cad/meshes/BodyScrew-26-1.json",
+    "BodyNut-26-1": "cad/meshes/BodyNut-26-1.json",
+    "BodyScrew171": "cad/meshes/BodyScrew171.json",
+    "BodyNut171": "cad/meshes/BodyNut171.json",
+    "BodyScrew17-1": "cad/meshes/BodyScrew17-1.json",
+    "BodyNut17-1": "cad/meshes/BodyNut17-1.json",
+    "BodyShellLeft": "cad/meshes/BodyShellLeft.json",
+    "BodyShellRight": "cad/meshes/BodyShellRight.json",
+    "NeckCarrier": "cad/meshes/NeckCarrier.json",
+    "NeckHorn": "cad/meshes/NeckHorn.json",
+    "FacePanel": "cad/meshes/FacePanel.json",
+    "CameraRing": "cad/meshes/CameraRing.json",
+    "ESP32CAM": "cad/meshes/ESP32CAM.json",
+    "OV2640Camera": "cad/meshes/OV2640Camera.json",
+    "CameraBoardClamp": "cad/meshes/CameraBoardClamp.json",
+    "CameraCradle": "cad/meshes/CameraCradle.json",
+    "ServoMouth": "cad/meshes/ServoMouth.json",
+    "HeadFrame": "cad/meshes/HeadFrame.json",
+    "Jaw": "cad/meshes/Jaw.json",
+    "MouthHorn": "cad/meshes/MouthHorn.json",
+    "HeadHood": "cad/meshes/HeadHood.json",
+    "JawPassivePin": "cad/meshes/JawPassivePin.json",
+    "JawPassiveLocknut": "cad/meshes/JawPassiveLocknut.json",
+    "MouthHornScrew-15": "cad/meshes/MouthHornScrew-15.json",
+    "MouthHornScrew-11": "cad/meshes/MouthHornScrew-11.json",
+    "MouthShaftScrew": "cad/meshes/MouthShaftScrew.json",
+    "HoodScrew1": "cad/meshes/HoodScrew1.json",
+    "HoodScrew-1": "cad/meshes/HoodScrew-1.json",
+    "CameraClampScrew-15": "cad/meshes/CameraClampScrew-15.json",
+    "CameraClampScrew15": "cad/meshes/CameraClampScrew15.json",
+    "CameraCradleScrew-12": "cad/meshes/CameraCradleScrew-12.json",
+    "CameraCradleScrew12": "cad/meshes/CameraCradleScrew12.json",
+    "MouthMountScrew0": "cad/meshes/MouthMountScrew0.json",
+    "MouthMountNut0": "cad/meshes/MouthMountNut0.json",
+    "MouthMountScrew1": "cad/meshes/MouthMountScrew1.json",
+    "MouthMountNut1": "cad/meshes/MouthMountNut1.json",
+    "FaceScrew-20_102": "cad/meshes/FaceScrew-20_102.json",
+    "FaceScrew-20_119": "cad/meshes/FaceScrew-20_119.json",
+    "FaceScrew20_102": "cad/meshes/FaceScrew20_102.json",
+    "FaceScrew20_119": "cad/meshes/FaceScrew20_119.json",
+    "IMUMountScrew0": "cad/meshes/IMUMountScrew0.json",
+    "IMUMountScrew1": "cad/meshes/IMUMountScrew1.json",
+    "HeadFrameScrew-13": "cad/meshes/HeadFrameScrew-13.json",
+    "HeadFrameScrew13": "cad/meshes/HeadFrameScrew13.json",
+    "NeckHornScrew-7": "cad/meshes/NeckHornScrew-7.json",
+    "NeckHornScrew-11": "cad/meshes/NeckHornScrew-11.json",
+    "NeckMountScrew-8.649999999999999": "cad/meshes/NeckMountScrew-8.649999999999999.json",
+    "NeckMountScrew19.05": "cad/meshes/NeckMountScrew19.05.json",
+    "NeckSupportScrew-12": "cad/meshes/NeckSupportScrew-12.json",
+    "NeckSupportScrew12": "cad/meshes/NeckSupportScrew12.json",
+    "NeckShaftScrew": "cad/meshes/NeckShaftScrew.json",
+    "HipMountScrew1_0": "cad/meshes/HipMountScrew1_0.json",
+    "HipMountScrew1_1": "cad/meshes/HipMountScrew1_1.json",
+    "HipMountScrew-1_0": "cad/meshes/HipMountScrew-1_0.json",
+    "HipMountScrew-1_1": "cad/meshes/HipMountScrew-1_1.json",
+    "HarnessBody": "cad/meshes/HarnessBody.json",
+    "HarnessHead": "cad/meshes/HarnessHead.json",
+    "HarnessCameraRibbon": "cad/meshes/HarnessCameraRibbon.json",
+    "IMU": "components/meshes/IMU.json",
+    "ServoController": "components/meshes/ServoController.json",
+    "Buck_0": "components/meshes/Buck_0.json",
+    "Buck_1": "components/meshes/Buck_1.json"
+  },
+  "source_manifest_sha256": {
+    "cad/assembly.json": "f5f96f838c2969f9c5884e52866edcc66ff2bdfcff4ff4130ac4e97ae9bca792",
+    "components/records.json": "0a6fc4a84b2550e12563930bc4c21387253ac11528ffe1c67863f442cec89ced",
+    "components/NOTICE.json": "5d84135a8680b01139b1c3db4f55924c829a2a878b581c506cada8db8ea59dbd"
   },
   "exploded_translation_mm": {
-    "ServoLeft": [
+    "LegFootLeft": [
       0,
-      0,
-      0
+      79.2,
+      -14.4
     ],
-    "ServoRight": [
+    "LegFootRight": [
       0,
-      0,
-      0
+      -79.2,
+      -14.4
     ],
-    "ServoNeck": [
+    "HeadHood": [
+      -18,
       0,
-      0,
-      0
-    ],
-    "Battery": [
-      0,
-      0,
-      0
-    ],
-    "FixedNeckSupport": [
-      0,
-      0,
-      10
-    ],
-    "ThrustShim": [
-      0,
-      0,
-      0
-    ],
-    "ServoControllerMountScrew0": [
-      0,
-      0,
-      0
-    ],
-    "ServoControllerMountScrew1": [
-      0,
-      0,
-      0
-    ],
-    "ServoControllerMountScrew2": [
-      0,
-      0,
-      0
-    ],
-    "ServoControllerMountScrew3": [
-      0,
-      0,
-      0
-    ],
-    "Buck_0MountScrew0": [
-      0,
-      0,
-      0
-    ],
-    "Buck_0MountScrew1": [
-      0,
-      0,
-      0
+      162
     ],
     "Chassis": [
       0,
       0,
       0
     ],
-    "BatteryStrap": [
-      0,
-      0,
-      0
-    ],
-    "BatteryPad": [
-      0,
-      0,
-      0
-    ],
-    "LegFootLeft": [
-      0,
-      25,
-      0
-    ],
-    "TreadLeft": [
-      0,
-      25,
-      0
-    ],
-    "HornLeft": [
-      0,
-      25,
-      0
-    ],
-    "HornScrewLeft0": [
-      0,
-      25,
-      0
-    ],
-    "HornScrewLeft1": [
-      0,
-      25,
-      0
-    ],
-    "ShaftScrewLeft": [
-      0,
-      25,
-      0
-    ],
-    "LegFootRight": [
-      0,
-      -25,
-      0
-    ],
-    "TreadRight": [
-      0,
-      -25,
-      0
-    ],
-    "HornRight": [
-      0,
-      -25,
-      0
-    ],
-    "HornScrewRight0": [
-      0,
-      -25,
-      0
-    ],
-    "HornScrewRight1": [
-      0,
-      -25,
-      0
-    ],
-    "ShaftScrewRight": [
-      0,
-      -25,
-      0
-    ],
-    "BodyScrew-261": [
-      0,
-      48,
-      0
-    ],
-    "BodyNut-261": [
-      0,
-      48,
-      0
-    ],
-    "BodyScrew-26-1": [
-      0,
-      -48,
-      0
-    ],
-    "BodyNut-26-1": [
-      0,
-      -48,
-      0
-    ],
-    "BodyScrew171": [
-      0,
-      48,
-      0
-    ],
-    "BodyNut171": [
-      0,
-      48,
-      0
-    ],
-    "BodyScrew17-1": [
-      0,
-      -48,
-      0
-    ],
-    "BodyNut17-1": [
-      0,
-      -48,
-      0
-    ],
     "BodyShellLeft": [
       0,
-      48,
-      0
+      104.4,
+      16
     ],
     "BodyShellRight": [
       0,
-      -48,
-      0
+      -104.4,
+      16
     ],
-    "NeckCarrier": [
+    "TreadLeft": [
       0,
-      0,
-      22
+      79.2,
+      -30.4
     ],
-    "NeckHorn": [
+    "TreadRight": [
       0,
-      0,
-      22
-    ],
-    "FacePanel": [
-      58,
-      0,
-      42
-    ],
-    "CameraRing": [
-      79,
-      0,
-      42
-    ],
-    "ESP32CAM": [
-      0,
-      0,
-      42
-    ],
-    "OV2640Camera": [
-      0,
-      0,
-      42
-    ],
-    "CameraBoardClamp": [
-      0,
-      0,
-      42
-    ],
-    "CameraCradle": [
-      0,
-      0,
-      42
-    ],
-    "ServoMouth": [
-      0,
-      0,
-      42
+      -79.2,
+      -30.4
     ],
     "HeadFrame": [
       0,
       0,
-      42
+      82.8
     ],
     "Jaw": [
-      31,
+      64.8,
       0,
-      20
+      61.2
+    ],
+    "FacePanel": [
+      108,
+      0,
+      90
+    ],
+    "ServoController": [
+      126,
+      0,
+      18
+    ],
+    "FixedNeckSupport": [
+      0,
+      0,
+      43.2
+    ],
+    "NeckCarrier": [
+      0,
+      0,
+      74.8
+    ],
+    "Battery": [
+      -79.2,
+      0,
+      0
+    ],
+    "ESP32CAM": [
+      46.800000000000004,
+      -68.4,
+      122.4
+    ],
+    "BatteryStrap": [
+      -25.2,
+      32.4,
+      7.2
+    ],
+    "BatteryPad": [
+      -41.2,
+      0,
+      7.2
+    ],
+    "ServoLeft": [
+      0,
+      43.2,
+      8
+    ],
+    "ServoMouth": [
+      0,
+      46.4,
+      82.8
+    ],
+    "ServoNeck": [
+      32,
+      0,
+      43.2
+    ],
+    "ServoRight": [
+      0,
+      -43.2,
+      8
+    ],
+    "ThrustShim": [
+      0,
+      0,
+      51.2
+    ],
+    "HarnessHead": [
+      0,
+      14.4,
+      130.8
+    ],
+    "CameraRing": [
+      116,
+      0,
+      90
+    ],
+    "HarnessBody": [
+      -11.810311837219361,
+      36.78738953658296,
+      10.353960855215904
+    ],
+    "CameraCradle": [
+      86.4,
+      0,
+      122.4
+    ],
+    "CameraBoardClamp": [
+      64.8,
+      -43.2,
+      147.6
+    ],
+    "IMU": [
+      -16,
+      0,
+      43.2
+    ],
+    "Buck_0": [
+      -21.6,
+      62,
+      117
+    ],
+    "HornLeft": [
+      0,
+      101.81945129850286,
+      -22.422494808640124
+    ],
+    "HornRight": [
+      0,
+      -101.81945129850286,
+      -22.422494808640124
     ],
     "MouthHorn": [
-      31,
-      0,
-      20
+      64.8,
+      16,
+      61.2
     ],
-    "HeadHood": [
-      -26,
+    "NeckHorn": [
       0,
-      88
+      0,
+      58.8
     ],
-    "JawPassivePin": [
-      0,
-      0,
-      42
-    ],
-    "JawPassiveLocknut": [
-      0,
-      0,
-      42
-    ],
-    "MouthHornScrew-15": [
-      31,
-      0,
-      20
-    ],
-    "MouthHornScrew-11": [
-      31,
-      0,
-      20
-    ],
-    "MouthShaftScrew": [
-      31,
-      0,
-      20
-    ],
-    "HoodScrew1": [
-      -26,
-      0,
-      88
-    ],
-    "HoodScrew-1": [
-      -26,
-      0,
-      88
-    ],
-    "CameraClampScrew-15": [
-      0,
-      0,
-      42
-    ],
-    "CameraClampScrew15": [
-      0,
-      0,
-      42
-    ],
-    "CameraCradleScrew-12": [
-      0,
-      0,
-      42
-    ],
-    "CameraCradleScrew12": [
-      0,
-      0,
-      42
-    ],
-    "MouthMountScrew0": [
-      0,
-      0,
-      42
-    ],
-    "MouthMountNut0": [
-      0,
-      0,
-      42
-    ],
-    "MouthMountScrew1": [
-      0,
-      0,
-      42
-    ],
-    "MouthMountNut1": [
-      0,
-      0,
-      42
-    ],
-    "FaceScrew-20_102": [
-      58,
-      0,
-      42
-    ],
-    "FaceScrew-20_119": [
-      58,
-      0,
-      42
-    ],
-    "FaceScrew20_102": [
-      58,
-      0,
-      42
-    ],
-    "FaceScrew20_119": [
-      58,
-      0,
-      42
-    ],
-    "IMUMountScrew0": [
-      0,
-      0,
-      0
-    ],
-    "IMUMountScrew1": [
-      0,
-      0,
-      0
+    "Buck_1": [
+      0.7790606324172483,
+      -138.81828619558968,
+      -3.7278880049072183
     ],
     "HeadFrameScrew-13": [
       0,
-      0,
-      42
+      -22.4,
+      82.8
     ],
     "HeadFrameScrew13": [
+      1.3811199136518335,
+      21.96853712681205,
+      113.86138685802973
+    ],
+    "HarnessCameraRibbon": [
+      16,
       0,
+      82.8
+    ],
+    "OV2640Camera": [
+      147.6,
       0,
-      42
+      99
+    ],
+    "JawPassivePin": [
+      0,
+      -14.4,
+      82.8
+    ],
+    "BodyScrew-26-1": [
+      -25.2,
+      -32.4,
+      7.2
+    ],
+    "BodyScrew-261": [
+      -25.2,
+      32.4,
+      7.2
+    ],
+    "BodyScrew17-1": [
+      25.2,
+      -32.4,
+      7.2
+    ],
+    "BodyScrew171": [
+      25.2,
+      32.4,
+      7.2
+    ],
+    "MouthMountScrew1": [
+      32,
+      14.4,
+      82.8
+    ],
+    "MouthMountScrew0": [
+      -16,
+      14.4,
+      82.8
+    ],
+    "NeckHornScrew-11": [
+      -32,
+      0,
+      82.8
     ],
     "NeckHornScrew-7": [
       0,
-      0,
-      22
+      -32,
+      82.8
     ],
-    "NeckHornScrew-11": [
+    "HoodScrew-1": [
       0,
-      0,
-      22
+      -14.4,
+      82.8
+    ],
+    "HoodScrew1": [
+      -1.494776243021614,
+      16.67803899436494,
+      90.32171405488477
+    ],
+    "HipMountScrew-1_0": [
+      -25.2,
+      -32.4,
+      7.2
+    ],
+    "HipMountScrew1_0": [
+      -25.2,
+      32.4,
+      7.2
+    ],
+    "HipMountScrew-1_1": [
+      25.2,
+      -32.4,
+      7.2
+    ],
+    "HipMountScrew1_1": [
+      25.2,
+      32.4,
+      7.2
+    ],
+    "CameraClampScrew-15": [
+      64.8,
+      -43.2,
+      139.6
+    ],
+    "CameraClampScrew15": [
+      64.8,
+      -43.2,
+      139.6
+    ],
+    "IMUMountScrew0": [
+      -25.2,
+      -32.4,
+      7.2
+    ],
+    "IMUMountScrew1": [
+      -25.2,
+      32.4,
+      7.2
     ],
     "NeckMountScrew-8.649999999999999": [
       0,
-      0,
-      0
+      24,
+      43.2
     ],
     "NeckMountScrew19.05": [
       0,
+      24,
+      43.2
+    ],
+    "FaceScrew-20_102": [
+      100,
       0,
-      0
+      90
+    ],
+    "FaceScrew-20_119": [
+      100,
+      0,
+      90
+    ],
+    "FaceScrew20_102": [
+      100,
+      0,
+      90
+    ],
+    "FaceScrew20_119": [
+      100,
+      0,
+      90
+    ],
+    "Buck_0MountScrew0": [
+      -21.6,
+      54,
+      101
+    ],
+    "Buck_0MountScrew1": [
+      -22.583382940147434,
+      63.155530521422946,
+      130.08469406842667
+    ],
+    "CameraCradleScrew-12": [
+      86.4,
+      0,
+      138.4
+    ],
+    "CameraCradleScrew12": [
+      86.4,
+      0,
+      138.4
+    ],
+    "ServoControllerMountScrew0": [
+      126,
+      0,
+      34
+    ],
+    "ServoControllerMountScrew2": [
+      126,
+      0,
+      34
+    ],
+    "ServoControllerMountScrew1": [
+      110,
+      0,
+      18
+    ],
+    "ServoControllerMountScrew3": [
+      110,
+      0,
+      18
+    ],
+    "MouthShaftScrew": [
+      64.8,
+      0,
+      77.2
+    ],
+    "ShaftScrewLeft": [
+      0,
+      117.47775537976776,
+      -26.010919131862885
+    ],
+    "ShaftScrewRight": [
+      0,
+      -117.47775537976776,
+      -26.010919131862885
+    ],
+    "NeckShaftScrew": [
+      0,
+      32,
+      82.8
     ],
     "NeckSupportScrew-12": [
       0,
-      0,
-      10
+      -16,
+      43.2
     ],
     "NeckSupportScrew12": [
       0,
       0,
-      10
+      27.200000000000003
     ],
-    "NeckShaftScrew": [
+    "HornScrewLeft0": [
       0,
-      0,
-      22
+      109.05640262809736,
+      -25.914999874465536
     ],
-    "HipMountScrew1_0": [
+    "HornScrewLeft1": [
       0,
-      0,
-      0
+      124.46081579780201,
+      -30.383070835025283
     ],
-    "HipMountScrew1_1": [
+    "HornScrewRight0": [
       0,
-      0,
-      0
+      -109.05640262809736,
+      -25.914999874465536
     ],
-    "HipMountScrew-1_0": [
+    "HornScrewRight1": [
       0,
-      0,
-      0
+      -124.46081579780201,
+      -30.383070835025283
     ],
-    "HipMountScrew-1_1": [
+    "MouthHornScrew-11": [
+      64.8,
       0,
-      0,
-      0
+      77.2
     ],
-    "HarnessBody": [
-      0,
-      0,
-      0
+    "MouthHornScrew-15": [
+      77.04082535298474,
+      5.089375415577884,
+      81.20651025434064
     ],
-    "HarnessHead": [
-      0,
-      0,
-      42
+    "JawPassiveLocknut": [
+      -16,
+      -14.4,
+      82.8
     ],
-    "HarnessCameraRibbon": [
+    "BodyNut-26-1": [
+      -35.66639675699679,
+      -44.50177125027753,
+      7.24088436233202
+    ],
+    "BodyNut-261": [
+      -35.66639675699679,
+      44.50177125027753,
+      7.24088436233202
+    ],
+    "BodyNut17-1": [
+      25.2,
+      -32.4,
+      23.2
+    ],
+    "BodyNut171": [
+      25.2,
+      32.4,
+      23.2
+    ],
+    "MouthMountNut0": [
+      -32,
+      14.4,
+      82.8
+    ],
+    "MouthMountNut1": [
       0,
-      0,
-      42
+      14.4,
+      42.8
     ]
+  },
+  "exploded_layout": {
+    "source": "viewer/lib/explode.ts",
+    "source_sha256": {
+      "viewer/lib/explode.ts": "5d32a2bf4f7d23ac25a293403eda755a01e50b75388f8166429eb358db6e3e63",
+      "viewer/lib/robot.ts": "b45222a9ceffe1a08a8931f9aa36dd1d57b6ce7d637c3cdd2b30b0ce09476bb6"
+    },
+    "amount": 1,
+    "gap_mm": 5,
+    "joint_angles_deg": {},
+    "part_count": 91
+  },
+  "license": "CC-BY-SA-3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "attribution": {
+    "notice": "components/NOTICE.json",
+    "original_designers": "Limor Fried/Ladyada for Adafruit Industries",
+    "adaptation_credit": "MicroDuckling contributors; colored 3D adaptations and scene rendering"
   }
 }

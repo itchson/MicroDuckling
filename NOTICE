@@ -8,3 +8,16 @@ MicroDuckling is not affiliated with or endorsed by those organizations.
 Original project material is provided under the Apache License 2.0.
 Third-party material retains its own license. See THIRD_PARTY_NOTICES.md
 and docs/licensing.md for the license scope and component provenance.
+
+Adafruit IMU and PCA9685 board mesh adaptations retain CC-BY-SA-3.0.
+Original PCB designs: Limor Fried/Ladyada for Adafruit Industries.
+3D adaptations and placement: MicroDuckling contributors.
+Source attribution, changes and upstream notices: components/NOTICE.json
+and components/licenses/.
+
+Electronics-inclusive assembled/exploded renders and their thumbnails
+are CC-BY-SA-3.0 composite artwork, with the above Adafruit attribution
+and credit to MicroDuckling contributors for the robot and rendering.
+Independent mechanical source and the separately identified AI-generated
+mascot remain offered under Apache-2.0. The original regulator visual
+approximations are Apache-2.0 and contain no Pololu STEP geometry.

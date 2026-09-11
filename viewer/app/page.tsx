@@ -1,6 +1,6 @@
 "use client";
 
-import {useEffect,useRef,useState} from 'react';
+import {lazy,Suspense,useEffect,useMemo,useRef,useState} from 'react';
 
 import * as T from 'three';
 
@@ -14,20 +14,18 @@ import {Button} from '@/components/ui/button';
 
 import {DownloadLink} from '@/components/download-link';
 import {updateCameraClipping} from '@/lib/robot';
-import {Box,Boxes,Grid2X2,RotateCcw,Download,Eye,EyeOff,Focus,Layers3} from 'lucide-react';
+import {explodedLayout} from '@/lib/explode';
+import {PartsTree} from '@/components/parts-tree';
+import {Box,Grid2X2,RotateCcw,Download,Focus,Layers3,PanelLeft,FlaskConical} from 'lucide-react';
 
-import {type Assembly,type Mode,type Part,type CadMeshData,createCadMesh,highlightCadMesh,disposeCadMesh,friendlyName,jointMatrix,separation,isPrintable,isShell,isVisible,gridMatrix,validateViewRequest} from '@/lib/robot';
-
-
+import {type Assembly,type Mode,type Part,type CadMeshData,createCadMesh,highlightCadMesh,disposeCadMesh,friendlyName,jointMatrix,isPrintable,isShell,isVisible,gridMatrix,validateViewRequest} from '@/lib/robot';
 
 type Engine={scene:T.Scene; camera:T.PerspectiveCamera; controls:OrbitControls; renderer:T.WebGLRenderer; meshes:Map<string,T.Mesh>; grid:T.GridHelper; bounds:T.Box3; updateBounds:()=>void; fit:()=>void};
-const groups:Record<string,string>={body:'Body & electronics',left_leg:'Left leg',right_leg:'Right leg',head:'Head & neck',jaw:'Mouth'};
 
-const modes:{id:Mode;label:string;Icon:typeof Box}[]=[{id:'assembly',label:'Assembled',Icon:Box},{id:'explode',label:'Exploded',Icon:Boxes},{id:'grid',label:'Parts grid',Icon:Grid2X2}];
+const modes:{id:Mode;label:string;Icon:typeof Box}[]=[{id:'assembly',label:'Model',Icon:Box},{id:'grid',label:'Print parts',Icon:Grid2X2}];
 
 const initialAngles={left_hip:0,right_hip:0,neck_yaw:0,jaw_pitch:0};
-
-
+const SimulationWorkspace=lazy(()=>import('@/components/simulation-workspace').then(module=>({default:module.SimulationWorkspace})));
 
 export default function Home(){
 
@@ -35,7 +33,7 @@ export default function Home(){
 
   const [data,setData]=useState<Assembly|null>(null),[status,setStatus]=useState('Loading MicroDuckling…');
 
-  const [mode,setMode]=useState<Mode>('assembly'),[amount,setAmount]=useState(65);
+  const [mode,setMode]=useState<Mode>('assembly'),[amount,setAmount]=useState(0);
 
   const [angles,setAngles]=useState<Record<string,number>>({...initialAngles});
 
@@ -43,9 +41,11 @@ export default function Home(){
 
   const [onlyPrint,setOnlyPrint]=useState(false),[internals,setInternals]=useState(false);
 
+  const [partsOpen,setPartsOpen]=useState(false);
+  const [simulation,setSimulation]=useState(false);
+  const [simulationLoaded,setSimulationLoaded]=useState(false);
   const part=data?.parts.find(p=>p.name===selected);
-
-
+  const layout=useMemo(()=>data?explodedLayout(data,angles):new Map<string,T.Vector3>(),[data,angles]);
 
   useEffect(()=>{
 
@@ -121,12 +121,10 @@ export default function Home(){
 
     }catch(err){if(!disposed)setStatus(err instanceof Error?err.message:'Unable to load CAD');}})();
 
-    const draw=()=>{controls.update();updateCameraClipping(camera,e.bounds);renderer.render(scene,camera);frame=requestAnimationFrame(draw)};draw();
+    const draw=()=>{if(mount.clientWidth){controls.update();updateCameraClipping(camera,e.bounds);renderer.render(scene,camera);}frame=requestAnimationFrame(draw)};draw();
     return()=>{disposed=true;abort.abort();cancelAnimationFrame(frame);observer.disconnect();controls.dispose();e.meshes.forEach(disposeCadMesh);grid.geometry.dispose();(grid.material as T.Material).dispose();renderer.dispose();mount.removeChild(renderer.domElement);engine.current=null;};
 
   },[]);
-
-
 
   useEffect(()=>{
 
@@ -150,7 +148,7 @@ export default function Home(){
 
         if(p.joint)transform=jointMatrix(p.joint,data.joints,angles);
 
-        if(mode==='explode'){const v=separation(p).multiplyScalar(amount/100);transform.premultiply(new T.Matrix4().makeTranslation(v.x,v.y,v.z));}
+        if(mode==='explode'){const v=(layout.get(p.name)??new T.Vector3()).clone().multiplyScalar(amount/100);transform.premultiply(new T.Matrix4().makeTranslation(v.x,v.y,v.z));}
 
       }
 
@@ -159,9 +157,9 @@ export default function Home(){
       highlightCadMesh(m,p.name===selected);
     });
     e.updateBounds();
-  },[data,mode,amount,angles,hidden,onlyPrint,internals,selected]);
+  },[data,mode,amount,angles,hidden,onlyPrint,internals,selected,layout]);
 
-  useEffect(()=>{const id=setTimeout(()=>engine.current?.fit(),70);return()=>clearTimeout(id)},[mode,data,onlyPrint,internals]);
+  useEffect(()=>{const id=setTimeout(()=>engine.current?.fit(),70);return()=>clearTimeout(id)},[mode,data,onlyPrint,internals,amount]);
 
   const toggle=(name:string)=>{
 
@@ -175,13 +173,11 @@ export default function Home(){
 
   const select=(p:Part)=>{setSelected(p.name);setHidden(h=>h.filter(n=>n!==p.name));if(isShell(p))setInternals(false);if(!isPrintable(p))setOnlyPrint(false);if(p.kind==='coupon')setMode('grid');};
 
-  const reset=()=>{setMode('assembly');setAngles({...initialAngles});setAmount(65);setHidden([]);setSelected(null);setOnlyPrint(false);setInternals(false);setTimeout(()=>engine.current?.fit(),80)};
+  const reset=()=>{setSimulation(false);setMode('assembly');setAngles({...initialAngles});setAmount(0);setHidden([]);setSelected(null);setOnlyPrint(false);setInternals(false);setTimeout(()=>engine.current?.fit(),80)};
 
   const isolate=()=>{if(!data||!part)return;setInternals(false);setOnlyPrint(false);setHidden(data.parts.filter(p=>p.name!==part.name).map(p=>p.name));setTimeout(()=>engine.current?.fit(),70)};
 
   const visibleParts=data?.parts.filter(p=>(!onlyPrint||isPrintable(p))&&(mode!=='grid'||isPrintable(p)))??[];
-
-
 
   useEffect(()=>{
 
@@ -204,6 +200,7 @@ export default function Home(){
       execute:async input=>{
 
         const q=validateViewRequest(input,data);
+        setSimulation(false);
 
         if(q.mode){setMode(q.mode);setHidden([]);setInternals(false);setSelected(null);}
 
@@ -225,42 +222,22 @@ export default function Home(){
 
   },[data]);
 
-
-
   return <main className="cad-app">
 
-    <header className="topbar"><div className="brand"><img className="brand-logo" src="/brand/microduckling-mascot.png" alt=""/><div><strong>MicroDuckling</strong><span>Public mechanical preview · {data?.revision??'CAD'}</span></div></div>
-      <nav aria-label="Model view">{modes.map(({id,label,Icon})=><Button key={id} variant={mode===id?'default':'ghost'} aria-pressed={mode===id} onClick={()=>{setMode(id);setInternals(false);setHidden([]);setSelected(null)}}><Icon size={17}/>{label}</Button>)}</nav>
+    <header className="topbar"><div className="brand"><img className="brand-logo" src="/brand/microduckling-mascot.png" alt=""/><div><strong>MicroDuckling</strong><span>R05 prototype · {data?.revision??'CAD'}</span></div></div>
+      <nav aria-label="Workspace">{modes.map(({id,label,Icon})=><Button key={id} variant={!simulation&&(mode===id||(id==='assembly'&&mode==='explode'))?'default':'ghost'} aria-pressed={!simulation&&(mode===id||(id==='assembly'&&mode==='explode'))} onClick={()=>{setSimulation(false);setMode(id==='assembly'&&amount>0?'explode':id);setInternals(false);setHidden([]);setSelected(null)}}><Icon size={17}/>{label}</Button>)}<Button variant={simulation?'default':'ghost'} aria-pressed={simulation} disabled={!data} onClick={()=>{setSimulationLoaded(true);setSimulation(true)}}><FlaskConical size={17}/>Simulation</Button></nav>
 
-      <Button variant="outline" onClick={reset}><RotateCcw size={16}/>Reset</Button>
+      <div className="header-actions">{!simulation&&<><Button variant="outline" aria-expanded={partsOpen} aria-controls="parts-panel" onClick={()=>setPartsOpen(v=>!v)}><PanelLeft size={16}/>Parts</Button><Button variant="outline" onClick={reset}><RotateCcw size={16}/>Reset</Button></>}<a href="https://github.com/itchson/MicroDuckling" target="_blank" rel="noreferrer">GitHub ↗</a></div>
 
     </header>
 
-    <section className="workspace">
+    <section style={simulation?{display:'none'}:undefined} className={`workspace ${partsOpen?'parts-open':'parts-closed'}`}>
 
-      <aside className="parts-panel" aria-label="Assembly parts">
-
-        <div className="panel-heading"><h2>Parts</h2><span>{data?.parts.filter(p=>p.kind==='print').length??'—'} printed</span></div>
-
-        <label className="filter"><Checkbox checked={onlyPrint} onCheckedChange={v=>setOnlyPrint(!!v)}/>Printed parts & coupons</label>
-
-        <div className="part-list">{Object.entries(groups).map(([id,label])=>{
-
-          const items=visibleParts.filter(p=>p.link===id);if(!items.length)return null;
-
-          return <div className="part-group" key={id}><h3>{label}</h3>{items.map(p=><div key={p.name} className={`part-row ${selected===p.name?'active':''}`}>
-
-            <button className="eye-button" aria-label={`${isVisible(p,{mode,hidden,onlyPrint,internals})?'Hide':'Show'} ${p.label}`} onClick={()=>toggle(p.name)}>{isVisible(p,{mode,hidden,onlyPrint,internals})?<Eye size={16}/>:<EyeOff size={16}/>}</button>
-
-            <button className="part-select" aria-pressed={selected===p.name} title={p.label} onClick={()=>select(p)}><i style={{background:p.color}}/><span>{p.label}</span>{p.kind==='coupon'&&<small>FIT</small>}</button>
-
-          </div>)}</div>;
-
-        })}</div>
-
-        <div className="sidebar-footer"><DownloadLink href="/downloads/MicroDuckling_R05_printed.step" download><Download size={16}/>Printed parts STEP</DownloadLink><DownloadLink href="/downloads/MicroDuckling_R05_mechanical.FCStd" download>FreeCAD model</DownloadLink><a href="https://github.com/itchson/MicroDuckling" target="_blank" rel="noreferrer">Project on GitHub ↗</a></div>
-
-      </aside>
+      {partsOpen&&<aside id="parts-panel" className="parts-panel" aria-label="Assembly parts">
+        <div className="panel-heading"><h2>Assembly</h2><span>{data?.parts.filter(p=>p.kind!=='coupon').length??'—'} components</span></div>
+        <label className="filter"><Checkbox checked={onlyPrint} onCheckedChange={v=>setOnlyPrint(!!v)}/>Printed parts only</label>
+        <div className="part-list"><PartsTree parts={visibleParts} selected={selected} visible={p=>isVisible(p,{mode,hidden,onlyPrint,internals})} onSelect={select} onToggle={toggle}/></div>
+      </aside>}
 
       <div className="viewport-wrap"><div className="viewport" ref={host}/>{status&&<div className="loading" role="status">{status}<a href="/renders/assembled.png" target="_blank" rel="noreferrer">Open CAD render ↗</a></div>}
 
@@ -268,23 +245,25 @@ export default function Home(){
 
         <div className="view-tools"><Button variant="secondary" onClick={()=>engine.current?.fit()}><Focus size={16}/>Fit</Button><Button variant="secondary" disabled={!part} onClick={isolate}>Isolate</Button><Button variant="secondary" onClick={()=>{setHidden([]);setInternals(false);setOnlyPrint(false)}}>Show all</Button>{mode!=='grid'&&<Button variant={internals?'default':'secondary'} aria-pressed={internals} onClick={()=>setInternals(v=>!v)}><Layers3 size={16}/>Inside</Button>}</div>
 
-        <div className="model-status"><span className="badge">Fit prototype</span><span>{data?`${data.mass_g.toFixed(0)} g estimated · 136 mm tall`:'Four MG90S servos'}</span><p>{mode==='grid'?'Part inspection layout. Choose print orientation and supports in your slicer.':'Complete robot mass estimate. Four supplier board models omitted; fit and walking untested.'}</p></div>
+        <div className="model-status"><span className="badge">Fit prototype</span><span>{data?`${data.mass_g.toFixed(0)} g estimated · 136 mm tall`:'Four MG90S servos'}</span><p>{mode==='grid'?'Part inspection layout. Choose print orientation and supports in your slicer.':'Estimated assembled mass · physical build unverified.'}</p></div>
 
       </div>
 
       <aside className="controls-panel" aria-label="Model controls">
 
-        {mode==='explode'&&<section><h2>Part separation</h2><div className="slider-line"><Slider aria-label="Part separation" min={0} max={100} step={1} value={[amount]} onValueChange={v=>setAmount(Array.isArray(v)?v[0]:v)}/><output>{amount}%</output></div></section>}
+        {mode!=='grid'&&<section><div className="section-heading"><h2>Assembly</h2><span>{amount===0?'Assembled':`${amount}% exploded`}</span></div><div className="slider-line"><Slider aria-label="Part separation" min={0} max={100} step={1} value={[amount]} onValueChange={v=>{const value=Array.isArray(v)?v[0]:v;setAmount(value);setMode(value===0?'assembly':'explode')}}/><output>{amount}%</output></div><p className="help">At 100%, every component has a separate space. The transition illustrates disassembly.</p></section>}
 
         {mode!=='grid'&&<section><h2>Four servo joints</h2>{data&&Object.entries(data.joints).map(([id,j])=><div className="joint" key={id}><div><label>{j.label}</label><output>{angles[id]??0}°</output></div><Slider aria-label={j.label} min={j.limits[0]} max={j.limits[1]} step={1} value={[angles[id]??0]} onValueChange={v=>setAngles(a=>({...a,[id]:Array.isArray(v)?v[0]:v}))}/></div>)}<p className="help">Pose the CAD within its proposed travel. These controls do not run a walking simulation.</p></section>}
 
         <section className="part-detail"><h2>{part?'Selected part':'Part details'}</h2>{part?<><h3>{part.label}</h3><span className="badge">{part.kind==='print'?'Printed part':part.kind==='coupon'?'Fit coupon':part.kind==='tread'?'Traction layer':part.kind==='harness'?'Illustrative cable route':'Purchased component'}</span><dl><div><dt>Dimensions</dt><dd>{[0,1,2].map(i=>(part.bbox[i+3]-part.bbox[i]).toFixed(1)).join(' × ')} mm</dd></div>{part.pcb_dimensions_mm&&<div><dt>PCB outline</dt><dd>{part.pcb_dimensions_mm.slice(0,2).map(v=>v.toFixed(2)).join(' × ')} mm</dd></div>}<div><dt>Est. mass</dt><dd>{part.mass_g.toFixed(2)} g</dd></div></dl><p className="help">{part.note}</p>{isPrintable(part)&&<div className="downloads">{Object.entries(part.downloads).map(([format,url])=><DownloadLink key={format} href={url} download><Download size={15}/>{format.toUpperCase()}</DownloadLink>)}</div>}</>:<p className="help">Choose a component in the model or parts list to inspect its dimensions and download its files.</p>}</section>
 
-        <div className="report-links"><h2>Project files</h2><p className="public-note">This preview includes the original mechanical parts. Supplier CAD for the servo driver, IMU and two regulators is omitted; the physical design still requires them.</p>{[['r05-assembly-refinement','Latest design changes'],['parts-research','Parts list & cost estimate'],['design-and-assembly','Assembly review'],['hardware-measurements','Fit measurements'],['engineering-review','Engineering review'],['simulation','Isaac Sim roadmap'],['licensing','Licensing & omitted geometry']].map(([file,label])=><DownloadLink key={file} href={`/downloads/reports/${file}.md`} target="_blank" rel="noreferrer">{label} ↗</DownloadLink>)}<DownloadLink href="/renders/assembled.png" target="_blank" rel="noreferrer">Assembled CAD render ↗</DownloadLink><DownloadLink href="/renders/exploded.png" target="_blank" rel="noreferrer">Exploded CAD render ↗</DownloadLink></div>
+        <details className="export-menu"><summary>Downloads & credits</summary><DownloadLink href="/downloads/MicroDuckling_R05_printed.step" download>Printed parts · STEP</DownloadLink><DownloadLink href="/downloads/MicroDuckling_R05_mechanical.FCStd" download>Mechanical model · FreeCAD</DownloadLink><p className="help">Board adaptations: Limor Fried / Adafruit, adapted by MicroDuckling contributors · CC BY-SA 3.0.</p><a href="https://github.com/itchson/MicroDuckling/blob/main/THIRD_PARTY_NOTICES.md" target="_blank" rel="noreferrer">Asset credits & licenses ↗</a></details>
 
       </aside>
 
     </section>
+
+    {simulationLoaded&&data&&<div className="simulation-container" style={simulation?undefined:{display:'none'}}><Suspense fallback={<div className="simulation-loading" role="status">Loading simulation…</div>}><SimulationWorkspace data={data} visible={simulation}/></Suspense></div>}
 
   </main>;
 

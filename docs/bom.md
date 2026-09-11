@@ -1,6 +1,29 @@
 # Bill of materials and sourcing
 
-This is the R05 component selection, not a tested purchase bundle. Match exact PCB revisions and connector configurations before relying on a mount. Prices and stock vary and are deliberately omitted.
+An exploratory build using generic boards is roughly **A$90–120 in parts**, before shipping, charger and tools, at the prices checked on **11 September 2026**. This is a proposed cheaper electrical layout, not a purchase bundle that fits the current CAD. The R05 reference below uses more expensive Adafruit and Pololu boards. Match exact PCB revisions and connector configurations before relying on any mount.
+
+## Budget alternative to investigate
+
+All amounts are Australian dollars. These are advertised single-order prices or explicitly labelled allowances, not measured hardware performance. Stock and checkout totals can change.
+
+| Qty | Proposed component | Line cost | Price evidence and limitation |
+|---:|---|---:|---|
+| 4 | Positional MG90S-type servos, horns and screws | A$15–20 | [Australian seller's four-pack](https://www.ebay.com.au/itm/166481674710), A$14.99 when checked. Generic batch; do not assume genuine TowerPro specifications or use continuous-rotation variants. |
+| 1 | ESP32-CAM and camera | A$16–30 | [Zaitronics kit](https://zaitronics.com.au/products/esp32-cam-camera-mb-motherboard-usb-c-version-development-board), A$16.25 including programmer, specifies **OV3660** and 5–10 day dispatch lead time; availability display is mixed. [Phipps OV2640 board](https://www.phippselectronics.com/product/esp32-cam-wifi-bluethooth-development-board-with-ov2640-camera-module/), A$29.95. Camera flex, lens and mount differ. |
+| 1 | Generic PCA9685 board | A$8.99 | [Tempero Systems](https://temperosystems.com.au/products/pca9685-16-channel-12-bit-pwm-servo-driver-i2c-interface/). Same controller family does not imply Adafruit hole spacing or terminal placement. |
+| 1 | 2S 450 mAh LiPo pack | A$16.95 | [Aus Electronics Direct PB4174](https://www.auselectronicsdirect.com.au/7.4v-450mah-lipo-2s-battery-pack-with-jst-connecto). Listed **56 × 30 × 10 mm**; this does **not** match the current 43 × 23 × 13 mm tray reference. |
+| 1 | Shared 5 V switching regulator candidate | A$16.80 | [DFRobot DFR0753 at Core](https://core-electronics.com.au/dc-dc-buck-converter-6-14v-to-5v-8a.html), specified input 6–14 V. The advertised 8 A is not a verified sustained rating inside this robot. |
+| 1 | Six-axis IMU for balance control | A$4.60 | [Core MPU-6050 module](https://core-electronics.com.au/mpu-6050-module-3-axis-gyroscope-acce-lerometer.html). Different mount and sensor driver from the selected Adafruit board; sampling and calibration need validation. |
+| — | Fasteners, wire, connectors, disconnect, capacitor, insulation, pad/tread material | A$8–15 | Planning allowance for quantities used, assuming workshop supplies; buying complete assortments costs more. |
+| — | Printed parts and fit coupons | A$3–5 | Material allowance with an existing printer; excludes failed prints and commercial printing. |
+
+Rounded total: **A$90–120**, including the IMU. This requires checking replacement dimensions, revising mounts and testing power delivery. Keeping A$20 servos, an A$30 camera and an A$5 PCA9685 deal gives **A$93.35 before consumables and printing** after adding the quoted battery, regulator and IMU. A complete A$80 build has not been verified.
+
+Charging equipment is separate. A [SkyRC B6neo at FPVFaster](https://www.fpvfaster.com.au/products/skyrc-b6-neo-smart-charger-200w-dc-pd-dual-input?variant=42251956486226) was listed around **A$52–62**, depending on variant, plus a compatible PD/DC supply and battery leads if not already owned. The [manufacturer](https://www.skyrc.com/b6neo-series) specifies adjustable current and 2S support. Set current to the pack manufacturer's limit. An inexpensive fixed-current charger is not automatically suitable for a 450 mAh pack. Allow separately for a 3.3 V logic USB-to-UART programmer when the camera purchase does not include one.
+
+See [parts and power research](parts-research.md) for the electrical trade-offs and the cost of the existing branded selection.
+
+## Current R05 CAD reference parts
 
 | Qty | Component | Source / qualification |
 |---:|---|---|

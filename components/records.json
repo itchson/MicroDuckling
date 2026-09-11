@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "units": "mm",
+  "coordinate_system": "MicroDuckling R05 CAD assembly coordinates",
+  "mass_estimates_scope": "full_physical_assembly",
+  "parts": [
+    {
+      "name": "IMU",
+      "object_name": "IMU",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#155a83",
+      "mass_g": 1.7,
+      "com_mm": [
+        -21.42364693236963,
+        -0.03714872529949922,
+        55.39223028769969
+      ],
+      "volume_mm3": 832.2851126500875,
+      "dimensions_mm": [
+        17.78,
+        25.4,
+        4.634999999999998
+      ],
+      "note": "XY outline, pads, two mechanical holes and placements from manufacturer Eagle. Header pins omitted for direct soldering; both STEMMA QT connectors shown. Manufacturer lists4.6mm assembled height; 1.6mm PCB and3.0mm QT envelope chosen to match that overall bound. Individual component heights, contact geometry and connector mating clearances are unverified.",
+      "pcb_dimensions_mm": [
+        25.4,
+        17.78,
+        1.6
+      ],
+      "pcb_basis_global": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "material_groups": 16,
+      "geometry_provenance": "Adafruit Eagle-derived adaptation; exact existing viewer mesh",
+      "bbox": [
+        -30.4,
+        -12.7,
+        54.165,
+        -12.62,
+        12.7,
+        58.8
+      ],
+      "mesh_license": "CC-BY-SA-3.0",
+      "mesh_path": "meshes/IMU.json",
+      "pcb_origin_global_mm": [
+        -12.62,
+        -12.7,
+        54.2
+      ],
+      "mass_estimates_scope": "full_physical_assembly",
+      "visual_geometry_only": true
+    },
+    {
+      "name": "ServoController",
+      "object_name": "ServoController",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#155a83",
+      "mass_g": 8.5,
+      "com_mm": [
+        28.925714012088253,
+        -1.0946891931074036,
+        43.10427322931008
+      ],
+      "volume_mm3": 4047.9938860076145,
+      "dimensions_mm": [
+        13.100000000000001,
+        62.23,
+        25.4
+      ],
+      "note": "Manufacturer rev C Eagle defines exact XY outline, drill and package/pad positions; supplied parts fitted as four 12-pin banks and one 6-pin side bus. JP4 and optional bulk capacitor C2 remain unpopulated. PCB thickness1.6, header .64-square pins Z-3..10.1, 2.5 housing height, terminal8.5 above PCB, and other component Z dimensions are conservative generic assumptions requiring sample measurement. Package bodies are simplified footprint-based envelopes, not vendor mechanical CAD.",
+      "pcb_dimensions_mm": [
+        62.230000000000004,
+        25.4,
+        1.6
+      ],
+      "pcb_basis_global": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ],
+      "material_groups": 27,
+      "geometry_provenance": "Adafruit Eagle-derived adaptation; exact existing viewer mesh",
+      "bbox": [
+        24.0,
+        -31.115,
+        31.4,
+        37.1,
+        31.115,
+        56.8
+      ],
+      "mesh_license": "CC-BY-SA-3.0",
+      "mesh_path": "meshes/ServoController.json",
+      "pcb_origin_global_mm": [
+        27,
+        -31.115,
+        31.4
+      ],
+      "mass_estimates_scope": "full_physical_assembly",
+      "visual_geometry_only": true
+    },
+    {
+      "name": "Buck_0",
+      "object_name": "Buck_0",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#27634b",
+      "mass_g": 3.1,
+      "com_mm": [
+        9.50317088073328,
+        20.03127477419641,
+        53.292653798006796
+      ],
+      "volume_mm3": 1110.8161961118376,
+      "dimensions_mm": [
+        8.795,
+        20.32,
+        17.78
+      ],
+      "note": "Original dimension-based visual approximation with photo-informed generic components. No manufacturer STEP or old regulator mesh was read, traced, simplified or converted. Board datum/orientation matches the current assembly; component shape/placement and thickness details are approximate. Bare solder pads are shown; optional headers are not fitted. Display geometry is not qualified for fit, collision, electrical, thermal or manufacturing checks. Mass and COM retain the full engineering assembly estimates.",
+      "pcb_dimensions_mm": [
+        17.779999999999998,
+        20.32,
+        1.57
+      ],
+      "pcb_basis_global": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          -1,
+          0,
+          0
+        ]
+      ],
+      "material_groups": 59,
+      "geometry_provenance": "Original procedural primitives based on published dimensions and photos",
+      "dimension_sources": [
+        "https://www.pololu.com/product/2851",
+        "https://www.pololu.com/file/0J1436/d24v50f5-step-down-voltage-regulator-dimensions.pdf",
+        "https://www.pololu.com/product/2851/pictures"
+      ],
+      "mount_holes_local_mm": [
+        [
+          2.159,
+          2.159,
+          2.18
+        ],
+        [
+          15.620999999999999,
+          18.160999999999998,
+          2.18
+        ]
+      ],
+      "bbox": [
+        4.305,
+        10.0,
+        44.8,
+        13.1,
+        30.32,
+        62.58
+      ],
+      "mesh_license": "Apache-2.0",
+      "mesh_path": "meshes/Buck_0.json",
+      "pcb_origin_global_mm": [
+        12,
+        10,
+        44.8
+      ],
+      "mass_estimates_scope": "full_physical_assembly",
+      "visual_geometry_only": true
+    },
+    {
+      "name": "Buck_1",
+      "object_name": "Buck_1",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#27634b",
+      "mass_g": 1.0,
+      "com_mm": [
+        2.8665216406762446,
+        -21.508796766611784,
+        48.11252571597731
+      ],
+      "volume_mm3": 338.85609741851556,
+      "dimensions_mm": [
+        12.7,
+        17.78,
+        3.5899999999999963
+      ],
+      "note": "Original dimension-based visual approximation with photo-informed generic components. No manufacturer STEP or old regulator mesh was read, traced, simplified or converted. Board datum/orientation matches the current assembly; component shape/placement and thickness details are approximate. Bare solder pads are shown; optional headers are not fitted. Display geometry is not qualified for fit, collision, electrical, thermal or manufacturing checks. Mass and COM retain the full engineering assembly estimates.",
+      "pcb_dimensions_mm": [
+        12.7,
+        17.779999999999998,
+        1.0
+      ],
+      "pcb_basis_global": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "material_groups": 56,
+      "geometry_provenance": "Original procedural primitives based on published dimensions and photos",
+      "dimension_sources": [
+        "https://www.pololu.com/product/2831/specs",
+        "https://www.pololu.com/product/2831/pictures"
+      ],
+      "mount_holes_local_mm": [],
+      "bbox": [
+        -4.0,
+        -30.0,
+        46.96,
+        8.7,
+        -12.22,
+        50.55
+      ],
+      "mesh_license": "Apache-2.0",
+      "mesh_path": "meshes/Buck_1.json",
+      "pcb_origin_global_mm": [
+        -4,
+        -30,
+        47
+      ],
+      "mass_estimates_scope": "full_physical_assembly",
+      "visual_geometry_only": true
+    }
+  ]
+}

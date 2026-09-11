@@ -1,6 +1,6 @@
 # Engineering review
 
-**R05 is a CAD prototype.** No physical assembly, electrical load/thermal test, Isaac runtime execution, learned walking policy or hardware gait is reported. The following summarizes the original R05 engineering checks and distinguishes them from checks of the public export.
+**R05 is a CAD prototype.** No physical assembly, electrical load/thermal test, Isaac runtime execution or hardware gait is reported. Browser physics and policy-search experiments do not establish those results. The following summarizes the original R05 engineering checks and distinguishes them from checks of the public export.
 
 ## Original detailed CAD review
 
@@ -21,7 +21,11 @@ Independent motion excludes illustrative flexible harnesses and four identified 
 
 ## Public export
 
-The public STEP contains project-created printed parts. The native mechanical CAD and viewer also retain project-created hardware approximations, while omitting the detailed Adafruit IMU/PCA9685 and Pololu regulator geometry. The full intended assembly mass remains in metadata, including omitted boards. [Public export checks](../cad/public_export_checks.json) identify the published files and their geometry checks; these do not re-prove the original full-assembly collision review.
+The public STEP contains project-created printed parts. The native mechanical CAD and mechanical mesh collection also retain project-created hardware approximations, but exclude the four electronics visuals supplied separately under `components/`. The viewer combines **87 mechanical assembly records and four electronics records**, with two additional fit coupons. Those counts describe display records, not 93 printed parts.
+
+The restored IMU and servo-controller meshes adapt Adafruit PCB geometry under CC-BY-SA-3.0. The two regulator meshes are original dimension-based approximations under Apache-2.0, with photo-informed generic component arrangements; they do not use Pololu STEP geometry. [Component records](../components/records.json) preserve the original physical mass/COM estimates while describing the new display geometry; [attribution](../components/NOTICE.json) identifies the sources and changes. The full intended assembly mass remains in metadata and must not be increased again when adding the visual records.
+
+The component visuals are for identification and assembly explanation. Their approximate heights, connectors and package shapes are not qualified for fit, collision, electrical, thermal or manufacturing checks. [Public export checks](../cad/public_export_checks.json) cover the mechanical exports; restoring the electronics display does not re-prove the original full-assembly collision review. Electronics-inclusive presentation renders and thumbnails carry the separate license scope described in [licensing](licensing.md).
 
 Regenerating local full CAD uses [separately downloaded references](../references/README.md) and writes to `build/local/`. Reports created by the [build workflow](build.md) bind their results to the actual local CAD hash. Original reported results must not be relabeled as results for an edited model.
 
