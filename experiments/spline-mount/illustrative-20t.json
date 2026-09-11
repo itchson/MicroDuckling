@@ -1,0 +1,19 @@
+{
+  "status": "ILLUSTRATIVE UNVERIFIED - replace every spline measurement",
+  "tooth_count": 20,
+  "major_diameter_mm": 4.8,
+  "root_diameter_mm": 4.3,
+  "tooth_tip_fraction": 0.3,
+  "root_flat_fraction": 0.3,
+  "engagement_mm": 2.5,
+  "screw_clearance_mm": 2.2,
+  "floor_mm": 1.2,
+  "outer_hex_af_mm": 9.0,
+  "radial_clearances_mm": [
+    0,
+    0.03,
+    0.06,
+    0.09,
+    0.12
+  ]
+}

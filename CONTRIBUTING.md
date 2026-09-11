@@ -35,7 +35,7 @@ Use the bug / fit report form for a reproducible problem and the proposal form f
 
 Keep unrelated changes separate. Include editable source for new designs where possible. Avoid adding dependency folders, caches, temporary exports or large recordings when a small example will explain the result.
 
-For mechanical changes, review [engineering checks and their limits](docs/engineering-review.md) and the [R05 refinement notes](docs/r05-assembly-refinement.md). A collision check is evidence about the modeled geometry, not proof of strength, cable flexibility or assembly access with real parts. For simulation changes, follow [simulation documentation](docs/simulation.md) and distinguish static validation, an actual Isaac Sim run, training and physical evaluation in your report.
+For mechanical changes, review [engineering checks and their limits](docs/engineering-review.md) and the [R06 refinement notes](docs/r06-simplified-design.md). A collision check is evidence about the modeled geometry, not proof of strength, cable flexibility or assembly access with real parts. For simulation changes, follow [simulation documentation](docs/simulation.md) and distinguish static validation, an actual Isaac Sim run, training and physical evaluation in your report.
 
 ## Credit and review
 

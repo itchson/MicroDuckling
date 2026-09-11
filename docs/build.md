@@ -36,13 +36,13 @@ python scripts/fetch_reference_inputs.py --verify
 
 On Linux, use the same script paths with your configured FreeCAD Python interpreter. FreeCAD distribution layouts differ; the import check above is the prerequisite, not an assumed installation path.
 
-Edit parameters and construction logic in `src/build_cad.py`, `src/body_r04.py`, `src/head_r04.py` and `src/electronics_r04.py`. The module suffixes record their introduction; the active `design_revision` is R05. The parameter spreadsheet in the resulting document is a record, not a live parametric rebuild interface.
+Edit parameters and construction logic in `src/build_cad.py`, `src/body_r04.py`, `src/head_r04.py` and `src/electronics_r04.py`. The module suffixes record their introduction; the active `design_revision` is R06. The parameter spreadsheet in the resulting document is a record, not a live parametric rebuild interface.
 
 The builder writes `build/local/cad/MicroDuckling_R01.FCStd`, `build/local/cad/assembly.json`, part meshes and a print-only STEP. `R01` is a legacy filename; check `design_revision` for the actual revision. The full scene includes locally downloaded electronics. These full assemblies, input files and detailed hardware meshes are intentionally Git-ignored. Published geometry is curated separately; see [license scope](licensing.md). A successful local build does not authorize publishing every generated file.
 
 All CAD checks and simulation tools use the same `build/local/` root. To use a different generated-output directory, set `MICRODUCKLING_BUILD_ROOT` before invoking them. Keep it separate from the repository's public files; in-repository output roots are limited to `build/` or `work/`. The manufacturer input cache remains in the repository's `references/components_r02/`.
 
-To validate and package the 16 print/coupon meshes locally, then generate a separate public review export:
+To validate and package the 17 print/coupon meshes locally, then generate a separate public review export:
 
 ```powershell
 python scripts/package_printables.py --source build/local
@@ -64,5 +64,13 @@ python simulation/assess_balance.py
 ```
 
 The derivation reopens the saved FreeCAD assembly, accounts for every non-coupon part, derives link-local meshes, and combines component masses and inertias. It writes local generated files under `build/local/cad/` and `build/local/simulation/`. These outputs are omitted from the public source repository because full link meshes contain vendor geometry. Regenerate them locally; do not bypass the hash checks or replace missing assets with unrelated meshes.
+
+To derive a separate public browser review asset, combining local mass/inertia data with the original public tread hulls:
+
+```sh
+python simulation/browser/derive_asset.py build/local/cad/manifest.json build/browser-check/robot-physics.json --mesh-dir cad/meshes
+```
+
+Use the matching tread directory from a separate public export when reviewing changed CAD. The browser generator records both tread hashes, preserves mass independently of collider shape, and embeds the recommended convex/600 Hz/16-iteration settings. See [contact evidence and regeneration](browser-contact-physics.md) before intentionally replacing the checked-in browser asset.
 
 The next step requires a compatible Isaac installation and an actual import/smoke run. See [simulation](simulation.md).

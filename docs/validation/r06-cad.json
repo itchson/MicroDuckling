@@ -1,0 +1,25 @@
+{
+  "sourceNativeSha256": "bd71323fee85fd0322c69b06cc53cc04d79f9aa2572e0da3ea3471888d955147",
+  "sourceAssemblySha256": "41168c4c3069f5b4140498b62989711b80285d3d7e00fede4c3af9377711df2d",
+  "publicNativeSha256": "18fa122362ade3920a77771ac50905dbb5c55c69703d354193028283b190929e",
+  "publicAssemblySha256": "7eae29e8b9ded35e8d75d2eaaa64e9008cadacca645b6de709ffab70b9cfbed3",
+  "reopenedSolidsValid": true,
+  "staticOverlapCount": 43,
+  "newStaticOverlapsComparedWithPriorAudit": [],
+  "motionOverlapCount": 0,
+  "combinedJawNeckOverlapCount": 0,
+  "insertionCollisionCount": 0,
+  "publicJsonUsesLF": true,
+  "mass_g": 247.95720357885753,
+  "com_mm": [
+    -0.6724323582898675,
+    0.7607682500580277,
+    58.19288390862638
+  ],
+  "assembledMechanicalParts": 88,
+  "componentVisuals": 2,
+  "robotPrintParts": 15,
+  "assemblyFitCoupons": 2,
+  "physicalBuildVerified": false,
+  "isaacRuntimeVerified": false
+}

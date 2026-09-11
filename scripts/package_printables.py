@@ -1,4 +1,4 @@
-"""Validate sixteen STL exports and create portable geometry-only 3MF files.
+"""Validate the approved STL exports and create portable geometry-only 3MF files.
 
 Run after the FreeCAD generator:
     python scripts/package_printables.py --source build/local
@@ -19,7 +19,7 @@ import trimesh
 PRINT_PARTS = {
     "BodyShellLeft", "BodyShellRight", "CameraBoardClamp", "CameraCradle",
     "CameraRing", "Chassis", "FacePanel", "FixedNeckSupport", "HeadFrame",
-    "HeadHood", "Jaw", "LegFootLeft", "LegFootRight", "NeckCarrier",
+    "HeadHood", "Jaw", "LegFootLeft", "LegFootRight", "NeckCarrier", "UpperBill",
 }
 COUPONS = {"LegHornCoupon", "ClearanceCoupon"}
 NAMESPACE = "http://schemas.microsoft.com/3dmanufacturing/core/2015/02"
@@ -73,8 +73,8 @@ def main():
     parts = [record for record in records if record["kind"] in {"print", "coupon"}]
     if {record["name"] for record in parts if record["kind"] == "print"} != PRINT_PARTS:
         raise ValueError("Printable-part allowlist changed; review it before packaging")
-    if {record["name"] for record in parts if record["kind"] == "coupon"} != COUPONS or len(parts) != 16:
-        raise ValueError("Expected exactly fourteen printed parts and two coupons")
+    if {record["name"] for record in parts if record["kind"] == "coupon"} != COUPONS or len(parts) != len(PRINT_PARTS | COUPONS):
+        raise ValueError(f"Expected exactly {len(PRINT_PARTS)} printed parts and {len(COUPONS)} coupons")
     output = source / "exports/3mf_review"
     for path in output.glob("*"):
         if path.suffix != ".3mf" or path.stem not in PRINT_PARTS | COUPONS:

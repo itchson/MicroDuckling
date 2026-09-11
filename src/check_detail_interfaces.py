@@ -21,9 +21,9 @@ for y in [-p['face_mount_y'],p['face_mount_y']]:
                           overlap_mm3=volume,clear=volume<.001))
 gap=D.BodyShellLeft.Shape.distToShape(D.BodyShellRight.Shape)[0]
 solids={r['name']:D.getObject(r.get('object_name',r['name'])).Shape for r in assembly['parts']}
-clearance_pairs=[('ESP32CAM','HeadHood'),('ServoController','BodyShellLeft'),('ServoController','BodyShellRight'),
+clearance_pairs=[('ESP32CAM','HeadHood'),('UpperBill','Jaw'),('UpperBill','CameraRing'),
                  ('CameraBoardClamp','HeadHood'),('Buck_0','BodyShellLeft'),
-                 ('Buck_0','ServoLeft'),('Buck_1','BodyShellRight'),('Buck_1','ServoRight'),
+                 ('Buck_0','ServoLeft'),
                  ('IMU','BodyShellLeft'),('IMU','BodyShellRight'),
                  ('ServoNeck','BodyShellLeft'),('ServoNeck','BodyShellRight'),
                  ('BatteryStrap','Chassis'),('BatteryStrap','Battery')]
@@ -43,6 +43,5 @@ result=dict(source_cad_sha256=hashlib.sha256((C/'MicroDuckling_R01.FCStd').read_
 assert all(p['clear'] for p in ports), 'Rear screw/driver access blocked in loose hood'
 assert gap>=.20, 'Body registration allowance fell below0.20mm nominal geometry'
 assert all(p['distance_mm']>=(.09 if p['a']=='BatteryStrap' and p['b']=='Battery' else .20) for p in clearances), 'Selected nominal interface gap failed'
-assert all(p['distance_mm']>=1.20 for p in clearances if p['a']=='ServoController'), 'Controller needs at least1.20mm nominal shell clearance'
 assert max(rear_access['shell_overlap_mm3'].values())<.001, 'Rear cable access is blocked by a shell or its locating lip'
 print(json.dumps(result,indent=2))

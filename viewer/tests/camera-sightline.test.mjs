@@ -11,7 +11,7 @@ test('assembled lens sightline reaches all three target positions through the ac
     const mesh=new T.Mesh(geometry,new T.MeshBasicMaterial({side:T.FrontSide}));mesh.name=part.name;mesh.updateMatrixWorld(true);return mesh;
   });
   try{
-    assert.equal(meshes.length,91);
+    assert.equal(meshes.length,90);
     const camera=new T.PerspectiveCamera(50,96/72,.1,5000);camera.up.set(0,0,1);camera.position.set(34.8,0,111);camera.lookAt(35.8,0,111);camera.updateMatrixWorld(true);
     for(const side of [-100,0,100])for(const y of [-24,-12,0,12,24])for(const z of [1,13,25,37,49]){
       const point=new T.Vector3(355,side+y,z),delta=point.clone().sub(camera.position),distance=delta.length(),projected=point.clone().project(camera);

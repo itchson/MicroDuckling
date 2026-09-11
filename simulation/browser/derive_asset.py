@@ -1,15 +1,28 @@
-"""Derive a small public scalar physics asset from the local CAD manifest.
+"""Derive the public browser physics asset from local CAD mass data and public soles.
 
-Usage: python derive_asset.py <cad/manifest.json> <robot-physics.json>
-Requires NumPy. No vendor geometry, mesh data or workstation paths are emitted.
+Usage: python simulation/browser/derive_asset.py build/local/cad/manifest.json OUTPUT
+Requires NumPy. Only original public tread vertices are emitted; no vendor meshes.
 """
+import argparse
 import hashlib
 import json
 import math
-import sys
 from pathlib import Path
 
 import numpy as np
+
+if __package__:
+    from .sole_hulls import attach_sole_hulls
+else:
+    from sole_hulls import attach_sole_hulls
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+RECOMMENDED_SETTINGS = {
+    "soleCollider": "convex", "fixedDt": 1 / 600, "solverIterations": 16,
+    "footFriction": .9, "groundFriction": .7, "bodyFriction": .35,
+    "massScale": 1, "gravityMps2": 9.81, "allowedLinearErrorM": .00005,
+    "predictionDistanceM": .0002, "motorDerating": "legacy",
+}
 
 
 def quaternion(matrix):
@@ -37,19 +50,22 @@ def rpy_quaternion(rpy):
             cr * cp * sy - sr * sp * cy, cr * cp * cy + sr * sp * sy]
 
 
-def derive(source):
+def derive(source, mesh_dir=None):
+    """Return a complete asset; mesh_dir defaults to this checkout's public CAD meshes."""
+    source = Path(source)
     raw = source.read_bytes()
     d = json.loads(raw)
-    result = {"schemaVersion": 1, "name": "MicroDuckling R05 browser physics experiment",
+    result = {"schemaVersion": 1, "name": "MicroDuckling R06 browser physics experiment",
               "units": "m-kg-s-rad", "upAxis": "z", "forwardAxis": "x",
               "provenance": {"manifestSha256": hashlib.sha256(raw).hexdigest(),
                              "sourceCadSha256": d["source_cad_sha256"],
-                             "massScope": "Full intended assembly including omitted supplier boards",
+                             "massScope": "Full intended assembly including electronics; mass and collision geometry are independent",
                              "status": "CAD estimates; approximate contacts and unmeasured servo model. Browser Rapier experiment, not Isaac Sim or a hardware-qualified controller."},
               "cadZeroOriginsM": {}, "links": [], "joints": [],
               "contactModel": {"footRadiusM": d["rocker_contact"]["radius_mm"] / 1000,
                                "segmentsX": 11, "segmentsY": 5, "friction": 0.7,
-                               "description": "11 by 5 tangent boxes per spherical rocker foot; inner core boxes for torso/head/jaw. Self-collision excluded because core envelopes are approximate."}}
+                               "recommendedSettings": RECOMMENDED_SETTINGS.copy(),
+                               "description": "One convex hull per public tread for browser contacts; original tangent boxes retained for explicit comparison. Other links use approximate interior boxes; self-collision excluded."}}
     for link in d["links"]:
         name, i = link["name"], link["inertia_kg_m2"]
         tensor = np.array([[i["ixx"], i["ixy"], i["ixz"]], [i["ixy"], i["iyy"], i["iyz"]], [i["ixz"], i["iyz"], i["izz"]]])
@@ -101,11 +117,28 @@ def derive(source):
                                  "motor": {"stiffnessNmPerRad": .7, "dampingNmsPerRad": .008,
                                            "maxTorqueNm": .09, "noLoadSpeedRadS": 10.47, "commandRateRadS": 3}})
     result["totalMassKg"] = sum(l["massKg"] for l in result["links"])
-    return result
+    return attach_sole_hulls(result, Path(mesh_dir) if mesh_dir is not None else PROJECT_ROOT / "cad/meshes")
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("manifest", type=Path)
+    parser.add_argument("output", type=Path)
+    parser.add_argument("--mesh-dir", type=Path, default=PROJECT_ROOT / "cad/meshes")
+    args = parser.parse_args()
+    if args.output.resolve() == args.manifest.resolve():
+        parser.error("output must differ from the source manifest")
+    asset = derive(args.manifest, args.mesh_dir)
+    encoded = (json.dumps(asset, indent=2, allow_nan=False) + "\n").encode("utf-8")
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_bytes(encoded)
+    boxes = sum(len(link["colliders"]) for link in asset["links"])
+    hull_colliders = sum(sum(not c["name"].startswith("rocker_") for c in link["colliders"])
+                         + ("soleConvexHullM" in link) for link in asset["links"])
+    print(json.dumps({"assetSha256": hashlib.sha256(encoded).hexdigest(), "massKg": asset["totalMassKg"],
+                      "links": len(asset["links"]), "legacyRobotColliders": boxes,
+                      "convexRobotColliders": hull_colliders, "recommendedSettings": RECOMMENDED_SETTINGS}))
 
 
 if __name__ == "__main__":
-    output = Path(sys.argv[2])
-    asset = derive(Path(sys.argv[1]))
-    output.write_text(json.dumps(asset, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"massKg": asset["totalMassKg"], "links": len(asset["links"]), "colliders": sum(len(l["colliders"]) for l in asset["links"])}))
+    main()

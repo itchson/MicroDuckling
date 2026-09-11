@@ -1,96 +1,91 @@
 // SPDX-License-Identifier: Apache-2.0
-import {BrowserPhysics,CemTrainer,DEFAULT_GAIT,gaitTargets,type JointAngles,type Vec3} from './browser-physics.ts';
-import {DEFAULT_VISION_PARAMETERS,visionTargets,cameraScore,proposeVisionParameters,type VisionObservation} from './vision.ts';
-import type {RunMode,SimulationCommand,SimulationEvent} from './simulation-protocol';
+import {BrowserPhysics,type JointAngles,type Vec3,type PhysicsAsset} from './browser-physics.ts';
+import {DEFAULT_VISION_PARAMETERS,proposeVisionParameters} from './vision.ts';
+import {CAMERA_WADDLE_GAIT,locomotionTargets,type LocomotionGait} from './locomotion-controller.ts';
+import {RockingTrainer} from './rocking-trainer.ts';
+import {ApproachEpisode,type ApproachResult} from './approach.ts';
+import type {RunMode,SimulationCommand,SimulationEvent,EnvironmentSettings} from './simulation-protocol';
 
 const send=(event:SimulationEvent)=>postMessage(event);
-let engine:BrowserPhysics|undefined,trainer:CemTrainer|undefined,mode:RunMode='paused',runId=0;
-let gait={...DEFAULT_GAIT},vision={...DEFAULT_VISION_PARAMETERS},candidate={...vision};
+let engine:BrowserPhysics|undefined,trainer:RockingTrainer|undefined,approach:ApproachEpisode|undefined,mode:RunMode='paused',runId=0,configuration=0;
+let physicsAsset:PhysicsAsset|undefined,environment:EnvironmentSettings={groundFriction:.7,massScale:1};
+let gait:LocomotionGait=structuredClone(CAMERA_WADDLE_GAIT),vision={...DEFAULT_VISION_PARAMETERS},candidate={...vision};
 let pose:JointAngles={left_hip:0,right_hip:0,neck_yaw:0,jaw_pitch:0};
-let observation:VisionObservation={visible:false,bearingRad:0,areaFraction:0};
-let target:Vec3=[.38,0,.025],neck=0,trial=0,bestScore:number|null=null,visible=0,samples=0,bearingSum=0,coverage=0,initialArea=0,finalArea=0,lastObservationTime=-Infinity;
+let target:Vec3=[.18,0,.05],trial=0,bestScore:number|null=null;
 let searchTimer:ReturnType<typeof setTimeout>|undefined;
-const frame=()=>{if(engine)send({type:'frame',frame:engine.frame(),runId});};
+const frame=(result?:ApproachResult)=>{if(engine)send({type:'frame',frame:result?.frame??engine.frame(),runId,goal:result?.goal});};
 const setMode=(value:RunMode)=>{mode=value;send({type:'mode',mode});};
-function reset(){
-  runId++;neck=0;lastObservationTime=-Infinity;observation={visible:false,bearingRad:0,areaFraction:0};
-  engine!.reset({seed:2026});engine!.setTarget(target);frame();
-}
+function reset(){runId++;approach=undefined;engine!.reset({seed:2026});engine!.setTarget(target,[.025,.025,.05]);frame();}
 function policy(){send({type:'policy',gait,vision});}
 function learnGeneration(){
   if(mode!=='walk-learning'||!trainer)return;
   try{
-    const progress=trainer.stepGeneration();gait={...progress.bestGait};send({type:'training',progress});policy();
-    if(progress.generation>=30){setMode('paused');return;}
-    searchTimer=setTimeout(learnGeneration,50);
+    const progress=trainer.stepGeneration();gait=structuredClone(progress.bestGait);send({type:'training',progress});policy();
+    if(progress.generation>=12){setMode('paused');return;}
+    searchTimer=setTimeout(learnGeneration,20);
   }catch(error){fail(error);}
 }
 function startCameraTrial(){
-  reset();candidate=trial===0?{...vision}:proposeVisionParameters(vision,trial);
-  visible=0;samples=0;bearingSum=0;coverage=0;initialArea=0;finalArea=0;
+  runId++;candidate=mode==='camera-learning'?proposeVisionParameters(vision,trial):{...vision};
+  approach=new ApproachEpisode(engine!,physicsAsset!,gait,candidate,target,{seed:2026,seconds:60});frame(approach.current());
 }
-function fail(error:unknown){setMode('paused');send({type:'error',message:error instanceof Error?error.message:String(error)});}
+function finishCameraTrial(result:ApproachResult){
+  if(mode==='camera-learning'){
+    if(result.eligible&&(bestScore===null||result.score>bestScore)){bestScore=result.score;vision={...candidate};policy();}
+    trial++;send({type:'vision-training',progress:{trial,score:result.score,bestScore,parameters:{...vision},visibleFraction:result.visibleFraction,
+      coverageFraction:result.coverageFraction,eligible:result.eligible,fall:result.goal.fallen,goal:result.goal}});
+    if(trial>=12)setMode('paused');else startCameraTrial();
+  }else setMode('paused');
+}
+function fail(error:unknown){clearTimeout(searchTimer);setMode('paused');send({type:'error',message:error instanceof Error?error.message:String(error)});}
+async function configurePhysics(){
+  if(!physicsAsset)return;
+  const ticket=++configuration;clearTimeout(searchTimer);setMode('paused');engine?.dispose();engine=undefined;approach=undefined;
+  const created=await BrowserPhysics.create(physicsAsset,{...environment,footFriction:.9,bodyFriction:.35});
+  if(ticket!==configuration){created.dispose();return;}engine=created;
+  trainer=undefined;gait=structuredClone(CAMERA_WADDLE_GAIT);vision={...DEFAULT_VISION_PARAMETERS};reset();
+  send({type:'ready',frame:engine.frame(),runId});policy();
+}
 
 onmessage=async(event:MessageEvent<SimulationCommand>)=>{
   const message=event.data;
   try{
-    if(message.type==='init'){
-      engine?.dispose();engine=await BrowserPhysics.create(message.asset);engine.setTarget(target);
-      send({type:'ready',frame:engine.frame(),runId});policy();return;
-    }
+    if(message.type==='init'){physicsAsset=message.asset;await configurePhysics();return;}
+    if(message.type==='environment'){environment=message.settings;await configurePhysics();return;}
     if(!engine)return;
     if(message.type==='observation'){
-      if(message.runId!==runId)return;
-      const time=engine.frame().time;
-      if(!Number.isFinite(message.frameTime)||message.frameTime<0||message.frameTime>time+.02||time-message.frameTime>.3||message.frameTime<=lastObservationTime)return;
-      const covered=Number.isFinite(lastObservationTime)?Math.min(.15,message.frameTime-lastObservationTime):0;
-      lastObservationTime=message.frameTime;
-      observation=message.observation;
-      if(mode==='camera-learning'){
-        samples++;coverage+=covered;if(observation.visible){visible+=covered;bearingSum+=Math.abs(observation.bearingRad)*covered;}
-        if(samples===1)initialArea=observation.areaFraction;
-        finalArea=observation.areaFraction;
-      }
+      if((mode!=='camera'&&mode!=='camera-learning')||!approach||message.runId!==runId)return;
+      if(!Number.isFinite(message.frameTime)||Math.abs(message.frameTime-engine.frame().time)>1e-6)return;
+      const result=approach.observe(message.observation,message.frameTime);frame(result);
+      if(result.finished)finishCameraTrial(result);
       return;
     }
     if(message.type==='pose'){pose=message.angles;return;}
-    if(message.type==='target'){target=message.position;setMode('paused');reset();return;}
+    if(message.type==='target'){clearTimeout(searchTimer);target=message.position;setMode('paused');reset();return;}
     if(message.type==='reset'){clearTimeout(searchTimer);setMode('paused');reset();return;}
     if(message.type==='run'){
       clearTimeout(searchTimer);setMode(message.mode);
       if(mode==='paused')return;
       if(mode==='walk-learning'){
-        runId++;
-        trainer=new CemTrainer(engine,{seed:2026,population:8,elite:3,episodeSeconds:4,
-          onFrame:f=>send({type:'frame',frame:f,runId})});
+        runId++;approach=undefined;let lastFrame=0;
+        trainer=new RockingTrainer(engine,{seed:2026,population:12,elite:3,episodeSeconds:14,seedGait:gait,
+          onFrame:f=>{if(performance.now()-lastFrame>80){send({type:'frame',frame:f,runId});lastFrame=performance.now();}}});
         searchTimer=setTimeout(learnGeneration,0);
-      }else if(mode==='camera-learning'){
-        trial=0;bestScore=null;startCameraTrial();
-      }else reset();
+      }else if(mode==='camera-learning'||mode==='camera'){trial=0;bestScore=null;startCameraTrial();}
+      else {
+        reset();
+        if(mode==='gait')for(let i=0;i<60;i++)engine.step(1/60,{left_hip:0,right_hip:0,neck_yaw:0,jaw_pitch:0});
+      }
     }
   }catch(error){fail(error);}
 };
 
+// Camera episodes advance only on a matching image. Hidden tabs and missing
+// camera frames cannot accrue simulation time, coverage, dwell or training reward.
 setInterval(()=>{
-  if(!engine||mode==='paused'||mode==='walk-learning')return;
+  if(!engine||(mode!=='pose'&&mode!=='gait'))return;
   try{
-    const time=engine.frame().time;
-    let commands=pose;
-    if(mode==='gait')commands=gaitTargets(gait,time);
-    if(mode==='camera'||mode==='camera-learning'){
-      const fresh=time-lastObservationTime<=.3?observation:{visible:false,bearingRad:0,areaFraction:0};
-      commands=visionTargets(fresh,mode==='camera-learning'?candidate:vision,gait,time,1/60,neck);
-      neck=commands.neck_yaw;
-    }
-    const current=engine.step(1/60,commands);send({type:'frame',frame:current,runId});
-    if(mode==='camera-learning'&&(current.time>=6||current.metrics.fall)){
-      const visibleFraction=Math.min(1,visible/current.time),coverageFraction=Math.min(1,coverage/current.time);
-      const score=cameraScore({visibleFraction,meanAbsBearingRad:visible?bearingSum/visible:Math.PI,initialArea,
-        finalArea:current.time-lastObservationTime<=.3?finalArea:0,fall:current.metrics.fall});
-      const eligible=coverageFraction>=.5&&samples>=10&&!current.metrics.fall;
-      if(eligible&&(bestScore===null||score>bestScore)){bestScore=score;vision={...candidate};policy();}
-      trial++;send({type:'vision-training',progress:{trial,score,bestScore,parameters:{...vision},visibleFraction,coverageFraction,eligible,fall:current.metrics.fall}});
-      if(trial>=12)setMode('paused');else startCameraTrial();
-    }else if(current.metrics.fall)setMode('paused');
+    const current=engine.step(1/60,mode==='gait'?locomotionTargets(gait,Math.max(0,engine.frame().time-1)):pose);
+    send({type:'frame',frame:current,runId});if(current.metrics.fall)setMode('paused');
   }catch(error){fail(error);}
 },1000/60);

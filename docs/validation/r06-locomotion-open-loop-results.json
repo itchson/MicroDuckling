@@ -1,0 +1,562 @@
+{
+  "assetSha256": "50dcf217ace63f26561a487355245aae53bcdc5139d94e68e9ef10fbf984df76",
+  "moduleSha256": {
+    "simulation/browser/robot-physics.json": "50dcf217ace63f26561a487355245aae53bcdc5139d94e68e9ef10fbf984df76",
+    "viewer/lib/browser-physics.ts": "847242e06002c1f44ac32385c29f12df075a21dec3be4d2c9d2a96fd287d0891",
+    "viewer/lib/locomotion-controller.ts": "7cd89230fed12da050535c3167ff69e53755c03b3b47cc053bd965eb2920ca75",
+    "viewer/lib/rocking-trainer.ts": "923859c02737f585ad7205e3b541c520a6679176c1c04bdd5ca9a537b158564a"
+  },
+  "totalMassKg": 0.2479572035788575,
+  "inputHashesUnchanged": true,
+  "experiment": "final asset open-loop CAMERA_WADDLE_GAIT",
+  "seeds": [
+    2026,
+    42,
+    99
+  ],
+  "gait": {
+    "frequencyHz": 3.8304913002694954,
+    "leftBiasRad": -0.1108688045712188,
+    "rightBiasRad": -0.1108688045712188,
+    "leftAmplitudeRad": 0.3316799990083091,
+    "rightAmplitudeRad": 0.3316799990083091,
+    "phaseRad": -3.141592653589793,
+    "neckAmplitudeRad": 0,
+    "neckPhaseRad": 0,
+    "waveform": {
+      "kind": "rocking",
+      "leftDuty": 0.8228959879353177,
+      "rightDuty": 0.8228959879353177,
+      "secondHarmonic": 0.8855480271391571,
+      "secondHarmonicPhaseRad": 3.141592653589793,
+      "neckBiasRad": 0,
+      "neckSecondHarmonic": 0,
+      "neckHarmonicPhaseRad": 0,
+      "jawAmplitudeRad": 0,
+      "jawPhaseRad": 0
+    }
+  },
+  "rawEpisodeCount": 12,
+  "expectedEpisodeCount": 12,
+  "wallSeconds": 21.3994411,
+  "groups": [
+    {
+      "physicsHz": 600,
+      "solverIterations": 16,
+      "episodes": 3,
+      "falls": 0,
+      "meanForwardM": 0.23645004375379186,
+      "meanLateForwardMps": 0.007900852564020224,
+      "forwardRangeM": [
+        0.23101350420128577,
+        0.24428374443885045
+      ]
+    },
+    {
+      "physicsHz": 600,
+      "solverIterations": 24,
+      "episodes": 3,
+      "falls": 0,
+      "meanForwardM": 0.23978118749152802,
+      "meanLateForwardMps": 0.007976088830053811,
+      "forwardRangeM": [
+        0.23670186178531644,
+        0.24377349138303261
+      ]
+    },
+    {
+      "physicsHz": 1000,
+      "solverIterations": 16,
+      "episodes": 3,
+      "falls": 0,
+      "meanForwardM": 0.23456366192970537,
+      "meanLateForwardMps": 0.007811290691183285,
+      "forwardRangeM": [
+        0.23040719473048293,
+        0.23707900174362573
+      ]
+    },
+    {
+      "physicsHz": 1000,
+      "solverIterations": 24,
+      "episodes": 3,
+      "falls": 0,
+      "meanForwardM": 0.23845122951312603,
+      "meanLateForwardMps": 0.00797763741228245,
+      "forwardRangeM": [
+        0.23669609069995232,
+        0.24061919407018054
+      ]
+    }
+  ],
+  "results": [
+    {
+      "physicsHz": 600,
+      "solverIterations": 16,
+      "seed": 2026,
+      "durationSeconds": 29.999999999988034,
+      "controlHz": 60,
+      "settleSeconds": 1,
+      "lateWindowSeconds": [
+        5,
+        30
+      ],
+      "comDisplacementM": [
+        0.24428374443885045,
+        -0.037683293130799926,
+        0.00025369596866894883
+      ],
+      "bodyOriginDisplacementM": [
+        0.24212833098135889,
+        -0.037675692001357675,
+        0.0002867951989173889
+      ],
+      "lateForwardSpeedMps": 0.00822612293754659,
+      "lateLateralSpeedMps": -0.00130145834773109,
+      "last15sForwardSpeedMps": 0.008264813874448943,
+      "finalHeadingRad": 0.005672939526152388,
+      "maxTiltRad": 0.18157528029652026,
+      "rmsTiltRad": 0.08658675112240165,
+      "rmsHeadingRad": 0.09946237672257628,
+      "maxJointLimitViolationRad": 0,
+      "fall": false,
+      "lateSampleCount": 101,
+      "diagnostics": {
+        "massKg": 0.24795721331611276,
+        "bodies": 5,
+        "joints": 4,
+        "colliders": 10,
+        "anchorErrorM": 7.590712347681296e-07
+      }
+    },
+    {
+      "physicsHz": 600,
+      "solverIterations": 16,
+      "seed": 42,
+      "durationSeconds": 29.999999999988034,
+      "controlHz": 60,
+      "settleSeconds": 1,
+      "lateWindowSeconds": [
+        5,
+        30
+      ],
+      "comDisplacementM": [
+        0.23101350420128577,
+        -0.055122051376155966,
+        0.00027946690770883076
+      ],
+      "bodyOriginDisplacementM": [
+        0.22875437163747847,
+        -0.05473801295738667,
+        0.0003359578549861908
+      ],
+      "lateForwardSpeedMps": 0.007600007599579278,
+      "lateLateralSpeedMps": -0.0018039247958482546,
+      "last15sForwardSpeedMps": 0.0075406627534247254,
+      "finalHeadingRad": -0.20390125504871912,
+      "maxTiltRad": 0.16084982541998366,
+      "rmsTiltRad": 0.08483191313764142,
+      "rmsHeadingRad": 0.17150089134438293,
+      "maxJointLimitViolationRad": 6.744865020041355e-08,
+      "fall": false,
+      "lateSampleCount": 101,
+      "diagnostics": {
+        "massKg": 0.24795721331611276,
+        "bodies": 5,
+        "joints": 4,
+        "colliders": 10,
+        "anchorErrorM": 3.9603711034887147e-07
+      }
+    },
+    {
+      "physicsHz": 600,
+      "solverIterations": 16,
+      "seed": 99,
+      "durationSeconds": 29.999999999988034,
+      "controlHz": 60,
+      "settleSeconds": 1,
+      "lateWindowSeconds": [
+        5,
+        30
+      ],
+      "comDisplacementM": [
+        0.23405288262123933,
+        -0.03971271741171985,
+        0.0002513104263222529
+      ],
+      "bodyOriginDisplacementM": [
+        0.232191804330796,
+        -0.03977258421946317,
+        0.00029535219073295593
+      ],
+      "lateForwardSpeedMps": 0.007876427154934806,
+      "lateLateralSpeedMps": -0.0012374348560942794,
+      "last15sForwardSpeedMps": 0.0077087721110961835,
+      "finalHeadingRad": 0.05370364201043267,
+      "maxTiltRad": 0.15314020911709095,
+      "rmsTiltRad": 0.08632287728776157,
+      "rmsHeadingRad": 0.12582909665677997,
+      "maxJointLimitViolationRad": 0,
+      "fall": false,
+      "lateSampleCount": 101,
+      "diagnostics": {
+        "massKg": 0.24795721331611276,
+        "bodies": 5,
+        "joints": 4,
+        "colliders": 10,
+        "anchorErrorM": 5.139866051412559e-07
+      }
+    },
+    {
+      "physicsHz": 600,
+      "solverIterations": 24,
+      "seed": 2026,
+      "durationSeconds": 29.999999999988034,
+      "controlHz": 60,
+      "settleSeconds": 1,
+      "lateWindowSeconds": [
+        5,
+        30
+      ],
+      "comDisplacementM": [
+        0.23886820930623498,
+        -0.05821708185487013,
+        0.00029153592025867037
+      ],
+      "bodyOriginDisplacementM": [
+        0.23642339650541544,
+        -0.05818247771821916,
+        0.0003240816295146942
+      ],
+      "lateForwardSpeedMps": 0.007914222661104848,
+      "lateLateralSpeedMps": -0.001985786908646106,
+      "last15sForwardSpeedMps": 0.007711586525270118,
+      "finalHeadingRad": -0.045760269006430314,
+      "maxTiltRad": 0.1690786470955116,
+      "rmsTiltRad": 0.08638476385234115,
+      "rmsHeadingRad": 0.16859319357845734,
+      "maxJointLimitViolationRad": 0,
+      "fall": false,
+      "lateSampleCount": 101,
+      "diagnostics": {
+        "massKg": 0.24795721331611276,
+        "bodies": 5,
+        "joints": 4,
+        "colliders": 10,
+        "anchorErrorM": 1.8866004009578596e-07
+      }
+    },
+    {
+      "physicsHz": 600,
+      "solverIterations": 24,
+      "seed": 42,
+      "durationSeconds": 29.999999999988034,
+      "controlHz": 60,
+      "settleSeconds": 1,
+      "lateWindowSeconds": [
+        5,
+        30
+      ],
+      "comDisplacementM": [
+        0.24377349138303261,
+        -0.01573856387294153,
+        0.00026801396840746977
+      ],
+      "bodyOriginDisplacementM": [
+        0.2419228758662939,
+        -0.015942332334816456,
+        0.00029428303241729736
+      ],
+      "lateForwardSpeedMps": 0.008131747577458631,
+      "lateLateralSpeedMps": -0.0003423204164771554,
+      "last15sForwardSpeedMps": 0.008086560150983834,
+      "finalHeadingRad": 0.1450157060440153,
+      "maxTiltRad": 0.15960131668904054,
+      "rmsTiltRad": 0.08443201951335574,
+      "rmsHeadingRad": 0.12778876235884257,
+      "maxJointLimitViolationRad": 0,
+      "fall": false,
+      "lateSampleCount": 101,
+      "diagnostics": {
+        "massKg": 0.24795721331611276,
+        "bodies": 5,
+        "joints": 4,
+        "colliders": 10,
+        "anchorErrorM": 3.438869786564206e-07
+      }
+    },
+    {
+      "physicsHz": 600,
+      "solverIterations": 24,
+      "seed": 99,
+      "durationSeconds": 29.999999999988034,
+      "controlHz": 60,
+      "settleSeconds": 1,
+      "lateWindowSeconds": [
+        5,
+        30
+      ],
+      "comDisplacementM": [
+        0.23670186178531644,
+        -0.047008315628595095,
+        0.00030793192112828216
+      ],
+      "bodyOriginDisplacementM": [
+        0.23446088400669396,
+        -0.04710430803243071,
+        0.0003367997705936432
+      ],
+      "lateForwardSpeedMps": 0.007882296251597955,
+      "lateLateralSpeedMps": -0.001644593539885209,
+      "last15sForwardSpeedMps": 0.007751525904305249,
+      "finalHeadingRad": 0.04053355114018753,
+      "maxTiltRad": 0.14610096275488402,
+      "rmsTiltRad": 0.08574172415266215,
+      "rmsHeadingRad": 0.12006358889103952,
+      "maxJointLimitViolationRad": 0,
+      "fall": false,
+      "lateSampleCount": 101,
+      "diagnostics": {
+        "massKg": 0.24795721331611276,
+        "bodies": 5,
+        "joints": 4,
+        "colliders": 10,
+        "anchorErrorM": 1.9872179998318e-07
+      }
+    },
+    {
+      "physicsHz": 1000,
+      "solverIterations": 16,
+      "seed": 2026,
+      "durationSeconds": 30.000000000014904,
+      "controlHz": 60,
+      "settleSeconds": 1,
+      "lateWindowSeconds": [
+        5,
+        30
+      ],
+      "comDisplacementM": [
+        0.23040719473048293,
+        -0.014181334717708298,
+        0.00031559720412698
+      ],
+      "bodyOriginDisplacementM": [
+        0.2280937663745135,
+        -0.01452396938111633,
+        0.0003146156668663025
+      ],
+      "lateForwardSpeedMps": 0.007665835859485409,
+      "lateLateralSpeedMps": -0.00021004826074706666,
+      "last15sForwardSpeedMps": 0.00749215458811389,
+      "finalHeadingRad": 0.2144113862495213,
+      "maxTiltRad": 0.1446223423335247,
+      "rmsTiltRad": 0.0829397067160921,
+      "rmsHeadingRad": 0.1559119042740028,
+      "maxJointLimitViolationRad": 0,
+      "fall": false,
+      "lateSampleCount": 101,
+      "diagnostics": {
+        "massKg": 0.24795721331611276,
+        "bodies": 5,
+        "joints": 4,
+        "colliders": 10,
+        "anchorErrorM": 2.552132583325759e-07
+      }
+    },
+    {
+      "physicsHz": 1000,
+      "solverIterations": 16,
+      "seed": 42,
+      "durationSeconds": 30.000000000014904,
+      "controlHz": 60,
+      "settleSeconds": 1,
+      "lateWindowSeconds": [
+        5,
+        30
+      ],
+      "comDisplacementM": [
+        0.23707900174362573,
+        -0.00762184124281535,
+        0.0003423723887854904
+      ],
+      "bodyOriginDisplacementM": [
+        0.2345100303646177,
+        -0.008057918166741729,
+        0.00034365057945251465
+      ],
+      "lateForwardSpeedMps": 0.007964269311390767,
+      "lateLateralSpeedMps": 2.213114370138564e-05,
+      "last15sForwardSpeedMps": 0.007893682876375173,
+      "finalHeadingRad": 0.2338713835760477,
+      "maxTiltRad": 0.14480459798798986,
+      "rmsTiltRad": 0.08378860030736136,
+      "rmsHeadingRad": 0.15979886837910923,
+      "maxJointLimitViolationRad": 0,
+      "fall": false,
+      "lateSampleCount": 101,
+      "diagnostics": {
+        "massKg": 0.24795721331611276,
+        "bodies": 5,
+        "joints": 4,
+        "colliders": 10,
+        "anchorErrorM": 1.887843648646964e-07
+      }
+    },
+    {
+      "physicsHz": 1000,
+      "solverIterations": 16,
+      "seed": 99,
+      "durationSeconds": 30.000000000014904,
+      "controlHz": 60,
+      "settleSeconds": 1,
+      "lateWindowSeconds": [
+        5,
+        30
+      ],
+      "comDisplacementM": [
+        0.23620478931500746,
+        -0.051045774626821305,
+        0.0003083461319265679
+      ],
+      "bodyOriginDisplacementM": [
+        0.23355171456933022,
+        -0.051055955584160984,
+        0.0003247074782848358
+      ],
+      "lateForwardSpeedMps": 0.007803766902673679,
+      "lateLateralSpeedMps": -0.0017744203995912952,
+      "last15sForwardSpeedMps": 0.007697007046438649,
+      "finalHeadingRad": -0.038245626283068095,
+      "maxTiltRad": 0.1588531257279328,
+      "rmsTiltRad": 0.08485697268085375,
+      "rmsHeadingRad": 0.14343156359415943,
+      "maxJointLimitViolationRad": 0,
+      "fall": false,
+      "lateSampleCount": 101,
+      "diagnostics": {
+        "massKg": 0.24795721331611276,
+        "bodies": 5,
+        "joints": 4,
+        "colliders": 10,
+        "anchorErrorM": 3.2875234035794235e-07
+      }
+    },
+    {
+      "physicsHz": 1000,
+      "solverIterations": 24,
+      "seed": 2026,
+      "durationSeconds": 30.000000000014904,
+      "controlHz": 60,
+      "settleSeconds": 1,
+      "lateWindowSeconds": [
+        5,
+        30
+      ],
+      "comDisplacementM": [
+        0.24061919407018054,
+        -0.0156640445067492,
+        0.0003533243833554467
+      ],
+      "bodyOriginDisplacementM": [
+        0.23755793133750558,
+        -0.01641302602365613,
+        0.0004012957215309143
+      ],
+      "lateForwardSpeedMps": 0.008040809024984153,
+      "lateLateralSpeedMps": -0.0004190437612888325,
+      "last15sForwardSpeedMps": 0.007694902013727791,
+      "finalHeadingRad": 0.3051465650395835,
+      "maxTiltRad": 0.1482066383467354,
+      "rmsTiltRad": 0.0819399084918969,
+      "rmsHeadingRad": 0.16446633006322736,
+      "maxJointLimitViolationRad": 0,
+      "fall": false,
+      "lateSampleCount": 101,
+      "diagnostics": {
+        "massKg": 0.24795721331611276,
+        "bodies": 5,
+        "joints": 4,
+        "colliders": 10,
+        "anchorErrorM": 8.9195584782638e-08
+      }
+    },
+    {
+      "physicsHz": 1000,
+      "solverIterations": 24,
+      "seed": 42,
+      "durationSeconds": 30.000000000014904,
+      "controlHz": 60,
+      "settleSeconds": 1,
+      "lateWindowSeconds": [
+        5,
+        30
+      ],
+      "comDisplacementM": [
+        0.23803840376924523,
+        -0.02957642382365829,
+        0.0003026800291168544
+      ],
+      "bodyOriginDisplacementM": [
+        0.23497313167899847,
+        -0.02976789267268032,
+        0.000286739319562912
+      ],
+      "lateForwardSpeedMps": 0.007915366959889116,
+      "lateLateralSpeedMps": -0.0009445681831703203,
+      "last15sForwardSpeedMps": 0.008096521423104203,
+      "finalHeadingRad": 0.07441774959147979,
+      "maxTiltRad": 0.16708514900840585,
+      "rmsTiltRad": 0.08408211063286998,
+      "rmsHeadingRad": 0.09553563991884541,
+      "maxJointLimitViolationRad": 0,
+      "fall": false,
+      "lateSampleCount": 101,
+      "diagnostics": {
+        "massKg": 0.24795721331611276,
+        "bodies": 5,
+        "joints": 4,
+        "colliders": 10,
+        "anchorErrorM": 2.059489717368524e-07
+      }
+    },
+    {
+      "physicsHz": 1000,
+      "solverIterations": 24,
+      "seed": 99,
+      "durationSeconds": 30.000000000014904,
+      "controlHz": 60,
+      "settleSeconds": 1,
+      "lateWindowSeconds": [
+        5,
+        30
+      ],
+      "comDisplacementM": [
+        0.23669609069995232,
+        -0.022761226580280874,
+        0.0003074386317891073
+      ],
+      "bodyOriginDisplacementM": [
+        0.23389966459944844,
+        -0.023132525850087404,
+        0.00028106942772865295
+      ],
+      "lateForwardSpeedMps": 0.007976736251974082,
+      "lateLateralSpeedMps": -0.0004502524383934441,
+      "last15sForwardSpeedMps": 0.007656686257991278,
+      "finalHeadingRad": 0.2213683910441817,
+      "maxTiltRad": 0.15350072269254686,
+      "rmsTiltRad": 0.08298585809536844,
+      "rmsHeadingRad": 0.137654170755534,
+      "maxJointLimitViolationRad": 0,
+      "fall": false,
+      "lateSampleCount": 101,
+      "diagnostics": {
+        "massKg": 0.24795721331611276,
+        "bodies": 5,
+        "joints": 4,
+        "colliders": 10,
+        "anchorErrorM": 1.6997042016972666e-07
+      }
+    }
+  ]
+}

@@ -1,0 +1,1033 @@
+{
+  "assetSha256": "50dcf217ace63f26561a487355245aae53bcdc5139d94e68e9ef10fbf984df76",
+  "physics": {
+    "fixedDt": 0.0016666666666666668,
+    "gravityMps2": 9.81,
+    "friction": 0.7,
+    "motorsEnabled": true,
+    "footFriction": 0.9,
+    "groundFriction": 0.7,
+    "bodyFriction": 0.35,
+    "massScale": 1,
+    "groundEnabled": true,
+    "solverIterations": 16,
+    "allowedLinearErrorM": 5e-05,
+    "predictionDistanceM": 0.0002,
+    "motorDerating": "legacy",
+    "soleCollider": "convex"
+  },
+  "gait": {
+    "frequencyHz": 3.8304913002694954,
+    "leftBiasRad": -0.1108688045712188,
+    "rightBiasRad": -0.1108688045712188,
+    "leftAmplitudeRad": 0.3316799990083091,
+    "rightAmplitudeRad": 0.3316799990083091,
+    "phaseRad": -3.141592653589793,
+    "neckAmplitudeRad": 0,
+    "neckPhaseRad": 0,
+    "waveform": {
+      "kind": "rocking",
+      "leftDuty": 0.8228959879353177,
+      "rightDuty": 0.8228959879353177,
+      "secondHarmonic": 0.8855480271391571,
+      "secondHarmonicPhaseRad": 3.141592653589793,
+      "neckBiasRad": 0,
+      "neckSecondHarmonic": 0,
+      "neckHarmonicPhaseRad": 0,
+      "jawAmplitudeRad": 0,
+      "jawPhaseRad": 0
+    }
+  },
+  "parameters": {
+    "headGain": 3.5,
+    "turnGain": -0.08,
+    "forwardScale": 1,
+    "stopWidthFraction": 0.63
+  },
+  "episodes": [
+    {
+      "seed": 2026,
+      "target": [
+        0.18,
+        0,
+        0.05
+      ],
+      "goal": {
+        "rootComM": [
+          0.051368099986549176,
+          -0.007681994994751829,
+          0.04496903625475707
+        ],
+        "distanceM": 0.12886108314060454,
+        "headingErrorRad": 0.05492279267373063,
+        "tiltRad": 0.01840733150498124,
+        "initialDistanceM": 0.18261451955778288,
+        "progressM": 0.053753436417178335,
+        "deltaProgressM": -2.9279649308155964e-05,
+        "maxProgressM": 0.0592080141673845,
+        "progressFraction": 1,
+        "sustainedProgressM": 0.05240376247167769,
+        "recentClosingSpeedMps": -0.002042618695472724,
+        "progressWindowReady": true,
+        "centerStandOffM": [
+          0.10999999999999999,
+          0.13
+        ],
+        "frontGapM": 0.04386108314060455,
+        "nearTarget": true,
+        "madeProgress": true,
+        "headingAligned": true,
+        "upright": true,
+        "fallen": false,
+        "holdSeconds": 1.5000000000002345,
+        "success": true,
+        "elapsedSeconds": 8.600000000000678
+      },
+      "finished": true,
+      "score": 16.342438454421348,
+      "observations": 86,
+      "visibleFraction": 1,
+      "coverageFraction": 1,
+      "eligible": true,
+      "trace": [
+        {
+          "time": 1.0000000000000229,
+          "distanceM": 0.172710809245677,
+          "heading": -0.02465796666759661,
+          "tilt": 0.12580164323666337,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.23126243605497318,
+            "areaFraction": 0.1880787037037037,
+            "widthFraction": 0.3854166666666667
+          },
+          "neck": 0.04273316751121552
+        },
+        {
+          "time": 1.9999999999999127,
+          "distanceM": 0.15868154692403208,
+          "heading": 0.055532647615331304,
+          "tilt": 0.107082303392999,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.08222157677466997,
+            "areaFraction": 0.28313078703703703,
+            "widthFraction": 0.46875
+          },
+          "neck": -0.004290087695646242
+        },
+        {
+          "time": 2.999999999999803,
+          "distanceM": 0.15405985116263884,
+          "heading": 0.12425972924812484,
+          "tilt": 0.05813544781590631,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.11440340887093725,
+            "areaFraction": 0.21802662037037038,
+            "widthFraction": 0.4583333333333333
+          },
+          "neck": -0.0157749555670488
+        },
+        {
+          "time": 3.9999999999999583,
+          "distanceM": 0.1481351948463974,
+          "heading": 0.10514458349542326,
+          "tilt": 0.07797368483941569,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.21456750833907465,
+            "areaFraction": 0.25535300925925924,
+            "widthFraction": 0.5208333333333334
+          },
+          "neck": 0.035152167034498
+        },
+        {
+          "time": 5.000000000000115,
+          "distanceM": 0.13739968239558248,
+          "heading": 0.023848079481481876,
+          "tilt": 0.08898020949413857,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.010849472481972175,
+            "areaFraction": 0.2913773148148148,
+            "widthFraction": 0.5625
+          },
+          "neck": 0.10589300942960934
+        },
+        {
+          "time": 6.000000000000271,
+          "distanceM": 0.13159177837415856,
+          "heading": -0.003527543334431324,
+          "tilt": 0.0686187879335058,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.20955863414588047,
+            "areaFraction": 0.3197337962962963,
+            "widthFraction": 0.6458333333333334
+          },
+          "neck": 0.1539959972196345
+        },
+        {
+          "time": 7.000000000000427,
+          "distanceM": 0.13016106180809536,
+          "heading": 0.05302786051481189,
+          "tilt": 0.04842041125577623,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.0048783029881220435,
+            "areaFraction": 0.21223958333333334,
+            "widthFraction": 0.59375
+          },
+          "neck": 0.07328368647573115
+        },
+        {
+          "time": 8.000000000000584,
+          "distanceM": 0.1294211886259934,
+          "heading": 0.055042044793961534,
+          "tilt": 0.031187074206791843,
+          "observation": {
+            "visible": true,
+            "bearingRad": 6.195322897005901e-05,
+            "areaFraction": 0.19661458333333334,
+            "widthFraction": 0.5833333333333334
+          },
+          "neck": 0.07503992746440068
+        },
+        {
+          "time": 8.600000000000678,
+          "distanceM": 0.12886108314060454,
+          "heading": 0.05492279267373063,
+          "tilt": 0.01840733150498124,
+          "observation": {
+            "visible": true,
+            "bearingRad": 2.131828588271052e-05,
+            "areaFraction": 0.21976273148148148,
+            "widthFraction": 0.6041666666666666
+          },
+          "neck": 0.0753626813478981
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "target": [
+        0.18,
+        0,
+        0.05
+      ],
+      "goal": {
+        "rootComM": [
+          0.05158633352195638,
+          -0.006628593272258775,
+          0.04500852230280145
+        ],
+        "distanceM": 0.12858463355744829,
+        "headingErrorRad": 0.0597719111677763,
+        "tiltRad": 0.03382334863142969,
+        "initialDistanceM": 0.18206345166655394,
+        "progressM": 0.05347881810910565,
+        "deltaProgressM": 0.00025595096759686853,
+        "maxProgressM": 0.05663875834841672,
+        "progressFraction": 1,
+        "sustainedProgressM": 0.046467676017976856,
+        "recentClosingSpeedMps": 0.0024348288369093196,
+        "progressWindowReady": true,
+        "centerStandOffM": [
+          0.10999999999999999,
+          0.13
+        ],
+        "frontGapM": 0.043584633557448293,
+        "nearTarget": true,
+        "madeProgress": true,
+        "headingAligned": true,
+        "upright": true,
+        "fallen": false,
+        "holdSeconds": 1.5000000000002345,
+        "success": true,
+        "elapsedSeconds": 7.766666666667214
+      },
+      "finished": true,
+      "score": 15.856566805802375,
+      "observations": 78,
+      "visibleFraction": 1,
+      "coverageFraction": 1,
+      "eligible": true,
+      "trace": [
+        {
+          "time": 1.0000000000000229,
+          "distanceM": 0.17403433907741034,
+          "heading": -0.011039914672360419,
+          "tilt": 0.11662533058578821,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.24330531016686216,
+            "areaFraction": 0.18952546296296297,
+            "widthFraction": 0.3854166666666667
+          },
+          "neck": 0.047975453527239476
+        },
+        {
+          "time": 1.9999999999999127,
+          "distanceM": 0.161911124337577,
+          "heading": 0.08133728288038955,
+          "tilt": 0.08773889160973002,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.04497357236621834,
+            "areaFraction": 0.24869791666666666,
+            "widthFraction": 0.4270833333333333
+          },
+          "neck": 0.024500962336204957
+        },
+        {
+          "time": 2.999999999999803,
+          "distanceM": 0.1567209816612613,
+          "heading": 0.1475287127144727,
+          "tilt": 0.02209393257797307,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.10905234484091357,
+            "areaFraction": 0.20153356481481483,
+            "widthFraction": 0.4479166666666667
+          },
+          "neck": 0.0064220303640374
+        },
+        {
+          "time": 3.9999999999999583,
+          "distanceM": 0.1485781934678695,
+          "heading": 0.10135166340542037,
+          "tilt": 0.055252512884503335,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.22553110283792774,
+            "areaFraction": 0.22294560185185186,
+            "widthFraction": 0.5
+          },
+          "neck": 0.018728090573704094
+        },
+        {
+          "time": 5.000000000000115,
+          "distanceM": 0.1397521576477133,
+          "heading": -0.015413134446521218,
+          "tilt": 0.013005046684210238,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.0646335481912776,
+            "areaFraction": 0.2271412037037037,
+            "widthFraction": 0.5208333333333334
+          },
+          "neck": 0.05899586880086822
+        },
+        {
+          "time": 6.000000000000271,
+          "distanceM": 0.13376330196550618,
+          "heading": -0.04545649945141759,
+          "tilt": 0.03562838423232418,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.14440535653019207,
+            "areaFraction": 0.2222222222222222,
+            "widthFraction": 0.5729166666666666
+          },
+          "neck": 0.12165479532492274
+        },
+        {
+          "time": 7.000000000000427,
+          "distanceM": 0.12566909073283253,
+          "heading": 0.05678659881749258,
+          "tilt": 0.03552253119526752,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.00021861587000770422,
+            "areaFraction": 0.2743055555555556,
+            "widthFraction": 0.6458333333333334
+          },
+          "neck": 0.07412280363781532
+        },
+        {
+          "time": 7.766666666667214,
+          "distanceM": 0.12858463355744829,
+          "heading": 0.0597719111677763,
+          "tilt": 0.03382334863142969,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.0013054575170734152,
+            "areaFraction": 0.18446180555555555,
+            "widthFraction": 0.5833333333333334
+          },
+          "neck": 0.07853645949682131
+        }
+      ]
+    },
+    {
+      "seed": 2026,
+      "target": [
+        0.18,
+        0.04,
+        0.05
+      ],
+      "goal": {
+        "rootComM": [
+          0.06535179208606995,
+          -0.0033278289425727483,
+          0.04505588414221354
+        ],
+        "distanceM": 0.12256227942867486,
+        "headingErrorRad": 0.08579828394236205,
+        "tiltRad": 0.00048630069070470724,
+        "initialDistanceM": 0.1866637193650037,
+        "progressM": 0.06410143993632884,
+        "deltaProgressM": -9.633017323805448e-05,
+        "maxProgressM": 0.06805565595386365,
+        "progressFraction": 1,
+        "sustainedProgressM": 0.05233972304056145,
+        "recentClosingSpeedMps": 0.004989551399808521,
+        "progressWindowReady": true,
+        "centerStandOffM": [
+          0.10999999999999999,
+          0.13
+        ],
+        "frontGapM": 0.03756227942867486,
+        "nearTarget": true,
+        "madeProgress": true,
+        "headingAligned": true,
+        "upright": true,
+        "fallen": false,
+        "holdSeconds": 1.5000000000002345,
+        "success": true,
+        "elapsedSeconds": 8.683333333334025
+      },
+      "finished": true,
+      "score": 16.751235440698068,
+      "observations": 87,
+      "visibleFraction": 1,
+      "coverageFraction": 1,
+      "eligible": true,
+      "trace": [
+        {
+          "time": 1.0000000000000229,
+          "distanceM": 0.17566611948946065,
+          "heading": 0.1734375292144219,
+          "tilt": 0.1657865176461858,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.23290068834156083,
+            "areaFraction": 0.19936342592592593,
+            "widthFraction": 0.3958333333333333
+          },
+          "neck": 0.24799700444657233
+        },
+        {
+          "time": 1.9999999999999127,
+          "distanceM": 0.16523249521514913,
+          "heading": 0.19895183908755476,
+          "tilt": 0.08260942385774883,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.06186662798514389,
+            "areaFraction": 0.23929398148148148,
+            "widthFraction": 0.4166666666666667
+          },
+          "neck": 0.1833989242741595
+        },
+        {
+          "time": 2.999999999999803,
+          "distanceM": 0.16146631831637115,
+          "heading": 0.2617401721762506,
+          "tilt": 0.028836409015183168,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.10533901886696764,
+            "areaFraction": 0.1908275462962963,
+            "widthFraction": 0.4166666666666667
+          },
+          "neck": 0.14630371131317882
+        },
+        {
+          "time": 3.9999999999999583,
+          "distanceM": 0.1551531234235943,
+          "heading": 0.18975881801290345,
+          "tilt": 0.046024736603251355,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.20622521418466763,
+            "areaFraction": 0.18677662037037038,
+            "widthFraction": 0.4375
+          },
+          "neck": 0.15317026167802233
+        },
+        {
+          "time": 5.000000000000115,
+          "distanceM": 0.14420024628999356,
+          "heading": 0.06429907629739245,
+          "tilt": 0.026150077191748902,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.023249588154176624,
+            "areaFraction": 0.23423032407407407,
+            "widthFraction": 0.4895833333333333
+          },
+          "neck": 0.1776256031346427
+        },
+        {
+          "time": 6.000000000000271,
+          "distanceM": 0.1369006976775343,
+          "heading": 0.012482636275690849,
+          "tilt": 0.0779404333973997,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.1316669799421618,
+            "areaFraction": 0.2643229166666667,
+            "widthFraction": 0.5625
+          },
+          "neck": 0.19719973548098585
+        },
+        {
+          "time": 7.000000000000427,
+          "distanceM": 0.13272355603834013,
+          "heading": 0.08188504466118797,
+          "tilt": 0.06615702485290412,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.22908469645235194,
+            "areaFraction": 0.2703993055555556,
+            "widthFraction": 0.59375
+          },
+          "neck": 0.18129866715635068
+        },
+        {
+          "time": 8.000000000000584,
+          "distanceM": 0.12440373518738199,
+          "heading": 0.15187482468388067,
+          "tilt": 0.050824012214910605,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.08062123412589808,
+            "areaFraction": 0.26967592592592593,
+            "widthFraction": 0.6145833333333334
+          },
+          "neck": 0.15179396095750122
+        },
+        {
+          "time": 8.683333333334025,
+          "distanceM": 0.12256227942867486,
+          "heading": 0.08579828394236205,
+          "tilt": 0.00048630069070470724,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.00035568851143406865,
+            "areaFraction": 0.25289351851851855,
+            "widthFraction": 0.6354166666666666
+          },
+          "neck": 0.13662618826433373
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "target": [
+        0.18,
+        0.04,
+        0.05
+      ],
+      "goal": {
+        "rootComM": [
+          0.06267408759146782,
+          -0.00600602151984731,
+          0.044927479641414254
+        ],
+        "distanceM": 0.1260235047067777,
+        "headingErrorRad": 0.1629339476169876,
+        "tiltRad": 0.04555170488683089,
+        "initialDistanceM": 0.18613102903026033,
+        "progressM": 0.060107524323482625,
+        "deltaProgressM": -0.0001804559822997931,
+        "maxProgressM": 0.0651912495050867,
+        "progressFraction": 1,
+        "sustainedProgressM": 0.05316908503871706,
+        "recentClosingSpeedMps": 0.0015093726687770148,
+        "progressWindowReady": true,
+        "centerStandOffM": [
+          0.10999999999999999,
+          0.13
+        ],
+        "frontGapM": 0.04102350470677771,
+        "nearTarget": true,
+        "madeProgress": true,
+        "headingAligned": true,
+        "upright": true,
+        "fallen": false,
+        "holdSeconds": 1.5000000000002345,
+        "success": true,
+        "elapsedSeconds": 9.46666666666748
+      },
+      "finished": true,
+      "score": 16.65782777603667,
+      "observations": 95,
+      "visibleFraction": 1,
+      "coverageFraction": 1,
+      "eligible": true,
+      "trace": [
+        {
+          "time": 1.0000000000000229,
+          "distanceM": 0.17770628682670042,
+          "heading": 0.14496752710782343,
+          "tilt": 0.11067060720654925,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.24153152769421612,
+            "areaFraction": 0.19241898148148148,
+            "widthFraction": 0.3854166666666667
+          },
+          "neck": 0.2330862565320833
+        },
+        {
+          "time": 1.9999999999999127,
+          "distanceM": 0.16837628848362496,
+          "heading": 0.22094981305888106,
+          "tilt": 0.07318277337176778,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.02140065552503769,
+            "areaFraction": 0.22019675925925927,
+            "widthFraction": 0.3958333333333333
+          },
+          "neck": 0.1997107759995806
+        },
+        {
+          "time": 2.999999999999803,
+          "distanceM": 0.16281594809181896,
+          "heading": 0.2950225949693682,
+          "tilt": 0.031119281658297526,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.09265671607091021,
+            "areaFraction": 0.1947337962962963,
+            "widthFraction": 0.4166666666666667
+          },
+          "neck": 0.1776427861568533
+        },
+        {
+          "time": 3.9999999999999583,
+          "distanceM": 0.15661727567611367,
+          "heading": 0.21417508589842893,
+          "tilt": 0.06435527262668134,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.21116857572788073,
+            "areaFraction": 0.22251157407407407,
+            "widthFraction": 0.4479166666666667
+          },
+          "neck": 0.18785402360608205
+        },
+        {
+          "time": 5.000000000000115,
+          "distanceM": 0.14805924358399888,
+          "heading": 0.11556651733779058,
+          "tilt": 0.04809359479831478,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.013733093027003731,
+            "areaFraction": 0.23755787037037038,
+            "widthFraction": 0.4791666666666667
+          },
+          "neck": 0.21277973424151903
+        },
+        {
+          "time": 6.000000000000271,
+          "distanceM": 0.14257533770189187,
+          "heading": 0.08550000448753861,
+          "tilt": 0.05614493121959727,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.11904793778866242,
+            "areaFraction": 0.2277199074074074,
+            "widthFraction": 0.5104166666666666
+          },
+          "neck": 0.26150221216871256
+        },
+        {
+          "time": 7.000000000000427,
+          "distanceM": 0.13925210410410427,
+          "heading": 0.10411688621011103,
+          "tilt": 0.04861183508748748,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.20498709464157253,
+            "areaFraction": 0.25289351851851855,
+            "widthFraction": 0.5520833333333334
+          },
+          "neck": 0.21103127294737267
+        },
+        {
+          "time": 8.000000000000584,
+          "distanceM": 0.12896832427734964,
+          "heading": 0.17837088517822933,
+          "tilt": 0.04471808274351863,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.06718275259826023,
+            "areaFraction": 0.24623842592592593,
+            "widthFraction": 0.5729166666666666
+          },
+          "neck": 0.18739679386663183
+        },
+        {
+          "time": 9.00000000000074,
+          "distanceM": 0.12148406287421658,
+          "heading": 0.1565511429513817,
+          "tilt": 0.06088890126048734,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.02191161455741628,
+            "areaFraction": 0.32494212962962965,
+            "widthFraction": 0.6770833333333334
+          },
+          "neck": 0.2088943804817991
+        },
+        {
+          "time": 9.46666666666748,
+          "distanceM": 0.1260235047067777,
+          "heading": 0.1629339476169876,
+          "tilt": 0.04555170488683089,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.005394093864906211,
+            "areaFraction": 0.21296296296296297,
+            "widthFraction": 0.6041666666666666
+          },
+          "neck": 0.21462344471018024
+        }
+      ]
+    },
+    {
+      "seed": 2026,
+      "target": [
+        0.18,
+        -0.04,
+        0.05
+      ],
+      "goal": {
+        "rootComM": [
+          0.05632332606935036,
+          -0.014646775919270976,
+          0.044908603139981594
+        ],
+        "distanceM": 0.12624858670827127,
+        "headingErrorRad": 0.09382836111609413,
+        "tiltRad": 0.03745658524187077,
+        "initialDistanceM": 0.18722388036642884,
+        "progressM": 0.06097529365815757,
+        "deltaProgressM": 6.637456957309107e-06,
+        "maxProgressM": 0.06527178681606688,
+        "progressFraction": 1,
+        "sustainedProgressM": 0.0520349945562556,
+        "recentClosingSpeedMps": 0.0038563488823511877,
+        "progressWindowReady": true,
+        "centerStandOffM": [
+          0.10999999999999999,
+          0.13
+        ],
+        "frontGapM": 0.04124858670827128,
+        "nearTarget": true,
+        "madeProgress": true,
+        "headingAligned": true,
+        "upright": true,
+        "fallen": false,
+        "holdSeconds": 1.5000000000002345,
+        "success": true,
+        "elapsedSeconds": 8.666666666667355
+      },
+      "finished": true,
+      "score": 16.60181131082675,
+      "observations": 87,
+      "visibleFraction": 1,
+      "coverageFraction": 1,
+      "eligible": true,
+      "trace": [
+        {
+          "time": 1.0000000000000229,
+          "distanceM": 0.17948225907013135,
+          "heading": -0.18661105999304464,
+          "tilt": 0.0751302169785711,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.22731108692919455,
+            "areaFraction": 0.17317708333333334,
+            "widthFraction": 0.3541666666666667
+          },
+          "neck": -0.15689167340931007
+        },
+        {
+          "time": 1.9999999999999127,
+          "distanceM": 0.16929266510155433,
+          "heading": -0.06666532959454599,
+          "tilt": 0.05553496106544098,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.024519474965438923,
+            "areaFraction": 0.20413773148148148,
+            "widthFraction": 0.3854166666666667
+          },
+          "neck": -0.15429246715923586
+        },
+        {
+          "time": 2.999999999999803,
+          "distanceM": 0.1622869710419515,
+          "heading": 0.042963630320368484,
+          "tilt": 0.06101913027700788,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.08236476250867601,
+            "areaFraction": 0.1870659722222222,
+            "widthFraction": 0.40625
+          },
+          "neck": -0.13747175250651208
+        },
+        {
+          "time": 3.9999999999999583,
+          "distanceM": 0.15520296137518044,
+          "heading": 0.0033630942674819646,
+          "tilt": 0.06288172753590382,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.19771347937582412,
+            "areaFraction": 0.21686921296296297,
+            "widthFraction": 0.4583333333333333
+          },
+          "neck": -0.09367496577907179
+        },
+        {
+          "time": 5.000000000000115,
+          "distanceM": 0.14636052023625673,
+          "heading": -0.07358462460660092,
+          "tilt": 0.03825457691960119,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.000248313137813611,
+            "areaFraction": 0.23017939814814814,
+            "widthFraction": 0.4791666666666667
+          },
+          "neck": -0.024600291246439455
+        },
+        {
+          "time": 6.000000000000271,
+          "distanceM": 0.14005291261366803,
+          "heading": -0.07850183683834439,
+          "tilt": 0.048552187653318375,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.14777725740930955,
+            "areaFraction": 0.2126736111111111,
+            "widthFraction": 0.5104166666666666
+          },
+          "neck": 0.04371535423050198
+        },
+        {
+          "time": 7.000000000000427,
+          "distanceM": 0.1324006187629808,
+          "heading": 0.010078158162926981,
+          "tilt": 0.08708028699237487,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.2536259908572657,
+            "areaFraction": 0.27835648148148145,
+            "widthFraction": 0.59375
+          },
+          "neck": 0.037017105012557935
+        },
+        {
+          "time": 8.000000000000584,
+          "distanceM": 0.12310822724032056,
+          "heading": 0.1234487634410063,
+          "tilt": 0.05459607381919144,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.10306924851704596,
+            "areaFraction": 0.2938368055555556,
+            "widthFraction": 0.6458333333333334
+          },
+          "neck": 0.04553366712300821
+        },
+        {
+          "time": 8.666666666667355,
+          "distanceM": 0.12624858670827127,
+          "heading": 0.09382836111609413,
+          "tilt": 0.03745658524187077,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.0015581120896335497,
+            "areaFraction": 0.1996527777777778,
+            "widthFraction": 0.6041666666666666
+          },
+          "neck": 0.07897041452791403
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "target": [
+        0.18,
+        -0.04,
+        0.05
+      ],
+      "goal": {
+        "rootComM": [
+          0.05877003948622468,
+          -0.013573059473933127,
+          0.04511862565707485
+        ],
+        "distanceM": 0.12407693787219201,
+        "headingErrorRad": 0.02276253541312015,
+        "tiltRad": 0.03716694499448635,
+        "initialDistanceM": 0.18668004954363926,
+        "progressM": 0.06260311167144725,
+        "deltaProgressM": -4.240957826572023e-05,
+        "maxProgressM": 0.06416162639009242,
+        "progressFraction": 1,
+        "sustainedProgressM": 0.053620018157098354,
+        "recentClosingSpeedMps": 0.00408228933280283,
+        "progressWindowReady": true,
+        "centerStandOffM": [
+          0.10999999999999999,
+          0.13
+        ],
+        "frontGapM": 0.03907693787219202,
+        "nearTarget": true,
+        "madeProgress": true,
+        "headingAligned": true,
+        "upright": true,
+        "fallen": false,
+        "holdSeconds": 1.5000000000002345,
+        "success": true,
+        "elapsedSeconds": 8.650000000000686
+      },
+      "finished": true,
+      "score": 16.79372591942576,
+      "observations": 87,
+      "visibleFraction": 1,
+      "coverageFraction": 1,
+      "eligible": true,
+      "trace": [
+        {
+          "time": 1.0000000000000229,
+          "distanceM": 0.18024356580041526,
+          "heading": -0.18041030580511394,
+          "tilt": 0.06225841563852429,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.22968310949120133,
+            "areaFraction": 0.17158564814814814,
+            "widthFraction": 0.3541666666666667
+          },
+          "neck": -0.15237256941348803
+        },
+        {
+          "time": 1.9999999999999127,
+          "distanceM": 0.1713185225603663,
+          "heading": -0.08054204322525468,
+          "tilt": 0.03924566185351091,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.02311126550438518,
+            "areaFraction": 0.17896412037037038,
+            "widthFraction": 0.3645833333333333
+          },
+          "neck": -0.1535730873601834
+        },
+        {
+          "time": 2.999999999999803,
+          "distanceM": 0.1621696190499343,
+          "heading": 0.019056006137436077,
+          "tilt": 0.08023332662955424,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.08193730809079627,
+            "areaFraction": 0.18981481481481483,
+            "widthFraction": 0.4166666666666667
+          },
+          "neck": -0.15255006145874989
+        },
+        {
+          "time": 3.9999999999999583,
+          "distanceM": 0.15592166736132973,
+          "heading": -0.0024660026835927606,
+          "tilt": 0.08186484354981574,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.1981935107234482,
+            "areaFraction": 0.22366898148148148,
+            "widthFraction": 0.4583333333333333
+          },
+          "neck": -0.10041806709051534
+        },
+        {
+          "time": 5.000000000000115,
+          "distanceM": 0.14674900486400064,
+          "heading": -0.07149804473217156,
+          "tilt": 0.033061712491965115,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.010202460269887057,
+            "areaFraction": 0.22077546296296297,
+            "widthFraction": 0.46875
+          },
+          "neck": -0.03389873399602505
+        },
+        {
+          "time": 6.000000000000271,
+          "distanceM": 0.13998222743511357,
+          "heading": -0.07628435354068702,
+          "tilt": 0.045925904119071166,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.13616334149218318,
+            "areaFraction": 0.20703125,
+            "widthFraction": 0.5104166666666666
+          },
+          "neck": 0.038443570834224325
+        },
+        {
+          "time": 7.000000000000427,
+          "distanceM": 0.13157933888212164,
+          "heading": -0.0039971870150108954,
+          "tilt": 0.07602957587736371,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.24128968023496924,
+            "areaFraction": 0.28804976851851855,
+            "widthFraction": 0.6041666666666666
+          },
+          "neck": 0.03979796188029052
+        },
+        {
+          "time": 8.000000000000584,
+          "distanceM": 0.12812591785470295,
+          "heading": 0.02068521348777283,
+          "tilt": 0.05743533935862056,
+          "observation": {
+            "visible": true,
+            "bearingRad": 0.0033417408185731677,
+            "areaFraction": 0.19010416666666666,
+            "widthFraction": 0.5833333333333334
+          },
+          "neck": 0.003998629322497581
+        },
+        {
+          "time": 8.650000000000686,
+          "distanceM": 0.12407693787219201,
+          "heading": 0.02276253541312015,
+          "tilt": 0.03716694499448635,
+          "observation": {
+            "visible": true,
+            "bearingRad": -0.0010783060885934143,
+            "areaFraction": 0.28153935185185186,
+            "widthFraction": 0.65625
+          },
+          "neck": 0.0049035023228967784
+        }
+      ]
+    }
+  ]
+}

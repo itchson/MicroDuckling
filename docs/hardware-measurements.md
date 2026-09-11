@@ -47,7 +47,6 @@ The model's Ø8.5 mm hub, 2.4 mm arm thickness and 7/11 mm hole radii are provis
 | Hip ears | 4 × M2×6, printed pilots | | | |
 | Mouth ears | 2 × M2×8 with nuts | | | |
 | Passive jaw pivot | M2×12 with locknut; 0.2 mm nominal endplay | | | |
-| PCA9685 supports | 4 × M1.6×6, head Ø≤3.2; Ø1.3 pilots | | | |
 | Servo regulator / IMU mounts | M2×6 | | | |
 | Camera clamp / cradle | M2×6 | | | |
 | Hood, face, shells and neck attachments | Verify each source location | | | |
@@ -59,10 +58,8 @@ Nominal cylindrical CAD screws do not identify supplied threads. For a straight 
 
 | Component | Actual outline / thickness | Top and bottom fitted envelope, including plugs | Retention / clearance | Installed mass |
 |---|---|---|---|---|
-| Adafruit PCA9685 815 rev C | | | | |
 | Adafruit LSM6DS3TR-C 4503 | | | | |
 | Pololu D24V50F5 | | | | |
-| Pololu D24V10F5 | | | | |
 | ESP32-CAM and fitted headers | | | | |
 | OV2640 carrier, lens and flex | | | | |
 | 2S pack, discharge and balance plugs | | | | |

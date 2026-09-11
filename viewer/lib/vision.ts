@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
 // Image-only synthetic-camera experiment. No target world coordinates enter this API.
-import {gaitTargets} from './browser-physics.ts';
+import {locomotionTargets} from './locomotion-controller.ts';
 import type {Gait,JointAngles} from './browser-physics.ts';
 
-export type VisionObservation = {visible: boolean; bearingRad: number; areaFraction: number};
-export type VisionParameters = {headGain: number; turnGain: number; forwardScale: number};
+export type VisionObservation = {visible: boolean; bearingRad: number; areaFraction: number;widthFraction?:number};
+export type VisionParameters = {headGain: number; turnGain: number; forwardScale: number;stopWidthFraction?:number};
 export type CameraMetrics = {visibleFraction: number; meanAbsBearingRad: number; initialArea: number; finalArea: number; fall: boolean};
-export const DEFAULT_VISION_PARAMETERS: VisionParameters = {headGain: 3.5,turnGain: .18,forwardScale: .8};
+export const DEFAULT_VISION_PARAMETERS: VisionParameters = {headGain: 3.5,turnGain: -.08,forwardScale: 1,stopWidthFraction:.63};
 const HIP_LIMIT=Math.PI/15,NECK_LIMIT=Math.PI/4;
 const clamp=(x: number,a: number,b: number)=>Math.max(a,Math.min(b,x));
 function finite(x: number,label: string): number {if(!Number.isFinite(x))throw Error(`${label} must be finite`);return x;}
@@ -25,30 +25,30 @@ export function detectTarget(pixels: Uint8Array,width: number,height: number,ver
     const red=pixels[i*4],green=pixels[i*4+1],blue=pixels[i*4+2],alpha=pixels[i*4+3];
     if(alpha>0&&red>=80&&blue>=100&&green<Math.min(red,blue)*.72&&blue>green*1.45&&red>green*1.3)mask[i]=1;
   }
-  let largest=0,largestX=0;
+  let largest=0,largestX=0,largestWidth=0;
   for(let i=0;i<count;i++){
     if(!mask[i])continue;
-    let read=0,write=1,sumX=0;queue[0]=i;mask[i]=0;
+    let read=0,write=1,sumX=0,minX=width,maxX=0;queue[0]=i;mask[i]=0;
     while(read<write){
-      const p=queue[read++],x=p%width;sumX+=x+.5;
+      const p=queue[read++],x=p%width;sumX+=x+.5;minX=Math.min(minX,x);maxX=Math.max(maxX,x);
       if(x>0&&mask[p-1]){mask[p-1]=0;queue[write++]=p-1;}
       if(x+1<width&&mask[p+1]){mask[p+1]=0;queue[write++]=p+1;}
       if(p>=width&&mask[p-width]){mask[p-width]=0;queue[write++]=p-width;}
       if(p+width<count&&mask[p+width]){mask[p+width]=0;queue[write++]=p+width;}
     }
-    if(write>largest){largest=write;largestX=sumX;}
+    if(write>largest){largest=write;largestX=sumX;largestWidth=maxX-minX+1;}
   }
   if(largest<4)return {visible:false,bearingRad:0,areaFraction:0};
   const normalizedX=2*(largestX/largest)/width-1;
   const tanHalfHorizontalFov=Math.tan(verticalFovRad/2)*(width/height);
-  return {visible:true,bearingRad:-Math.atan(normalizedX*tanHalfHorizontalFov),areaFraction:largest/count};
+  return {visible:true,bearingRad:-Math.atan(normalizedX*tanHalfHorizontalFov),areaFraction:largest/count,widthFraction:largestWidth/width};
 }
 
 /** Bounded gaze and gait commands from image observations and command history only.
  * turnGain may have either sign: the effect of differential hip bias depends on
  * contact dynamics and must be evaluated rather than assumed to steer correctly.
  */
-export function visionTargets(observation: VisionObservation,params: VisionParameters,gait: Gait,time: number,dt: number,previousNeckRad: number): JointAngles {
+export function visionTargets(observation: VisionObservation,params: VisionParameters,gait: Gait,time: number,dt: number,previousNeckRad: number,stopLatch=false): JointAngles {
   finite(time,'time');finite(previousNeckRad,'previousNeckRad');finite(dt,'dt');
   if(dt<0||dt>1)throw Error('dt must be between zero and one second');
   for(const [key,value] of Object.entries(params))finite(value,key);
@@ -61,8 +61,9 @@ export function visionTargets(observation: VisionObservation,params: VisionParam
   }
   const bearing=clamp(observation.bearingRad,-Math.PI/2,Math.PI/2);
   const neck=clamp(previous+clamp(params.headGain,.1,12)*bearing*dt,-NECK_LIMIT,NECK_LIMIT);
-  if(observation.areaFraction>=.09)return {left_hip:0,right_hip:0,neck_yaw:neck,jaw_pitch:0};
-  const base=gaitTargets(gait,time),scale=clamp(params.forwardScale,0,1.5);
+  const close=observation.widthFraction!==undefined?observation.widthFraction>=(params.stopWidthFraction??.6):observation.areaFraction>=.16;
+  if(stopLatch||close)return {left_hip:0,right_hip:0,neck_yaw:neck,jaw_pitch:0};
+  const base=locomotionTargets(gait,time),scale=clamp(params.forwardScale,0,1.5);
   // Neck command + camera-relative bearing is a command-based body bearing estimate.
   // It uses no ground-truth robot yaw, target coordinate or measured joint angle.
   const bodyBearing=clamp(previous+bearing,-Math.PI/2,Math.PI/2);
@@ -97,11 +98,13 @@ export function proposeVisionParameters(best: VisionParameters,trial: number): V
   const random=()=>{state=(state+0x6D2B79F5)|0;let t=Math.imul(state^(state>>>15),1|state);t^=t+Math.imul(t^(t>>>7),61|t);return ((t^(t>>>14))>>>0)/4294967296;};
   const spread=Math.max(.35,1/Math.sqrt(1+trial/12));
   const headGain=clamp(best.headGain,.1,12),turnGain=clamp(best.turnGain,-.6,.6),forwardScale=clamp(best.forwardScale,0,1.5);
-  if(trial===0)return {headGain,turnGain,forwardScale};
+  const stopWidthFraction=clamp(best.stopWidthFraction??.6,.4,.85);
+  if(trial===0)return {headGain,turnGain,forwardScale,stopWidthFraction};
   // Periodically explore the opposite steering sign rather than locking in an
   // unverified contact-to-turn mapping from the default parameters.
   const turnCenter=trial%4===0?-turnGain:turnGain;
   return {headGain:clamp(headGain*Math.exp((random()-.5)*1.2*spread),.1,12),
     turnGain:clamp(turnCenter+(random()-.5)*.5*spread,-.6,.6),
-    forwardScale:clamp(forwardScale+(random()-.5)*.9*spread,0,1.5)};
+    forwardScale:clamp(forwardScale+(random()-.5)*.12*spread,.9,1.1),
+    stopWidthFraction:clamp(stopWidthFraction+(random()-.5)*.15*spread,.4,.85)};
 }

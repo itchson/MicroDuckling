@@ -111,7 +111,7 @@ def main():
     args = parser.parse_args(sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else [])
     data = json.loads((args.cad / "assembly.json").read_text(encoding="utf-8"))
     mechanical_records = [record for record in data["parts"] if record["kind"] != "coupon"]
-    board_names = {"IMU", "ServoController", "Buck_0", "Buck_1"}
+    board_names = {"IMU", "Buck_0"}
     if board_names & {record["name"] for record in mechanical_records}:
         raise ValueError("Use the sanitized public CAD package, not the source assembly")
     if not data.get("public_preview"):
@@ -120,10 +120,10 @@ def main():
     component_notices = json.loads((args.components / "NOTICE.json").read_text(encoding="utf-8"))
     component_records = component_data["parts"]
     if {record["name"] for record in component_records} != board_names:
-        raise ValueError("Expected the four separately licensed component visuals")
+        raise ValueError("Expected the two separately licensed component visuals")
     records = mechanical_records + component_records
-    if len(records) != 91 or len({record["name"] for record in records}) != len(records):
-        raise ValueError("Expected 91 unique assembled parts")
+    if len(records) != 90 or len({record["name"] for record in records}) != len(records):
+        raise ValueError("Expected 90 unique assembled parts")
     source_manifest_sha256 = {
         "cad/assembly.json": hashlib.sha256((args.cad / "assembly.json").read_bytes()).hexdigest(),
         "components/records.json": hashlib.sha256((args.components / "records.json").read_bytes()).hexdigest(),

@@ -5,13 +5,13 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for sharing what you found. R05 is a design prototype; CAD checks do not establish physical fit or walking. Unknowns are fine—record what you observed and keep measurements distinct from assumptions. Remove private information and credentials from uploads.
+        Thanks for sharing what you found. R06 is a design prototype; CAD checks do not establish physical fit or walking. Unknowns are fine—record what you observed and keep measurements distinct from assumptions. Remove private information and credentials from uploads.
   - type: input
     id: revision
     attributes:
       label: Revision and affected part or file
       description: Include a commit, release or design revision when known, and the part name or file involved.
-      placeholder: R05, neck carrier and my MG90S horn
+      placeholder: R06, neck carrier and my MG90S horn
     validations:
       required: true
   - type: textarea

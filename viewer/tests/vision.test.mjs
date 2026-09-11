@@ -31,8 +31,8 @@ test('image controller bounds joints, steers opposite signs, scans only when los
     assert.ok(Math.abs(p.left_hip)<=Math.PI/15);assert.ok(Math.abs(p.right_hip)<=Math.PI/15);assert.ok(Math.abs(p.neck_yaw)<=Math.PI/4);}
   const left=visionTargets(visible,DEFAULT_VISION_PARAMETERS,DEFAULT_GAIT,0,.1,0);
   const right=visionTargets({...visible,bearingRad:-.2},DEFAULT_VISION_PARAMETERS,DEFAULT_GAIT,0,.1,0);
-  assert.ok(left.neck_yaw>0&&right.neck_yaw<0);assert.ok(left.left_hip>left.right_hip);assert.ok(right.left_hip<right.right_hip);
-  const close=visionTargets({...visible,areaFraction:.1},DEFAULT_VISION_PARAMETERS,DEFAULT_GAIT,.2,.1,0);assert.equal(close.left_hip,0);assert.equal(close.right_hip,0);
+  assert.ok(left.neck_yaw>0&&right.neck_yaw<0);assert.ok(left.left_hip<left.right_hip);assert.ok(right.left_hip>right.right_hip);
+  const close=visionTargets({...visible,areaFraction:.2},DEFAULT_VISION_PARAMETERS,DEFAULT_GAIT,.2,.1,0);assert.equal(close.left_hip,0);assert.equal(close.right_hip,0);
   const lost=visionTargets({visible:false,bearingRad:0,areaFraction:0},DEFAULT_VISION_PARAMETERS,DEFAULT_GAIT,1,.1,0);assert.equal(lost.left_hip,0);assert.equal(lost.right_hip,0);assert.ok(lost.neck_yaw>0&&lost.neck_yaw<=.08+1e-12);
 });
 test('pixel reward favors centered visible approach and penalizes falls without world-distance inputs',()=>{

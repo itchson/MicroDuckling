@@ -40,4 +40,4 @@ await copy('assets/brand/microduckling-mascot.png','brand/microduckling-mascot.p
 await copy('simulation/browser/robot-physics.json','simulation/robot-physics.json');
 await copy('components/NOTICE.json','cad/components-NOTICE.json');
 for(const name of await readdir(path.join(root,'docs')))if(name.endsWith('.md'))await copy('docs/'+name,'downloads/reports/'+name);
-console.log(`Prepared ${parts.length} public part records and 32 printable downloads.`);
+console.log(`Prepared ${parts.length} public part records and ${parts.filter(p=>['print','coupon'].includes(p.kind)).length*2} printable downloads.`);

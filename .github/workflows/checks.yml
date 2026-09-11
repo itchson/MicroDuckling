@@ -26,6 +26,7 @@ jobs:
       - run: python -m compileall -q src scripts simulation
       - run: python -m unittest discover -s simulation/tests -v
       - run: python -m unittest discover -s scripts/tests -v
+      - run: sh firmware/tests/run-host.sh
   viewer:
     runs-on: ubuntu-latest
     defaults:

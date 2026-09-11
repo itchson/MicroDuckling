@@ -4,9 +4,9 @@
     "components/meshes/*.json"
   ],
   "geometry_modified": false,
-  "assembled_part_count": 91,
-  "mechanical_part_count": 87,
-  "component_part_count": 4,
+  "assembled_part_count": 90,
+  "mechanical_part_count": 88,
+  "component_part_count": 2,
   "omitted_components": [],
   "coupons_rendered": false,
   "engine": "Blender Cycles OptiX",
@@ -26,13 +26,9 @@
     "Battery": "d20cd89bfa225999d38e395fcd0439f6092fb8704f0f76b04b9fec41058080c3",
     "FixedNeckSupport": "fb254c206e9499f24921efb2765f94347883abfc9f6a029b060787af9a08b228",
     "ThrustShim": "5cbc069e121ef4961feff2be0c8c94a43d9b9e7f71ac297c1e132a081c5c8941",
-    "ServoControllerMountScrew0": "d669856eafa57bc080e926d57b7610f140820e925aa894485441a583ddd34228",
-    "ServoControllerMountScrew1": "309d72393847e4d716dab3db491050f14cae939fbe47002499505c441620eec7",
-    "ServoControllerMountScrew2": "422a507195e35cbaeef98ca2b400e4a12001e5a4cdd237cab10a9ecc9b0b079f",
-    "ServoControllerMountScrew3": "f243ed47d6d725c60cad28f91e14be365e1bf7112e4f6005837030c0ab79d840",
     "Buck_0MountScrew0": "649ebf65d436a6ebb9d417d8dc4575e5803125028c78789bcb718764091cd6d7",
     "Buck_0MountScrew1": "cbeaa708609ec1dbd1e7eb08f9ba37fc9a3770259d2ea0e1d2a1b4f15e8b5495",
-    "Chassis": "893cc572b20e71445646f4ee441f50c7aa23cd60cf6c5032efb5288f8aac3206",
+    "Chassis": "07464bf9e91dc12fb2a105132bd8d90176491e6c35899ff9971a35f80a9b5d81",
     "BatteryStrap": "52a27c89d812af2c54e9f342d4be9b0e6a2d85079c3de0fca7768bdb6c38ff1a",
     "BatteryPad": "5ef801a22906dbe33a45a6f5fe42794b4c6a2fe93814439359322edf55fbe63a",
     "LegFootLeft": "b7372c1122b493507a14f116cbdc181819244735cdc50ac97e4f3886fa5407d8",
@@ -55,11 +51,16 @@
     "BodyNut171": "af895918b52a3a9c88b7d550490e2fc73a24f1e50e9f646f5206d19560ed9538",
     "BodyScrew17-1": "a97f72a9f61c852180e9ded8ecddade01928d4c0e315591a197f02d291aa88a5",
     "BodyNut17-1": "fcf83af2b309cc54757afe2d890ae70d17073062998aa168beeadadc06aac9bf",
-    "BodyShellLeft": "2606f89dc56a49e971b5b002b0a78685e41477fc755861912fcad501696be5ed",
+    "BodyShellLeft": "c689c5630c571fd74faf3c7e525a5005a4d2965ab5e4311a5c02d8c8c413c975",
     "BodyShellRight": "95c106237acff497188c2f1d13c9958531cc4827af366e7f88c3e73969152140",
     "NeckCarrier": "629a786f47b8f8bb94001cedc0b93ef5dbf2fe20f1c2df3e5803d796655d5630",
     "NeckHorn": "bfa195b0c79883d6a15ca8a80dc53b8430a419fb40e8027bc561f4f0095f724a",
-    "FacePanel": "d2271a345744c6ae48a1ef2ae02a45ae6988aa45c15a0b81ef1eca5d5a340bb6",
+    "FacePanel": "da77698af3c9cb240a232adb9fa8dd054f1aee98438771ddc2fd188d2048b4fd",
+    "UpperBill": "03460f8213dbece427c08a5b33b81af0ce806537b179ba8d3eeb950a5a0996d6",
+    "UpperBillScrewLeft": "a5722812c58c784d50cb20415c597a01e2b091dca946801fa61f221e2bfffa8a",
+    "UpperBillNutLeft": "7e7f59d584ea0bb794f4908d10faf4392d3db5e368c5877f5987f9d503640a00",
+    "UpperBillScrewRight": "4c04b4f7fbc57cb4f2d262a239b22cdc93c1b359504f16ec299ad4ba8b398d86",
+    "UpperBillNutRight": "7021b6fab8e8cc82efbea38ff3736dc6699a6b3c03d812f00c8495f353d21ef0",
     "CameraRing": "192087edae4695e9e2c0e8c5690eca3696a2b06793206985622b98f44b2aa398",
     "ESP32CAM": "8cc5b57ac7516fda4e7755d39cb25019257638a85aec7a39f890a8d1a4e765ad",
     "OV2640Camera": "3c5cb6011c0880d0ae498ce245f399f2d9eed94e02332a625e0ee596903eea16",
@@ -108,9 +109,7 @@
     "HarnessHead": "e3cb20e9ef082b9007c9b69c66410fe103306b00ba8fa802023c1c6a1bc4273a",
     "HarnessCameraRibbon": "8a26b0e225d13d841f57b54be8760d175d529115df59f01405dad479f48021fd",
     "IMU": "4b9656a745dd9f5b203613328225bdcfdeba0d17921295b886b27a67e68e5104",
-    "ServoController": "ee636c00c8cf86c226f37f94070d62a11657188a3c7dda6427c9155381fc978c",
-    "Buck_0": "985c7d88c75c66ec079526a34ee9fbabee0dca1cd368d744fc2aeb8b6a96228b",
-    "Buck_1": "ff35a396aba55edd0b22fa24aa62d78ccba88f975d664e549c555b4699679279"
+    "Buck_0": "985c7d88c75c66ec079526a34ee9fbabee0dca1cd368d744fc2aeb8b6a96228b"
   },
   "mesh_paths": {
     "ServoLeft": "cad/meshes/ServoLeft.json",
@@ -119,10 +118,6 @@
     "Battery": "cad/meshes/Battery.json",
     "FixedNeckSupport": "cad/meshes/FixedNeckSupport.json",
     "ThrustShim": "cad/meshes/ThrustShim.json",
-    "ServoControllerMountScrew0": "cad/meshes/ServoControllerMountScrew0.json",
-    "ServoControllerMountScrew1": "cad/meshes/ServoControllerMountScrew1.json",
-    "ServoControllerMountScrew2": "cad/meshes/ServoControllerMountScrew2.json",
-    "ServoControllerMountScrew3": "cad/meshes/ServoControllerMountScrew3.json",
     "Buck_0MountScrew0": "cad/meshes/Buck_0MountScrew0.json",
     "Buck_0MountScrew1": "cad/meshes/Buck_0MountScrew1.json",
     "Chassis": "cad/meshes/Chassis.json",
@@ -153,6 +148,11 @@
     "NeckCarrier": "cad/meshes/NeckCarrier.json",
     "NeckHorn": "cad/meshes/NeckHorn.json",
     "FacePanel": "cad/meshes/FacePanel.json",
+    "UpperBill": "cad/meshes/UpperBill.json",
+    "UpperBillScrewLeft": "cad/meshes/UpperBillScrewLeft.json",
+    "UpperBillNutLeft": "cad/meshes/UpperBillNutLeft.json",
+    "UpperBillScrewRight": "cad/meshes/UpperBillScrewRight.json",
+    "UpperBillNutRight": "cad/meshes/UpperBillNutRight.json",
     "CameraRing": "cad/meshes/CameraRing.json",
     "ESP32CAM": "cad/meshes/ESP32CAM.json",
     "OV2640Camera": "cad/meshes/OV2640Camera.json",
@@ -201,14 +201,12 @@
     "HarnessHead": "cad/meshes/HarnessHead.json",
     "HarnessCameraRibbon": "cad/meshes/HarnessCameraRibbon.json",
     "IMU": "components/meshes/IMU.json",
-    "ServoController": "components/meshes/ServoController.json",
-    "Buck_0": "components/meshes/Buck_0.json",
-    "Buck_1": "components/meshes/Buck_1.json"
+    "Buck_0": "components/meshes/Buck_0.json"
   },
   "source_manifest_sha256": {
-    "cad/assembly.json": "f5f96f838c2969f9c5884e52866edcc66ff2bdfcff4ff4130ac4e97ae9bca792",
-    "components/records.json": "0a6fc4a84b2550e12563930bc4c21387253ac11528ffe1c67863f442cec89ced",
-    "components/NOTICE.json": "5d84135a8680b01139b1c3db4f55924c829a2a878b581c506cada8db8ea59dbd"
+    "cad/assembly.json": "7eae29e8b9ded35e8d75d2eaaa64e9008cadacca645b6de709ffab70b9cfbed3",
+    "components/records.json": "b57df507d090f7a9c18bfde0ea40984c49cfc975eda1709e0f6862da27c20868",
+    "components/NOTICE.json": "53e4c2bdef96deb64f090060fbbd8993935c5c9b2266fec3ace95f085833f07b"
   },
   "exploded_translation_mm": {
     "LegFootLeft": [
@@ -266,10 +264,10 @@
       0,
       90
     ],
-    "ServoController": [
-      126,
+    "UpperBill": [
+      8,
       0,
-      18
+      82.8
     ],
     "FixedNeckSupport": [
       0,
@@ -381,11 +379,6 @@
       0,
       58.8
     ],
-    "Buck_1": [
-      0.7790606324172483,
-      -138.81828619558968,
-      -3.7278880049072183
-    ],
     "HeadFrameScrew-13": [
       0,
       -22.4,
@@ -397,9 +390,9 @@
       113.86138685802973
     ],
     "HarnessCameraRibbon": [
-      16,
+      6.794700191940356,
       0,
-      82.8
+      122.21867640220364
     ],
     "OV2640Camera": [
       147.6,
@@ -432,13 +425,23 @@
       7.2
     ],
     "MouthMountScrew1": [
-      32,
+      0,
       14.4,
-      82.8
+      42.8
     ],
     "MouthMountScrew0": [
       -16,
       14.4,
+      82.8
+    ],
+    "UpperBillScrewLeft": [
+      0,
+      22.4,
+      82.8
+    ],
+    "UpperBillScrewRight": [
+      0,
+      -22.4,
       82.8
     ],
     "NeckHornScrew-11": [
@@ -551,30 +554,10 @@
       0,
       138.4
     ],
-    "ServoControllerMountScrew0": [
-      126,
-      0,
-      34
-    ],
-    "ServoControllerMountScrew2": [
-      126,
-      0,
-      34
-    ],
-    "ServoControllerMountScrew1": [
-      110,
-      0,
-      18
-    ],
-    "ServoControllerMountScrew3": [
-      110,
-      0,
-      18
-    ],
     "MouthShaftScrew": [
-      64.8,
-      0,
-      77.2
+      75.90285835002864,
+      4.709614095196576,
+      81.94960412956172
     ],
     "ShaftScrewLeft": [
       0,
@@ -622,14 +605,14 @@
       -30.383070835025283
     ],
     "MouthHornScrew-11": [
-      64.8,
-      0,
-      77.2
+      77.67202325584815,
+      4.993828420329047,
+      80.83091172129349
     ],
     "MouthHornScrew-15": [
-      77.04082535298474,
-      5.089375415577884,
-      81.20651025434064
+      40.8,
+      0,
+      61.2
     ],
     "JawPassiveLocknut": [
       -16,
@@ -662,21 +645,31 @@
       82.8
     ],
     "MouthMountNut1": [
-      0,
+      56,
       14.4,
-      42.8
+      82.8
+    ],
+    "UpperBillNutLeft": [
+      3.3377654991184413,
+      18.095383231166846,
+      98.00537616265068
+    ],
+    "UpperBillNutRight": [
+      3.3377654991184413,
+      -18.095383231166846,
+      98.00537616265068
     ]
   },
   "exploded_layout": {
     "source": "viewer/lib/explode.ts",
     "source_sha256": {
       "viewer/lib/explode.ts": "5d32a2bf4f7d23ac25a293403eda755a01e50b75388f8166429eb358db6e3e63",
-      "viewer/lib/robot.ts": "b45222a9ceffe1a08a8931f9aa36dd1d57b6ce7d637c3cdd2b30b0ce09476bb6"
+      "viewer/lib/robot.ts": "0ca7ede882fbb7d66142e89d835b84599b971f047afbee138a2fe8ab538ecf0e"
     },
     "amount": 1,
     "gap_mm": 5,
     "joint_angles_deg": {},
-    "part_count": 91
+    "part_count": 90
   },
   "license": "CC-BY-SA-3.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",

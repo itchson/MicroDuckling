@@ -1,13 +1,13 @@
 """Build separately licensed board visuals for the MicroDuckling viewer.
 
-Use FreeCAD's Python. Required inputs are a full assembly metadata JSON, the two
-Adafruit mesh exports beside it, and the upstream Adafruit notice directory.
+Use FreeCAD's Python. Required inputs are a full assembly metadata JSON, the
+Adafruit IMU mesh export beside it, and the upstream Adafruit notice directory.
 This script never opens a Pololu STEP, an old Buck mesh, or a native CAD file.
 
 python generate_electronics_visuals.py --cad <build/local/cad> --notices <references/components_r02/notices> --output <component-assets>
 
 SPDX-License-Identifier: Apache-2.0
-The two Adafruit-derived output meshes are separately CC-BY-SA-3.0.
+The Adafruit-derived IMU output mesh is separately CC-BY-SA-3.0.
 """
 import argparse
 import copy
@@ -194,7 +194,7 @@ def main():
         destination = out / "licenses" / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(path, destination)
-    for name in ("IMU", "ServoController", "Buck_0", "Buck_1"):
+    for name in ("IMU", "Buck_0"):
         if source_records[name]["pcb_basis_global"] != [list(axis) for axis in PLACEMENTS[name][1]]:
             raise ValueError("Assembly datum orientation changed; review placement: " + name)
         record = copy.deepcopy(source_records[name])
@@ -218,7 +218,7 @@ def main():
             record["geometry_provenance"] = "Original procedural primitives based on published dimensions and photos"
             record["dimension_sources"] = POLOLU_SOURCES[name]
             record["mount_holes_local_mm"] = holes
-            (out / "meshes" / (name + ".json")).write_text(json.dumps(mesh, separators=(",", ":")), encoding="utf-8")
+            (out / "meshes" / (name + ".json")).write_text(json.dumps(mesh, separators=(",", ":")), encoding="utf-8", newline="\n")
             notice = {"name": name, "license": license_id, "license_url": "https://www.apache.org/licenses/LICENSE-2.0", "author": "MicroDuckling contributors", "title": "Original visual approximation of " + ("Pololu D24V50F5" if name == "Buck_0" else "Pololu D24V10F5"), "source_urls_for_facts_and_visual_reference": POLOLU_SOURCES[name], "creation_method": "Independent hand-authored boxes, cylinders, chamfered polygons, holes and generic component leads; no Pololu STEP/old mesh read or derivative geometry", "trademark_note": "Product names identify the represented hardware; no manufacturer endorsement or copied branding is implied.", "mesh_path": "meshes/" + name + ".json"}
         bbox = validate(mesh)
         record.update({"bbox": bbox, "dimensions_mm": [bbox[i + 3] - bbox[i] for i in range(3)], "material_groups": len(mesh["materials"]), "mesh_license": license_id, "mesh_path": "meshes/" + name + ".json", "pcb_origin_global_mm": list(PLACEMENTS[name][0]), "mass_estimates_scope": "full_physical_assembly", "visual_geometry_only": True})
@@ -226,9 +226,9 @@ def main():
         notices.append(notice)
         records.append(record)
         checks.append({"name": name, "vertices": len(mesh["positions"]) // 3, "triangles": len(mesh["indices"]) // 3, "material_groups": len(mesh["groups"]), "bbox_mm": bbox, "complete_material_coverage": True, "mass_estimate_preserved": record["mass_g"] == source_records[name]["mass_g"], "com_estimate_preserved": record["com_mm"] == source_records[name]["com_mm"]})
-    (out / "records.json").write_text(json.dumps({"schema_version": 1, "units": "mm", "coordinate_system": "MicroDuckling R05 CAD assembly coordinates", "mass_estimates_scope": "full_physical_assembly", "parts": records}, indent=2) + "\n", encoding="utf-8")
-    (out / "NOTICE.json").write_text(json.dumps({"schema_version": 1, "assets": notices, "collection_note": "Individual asset licenses apply. Adafruit mesh adaptations remain CC-BY-SA-3.0. Original Pololu approximations and this generator are Apache-2.0; no license is asserted over the represented commercial hardware."}, indent=2) + "\n", encoding="utf-8")
-    (out / "validation.json").write_text(json.dumps({"parts": checks, "part_count": 4, "pololu_step_or_prior_mesh_used": False}, indent=2) + "\n", encoding="utf-8")
+    (out / "records.json").write_text(json.dumps({"schema_version": 1, "units": "mm", "coordinate_system": "MicroDuckling R06 CAD assembly coordinates", "mass_estimates_scope": "full_physical_assembly", "parts": records}, indent=2) + "\n", encoding="utf-8", newline="\n")
+    (out / "NOTICE.json").write_text(json.dumps({"schema_version": 1, "assets": notices, "collection_note": "Individual asset licenses apply. Adafruit mesh adaptations remain CC-BY-SA-3.0. Original Pololu approximations and this generator are Apache-2.0; no license is asserted over the represented commercial hardware."}, indent=2) + "\n", encoding="utf-8", newline="\n")
+    (out / "validation.json").write_text(json.dumps({"parts": checks, "part_count": len(checks), "pololu_step_or_prior_mesh_used": False}, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps(checks, indent=2))
 
 

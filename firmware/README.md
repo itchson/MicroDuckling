@@ -1,0 +1,15 @@
+# Direct servo I/O component
+
+This ESP-IDF component implements the [direct-GPIO wiring plan](../docs/electronics.md): four servo signals, an OV2640 camera configuration, and a separate IMU I²C bus. It is a bring-up component, not a complete robot application or a tested hardware walking policy.
+
+Use classic ESP32, ESP-IDF 5.4/5.5, and pinned `espressif/esp32-camera` 2.1.6. Add `components/microduckling_io` to an ESP-IDF application's components and merge `sdkconfig.defaults`, then inspect the resulting menuconfig. There is no top-level `app_main` here. GPIO16/17 stay assigned to PSRAM; microSD is unused. The component deliberately refuses a build with the wrong chip, camera I²C bus, or UART console settings.
+
+The four servo functions require explicit measured calibration; no generic microseconds-to-angle mapping is represented as valid for the assembled robot. `md_servos_init(calibration)` starts at zero duty, with no servo pulses. `md_servos_write(angles)` accepts radians in left hip, right hip, neck, jaw order and rejects angles outside ±12°, ±12°, ±45°, and 0..12°. The 500–2500 µs outer software envelope only rejects obviously invalid calibration data; it is not an assertion that a particular servo or mechanism permits that entire range. Use smaller measured pulse bounds.
+
+Call the servo API from one control task. Call `md_servos_stop()` on a control timeout or fault and provide a physical servo-power disconnect. LEDC can continue its last pulse train while the application is stuck; stopping PWM also does not guarantee that every servo batch releases torque. Fault detection, watchdog policy, power switching, sensing, networking, and walking control remain application work.
+
+Duty writes use `ledc_set_duty()` followed by `ledc_update_duty()`, with both errors checked. This single-task component does not install the LEDC fade service required by ESP-IDF's combined `ledc_set_duty_and_update()` helper. Other tasks must not change its channels or start a fade on them. The [ESP-IDF 5.5.2 implementation](https://github.com/espressif/esp-idf/blob/v5.5.2/components/esp_driver_ledc/src/ledc.c) defines that service requirement.
+
+Initialize the camera with the value from `md_camera_config()`. `md_imu_bus_init(&bus)` creates the new-driver I²C1 bus on SDA3/SCL1 with external 3.3 V pull-ups; attach the selected sensor driver at 100 kHz initially. Camera SCCB uses I²C0. Do not install the legacy I²C driver alongside the new driver. UART programming requires opening both IMU signal links; runtime UART logs are disabled.
+
+Run `sh firmware/tests/run-host.sh` from the repository root on Linux to check pin/timer separation, command bounds, pulse conversion, and error handling. The [host-test instructions](tests/README.md) also cover Windows through WSL and explain the original test doubles. No ESP-IDF target build or board test has been completed in this environment, which has no installed ESP-IDF toolchain. Scope the 50 Hz pulses and 20 MHz camera clock together, verify camera/PSRAM/IMU operation, and qualify reset and loaded power behavior before connecting installed servo horns.

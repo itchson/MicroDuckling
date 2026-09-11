@@ -7,7 +7,7 @@ const nearly=(a,b,tolerance)=>assert.ok(Math.abs(a-b)<tolerance,`${a} != ${b}`);
 
 test('physical asset retains full CAD-estimated mass, nonzero inertia and five moving links',async()=>{
   const sim=await BrowserPhysics.create(asset);
-  try{const d=sim.diagnostics();nearly(d.massKg,.257281065184,1e-6);assert.equal(d.bodies,5);assert.equal(d.joints,4);assert.ok(d.colliders>20);assert.ok(d.anchorErrorM<1e-6);
+  try{const d=sim.diagnostics();nearly(d.massKg,asset.totalMassKg,1e-6);assert.equal(d.bodies,5);assert.equal(d.joints,4);assert.equal(d.colliders,10);assert.ok(d.anchorErrorM<1e-6);
     for(const l of asset.links){assert.ok(l.massKg>0);assert.ok(l.principalInertiaKgM2.every(x=>x>0));}
   }finally{sim.dispose();}
 });

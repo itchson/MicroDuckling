@@ -1,0 +1,152 @@
+{
+  "assetSha256": "50dcf217ace63f26561a487355245aae53bcdc5139d94e68e9ef10fbf984df76",
+  "totalMassKg": 0.2479572035788575,
+  "canonicalSourcesUnchangedAtPostNormalizationCheck": true,
+  "finalModuleSha256": {
+    "simulation/browser/robot-physics.json": "50dcf217ace63f26561a487355245aae53bcdc5139d94e68e9ef10fbf984df76",
+    "viewer/lib/browser-physics.ts": "847242e06002c1f44ac32385c29f12df075a21dec3be4d2c9d2a96fd287d0891",
+    "viewer/lib/locomotion-controller.ts": "7cd89230fed12da050535c3167ff69e53755c03b3b47cc053bd965eb2920ca75",
+    "viewer/lib/rocking-trainer.ts": "923859c02737f585ad7205e3b541c520a6679176c1c04bdd5ca9a537b158564a"
+  },
+  "openLoop": {
+    "seeds": [
+      2026,
+      42,
+      99
+    ],
+    "rawEpisodeCount": 12,
+    "secondsEach": 30,
+    "groups": [
+      {
+        "physicsHz": 600,
+        "solverIterations": 16,
+        "episodes": 3,
+        "falls": 0,
+        "meanForwardM": 0.23645004375379186,
+        "meanLateForwardMps": 0.007900852564020224,
+        "forwardRangeM": [
+          0.23101350420128577,
+          0.24428374443885045
+        ]
+      },
+      {
+        "physicsHz": 600,
+        "solverIterations": 24,
+        "episodes": 3,
+        "falls": 0,
+        "meanForwardM": 0.23978118749152802,
+        "meanLateForwardMps": 0.007976088830053811,
+        "forwardRangeM": [
+          0.23670186178531644,
+          0.24377349138303261
+        ]
+      },
+      {
+        "physicsHz": 1000,
+        "solverIterations": 16,
+        "episodes": 3,
+        "falls": 0,
+        "meanForwardM": 0.23456366192970537,
+        "meanLateForwardMps": 0.007811290691183285,
+        "forwardRangeM": [
+          0.23040719473048293,
+          0.23707900174362573
+        ]
+      },
+      {
+        "physicsHz": 1000,
+        "solverIterations": 24,
+        "episodes": 3,
+        "falls": 0,
+        "meanForwardM": 0.23845122951312603,
+        "meanLateForwardMps": 0.00797763741228245,
+        "forwardRangeM": [
+          0.23669609069995232,
+          0.24061919407018054
+        ]
+      }
+    ],
+    "maxTiltRad": 0.18157528029652026,
+    "maxJointLimitViolationRad": 6.744865020041355e-08,
+    "maxAbsoluteLateralM": 0.05821708185487013,
+    "maxAbsoluteFinalHeadingRad": 0.3051465650395835,
+    "falls": 0,
+    "meanDistanceRelativeTo600Hz16": [
+      {
+        "physicsHz": 600,
+        "solverIterations": 16,
+        "changePercent": 0
+      },
+      {
+        "physicsHz": 600,
+        "solverIterations": 24,
+        "changePercent": 1.408815022764287
+      },
+      {
+        "physicsHz": 1000,
+        "solverIterations": 16,
+        "changePercent": -0.7977929689244267
+      },
+      {
+        "physicsHz": 1000,
+        "solverIterations": 24,
+        "changePercent": 0.8463461150457485
+      }
+    ]
+  },
+  "training": {
+    "seed": 2026,
+    "generations": 8,
+    "rawEpisodeCount": 98,
+    "neutralBaselines": 1,
+    "providedSeeds": 1,
+    "candidateEvaluations": 96,
+    "falls": 0,
+    "uniqueTrialSeeds": [
+      2026
+    ],
+    "providedSeed": {
+      "seed": 2026,
+      "durationSeconds": 14.000000000001522,
+      "score": 6.762671640998111,
+      "distanceM": 0.11258772926471997,
+      "lateralM": -0.020762221378646816,
+      "fall": false,
+      "maxTiltRad": 0.18157528029652026,
+      "maxJointLimitViolationRad": 0,
+      "lateForwardSpeedMps": 0.008011180522201384,
+      "lateLateralSpeedMps": -0.0017948081936223817,
+      "rmsHeadingRad": 0.11930847945102432,
+      "rmsTiltRad": 0.08676117735420268
+    },
+    "best": {
+      "seed": 2026,
+      "durationSeconds": 14.000000000001522,
+      "score": 9.997533680369832,
+      "distanceM": 0.1461379580246081,
+      "lateralM": -0.012666034388803923,
+      "fall": false,
+      "maxTiltRad": 0.1755909727237581,
+      "maxJointLimitViolationRad": 0,
+      "lateForwardSpeedMps": 0.010508094151897832,
+      "lateLateralSpeedMps": -0.0006562031298050109,
+      "rmsHeadingRad": 0.07756529767246967,
+      "rmsTiltRad": 0.09788717357872474
+    },
+    "improvedOverSeed": true,
+    "scoreImprovement": 3.2348620393717216,
+    "travelImprovementM": 0.03355022875988814,
+    "travelImprovementPercent": 29.799187690342116,
+    "lateSpeedImprovementPercent": 31.16786125062032,
+    "winningGaitSha256": "4d7a46017c6e91e96dbbd8d1a57f6da13b70e1e7c4416059d9decc9e8bda0a3d",
+    "generationCountsVerified": true,
+    "reportedImprovementVerified": true,
+    "winningCandidateActuallyEvaluated": true
+  },
+  "scopeNotes": [
+    "Canonical source was imported directly; no public source or asset was edited.",
+    "Each open-loop trial uses 1 s neutral settling, 60 Hz commands and the unchanged convex-sole physics asset.",
+    "Training improvement is in-sample on seed 2026, not a claim of held-out robustness or physical hardware performance.",
+    "Parent normalized authored text to LF; all four recorded input hashes remain exactly identical at the final check."
+  ]
+}

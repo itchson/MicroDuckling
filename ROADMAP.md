@@ -4,15 +4,15 @@ The aim is a small, affordable hobby robot that is easy to build and rewarding t
 
 This is a sequence of learning and validation stages, not a schedule. Work can overlap, and measurements may require changes to earlier designs. Contributions that reduce cost, simplify assembly or make results easier to reproduce are welcome throughout.
 
-## Current baseline: R05 design prototype
+## Current baseline: R06 design prototype
 
-- Four MG90S joints, 14 robot print parts and two fit coupons.
-- Approximately 257 g estimated total mass; this is not a measured build weight.
+- Four MG90S joints, 15 robot print parts and two fit coupons.
+- Approximately 248 g estimated total mass; this is not a measured build weight.
 - CAD, mesh, sampled motion and assembly-access checks, plus a static simulation scaffold and tests.
-- A local browser physics experiment, bounded gait search and synthetic-camera controller experiments; useful walking and object approach remain unproven.
+- A local browser physics experiment, bounded gait search and synthetic-camera controller experiments; model-based gait and camera-approach tests now pass; physical transfer remains unproven.
 - No qualified physical assembly, completed firmware, Isaac Sim runtime or training result, or demonstrated physical walking.
 
-The [engineering review](docs/engineering-review.md) and [R05 notes](docs/r05-assembly-refinement.md) describe the current checks and exclusions. The following stages describe work still needed.
+The [engineering review](docs/engineering-review.md) and [R06 notes](docs/r06-simplified-design.md) describe the current checks and exclusions. The following stages describe work still needed.
 
 ## 1. Measure the actual hardware
 

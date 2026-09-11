@@ -13,8 +13,7 @@ import trimesh
 
 ROOT = Path(__file__).resolve().parents[1]
 COMPONENT_LICENSES = {
-    'IMU': 'CC-BY-SA-3.0', 'ServoController': 'CC-BY-SA-3.0',
-    'Buck_0': 'Apache-2.0', 'Buck_1': 'Apache-2.0',
+    'IMU': 'CC-BY-SA-3.0', 'Buck_0': 'Apache-2.0',
 }
 COMPONENT_PATHS = {name: f'components/meshes/{name}.json' for name in COMPONENT_LICENSES}
 ADAFRUIT_NOTICES = {
@@ -62,10 +61,10 @@ def validate_components(root):
     bundle = read_json(folder / 'records.json')
     records = bundle['parts']
     require(bundle.get('units') == 'mm' and bundle.get('mass_estimates_scope') == 'full_physical_assembly', 'Incorrect component units/mass scope')
-    require(len(records) == 4 and {r['name'] for r in records} == set(COMPONENT_LICENSES), 'Missing, extra or duplicate component records')
+    require(len(records) == 2 and {r['name'] for r in records} == set(COMPONENT_LICENSES), 'Missing, extra or duplicate component records')
     require({p.name for p in (folder / 'meshes').iterdir()} == {name + '.json' for name in COMPONENT_LICENSES}, 'Unexpected component mesh files')
     notices = read_json(folder / 'NOTICE.json')['assets']
-    require(len(notices) == 4 and {n['name'] for n in notices} == set(COMPONENT_LICENSES), 'Missing, extra or duplicate component notices')
+    require(len(notices) == 2 and {n['name'] for n in notices} == set(COMPONENT_LICENSES), 'Missing, extra or duplicate component notices')
     by_name = {notice['name']: notice for notice in notices}
     inputs = {item['path']: item for item in read_json(root / 'references/inputs.json')['files']}
     for record in records:
@@ -104,7 +103,7 @@ def validate_tracked_names(tracked):
         require(file.suffix.lower() not in ('.brd', '.sch', '.blend', '.pdf', '.zip'), 'Unreviewed binary/reference tracked: ' + name)
         require(file.suffix.lower() != '.fcstd' or name == 'cad/MicroDuckling_R05_mechanical.FCStd', 'Unreviewed native assembly tracked: ' + name)
         require(file.suffix.lower() not in ('.step', '.stp') or name == 'cad/MicroDuckling_R05_printed.step', 'Unreviewed STEP tracked: ' + name)
-        if file.stem.casefold() in {part.casefold() for part in COMPONENT_LICENSES}:
+        if file.stem.casefold() in {'imu', 'servocontroller', 'buck_0', 'buck_1'}:
             require(name in COMPONENT_PATHS.values(), 'Electronics mesh outside approved component path: ' + name)
 
 
@@ -113,12 +112,12 @@ def validate():
     assembly = json.loads((cad / 'assembly.json').read_text(encoding='utf-8'))
     records = assembly['parts']
     names = {r['name'] for r in records}
-    require(len(names) == len(records) == 89, 'Review the 89-record mechanical manifest when the design changes')
+    require(len(names) == len(records) == 90, 'Review the 90-record mechanical manifest when the design changes')
     require(not names & COMPONENT_LICENSES.keys(), 'Electronics geometry in the mechanical-only assembly')
     require(assembly.get('public_preview'), 'Missing public-preview scope')
     require({p.stem for p in (cad / 'meshes').glob('*.json')} == names, 'Stale or missing preview meshes')
     printables = {r['name'] for r in records if r['kind'] in ('print', 'coupon')}
-    require(len(printables) == 16, 'Review printable allowlist when the design changes')
+    require(len(printables) == 17, 'Review printable allowlist when the design changes')
     for ext in ('stl', '3mf'):
         require({p.stem for p in (cad / ext).glob('*.' + ext)} == printables, 'Missing or extra ' + ext)
     for name in sorted(names):
@@ -126,6 +125,12 @@ def validate():
     components = validate_components(ROOT)
     physical = [r for r in records if r['kind'] != 'coupon'] + components
     require(np.isclose(sum(r['mass_g'] for r in physical), assembly['mass_g'], rtol=0, atol=1e-6), 'Restored component records do not match the intended assembly mass')
+    physics = read_json(ROOT / 'simulation/browser/robot-physics.json')
+    require(physics['provenance']['sourceCadSha256'] == assembly['public_preview']['source_cad_sha256'], 'Browser physics derives from a different CAD revision')
+    require(np.isclose(physics['totalMassKg'] * 1000, assembly['mass_g'], rtol=0, atol=1e-6), 'Stale browser assembly mass')
+    require(np.isclose(sum(link['massKg'] for link in physics['links']), physics['totalMassKg'], rtol=0, atol=1e-10), 'Browser link mass accounting mismatch')
+    neutral_com = sum(link['massKg'] * (np.array(link['comM']) + physics['cadZeroOriginsM'][link['name']]) for link in physics['links']) / physics['totalMassKg']
+    require(np.allclose(neutral_com * 1000, assembly['com_mm'], rtol=0, atol=1e-6), 'Stale browser centre of mass')
     for name in sorted(printables):
         mesh = trimesh.load_mesh(cad / 'stl' / (name + '.stl'))
         require(mesh.is_watertight and mesh.is_winding_consistent and mesh.volume > 0, 'Invalid printable STL: ' + name)
@@ -147,7 +152,7 @@ def validate():
         require(hashlib.sha256((cad / filename).read_bytes()).hexdigest() == checks[key], 'Stale export check: ' + filename)
     provenance = json.loads((ROOT / 'assets/renders/render_provenance.json').read_text(encoding='utf-8'))
     render_paths = {r['name']: f"cad/meshes/{r['name']}.json" for r in records if r['kind'] != 'coupon'} | COMPONENT_PATHS
-    require(provenance['assembled_part_count'] == 91 and provenance['mechanical_part_count'] == 87 and provenance['component_part_count'] == 4, 'Render part count mismatch')
+    require(provenance['assembled_part_count'] == 90 and provenance['mechanical_part_count'] == 88 and provenance['component_part_count'] == 2, 'Render part count mismatch')
     require(provenance['coupons_rendered'] is False and provenance['omitted_components'] == [], 'Render exclusions mismatch')
     require(provenance['license'] == 'CC-BY-SA-3.0' and provenance['license_url'] == 'https://creativecommons.org/licenses/by-sa/3.0/', 'Missing composite render license')
     require(sha256(ROOT / 'assets/renders/LICENSE-CC-BY-SA-3.0.txt') == sha256(ROOT / 'components/licenses/adafruit-lsm6ds3/license.txt'), 'Missing or changed composite render license text')
@@ -175,7 +180,7 @@ def validate():
     if (ROOT / '.git').exists():
         tracked = subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode('utf-8').split('\0')
         validate_tracked_names(tracked)
-    print(f'Validated {len(records)} mechanical and {len(components)} component mesh records, 16 STL/3MF pairs, licenses, render/export hashes and document links.')
+    print(f'Validated {len(records)} mechanical and {len(components)} component mesh records, {len(printables)} STL/3MF pairs, licenses, render/export hashes and document links.')
     print('These are file and mesh checks, not physical-build or simulation-runtime validation.')
 
 

@@ -11,7 +11,8 @@ O=R/'cad'
 for p in [O,O/'meshes',O/'stl',O/'coupons',O/'simulation_meshes']:p.mkdir(parents=True,exist_ok=True)
 V=A.Vector
 P=dict(body_rx=38.,body_ry=39.,body_rz=18.5,body_x=3.,body_z=46.5,wall=1.3,
-       body_dimensions_mm=[76,78,37],design_revision='R05 assembly refinement',case_running_clearance=.30,shell_register_clearance=.30,
+       body_dimensions_mm=[76,78,37],design_revision='R06 upper bill and single 5 V rail',case_running_clearance=.30,shell_register_clearance=.30,
+       servo_signal_source='ESP32-CAM GPIO; pin assignment requires firmware review',power_topology='Single shared 5 V regulator for servos and ESP32-CAM',
        hip_z=38.,servo_y=7.,servo_case_l=22.8,servo_case_w=12.4,servo_case_h=28.5,
        shaft_offset_ASSUMED=6.2,shaft_tip_ASSUMED=32.5,horn_face_ASSUMED=40.6,
        ear_pitch_ASSUMED=27.7,ear_depth_ASSUMED=18.5,ear_thickness_ASSUMED=2.8,
@@ -22,7 +23,7 @@ P=dict(body_rx=38.,body_ry=39.,body_rz=18.5,body_x=3.,body_z=46.5,wall=1.3,
        neck_pivot_z=80.,jaw_pivot_x=-16.,jaw_pivot_z=90.,
        face_mount_y=20,face_mount_z=[102,119],hood_mount_x=-25,clamp_mount_y=15,head_dimensions_mm=[64,52,52],jaw_width_mm=54,
        density_g_mm3=.00124,interface_clearance=.4,release_status='ENGINEERING PROTOTYPE - hardware fit and walking unverified')
-(O/'parameters.json').write_text(json.dumps(P,indent=2))
+(O/'parameters.json').write_text(json.dumps(P,indent=2),encoding='utf-8',newline='\n')
 D=A.newDocument('MicroDuckling_R01'); shapes={}; records=[]; meshes={}; features=[]
 white='#eee9df';orange='#f87712';black='#25282b';steel='#8d9398'
 def box(x,y,z,l,w,h):return Part.makeBox(l,w,h,V(x,y,z))
@@ -99,7 +100,7 @@ def add(name,s,link='body',kind='print',color=white,mass=None,note='',components
             material=len(payload['materials'])
             payload['materials'].append(dict(name=component['name'],color=component['color'],roughness=.45,metalness=.65 if component['color'] in ['#b8bec5','#c9a34d','#d2b86f'] else 0))
             payload['groups'].append(dict(start=start,count=len(triangles)*3,materialIndex=material))
-    (O/'meshes'/f'{name}.json').write_text(json.dumps(payload,separators=(',',':')))
+    (O/'meshes'/f'{name}.json').write_text(json.dumps(payload,separators=(',',':')),encoding='utf-8',newline='\n')
     b=s.BoundBox; c=sum((v.CenterOfMass*v.Volume for v in s.Solids),V())/s.Volume
     rec=dict(name=name,object_name=ob.Name,link=link,kind=kind,color=color,mass_g=m,com_mm=list(c),volume_mm3=s.Volume,dimensions_mm=[b.XLength,b.YLength,b.ZLength],note=note)
     records.append(rec);shapes[name]=s;meshes[name]=mesh
@@ -230,7 +231,7 @@ from electronics_r04 import build_electronics
 chassis=build_electronics(globals(),chassis)
 # Flatten the pack bed for a cut-sheet pad; do not force foam over tall pedestals.
 chassis=chassis.cut(box(-30.8,-21.3,35.8,22.6,42.6,.8)).removeSplitter()
-add('Chassis',chassis,note='Three-servo torso with low battery, front controller mounts, vertical servo regulator and supported logic-regulator cradle. Dedicated mounting posts retain each PCB at full dimensions. Actual servo/horn samples, insulation, retention and wiring require physical validation.')
+add('Chassis',chassis,note='Three-servo torso with low battery, IMU mounts and one vertical shared 5 V regulator. Separate PWM controller frame/posts and logic-regulator tray/arms removed. ESP32-CAM drives four servo signals directly; routing and pin selection require firmware review. Actual hardware fit, insulation and wiring require physical validation.')
 # Continuous soft tape route, clear of the rear pedestal and beneath the IMU.
 # It is cut/sewn material, not a rigid printed clamp around a pouch battery.
 strap=rounded_x(-19,-22.7,33.4,3,45.4,16.55,1).cut(
@@ -307,14 +308,11 @@ root=body_geometry['register_root_outer'].cut(register_inner).common(box(-70,.15
 tongue=body_geometry['register_outer'].cut(register_inner).common(box(-70,-1.25,10,140,1.8,80))
 register=root.fuse(tongue).cut(service).cut(neck_opening)
 for vent in vents:register=register.cut(vent)
-# Local interruptions clear the chassis floor and front regulator shelf by0.30mm.
+# Local interruptions clear the chassis floor and central structural posts by0.30mm.
 register=register.cut(box(-32,-2,29.7,56,4,3.0))
 register=register.cut(box(17.9,-2,29.7,8,4,30.2))
 register=register.cut(box(-34,-2,33.7,4,4,2.4)).cut(box(-32.5,-2,51.4,3.0,4,5.0))
-# Interrupt only the locating lip beside the PCA terminal and lower PCB edge.
-# The external shell remains full thickness; both covers retain >1.2mm here.
-register=register.cut(box(35.5,-2,54.0,3.0,4,5.0))
-register=register.cut(box(25.8,-2,29.7,4.0,4,3.0))
+# R06 restores the locating lip where the removed PWM board needed two reliefs.
 bodyL=bodyL.fuse(register)
 add('BodyShellLeft',bodyL,note='Compact faceted torso with flat panels, chamfered shoulders, 0.8 mm edge fillets and 1.3 mm walls. Registered clamshell seam has 0.30 mm nominal clearance; no tail or wings.')
 add('BodyShellRight',bodyR)
@@ -362,7 +360,7 @@ for i,color in enumerate(['#b94435','#23252a','#ce9e34']):
     if i==1:head_points.append((7.7,end_y,end_z))
     head_wires.append(dict(name='Head cable corridor '+str(i),color=color,
                            shape=cable([(x,y,z-P['head_shift_z']) for x,y,z in head_points],.42)))
-add('HarnessBody',Part.makeCompound([p['shape'] for p in body_wires]),kind='harness',color=black,mass=6,note='Illustrative flexible cable routes and6g wiring/connector allowance. Detailed routing, lengths, strain relief and powered movement require the physical build.',components=body_wires)
+add('HarnessBody',Part.makeCompound([p['shape'] for p in body_wires]),kind='harness',color=black,mass=6,note='Illustrative trunk route and 6 g wiring/connector allowance for direct ESP32-CAM servo signals and shared 5 V power. Individual signal/ground branches and power distribution are not yet routed. Detailed routing, lengths, strain relief and powered movement require the physical build.',components=body_wires)
 add('HarnessHead',Part.makeCompound([p['shape'] for p in head_wires]),'head','harness',black,2.5,
     'Three indicative0.84mm-diameter cable corridors join the torso paths at neutral and reach the current ESP32 header region. Carrier notch widened1.8mm to bypass mouth servo. Not a pin assignment or complete loom: mating plugs, all branches, smooth bends and a flexible yaw service loop require physical qualification.2.5g wiring allowance.',head_wires)
 # Indicative 10mm-wide camera flex from the current FFC region to sensor rear.
@@ -389,6 +387,6 @@ sheet.setColumnWidth('A',270);D.recompute();D.saveAs(str(O/'MicroDuckling_R01.FC
 Part.export([D.getObject(r['name']) for r in records if r['kind']=='print'],str(O/'MicroDuckling_R01.step'))
 active=[r for r in records if r['kind']!='coupon'];mass=sum(r['mass_g'] for r in active)
 com=[sum(r['mass_g']*r['com_mm'][i] for r in active)/mass for i in range(3)]
-(O/'assembly.json').write_text(json.dumps(dict(parameters=P,parts=records,mass_g=mass,com_mm=com,status=P['release_status']),indent=2))
-(O/'detail_features.json').write_text(json.dumps(dict(design_revision=P['design_revision'],features=features,notes='Native solid edge treatments. Ranges and fits are design choices, not measured Microduck production dimensions.'),indent=2))
+(O/'assembly.json').write_text(json.dumps(dict(parameters=P,parts=records,mass_g=mass,com_mm=com,status=P['release_status']),indent=2),encoding='utf-8',newline='\n')
+(O/'detail_features.json').write_text(json.dumps(dict(design_revision=P['design_revision'],features=features,notes='Native solid edge treatments. Ranges and fits are design choices, not measured Microduck production dimensions.'),indent=2),encoding='utf-8',newline='\n')
 print('TOTAL',mass,'COM',com,flush=True)

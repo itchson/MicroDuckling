@@ -68,9 +68,8 @@ if __name__ == '__main__':
         material=payload['materials'][group['materialIndex']]
         components.append(dict(name=material['name'],color=material['color'],shape=Part.makeCompound(faces)))
     reports.append(scan('Battery',dict(shape=document.Battery.Shape,components=components)))
-    for name, factory in [('ESP32CAM',HW.esp32cam), ('ServoController',HW.pca9685), ('IMU',HW.imu),
-                          ('Buck_0',lambda:HW.pololu('Pololu-D24V50F5.step')),
-                          ('Buck_1',lambda:HW.pololu('Pololu-D24V10Fx.step'))]:
+    for name, factory in [('ESP32CAM',HW.esp32cam), ('IMU',HW.imu),
+                          ('Buck_0',lambda:HW.pololu('Pololu-D24V50F5.step'))]:
         if any(report['name'] == name for report in reports):
             continue
         report = scan(name, factory())

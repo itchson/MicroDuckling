@@ -9,7 +9,7 @@ Original project material is provided under the Apache License 2.0.
 Third-party material retains its own license. See THIRD_PARTY_NOTICES.md
 and docs/licensing.md for the license scope and component provenance.
 
-Adafruit IMU and PCA9685 board mesh adaptations retain CC-BY-SA-3.0.
+The Adafruit IMU board mesh adaptation retains CC-BY-SA-3.0.
 Original PCB designs: Limor Fried/Ladyada for Adafruit Industries.
 3D adaptations and placement: MicroDuckling contributors.
 Source attribution, changes and upstream notices: components/NOTICE.json

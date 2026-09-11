@@ -1,35 +1,53 @@
 # Simulation experiments and Isaac scaffold
 
-The viewer includes a **Rapier browser physics experiment and seeded cross-entropy method (CEM) search over bounded gait parameters**. The separate Python source provides CAD-to-URDF export, numerical validation, an Isaac Lab environment and a training-script wrapper. **No Isaac runtime execution, Isaac-trained policy or physical gait is supplied.** Generated URDF/USD and full link meshes are built locally because they contain vendor geometry.
+The viewer runs rigid-body physics, searches bounded gait parameters and tests image-guided approach. Its browser model is separate from the Isaac Lab scaffold. No Isaac runtime execution, Isaac-trained policy or physical walking result is supplied.
 
-## Browser physics and gait search
+## Browser contact and weight
 
-Run the [local viewer](../README.md#run-the-cad-viewer-locally) and use its physics controls. This model contains five floating/articulated rigid bodies, four revolute joints, gravity, a ground plane and 109 original box contact primitives. Mass, COM and principal inertia properties come from CAD-derived scalar data; the full intended mass is 0.257281 kg, including the electronics. Display meshes do not supply collision geometry or add their mass a second time. Self-collision is disabled because the interior contact boxes do not represent exact shell surfaces.
+Five articulated rigid bodies and four revolute joints move under gravity. Continuous hulls derived from the actual tread meshes plus interior contact envelopes give nine robot colliders. The default is 600 Hz integration with 16 solver iterations. The old 109-box contact layout remains an explicit comparison option; its apparent gait speed was sensitive to timestep and is not the default. Mass, COM and inertia derive from the complete current CAD, including the upper bill and simplified electronics. Collider geometry does not add mass again.
 
-The force-based motor model follows position commands with a 3 rad/s command slew limit and a modeled 0.09 N·m effort ceiling, derated toward zero at 10.47 rad/s. Hip limits stay ±12°, neck yaw ±45° and jaw 0–12°. These are unmeasured actuator priors; displayed torque is a bounded PD estimate, not measured motor current or solver impulse telemetry. Body movement comes from physics integration, not an animation that assigns forward travel.
+The interface shows COM, loaded contacts, slip speed, weight and estimated support. Ground friction and mass scaling restart the experiment so old scores do not describe a changed environment. Debug markers are excluded from the robot's camera image. See [contact physics and force definitions](browser-contact-physics.md): support uses momentum balance; per-foot loads use solver-impulse shares and are estimates. Tangential force is unavailable, rather than displayed as a false zero.
 
-CEM evaluates sinusoidal gait candidates, retains the highest-scoring candidates and updates the sampling distribution for the next generation. It searches frequency, amplitudes, phase, hip biases and head-yaw oscillation. **Start gait search** runs up to 30 generations of eight candidates with four-second episodes; **Play best gait** replays the selected parameters. Reward uses simulated forward displacement, lateral/heading/tilt costs, survival and falls. This is parameter search over a small controller family; it does not train an Isaac neural policy or establish a controller ready for hardware. The base gait search uses a repeatable initial condition, so improvement does not establish robustness across surfaces, loads or seeds.
+Self-collision is disabled because the interior envelopes are not exact outer shell shapes. The actuator model uses bounded PD effort, a 3 rad/s command slew limit, a 0.09 N·m effort ceiling and a 10.47 rad/s speed prior. Hip travel is ±12°, neck yaw ±45° and jaw opening 0–12°. These are unmeasured motor assumptions, with no thermal or electrical plant. Forward motion comes from integrated contact dynamics; no animation translates the body along a path.
 
-The standalone seed-42 engine check evaluated 25 episodes across three generations. Its best candidate moved **3.842 mm in four seconds**, against **0.024 mm neutral drift**, without falling. That small change can include stance adjustment and contact effects; it is not convincing evidence of walking. Re-evaluate after engine, contact or controller changes rather than carrying that result forward as a new model's score.
+## Gait search
 
-The normal viewer checks include the headless engine tests:
+**Try reference gait** plays a bundled, physically evaluated rocking gait with out-of-phase hips and a free camera-controlled neck. Replaying this reference is not labeled new learning. **Start gait search** evaluates neutral and the supplied seed, then runs up to 12 generations of 12 physical, 14-second candidate episodes. A phase-aware cross-entropy search varies frequency, bias, amplitude, duty, harmonics, phase and jaw motion. Each episode settles for one second before measurement.
+
+The score rewards sustained late-episode COM velocity and net forward travel with lateral, heading and tilt costs. Falls are rejected. The interface reports actual episodes, speed, displacement and whether a newly searched candidate improved on the supplied seed. Parameter search in this small controller family is not a trained Isaac neural policy. Use held-out surfaces, loads and reset seeds before judging robustness.
+
+The [R06 gait evidence](validation/r06-locomotion-summary.json) evaluates 12 thirty-second trials across three reset seeds, 600/1000 Hz and 16/24 solver iterations. There were no falls; mean forward travel was 234.6–239.8 mm, within −0.8% to +1.4% of the default setup. Open-loop lateral drift reached 58.2 mm, so straight walking still benefits from feedback. An eight-generation search evaluated 98 real episodes and improved 14-second travel from 112.6 to 146.1 mm on its training seed; the 31.2% late-speed gain is an in-sample result, not held-out or hardware validation. Exact candidates are in the [training record](validation/r06-locomotion-training-results.json).
+
+Reproduce these longer checks from the repository root:
+
+```sh
+node --experimental-strip-types viewer/scripts/verification/open-loop.mjs
+node --experimental-strip-types viewer/scripts/verification/training.mjs
+```
+
+## Image-guided approach
+
+The synthetic camera uses 96 × 72 pixels, a 50° vertical field of view and the modeled head/lens transform. A color heuristic extracts the largest magenta region's bearing and width. The actor receives those image measurements, gait time and issued neck-command history; it receives no target coordinates, body pose or joint-angle telemetry.
+
+**Train to target** compares 12 bounded settings for head tracking, differential hip steering, amplitude and image-width stopping. Trials last up to 60 simulated seconds. The target is a 50 × 50 × 100 mm block, initially 180 mm forward and optionally 40 mm left or right. Its height keeps it in view as the robot approaches with a horizontal camera.
+
+The environment scores signed physical closing and retained progress, rather than apparent image area. Success requires at least 25 mm progress, a body-COM range of 110–130 mm, body heading within 20°, tilt within 15°, and 1.5 continuous seconds meeting those requirements. The controller's stop latch uses only filtered apparent width. Turning the head to look at the object while standing still cannot satisfy success.
+
+The [R06 camera search record](validation/r06-camera-learning.json) evaluates all 12 candidate settings: eight succeed and four time out, with no falls. The selected candidate improves score from 16.75 to 17.38 and succeeds in all six held-out target/seed cases. The starting policy already succeeds; this demonstrates parameter refinement, not learning approach from scratch. Reproduce after preparing the viewer assets with `node --experimental-strip-types viewer/scripts/verification/camera-learning.mjs` from the repository root. Default parameters remain the separately tested reference settings.
+
+Each image carries the episode ID and exact simulated frame time. A matching image advances six 60 Hz command updates, with 600 Hz physics underneath. Missing or stale images do not advance time or accrue dwell/reward. Training can render faster than real time; playback captures at roughly 10 Hz. Switching workspace tabs pauses the experiment. **Save experiment** exports the environment, controller and measured results, not a hardware or Isaac policy.
+
+Regression tests use the actual CAD triangle meshes to form camera pixels with occlusion, then run the same controller and goal logic across ahead/left/right targets and two seeds. Worker tests separately verify stale-image rejection, physical scoring and real candidate evaluation. This is geometric camera testing; interactive WebGL QA, real camera lighting/latency and physical hardware remain unverified.
 
 ```sh
 cd viewer
 npm ci
 npm test
 npm run build
+node --experimental-strip-types scripts/evaluate-approach.mjs
 ```
 
-## Synthetic camera and controller search
-
-The browser renders a **96 × 72 pixel** camera view from the front lens location. A color heuristic finds the largest connected magenta region and produces visibility, horizontal bearing and image-area fraction. The controller uses those image measurements, gait phase and issued neck-command history; target world coordinates are used to place the environment object, not as controller observations. This is a synthetic color-target experiment, not a learned object recognizer or physical ESP32-CAM feed.
-
-**Learn camera control** tests 12 bounded controller settings in trials lasting up to six simulated seconds, ending early on a fall. It varies head tracking gain, differential hip bias gain and gait amplitude scaling, retaining the best observed score. **Try approach** runs those settings. **Pause**, **Reset** and **Save experiment** control the experiment and export its parameters/results; the saved JSON is not a hardware or Isaac policy.
-
-The camera score rewards visibility, centering and growth in apparent target area, with a fall penalty. Apparent area is a proxy: head rotation and changing projection can improve the score without moving closer. No successful approach or walking demonstration is claimed. Tests cover the pixel detector and a six-second worker trial using deterministic observation fixtures, including rejection of observations from stale runs. Interactive WebGL camera QA remains outstanding, and no real camera, lighting, latency or hardware controller has been validated. The camera path is separate from the standalone gait result reported above.
-
-Camera messages carry the simulated frame time and episode ID. Observations expire after 0.3 simulated seconds; missing images cause a stationary head scan. A candidate is eligible only after at least ten fresh observations cover at least half the trial, with no fall. Visibility is weighted by covered trial time, rather than counting a single retained image as continuous observation. Switching workspace tabs pauses the experiment and retains its results until a page reload.
+The [current six-episode record](validation/r06-camera-approach.json) reports six successes in 7.77–9.47 simulated seconds after the R06 mass update. The evaluator writes reproducible parameters, asset hash and episode traces under ignored `work/`. Re-run it whenever CAD, contact geometry, camera optics or controllers change.
 
 ## Isaac Lab scaffold
 

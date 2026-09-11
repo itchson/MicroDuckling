@@ -64,9 +64,7 @@ Thumbs.db
 **/Buck_0.json
 **/Buck_1.json
 !/components/meshes/IMU.json
-!/components/meshes/ServoController.json
 !/components/meshes/Buck_0.json
-!/components/meshes/Buck_1.json
 **/simulation_meshes/body.stl
 /viewer/public/
 /viewer/dist/

@@ -14,11 +14,12 @@ from pathlib import Path
 import FreeCAD as App
 import Part
 
-OMITTED = {"IMU", "ServoController", "Buck_0", "Buck_1"}
+OMITTED = {"IMU", "Buck_0"}
+RETIRED = {"ServoController", "Buck_1", *(f"ServoControllerMountScrew{i}" for i in range(4))}
 PRINT_PARTS = {
     "BodyShellLeft", "BodyShellRight", "CameraBoardClamp", "CameraCradle",
     "CameraRing", "Chassis", "FacePanel", "FixedNeckSupport", "HeadFrame",
-    "HeadHood", "Jaw", "LegFootLeft", "LegFootRight", "NeckCarrier",
+    "HeadHood", "Jaw", "LegFootLeft", "LegFootRight", "NeckCarrier", "UpperBill",
 }
 COUPONS = {"LegHornCoupon", "ClearanceCoupon"}
 PRIVATE_PATH = re.compile(r"(?<![A-Za-z0-9])[A-Za-z]:[/\\]|/Users/|/home/", re.IGNORECASE)
@@ -53,8 +54,8 @@ def main():
     raw = json.loads((source / "cad/assembly.json").read_text(encoding="utf-8"))
     records = raw["parts"]
     names = {record["name"] for record in records}
-    if len(names) != len(records) or not OMITTED <= names:
-        raise ValueError("Expected unique records and all four excluded boards")
+    if len(names) != len(records) or not OMITTED <= names or names & RETIRED:
+        raise ValueError("Expected unique records, the two retained reference boards, and no retired electronics")
     if {r["name"] for r in records if r["kind"] == "print"} != PRINT_PARTS:
         raise ValueError("Printable-part allowlist changed; review it before publication")
     if {r["name"] for r in records if r["kind"] == "coupon"} != COUPONS:
@@ -95,16 +96,16 @@ def main():
     assert_portable((source / "cad/MicroDuckling_R01.step").read_text(encoding="utf-8"), "printed STEP")
     checked_copy(source / "cad/MicroDuckling_R01.step", step)
     if len(Part.read(str(step)).Solids) != len(PRINT_PARTS):
-        raise ValueError("Printed STEP must contain exactly fourteen solids")
+        raise ValueError(f"Printed STEP must contain exactly {len(PRINT_PARTS)} solids")
     # Rebuild a new document rather than saving a modified source archive. This
     # prevents deleted objects, reference records, thumbnails or source metadata
     # from being retained in the public FCStd ZIP container.
     original = App.openDocument(str(source / "cad/MicroDuckling_R01.FCStd"))
     public = App.newDocument("MicroDuckling_R05_mechanical")
-    public.Label = "MicroDuckling R05 mechanical preview"
+    public.Label = "MicroDuckling R06 mechanical preview"
     public.License = "Apache-2.0"
     public.LicenseURL = "https://www.apache.org/licenses/LICENSE-2.0"
-    public.Comment = "Engineering prototype. Four reference PCB models omitted. Fit and walking unverified."
+    public.Comment = "Engineering prototype. Two reference PCB models omitted from mechanical CAD; separate public component visuals are provided. Fit and walking unverified."
     for record in active:
         native = original.getObject(record["object_name"])
         if native is None or native.Shape.isNull() or not native.Shape.isValid():
@@ -149,12 +150,12 @@ def main():
             if member.endswith(".xml"):
                 text = archive.read(member).decode("utf-8")
                 assert_portable(text, member)
-                if any(f'name="{name}"' in text for name in OMITTED | COUPONS):
+                if any(f'name="{name}"' in text for name in OMITTED | COUPONS | RETIRED):
                     raise ValueError("Excluded native object found in saved document")
     raw["parts"] = safe
     raw["public_preview"] = {
         "omitted_components": sorted(OMITTED),
-        "reason": "Third-party board geometry is omitted pending redistribution clearance.",
+        "reason": "Retained reference boards are separated from the mechanical CAD; licensed public visual representations are provided in components/.",
         "native_scope": "Mechanical solids and original generic hardware envelopes; coupons excluded.",
         "mesh_scope": "Mechanical preview with two optional standalone fit coupons.",
         "mass_estimates_scope": "full_physical_assembly",
@@ -169,9 +170,9 @@ def main():
     }
     encoded = json.dumps(raw, indent=2) + "\n"
     assert_portable(encoded, "assembly.json")
-    (output / "assembly.json").write_text(encoded, encoding="utf-8")
+    (output / "assembly.json").write_text(encoded, encoding="utf-8", newline="\n")
     summary = {"native_shapes": len(active), "mesh_records": len(safe), "printed_parts": len(PRINT_PARTS), "coupons": len(COUPONS), "stl_files": len(PRINT_PARTS | COUPONS), "three_mf_files": len(PRINT_PARTS | COUPONS), "omitted_components": sorted(OMITTED), "native_sha256": sha256(native_path), "printed_step_sha256": sha256(step), "native_reopen_valid": True, "step_solids": len(PRINT_PARTS)}
-    (output / "public_export_checks.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+    (output / "public_export_checks.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps(summary, indent=2))
 
 

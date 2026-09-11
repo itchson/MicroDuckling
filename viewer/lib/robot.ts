@@ -57,7 +57,7 @@ export function updateCameraClipping(camera:T.PerspectiveCamera,bounds:T.Box3):v
   const near=Math.max(.02,closest*.75),far=Math.max(near+1,farthest*1.25);
   if(Math.abs(camera.near-near)>1e-5||Math.abs(camera.far-far)>1e-5){camera.near=near;camera.far=far;camera.updateProjectionMatrix();}
 }
-const componentNames:Record<string,string>={ESP32CAM:'ESP32-CAM controller',ServoController:'PCA9685 servo driver',OV2640Camera:'OV2640 camera on flex',CameraCradle:'Adjustable camera cradle',CameraBoardClamp:'Camera board clamp',Buck_0:'Servo regulator · Pololu D24V50F5',Buck_1:'Logic regulator · Pololu D24V10F5',Buck0:'Servo regulator · Pololu D24V50F5',Buck1:'Logic regulator · Pololu D24V10F5'};
+const componentNames:Record<string,string>={ESP32CAM:'ESP32-CAM controller',OV2640Camera:'OV2640 camera on flex',CameraCradle:'Adjustable camera cradle',CameraBoardClamp:'Camera board clamp',Buck_0:'Shared 5 V regulator · Pololu D24V50F5',Buck0:'Shared 5 V regulator · Pololu D24V50F5'};
 export const friendlyName=(part:Pick<Part,'name'|'label'>)=>componentNames[part.name]??part.label;
 
 export const vector = (v:number[]) => new T.Vector3(v[0],v[1],v[2]);
@@ -93,7 +93,7 @@ export function separation(p:Part):T.Vector3 {
   return new T.Vector3();
 }
 export const isPrintable=(p:Part)=>p.kind==='print'||p.kind==='coupon';
-export const isShell=(p:Part)=>p.name.startsWith('BodyShell')||['HeadHood','FacePanel','CameraRing','Jaw'].includes(p.name)||['BodyScrew','BodyNut','HoodScrew','FaceScrew'].some(prefix=>p.name.startsWith(prefix));
+export const isShell=(p:Part)=>p.name.startsWith('BodyShell')||['HeadHood','FacePanel','CameraRing','UpperBill','Jaw'].includes(p.name)||['BodyScrew','BodyNut','HoodScrew','FaceScrew'].some(prefix=>p.name.startsWith(prefix));
 export function isVisible(p:Part,view:{mode:Mode;hidden:string[];onlyPrint:boolean;internals:boolean}) {
   return !view.hidden.includes(p.name)&&(!view.onlyPrint||isPrintable(p))&&(!view.internals||!isShell(p))&&(view.mode==='grid'?isPrintable(p):p.kind!=='coupon');
 }

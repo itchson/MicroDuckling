@@ -5,6 +5,7 @@ the builder's documented -10mm head offset. The torso and rocker datums stay fix
 """
 import math
 import FreeCAD as A, Part
+from upper_bill_r06 import fixed_upper_bill
 
 
 def build_head(api):
@@ -55,7 +56,19 @@ def build_head(api):
             face=face.fuse(boss.cut(lead(24,y,z,.85,.2,V(1,0,0))))
     for y in [-12,12]:face=face.fuse(cyl(24,y,121,2.8,5.2,V(1,0,0)).cut(cyl(23.8,y,121,.85,5,V(1,0,0))))
     face=face.cut(cyl(28.8,0,121,9.8,3,V(1,0,0)))
-    add('FacePanel',face,'head',color=black,note='Narrow registered face with one camera opening and four integral rear screw bosses.0.30mm nominal locating allowance; removable with hood as a bench-assembled module.')
+    # The fixed upper bill uses global head coordinates; add() applies the legacy
+    # head shift, so bring each candidate back into this builder's source frame.
+    face_global=face.copy();face_global.translate(V(0,0,P['head_shift_z']))
+    upper_bill_parts=fixed_upper_bill(face_global)
+    for shape in upper_bill_parts.values():shape.translate(V(0,0,-P['head_shift_z']))
+    face=upper_bill_parts.pop('FacePanel')
+    add('FacePanel',face,'head',color=black,note='Registered camera face with four original rear screw bosses plus two captive-M2 nut bosses and locating slots for the fixed upper bill. Upper bill screws are accessed from the front; nuts load from the rear before hood assembly. Nominal fit requires physical checking.')
+    for name,shape in upper_bill_parts.items():
+        if name=='UpperBill':
+            add(name,shape,'head',color=orange,note='Fixed 50 mm-wide upper bill, 2.2 mm plate, keyed to the FacePanel with 0.15 mm clearance per slot side. Two front M2x8 screws retain captive M2 nuts. Minimum modeled closed-jaw clearance 4.10 mm; jaw 0..12 degrees and neck +/-45 degrees checked. Physical fit unverified.')
+        else:
+            add(name,shape,'head','hardware',steel,.13 if 'Screw' in name else .10,
+                'Nominal M2x8 front-access screw for upper bill.' if 'Screw' in name else 'Nominal M2 captive hex nut, 4 mm across flats and 1.6 mm thick; rear-loaded FacePanel pocket.')
     # A chamfered-square surround matches the shells; keep the optical bore circular.
     def bezel_wire(x,halfsize,corner):
         yz=[(-halfsize+corner,-halfsize),(halfsize-corner,-halfsize),
@@ -115,7 +128,7 @@ def build_head(api):
         frame=frame.fuse(tab if sg==1 else mirror(tab))
         bore=cyl(side_x,24,113,1.15,7,V(0,1,0));hood=hood.cut(bore if sg==1 else mirror(bore))
     trace('hood tabs',frame)
-    add('HeadFrame',frame,'head',note='Short camera/mouth frame with integrated neck posts and vertical ESP32-CAM guides. Controller and both regulators reside in the torso. Purchased parts are unscaled; plugs and service-loop routing require physical validation.')
+    add('HeadFrame',frame,'head',note='Short camera/mouth frame with integrated neck posts and vertical ESP32-CAM guides. One shared 5 V regulator resides in the torso; the ESP32-CAM provides four servo control signals. Purchased parts are unscaled; plugs and service-loop routing require physical validation.')
 
     jawrear=pivot-10;jawlength=36-jawrear
     jaw=rounded(jawrear,-27,90,jawlength,54,1.2,5)
