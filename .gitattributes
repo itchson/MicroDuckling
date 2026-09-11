@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.FCStd binary
+*.stl binary
+*.3mf binary
+*.step text eol=lf -diff
+cad/** linguist-generated=true
+cad/meshes/*.json -diff

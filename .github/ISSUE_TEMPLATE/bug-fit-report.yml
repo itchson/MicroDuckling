@@ -1,0 +1,34 @@
+name: Bug or fit report
+description: Report a CAD, print, assembly, software or documentation problem.
+title: "[Report] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing what you found. R05 is a design prototype; CAD checks do not establish physical fit or walking. Unknowns are fine—record what you observed and keep measurements distinct from assumptions. Remove private information and credentials from uploads.
+  - type: input
+    id: revision
+    attributes:
+      label: Revision and affected part or file
+      description: Include a commit, release or design revision when known, and the part name or file involved.
+      placeholder: R05, neck carrier and my MG90S horn
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Explain what you expected, what happened and how another person could reproduce it.
+    validations:
+      required: true
+  - type: textarea
+    id: setup
+    attributes:
+      label: Hardware or software setup
+      description: For hardware, identify the part or supplier and relevant print settings. For software, include the operating system, tool versions and command. Fill in only what applies.
+      placeholder: "Print: material, nozzle, layer height, orientation, scaling. Hardware: servo/horn or board version. Software: command and versions."
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Measurements and evidence
+      description: Add dimensions with units, measuring method, photos, screenshots or a short log. Describe any workaround or change you tried. Mark estimates and unknowns clearly.

@@ -1,0 +1,1898 @@
+{
+  "parameters": {
+    "body_rx": 38.0,
+    "body_ry": 39.0,
+    "body_rz": 18.5,
+    "body_x": 3.0,
+    "body_z": 46.5,
+    "wall": 1.3,
+    "body_dimensions_mm": [
+      76,
+      78,
+      37
+    ],
+    "design_revision": "R05 assembly refinement",
+    "case_running_clearance": 0.3,
+    "shell_register_clearance": 0.3,
+    "hip_z": 38.0,
+    "servo_y": 7.0,
+    "servo_case_l": 22.8,
+    "servo_case_w": 12.4,
+    "servo_case_h": 28.5,
+    "shaft_offset_ASSUMED": 6.2,
+    "shaft_tip_ASSUMED": 32.5,
+    "horn_face_ASSUMED": 40.6,
+    "ear_pitch_ASSUMED": 27.7,
+    "ear_depth_ASSUMED": 18.5,
+    "ear_thickness_ASSUMED": 2.8,
+    "horn_hub_d_ASSUMED": 8.5,
+    "horn_reach_ASSUMED": 14.0,
+    "horn_width_ASSUMED": 6.0,
+    "leg_y": 42.6,
+    "leg_thickness": 3.6,
+    "foot_radius": 110.0,
+    "foot_thickness": 2.2,
+    "tread_thickness": 0.6,
+    "hip_limit_deg": 12.0,
+    "neck_limit_deg": 45.0,
+    "jaw_limit_deg": 12.0,
+    "head_shift_z": -10.0,
+    "head_base_z": 84.0,
+    "head_front_x": 31.0,
+    "head_rear_x": -33.0,
+    "head_halfwidth": 26.0,
+    "head_shoulder_inset_mm": 8.0,
+    "head_shoulder_height_mm": 10.0,
+    "neck_pivot_z": 80.0,
+    "jaw_pivot_x": -16.0,
+    "jaw_pivot_z": 90.0,
+    "face_mount_y": 20,
+    "face_mount_z": [
+      102,
+      119
+    ],
+    "hood_mount_x": -25,
+    "clamp_mount_y": 15,
+    "head_dimensions_mm": [
+      64,
+      52,
+      52
+    ],
+    "jaw_width_mm": 54,
+    "density_g_mm3": 0.00124,
+    "interface_clearance": 0.4,
+    "release_status": "ENGINEERING PROTOTYPE - hardware fit and walking unverified"
+  },
+  "parts": [
+    {
+      "name": "ServoLeft",
+      "object_name": "ServoLeft",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#25282b",
+      "mass_g": 13.4,
+      "com_mm": [
+        4.972868365758693,
+        21.027823463229208,
+        37.99999999999999
+      ],
+      "volume_mm3": 8069.255061095414,
+      "dimensions_mm": [
+        32.1,
+        32.5,
+        12.400000000000002
+      ],
+      "note": "Conservative nominal MG90S envelope; lug pitch, turret, shaft and horn require actual sample measurements."
+    },
+    {
+      "name": "ServoRight",
+      "object_name": "ServoRight",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#25282b",
+      "mass_g": 13.4,
+      "com_mm": [
+        4.972868365758692,
+        -21.027823463229208,
+        37.99999999999999
+      ],
+      "volume_mm3": 8069.255061095414,
+      "dimensions_mm": [
+        32.1,
+        32.5,
+        12.400000000000002
+      ],
+      "note": ""
+    },
+    {
+      "name": "ServoNeck",
+      "object_name": "ServoNeck",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#25282b",
+      "mass_g": 13.4,
+      "com_mm": [
+        4.972868365758695,
+        9.4835833124569e-16,
+        55.02782346322921
+      ],
+      "volume_mm3": 8069.255061095408,
+      "dimensions_mm": [
+        32.1,
+        12.400000000000004,
+        32.5
+      ],
+      "note": ""
+    },
+    {
+      "name": "Battery",
+      "object_name": "Battery",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#21252b",
+      "mass_g": 28,
+      "com_mm": [
+        -19.50000000000001,
+        9.90317645370467e-16,
+        43.000000000000014
+      ],
+      "volume_mm3": 12828.716296010232,
+      "dimensions_mm": [
+        23.0,
+        43.0,
+        13.0
+      ],
+      "note": "Gens ace GEA4502S60XT3 nominal43x23x13mm pack; rounded sleeve and identification foil. Keep low for balance. Published envelope does not establish pouch swelling or connector/lead tolerances."
+    },
+    {
+      "name": "FixedNeckSupport",
+      "object_name": "FixedNeckSupport",
+      "link": "body",
+      "kind": "print",
+      "color": "#eee9df",
+      "mass_g": 2.135177290267275,
+      "com_mm": [
+        -2.898870125109191,
+        -1.4723219711111725e-14,
+        65.59727163934636
+      ],
+      "volume_mm3": 1721.917169570383,
+      "dimensions_mm": [
+        32.0,
+        33.0,
+        21.400000000000006
+      ],
+      "note": "Removable annular head support. Install after lowering neck servo into open central gap; two M2x4 screws into1.7mm pilot holes that require physical coupon testing."
+    },
+    {
+      "name": "ThrustShim",
+      "object_name": "ThrustShim",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#dad9d2",
+      "mass_g": 0.14,
+      "com_mm": [
+        3.159747119535648e-14,
+        -7.932579517540886e-16,
+        73.79999999999997
+      ],
+      "volume_mm3": 66.56249434793315,
+      "dimensions_mm": [
+        32.0,
+        32.0,
+        0.20000000000000284
+      ],
+      "note": "Nominal0.2mm PTFE thrust washer closes support-to-shoulder gap; select thickness against actual fully seated horn stack so shoulder bears without axial preload."
+    },
+    {
+      "name": "ServoControllerMountScrew0",
+      "object_name": "ServoControllerMountScrew0",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        27.32964285714286,
+        -27.939999999999998,
+        53.62500000000001
+      ],
+      "volume_mm3": 22.51893614093163,
+      "dimensions_mm": [
+        7.300000000000001,
+        3.200000000000003,
+        3.200000000000003
+      ],
+      "note": "M1.6x6 into4.5mm-long printed mounts; verify pilot strength and actual head/connector clearance."
+    },
+    {
+      "name": "ServoControllerMountScrew1",
+      "object_name": "ServoControllerMountScrew1",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        27.32964285714286,
+        -27.939999999999994,
+        34.574999999999996
+      ],
+      "volume_mm3": 22.51893614093163,
+      "dimensions_mm": [
+        7.300000000000001,
+        3.200000000000003,
+        3.200000000000003
+      ],
+      "note": "M1.6x6 into4.5mm-long printed mounts; verify pilot strength and actual head/connector clearance."
+    },
+    {
+      "name": "ServoControllerMountScrew2",
+      "object_name": "ServoControllerMountScrew2",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        27.32964285714286,
+        27.939999999999998,
+        53.62499999999999
+      ],
+      "volume_mm3": 22.51893614093163,
+      "dimensions_mm": [
+        7.300000000000001,
+        3.200000000000003,
+        3.200000000000003
+      ],
+      "note": "M1.6x6 into4.5mm-long printed mounts; verify pilot strength and actual head/connector clearance."
+    },
+    {
+      "name": "ServoControllerMountScrew3",
+      "object_name": "ServoControllerMountScrew3",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        27.32964285714286,
+        27.939999999999998,
+        34.574999999999996
+      ],
+      "volume_mm3": 22.51893614093163,
+      "dimensions_mm": [
+        7.300000000000001,
+        3.200000000000003,
+        3.200000000000003
+      ],
+      "note": "M1.6x6 into4.5mm-long printed mounts; verify pilot strength and actual head/connector clearance."
+    },
+    {
+      "name": "Buck_0MountScrew0",
+      "object_name": "Buck_0MountScrew0",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        11.73055714285714,
+        12.158999999999999,
+        46.95899999999999
+      ],
+      "volume_mm3": 35.18583772020568,
+      "dimensions_mm": [
+        7.300000000000001,
+        4.0,
+        4.0
+      ],
+      "note": "M2x6 inserted from the rear/inside into vertical regulator posts; fit before battery and removable neck support."
+    },
+    {
+      "name": "Buck_0MountScrew1",
+      "object_name": "Buck_0MountScrew1",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        11.73055714285714,
+        28.160999999999998,
+        60.421
+      ],
+      "volume_mm3": 35.18583772020568,
+      "dimensions_mm": [
+        7.300000000000001,
+        4.0,
+        4.0
+      ],
+      "note": "M2x6 inserted from the rear/inside into vertical regulator posts; fit before battery and removable neck support."
+    },
+    {
+      "name": "Chassis",
+      "object_name": "Chassis",
+      "link": "body",
+      "kind": "print",
+      "color": "#eee9df",
+      "mass_g": 25.393766327645864,
+      "com_mm": [
+        -3.42504414690189,
+        0.05622822757620505,
+        41.48704997128415
+      ],
+      "volume_mm3": 20478.843812617633,
+      "dimensions_mm": [
+        60.0,
+        68.00000000000003,
+        32.500000000000014
+      ],
+      "note": "Three-servo torso with low battery, front controller mounts, vertical servo regulator and supported logic-regulator cradle. Dedicated mounting posts retain each PCB at full dimensions. Actual servo/horn samples, insulation, retention and wiring require physical validation."
+    },
+    {
+      "name": "BatteryStrap",
+      "object_name": "BatteryStrap",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#575c64",
+      "mass_g": 0.25,
+      "com_mm": [
+        -17.49999999999996,
+        1.2501597796089192,
+        41.7747395234004
+      ],
+      "volume_mm3": 134.48780927234446,
+      "dimensions_mm": [
+        3.0000000000000124,
+        45.750000000000014,
+        16.55000000000001
+      ],
+      "note": "Custom3mm-wide soft tape restraint, nominal0.35mm thick, with7mm side lap. Thread through3.6mm chassis slots before assembly. Material, sewn/bonded lap strength and snug fit without pouch compression need physical qualification;0.25g allowance."
+    },
+    {
+      "name": "BatteryPad",
+      "object_name": "BatteryPad",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#454a51",
+      "mass_g": 0.05,
+      "com_mm": [
+        -19.500000000000004,
+        -9.793067020462808e-18,
+        36.150000000000006
+      ],
+      "volume_mm3": 646.1991148575154,
+      "dimensions_mm": [
+        22.0,
+        42.0,
+        0.7000000000000028
+      ],
+      "note": "Cut22x42x0.7mm electrically insulating compliant pad below pack;0.05g allowance. Actual foam thickness, compression and adhesive need qualification. Keep adhesive and stitching away from the pouch itself."
+    },
+    {
+      "name": "LegFootLeft",
+      "object_name": "LegFootLeft",
+      "link": "left_leg",
+      "kind": "print",
+      "color": "#f87712",
+      "mass_g": 14.006802119942066,
+      "com_mm": [
+        0.7387902914443308,
+        33.863569341250695,
+        8.723327732520149
+      ],
+      "volume_mm3": 11295.808161243602,
+      "dimensions_mm": [
+        81.81228084116033,
+        81.81228084116032,
+        47.14152980263155
+      ],
+      "note": "Single rigid printed leg and spherical rocker foot; stock servo horn fixed to inner flat face. Horn position/hole/small screw length require coupon measurement."
+    },
+    {
+      "name": "TreadLeft",
+      "object_name": "TreadLeft",
+      "link": "left_leg",
+      "kind": "tread",
+      "color": "#25282b",
+      "mass_g": 0.9,
+      "com_mm": [
+        1.0360934257256216,
+        29.999999973983808,
+        3.1865804733103125
+      ],
+      "volume_mm3": 2200.175460045244,
+      "dimensions_mm": [
+        81.81228084116033,
+        81.81228084116032,
+        8.535485632208449
+      ],
+      "note": "0.6mm equivalent conforming traction layer. Start localized thin silicone strips; coefficient and compression must be measured."
+    },
+    {
+      "name": "HornLeft",
+      "object_name": "HornLeft",
+      "link": "left_leg",
+      "kind": "hardware",
+      "color": "#d1d2cd",
+      "mass_g": 0.45,
+      "com_mm": [
+        -9.181336945054898e-17,
+        41.400000000000006,
+        32.13253785012427
+      ],
+      "volume_mm3": 300.5760267489407,
+      "dimensions_mm": [
+        8.5,
+        2.40000000000002,
+        21.25
+      ],
+      "note": "Illustrative stock horn, deliberately no tight outline pocket. Interface dimensions unverified."
+    },
+    {
+      "name": "HornScrewLeft0",
+      "object_name": "HornScrewLeft0",
+      "link": "left_leg",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -5.3546971484026095e-17,
+        44.460169791298206,
+        27.000000000000004
+      ],
+      "volume_mm3": 17.762564863396683,
+      "dimensions_mm": [
+        3.2,
+        5.399999999999999,
+        3.200000000000003
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "HornScrewLeft1",
+      "object_name": "HornScrewLeft1",
+      "link": "left_leg",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -3.256764027058862e-17,
+        44.4601697912982,
+        31.000000000000004
+      ],
+      "volume_mm3": 17.762564863396683,
+      "dimensions_mm": [
+        3.2,
+        5.399999999999999,
+        3.200000000000003
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "ShaftScrewLeft",
+      "object_name": "ShaftScrewLeft",
+      "link": "left_leg",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        2.4030453278035685e-17,
+        41.70771513353117,
+        38.00000000000001
+      ],
+      "volume_mm3": 31.76150172779281,
+      "dimensions_mm": [
+        4.0,
+        6.399999999999999,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "LegFootRight",
+      "object_name": "LegFootRight",
+      "link": "right_leg",
+      "kind": "print",
+      "color": "#f87712",
+      "mass_g": 14.006802087578459,
+      "com_mm": [
+        0.738790295514636,
+        -33.863569313869945,
+        8.723327719654899
+      ],
+      "volume_mm3": 11295.808135143918,
+      "dimensions_mm": [
+        81.81228084116033,
+        81.81228084116032,
+        47.14152980263155
+      ],
+      "note": "Single rigid printed leg and spherical rocker foot; stock servo horn fixed to inner flat face. Horn position/hole/small screw length require coupon measurement."
+    },
+    {
+      "name": "TreadRight",
+      "object_name": "TreadRight",
+      "link": "right_leg",
+      "kind": "tread",
+      "color": "#25282b",
+      "mass_g": 0.9,
+      "com_mm": [
+        1.0360934257256973,
+        -29.999999973983808,
+        3.1865804733102787
+      ],
+      "volume_mm3": 2200.175460045215,
+      "dimensions_mm": [
+        81.81228084116033,
+        81.81228084116032,
+        8.535485632208449
+      ],
+      "note": "0.6mm equivalent conforming traction layer. Start localized thin silicone strips; coefficient and compression must be measured."
+    },
+    {
+      "name": "HornRight",
+      "object_name": "HornRight",
+      "link": "right_leg",
+      "kind": "hardware",
+      "color": "#d1d2cd",
+      "mass_g": 0.45,
+      "com_mm": [
+        -1.390921057786187e-16,
+        -41.4,
+        32.132537850124265
+      ],
+      "volume_mm3": 300.57602674894076,
+      "dimensions_mm": [
+        8.5,
+        2.40000000000002,
+        21.25
+      ],
+      "note": "Illustrative stock horn, deliberately no tight outline pocket. Interface dimensions unverified."
+    },
+    {
+      "name": "HornScrewRight0",
+      "object_name": "HornScrewRight0",
+      "link": "right_leg",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -5.5220063800074346e-17,
+        -44.460169791298206,
+        27.000000000000004
+      ],
+      "volume_mm3": 17.762564863396697,
+      "dimensions_mm": [
+        3.2,
+        5.399999999999999,
+        3.200000000000003
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "HornScrewRight1",
+      "object_name": "HornScrewRight1",
+      "link": "right_leg",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -3.4240732586636883e-17,
+        -44.46016979129819,
+        30.999999999999996
+      ],
+      "volume_mm3": 17.762564863396697,
+      "dimensions_mm": [
+        3.2,
+        5.399999999999999,
+        3.200000000000003
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "ShaftScrewRight",
+      "object_name": "ShaftScrewRight",
+      "link": "right_leg",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        1.9388277062262607e-17,
+        -41.70771513353116,
+        38.00000000000001
+      ],
+      "volume_mm3": 31.761501727792805,
+      "dimensions_mm": [
+        4.0,
+        6.399999999999999,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "BodyScrew-261",
+      "object_name": "BodyScrew_261",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -25.999999999999996,
+        31.99526592635885,
+        53.0
+      ],
+      "volume_mm3": 53.75265030292137,
+      "dimensions_mm": [
+        4.0,
+        13.399999999999999,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "BodyNut-261",
+      "object_name": "BodyNut_261",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.1,
+      "com_mm": [
+        -26.000000000000004,
+        26.799999999999994,
+        52.99999999999999
+      ],
+      "volume_mm3": 18.538569229331852,
+      "dimensions_mm": [
+        4.618802153517009,
+        1.6000000000000085,
+        4.0
+      ],
+      "note": ""
+    },
+    {
+      "name": "BodyScrew-26-1",
+      "object_name": "BodyScrew_26_1",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -25.999999999999996,
+        -31.99526592635885,
+        53.00000000000001
+      ],
+      "volume_mm3": 53.75265030292136,
+      "dimensions_mm": [
+        4.0,
+        13.399999999999999,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "BodyNut-26-1",
+      "object_name": "BodyNut_26_1",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.1,
+      "com_mm": [
+        -25.999999999999996,
+        -26.799999999999986,
+        52.99999999999998
+      ],
+      "volume_mm3": 18.538569229331834,
+      "dimensions_mm": [
+        4.618802153517009,
+        1.6000000000000085,
+        4.0
+      ],
+      "note": ""
+    },
+    {
+      "name": "BodyScrew171",
+      "object_name": "BodyScrew171",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        17.0,
+        31.995265926358858,
+        53.00000000000001
+      ],
+      "volume_mm3": 53.75265030292136,
+      "dimensions_mm": [
+        4.0,
+        13.399999999999999,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "BodyNut171",
+      "object_name": "BodyNut171",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.1,
+      "com_mm": [
+        17.0,
+        26.8,
+        53.00000000000001
+      ],
+      "volume_mm3": 18.53856922933184,
+      "dimensions_mm": [
+        4.618802153517008,
+        1.6000000000000014,
+        4.0
+      ],
+      "note": ""
+    },
+    {
+      "name": "BodyScrew17-1",
+      "object_name": "BodyScrew17_1",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        17.0,
+        -31.995265926358858,
+        52.99999999999999
+      ],
+      "volume_mm3": 53.75265030292135,
+      "dimensions_mm": [
+        4.0,
+        13.399999999999999,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "BodyNut17-1",
+      "object_name": "BodyNut17_1",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.1,
+      "com_mm": [
+        17.000000000000004,
+        -26.800000000000004,
+        53.00000000000002
+      ],
+      "volume_mm3": 18.53856922933182,
+      "dimensions_mm": [
+        4.618802153517008,
+        1.6000000000000014,
+        4.0
+      ],
+      "note": ""
+    },
+    {
+      "name": "BodyShellLeft",
+      "object_name": "BodyShellLeft",
+      "link": "body",
+      "kind": "print",
+      "color": "#eee9df",
+      "mass_g": 14.29029836804618,
+      "com_mm": [
+        3.513149648101924,
+        22.430891103965273,
+        45.259425103261584
+      ],
+      "volume_mm3": 11524.434167779178,
+      "dimensions_mm": [
+        76.02411735920838,
+        40.26205867960345,
+        37.00000000000003
+      ],
+      "note": "Compact faceted torso with flat panels, chamfered shoulders, 0.8 mm edge fillets and 1.3 mm walls. Registered clamshell seam has 0.30 mm nominal clearance; no tail or wings."
+    },
+    {
+      "name": "BodyShellRight",
+      "object_name": "BodyShellRight",
+      "link": "body",
+      "kind": "print",
+      "color": "#eee9df",
+      "mass_g": 13.927894084077305,
+      "com_mm": [
+        3.3326432915217725,
+        -23.006094837315924,
+        45.21969266591693
+      ],
+      "volume_mm3": 11232.17264844944,
+      "dimensions_mm": [
+        76.02411735920236,
+        38.86205867962744,
+        37.00000000000004
+      ],
+      "note": ""
+    },
+    {
+      "name": "NeckCarrier",
+      "object_name": "NeckCarrier",
+      "link": "head",
+      "kind": "print",
+      "color": "#25282b",
+      "mass_g": 7.298634572069558,
+      "com_mm": [
+        -0.3521296757072626,
+        -1.2583898430902967,
+        77.84881031430075
+      ],
+      "volume_mm3": 5885.99562263674,
+      "dimensions_mm": [
+        34.0,
+        36.0,
+        10.700000000000031
+      ],
+      "note": "Slip thrust shoulder0.20mm above fixed support with nominal0.20mm PTFE shim; journal diametral clearance0.9mm. Shim thickness must match actual seated horn to carry weight without preload. Cable notch separate from output shaft."
+    },
+    {
+      "name": "NeckHorn",
+      "object_name": "NeckHorn",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#d1d2cd",
+      "mass_g": 0.45,
+      "com_mm": [
+        -5.867462149875744,
+        7.439951062168242e-16,
+        75.19999999999999
+      ],
+      "volume_mm3": 300.5760267489402,
+      "dimensions_mm": [
+        21.25,
+        8.5,
+        2.4000000000000057
+      ],
+      "note": "Stock horn attaches carrier via underside open radial screw slots; check actual seated stack."
+    },
+    {
+      "name": "FacePanel",
+      "object_name": "FacePanel",
+      "link": "head",
+      "kind": "print",
+      "color": "#25282b",
+      "mass_g": 4.094555990732471,
+      "com_mm": [
+        28.80242576464496,
+        -1.688099427769852e-15,
+        107.85835970073376
+      ],
+      "volume_mm3": 3302.0612828487665,
+      "dimensions_mm": [
+        6.200000000000006,
+        49.0,
+        48.8
+      ],
+      "note": "Narrow registered face with one camera opening and four integral rear screw bosses.0.30mm nominal locating allowance; removable with hood as a bench-assembled module."
+    },
+    {
+      "name": "CameraRing",
+      "object_name": "CameraRing",
+      "link": "head",
+      "kind": "print",
+      "color": "#f87712",
+      "mass_g": 2.3599690428443063,
+      "com_mm": [
+        32.23927892948407,
+        1.539584584036202e-11,
+        110.99999999996459
+      ],
+      "volume_mm3": 1903.2008410034728,
+      "dimensions_mm": [
+        5.600000000000001,
+        27.0,
+        27.0
+      ],
+      "note": "Faceted tapered camera surround with a circular17mm optical bore and0.30mm radial locating fit. The optical path stays round; adhesive retention remains untested."
+    },
+    {
+      "name": "ESP32CAM",
+      "object_name": "ESP32CAM",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#24262a",
+      "mass_g": 9.2,
+      "com_mm": [
+        16.84630923667877,
+        0.005183970167724408,
+        102.72333010770615
+      ],
+      "volume_mm3": 2388.8015032326834,
+      "dimensions_mm": [
+        11.0,
+        27.0,
+        40.5
+      ],
+      "note": "Ai-Thinker V1.0 drawing verifies27mm width,22.86mm header row spacing,2.54mm pitch and4.58mm bottom pin offset. Text says40.5mm length while drawing says40mm: conservative40.5 used; verify actual sample. PCB1.0mm, R2 corners, fitted.64-square headers and all non-pad component XY/height envelopes inferred conservatively from manufacturer illustration, not a manufacturing drawing. RF and headers are rear(-Z), SD/FFC/flash front(+Z). No OV2640/lens/flex registration is represented; the camera must be modeled and adjusted independently.",
+      "pcb_dimensions_mm": [
+        27,
+        40.5,
+        1.0
+      ],
+      "pcb_basis_global": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ],
+      "material_groups": 21
+    },
+    {
+      "name": "OV2640Camera",
+      "object_name": "OV2640Camera",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#25282b",
+      "mass_g": 0.8,
+      "com_mm": [
+        27.37622140353249,
+        5.328995359073107e-17,
+        111.0
+      ],
+      "volume_mm3": 508.200333076525,
+      "dimensions_mm": [
+        8.0,
+        10.0,
+        10.0
+      ],
+      "note": "Adjustable OV2640 carrier.10mm sensor PCB and8mm lens envelope remain assumptions; measure actual flex length and lens registration."
+    },
+    {
+      "name": "CameraBoardClamp",
+      "object_name": "CameraBoardClamp",
+      "link": "head",
+      "kind": "print",
+      "color": "#eee9df",
+      "mass_g": 0.24735004333328528,
+      "com_mm": [
+        17.574982125749813,
+        7.124098144226688e-17,
+        123.50000000000003
+      ],
+      "volume_mm3": 199.4758413978107,
+      "dimensions_mm": [
+        5.400000000000002,
+        32.4,
+        1.2000000000000028
+      ],
+      "note": "Top retainer for a rigidly rotated ESP32-CAM:27mm across,40.5mm tall. Two M2x6 screws. Board edge grooves retain0.3mm nominal lateral clearance."
+    },
+    {
+      "name": "CameraCradle",
+      "object_name": "CameraCradle",
+      "link": "head",
+      "kind": "print",
+      "color": "#eee9df",
+      "mass_g": 0.45033933022764305,
+      "com_mm": [
+        23.536586837757973,
+        -5.032027149748316e-14,
+        111.00000000000003
+      ],
+      "volume_mm3": 363.17687921584115,
+      "dimensions_mm": [
+        3.1000000000000085,
+        30.000000000000007,
+        13.599999999999994
+      ],
+      "note": "Slotted flex-camera cradle with\u00b11mm vertical adjustment. Confirm actual lens stack and flexible cable; retain sensor using a thin compliant adhesive."
+    },
+    {
+      "name": "ServoMouth",
+      "object_name": "ServoMouth",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#25282b",
+      "mass_g": 13.4,
+      "com_mm": [
+        -11.027131634241307,
+        1.0278234632292162,
+        90.0
+      ],
+      "volume_mm3": 8069.255061095422,
+      "dimensions_mm": [
+        32.1,
+        32.5,
+        12.400000000000006
+      ],
+      "note": ""
+    },
+    {
+      "name": "HeadFrame",
+      "object_name": "HeadFrame",
+      "link": "head",
+      "kind": "print",
+      "color": "#eee9df",
+      "mass_g": 10.560154154413983,
+      "com_mm": [
+        -1.5010523726927003,
+        -1.1697776988552484,
+        96.97384243036849
+      ],
+      "volume_mm3": 8516.253350333856,
+      "dimensions_mm": [
+        58.0,
+        48.800000000000026,
+        42.400000000000006
+      ],
+      "note": "Short camera/mouth frame with integrated neck posts and vertical ESP32-CAM guides. Controller and both regulators reside in the torso. Purchased parts are unscaled; plugs and service-loop routing require physical validation."
+    },
+    {
+      "name": "Jaw",
+      "object_name": "Jaw",
+      "link": "jaw",
+      "kind": "print",
+      "color": "#f87712",
+      "mass_g": 4.6292687050055585,
+      "com_mm": [
+        0.5561617035119929,
+        0.47708750620170876,
+        84.13660249829985
+      ],
+      "volume_mm3": 3733.2812137141605,
+      "dimensions_mm": [
+        62.0,
+        54.00000000011006,
+        18.65913760233917
+      ],
+      "note": "54mm-wide shortened hinged beak. Pivot moves6mm forward to shorten the head package; neck cutout, stock horn and passive pivot remain mechanical interfaces. Proposed opening0..12deg requires physical fitting."
+    },
+    {
+      "name": "MouthHorn",
+      "object_name": "MouthHorn",
+      "link": "jaw",
+      "kind": "hardware",
+      "color": "#d1d2cd",
+      "mass_g": 0.45,
+      "com_mm": [
+        -10.132537850124223,
+        21.29999999999999,
+        90.0
+      ],
+      "volume_mm3": 300.57602674893974,
+      "dimensions_mm": [
+        21.25,
+        2.3999999999999986,
+        8.5
+      ],
+      "note": ""
+    },
+    {
+      "name": "HeadHood",
+      "object_name": "HeadHood",
+      "link": "head",
+      "kind": "print",
+      "color": "#eee9df",
+      "mass_g": 17.940053068066515,
+      "com_mm": [
+        -5.3453982631302726,
+        1.0460476235661664e-13,
+        117.1406240887849
+      ],
+      "volume_mm3": 14467.784732311706,
+      "dimensions_mm": [
+        64.0,
+        52.0,
+        52.0
+      ],
+      "note": "52mm frontal width,64mm depth,52mm height. Faceted roof, matching pivot reliefs,0.8mm outside/0.4mm inside edge rolls, ribs and registered camera face. Rear face-screw ports and removable side screws."
+    },
+    {
+      "name": "JawPassivePin",
+      "object_name": "JawPassivePin",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -16.0,
+        -23.19526592635885,
+        89.99999999999997
+      ],
+      "volume_mm3": 53.752650302921396,
+      "dimensions_mm": [
+        4.0,
+        13.399999999999999,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "JawPassiveLocknut",
+      "object_name": "JawPassiveLocknut",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.12,
+      "com_mm": [
+        -16.0,
+        -16.55,
+        90.00000000000001
+      ],
+      "volume_mm3": 28.966514420831018,
+      "dimensions_mm": [
+        4.618802153517008,
+        2.5,
+        4.0
+      ],
+      "note": "M2 nominal locknut and short passive pivot; set axial endplay without clamping jaw. Verify selected hardware dimensions."
+    },
+    {
+      "name": "MouthHornScrew-15",
+      "object_name": "MouthHornScrew_15",
+      "link": "jaw",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -9.000000000000002,
+        23.960169791298195,
+        89.99999999999999
+      ],
+      "volume_mm3": 17.762564863396687,
+      "dimensions_mm": [
+        3.1999999999999993,
+        5.399999999999999,
+        3.1999999999999886
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "MouthHornScrew-11",
+      "object_name": "MouthHornScrew_11",
+      "link": "jaw",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -5.0,
+        23.960169791298195,
+        90.0
+      ],
+      "volume_mm3": 17.762564863396687,
+      "dimensions_mm": [
+        3.1999999999999997,
+        5.399999999999999,
+        3.1999999999999886
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "MouthShaftScrew",
+      "object_name": "MouthShaftScrew",
+      "link": "jaw",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -16.0,
+        21.60771513353116,
+        90.0
+      ],
+      "volume_mm3": 31.76150172779282,
+      "dimensions_mm": [
+        4.0,
+        6.399999999999999,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "HoodScrew1",
+      "object_name": "HoodScrew1",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -25.0,
+        24.692979297929785,
+        102.99999999999999
+      ],
+      "volume_mm3": 34.90309438138262,
+      "dimensions_mm": [
+        4.0,
+        7.399999999999999,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "HoodScrew-1",
+      "object_name": "HoodScrew_1",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -24.999999999999996,
+        -24.692979297929785,
+        102.99999999999997
+      ],
+      "volume_mm3": 34.90309438138262,
+      "dimensions_mm": [
+        4.0,
+        7.399999999999999,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "CameraClampScrew-15",
+      "object_name": "CameraClampScrew_15",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        16.000000000000004,
+        -14.999999999999998,
+        122.79464285714288
+      ],
+      "volume_mm3": 35.18583772020573,
+      "dimensions_mm": [
+        4.0,
+        4.0,
+        7.300000000000011
+      ],
+      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+    },
+    {
+      "name": "CameraClampScrew15",
+      "object_name": "CameraClampScrew15",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        16.0,
+        15.0,
+        122.79464285714288
+      ],
+      "volume_mm3": 35.18583772020574,
+      "dimensions_mm": [
+        4.0,
+        4.0,
+        7.300000000000011
+      ],
+      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+    },
+    {
+      "name": "CameraCradleScrew-12",
+      "object_name": "CameraCradleScrew_12",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        23.50535714285714,
+        -12.0,
+        111.0
+      ],
+      "volume_mm3": 35.18583772020571,
+      "dimensions_mm": [
+        7.300000000000001,
+        4.0,
+        4.0
+      ],
+      "note": "M2x6 adjustable camera cradle clamp."
+    },
+    {
+      "name": "CameraCradleScrew12",
+      "object_name": "CameraCradleScrew12",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        23.50535714285714,
+        12.0,
+        111.0
+      ],
+      "volume_mm3": 35.18583772020571,
+      "dimensions_mm": [
+        7.300000000000001,
+        4.0,
+        4.0
+      ],
+      "note": "M2x6 adjustable camera cradle clamp."
+    },
+    {
+      "name": "MouthMountScrew0",
+      "object_name": "MouthMountScrew0",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -24.65,
+        6.124485125858124,
+        89.99999999999999
+      ],
+      "volume_mm3": 41.186279688562216,
+      "dimensions_mm": [
+        4.0,
+        9.4,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "MouthMountNut0",
+      "object_name": "MouthMountNut0",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.1,
+      "com_mm": [
+        -24.650000000000006,
+        1.7,
+        90.00000000000003
+      ],
+      "volume_mm3": 18.53856922933184,
+      "dimensions_mm": [
+        4.618802153517009,
+        1.6,
+        4.0
+      ],
+      "note": ""
+    },
+    {
+      "name": "MouthMountScrew1",
+      "object_name": "MouthMountScrew1",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        3.0500000000000016,
+        6.124485125858124,
+        89.99999999999999
+      ],
+      "volume_mm3": 41.186279688562216,
+      "dimensions_mm": [
+        4.0,
+        9.4,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "MouthMountNut1",
+      "object_name": "MouthMountNut1",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.1,
+      "com_mm": [
+        3.0500000000000016,
+        1.7000000000000004,
+        90.00000000000001
+      ],
+      "volume_mm3": 18.53856922933183,
+      "dimensions_mm": [
+        4.618802153517006,
+        1.6000000000000005,
+        4.0
+      ],
+      "note": ""
+    },
+    {
+      "name": "FaceScrew-20_102",
+      "object_name": "FaceScrew_20_102",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        21.80535714285714,
+        -20.0,
+        92.00000000000001
+      ],
+      "volume_mm3": 35.18583772020571,
+      "dimensions_mm": [
+        7.300000000000001,
+        4.0,
+        4.0
+      ],
+      "note": "Rear-driven M2x6 through hood ear into face pilot; install on bench before hood/frame assembly."
+    },
+    {
+      "name": "FaceScrew-20_119",
+      "object_name": "FaceScrew_20_119",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        21.80535714285714,
+        -20.0,
+        109.0
+      ],
+      "volume_mm3": 35.18583772020571,
+      "dimensions_mm": [
+        7.300000000000001,
+        4.0,
+        4.0
+      ],
+      "note": "Rear-driven M2x6 through hood ear into face pilot; install on bench before hood/frame assembly."
+    },
+    {
+      "name": "FaceScrew20_102",
+      "object_name": "FaceScrew20_102",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        21.80535714285714,
+        20.0,
+        92.00000000000001
+      ],
+      "volume_mm3": 35.18583772020571,
+      "dimensions_mm": [
+        7.300000000000001,
+        4.0,
+        4.0
+      ],
+      "note": "Rear-driven M2x6 through hood ear into face pilot; install on bench before hood/frame assembly."
+    },
+    {
+      "name": "FaceScrew20_119",
+      "object_name": "FaceScrew20_119",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        21.80535714285714,
+        20.0,
+        109.0
+      ],
+      "volume_mm3": 35.18583772020571,
+      "dimensions_mm": [
+        7.300000000000001,
+        4.0,
+        4.0
+      ],
+      "note": "Rear-driven M2x6 through hood ear into face pilot; install on bench before hood/frame assembly."
+    },
+    {
+      "name": "IMUMountScrew0",
+      "object_name": "IMUMountScrew0",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        -27.860000000000003,
+        -10.16,
+        54.49464285714286
+      ],
+      "volume_mm3": 35.185837720205676,
+      "dimensions_mm": [
+        4.0,
+        4.0,
+        7.299999999999997
+      ],
+      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+    },
+    {
+      "name": "IMUMountScrew1",
+      "object_name": "IMUMountScrew1",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        -27.860000000000003,
+        10.16,
+        54.49464285714286
+      ],
+      "volume_mm3": 35.185837720205676,
+      "dimensions_mm": [
+        4.0,
+        4.0,
+        7.299999999999997
+      ],
+      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+    },
+    {
+      "name": "HeadFrameScrew-13",
+      "object_name": "HeadFrameScrew_13",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        4.999999999999999,
+        -13.0,
+        91.19761904761904
+      ],
+      "volume_mm3": 79.16813487046278,
+      "dimensions_mm": [
+        4.0,
+        4.0,
+        21.299999999999997
+      ],
+      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+    },
+    {
+      "name": "HeadFrameScrew13",
+      "object_name": "HeadFrameScrew13",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        4.999999999999999,
+        13.0,
+        91.19761904761904
+      ],
+      "volume_mm3": 79.16813487046278,
+      "dimensions_mm": [
+        4.0,
+        4.0,
+        21.299999999999997
+      ],
+      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+    },
+    {
+      "name": "NeckHornScrew-7",
+      "object_name": "NeckHornScrew_7",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        -7.000000000000001,
+        1.5016257753601476e-18,
+        79.8318181818182
+      ],
+      "volume_mm3": 26.54017473752657,
+      "dimensions_mm": [
+        3.1999999999999993,
+        3.2,
+        9.299999999999997
+      ],
+      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+    },
+    {
+      "name": "NeckHornScrew-11",
+      "object_name": "NeckHornScrew_11",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        -10.999999999999998,
+        5.051463854307536e-18,
+        79.83181818181818
+      ],
+      "volume_mm3": 26.54017473752657,
+      "dimensions_mm": [
+        3.1999999999999993,
+        3.2,
+        9.299999999999997
+      ],
+      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+    },
+    {
+      "name": "NeckMountScrew-8.649999999999999",
+      "object_name": "NeckMountScrew_8_649999999999999",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        -8.649999999999999,
+        2.0359250793386775e-17,
+        60.99464285714286
+      ],
+      "volume_mm3": 35.18583772020567,
+      "dimensions_mm": [
+        4.0,
+        4.0,
+        7.299999999999997
+      ],
+      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+    },
+    {
+      "name": "NeckMountScrew19.05",
+      "object_name": "NeckMountScrew19_05",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        19.050000000000004,
+        -1.1055507154380396e-17,
+        60.99464285714286
+      ],
+      "volume_mm3": 35.18583772020567,
+      "dimensions_mm": [
+        4.0,
+        4.0,
+        7.299999999999997
+      ],
+      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+    },
+    {
+      "name": "NeckSupportScrew-12",
+      "object_name": "NeckSupportScrew_12",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        -2.000000000000001,
+        -12.000000000000002,
+        53.797826086956526
+      ],
+      "volume_mm3": 28.902652413026082,
+      "dimensions_mm": [
+        4.0,
+        4.0,
+        5.299999999999997
+      ],
+      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+    },
+    {
+      "name": "NeckSupportScrew12",
+      "object_name": "NeckSupportScrew12",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        -2.000000000000001,
+        12.000000000000002,
+        53.797826086956526
+      ],
+      "volume_mm3": 28.902652413026082,
+      "dimensions_mm": [
+        4.0,
+        4.0,
+        5.299999999999997
+      ],
+      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+    },
+    {
+      "name": "NeckShaftScrew",
+      "object_name": "NeckShaftScrew",
+      "link": "head",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.16,
+      "com_mm": [
+        -3.386701744150967e-16,
+        9.827001117813253e-18,
+        75.74375
+      ],
+      "volume_mm3": 30.15928947446201,
+      "dimensions_mm": [
+        4.0,
+        4.0,
+        5.700000000000003
+      ],
+      "note": "Nominal screw; selected head, pilot and engagement strength require physical fit testing."
+    },
+    {
+      "name": "HipMountScrew1_0",
+      "object_name": "HipMountScrew1_0",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -8.649999999999999,
+        26.99297929792979,
+        38.000000000000014
+      ],
+      "volume_mm3": 34.9030943813826,
+      "dimensions_mm": [
+        4.0,
+        7.399999999999999,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "HipMountScrew1_1",
+      "object_name": "HipMountScrew1_1",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        19.05,
+        26.99297929792979,
+        38.000000000000014
+      ],
+      "volume_mm3": 34.9030943813826,
+      "dimensions_mm": [
+        4.0,
+        7.399999999999999,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "HipMountScrew-1_0",
+      "object_name": "HipMountScrew_1_0",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        -8.65,
+        -26.99297929792979,
+        38.00000000000001
+      ],
+      "volume_mm3": 34.903094381382594,
+      "dimensions_mm": [
+        4.0,
+        7.399999999999999,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "HipMountScrew-1_1",
+      "object_name": "HipMountScrew_1_1",
+      "link": "body",
+      "kind": "hardware",
+      "color": "#8d9398",
+      "mass_g": 0.13,
+      "com_mm": [
+        19.050000000000004,
+        -26.99297929792979,
+        38.00000000000001
+      ],
+      "volume_mm3": 34.903094381382594,
+      "dimensions_mm": [
+        4.0,
+        7.399999999999999,
+        4.0
+      ],
+      "note": "Schematic fastener; nominal diameter and installation direction, threads not modeled."
+    },
+    {
+      "name": "HarnessBody",
+      "object_name": "HarnessBody",
+      "link": "body",
+      "kind": "harness",
+      "color": "#25282b",
+      "mass_g": 6,
+      "com_mm": [
+        -3.5032285575637037,
+        13.406768566120126,
+        63.857713542819816
+      ],
+      "volume_mm3": 62.057125127631785,
+      "dimensions_mm": [
+        5.827784131728016,
+        14.834615161908095,
+        32.120856813737376
+      ],
+      "note": "Illustrative flexible cable routes and6g wiring/connector allowance. Detailed routing, lengths, strain relief and powered movement require the physical build."
+    },
+    {
+      "name": "HarnessHead",
+      "object_name": "HarnessHead",
+      "link": "head",
+      "kind": "harness",
+      "color": "#25282b",
+      "mass_g": 2.5,
+      "com_mm": [
+        7.627672946245895,
+        6.652778065569093,
+        95.03858441619084
+      ],
+      "volume_mm3": 95.89363858713759,
+      "dimensions_mm": [
+        14.84,
+        23.7,
+        29.42
+      ],
+      "note": "Three indicative0.84mm-diameter cable corridors join the torso paths at neutral and reach the current ESP32 header region. Carrier notch widened1.8mm to bypass mouth servo. Not a pin assignment or complete loom: mating plugs, all branches, smooth bends and a flexible yaw service loop require physical qualification.2.5g wiring allowance."
+    },
+    {
+      "name": "HarnessCameraRibbon",
+      "object_name": "HarnessCameraRibbon",
+      "link": "head",
+      "kind": "harness",
+      "color": "#b57928",
+      "mass_g": 0.1,
+      "com_mm": [
+        21.23326572008114,
+        -1.2490947349400001e-15,
+        102.84193373901284
+      ],
+      "volume_mm3": 36.97500000000001,
+      "dimensions_mm": [
+        4.599999999999998,
+        10.0,
+        16.0
+      ],
+      "note": "Indicative10mm-wide camera flex corridor from current FFC region to sensor rear, clear of rigid parts in neutral CAD. Small terminal gaps are intentional: actual flex width, length, contact insertion and smooth minimum-radius bends require measurement; not a manufactured ribbon design."
+    },
+    {
+      "name": "LegHornCoupon",
+      "object_name": "LegHornCoupon",
+      "link": "body",
+      "kind": "coupon",
+      "color": "#f87712",
+      "mass_g": 0,
+      "com_mm": [
+        6.213223825143855e-07,
+        44.374863561735225,
+        33.1324078833552
+      ],
+      "volume_mm3": 1050.9727156571694,
+      "dimensions_mm": [
+        19.48305960526309,
+        3.719036305075143,
+        28.91669958684554
+      ],
+      "note": "Extracted from actual leg; test stock horn seated depth and slot/screw fit."
+    },
+    {
+      "name": "ClearanceCoupon",
+      "object_name": "ClearanceCoupon",
+      "link": "body",
+      "kind": "coupon",
+      "color": "#f87712",
+      "mass_g": 0,
+      "com_mm": [
+        29.238465366773436,
+        14.115132587777174,
+        2.0210614302429635
+      ],
+      "volume_mm3": 3051.295355714933,
+      "dimensions_mm": [
+        59.0,
+        28.0,
+        6.0
+      ],
+      "note": "MG90S body windows0.30/0.45mm per side; clearance holes2.1/2.2/2.3/2.4mm; pilot sizing holes1.6/1.7/1.8mm. Thin coupon checks diameter only, engagement strength requires representative-depth sample."
+    }
+  ],
+  "mass_g": 257.2810651842502,
+  "com_mm": [
+    0.19242667113095308,
+    0.5699919043615645,
+    57.229666683267794
+  ],
+  "status": "ENGINEERING PROTOTYPE - hardware fit and walking unverified",
+  "public_preview": {
+    "omitted_components": [
+      "Buck_0",
+      "Buck_1",
+      "IMU",
+      "ServoController"
+    ],
+    "reason": "Third-party board geometry is omitted pending redistribution clearance.",
+    "native_scope": "Mechanical solids and original generic hardware envelopes; coupons excluded.",
+    "mesh_scope": "Mechanical preview with two optional standalone fit coupons.",
+    "mass_estimates_scope": "full_physical_assembly",
+    "mass_estimates_note": "mass_g and com_mm retain the complete physical assembly estimates, including omitted boards; they are not totals of the public preview meshes.",
+    "native_file": "MicroDuckling_R05_mechanical.FCStd",
+    "printed_step_file": "MicroDuckling_R05_printed.step",
+    "native_sha256": "732cafba0fca1ddb91ae1ac0c11888809b47a5ff0aab12b9a4b7fdc2e81e9cfd",
+    "assembled_part_count": 87,
+    "coupon_count": 2,
+    "source_cad_sha256": "4819acd1b9158d1ec77f48f93f5091425a44d6252d6c162664b00be08dc9bd09",
+    "source_assembly_sha256": "68bd9fd40488ea97935b10021dbdd4c666b5d1f31ce9d6946a4177c1063c7f72"
+  }
+}

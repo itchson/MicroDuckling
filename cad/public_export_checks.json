@@ -1,0 +1,18 @@
+{
+  "native_shapes": 87,
+  "mesh_records": 89,
+  "printed_parts": 14,
+  "coupons": 2,
+  "stl_files": 16,
+  "three_mf_files": 16,
+  "omitted_components": [
+    "Buck_0",
+    "Buck_1",
+    "IMU",
+    "ServoController"
+  ],
+  "native_sha256": "732cafba0fca1ddb91ae1ac0c11888809b47a5ff0aab12b9a4b7fdc2e81e9cfd",
+  "printed_step_sha256": "c3acdfea21b03a6698804b0bfb639e08d5f695ac68f7ce45d719bb9b95fcf984",
+  "native_reopen_valid": true,
+  "step_solids": 14
+}

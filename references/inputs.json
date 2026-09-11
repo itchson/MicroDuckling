@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "recorded_date": "2026-09-11",
+  "destination": "references/components_r02",
+  "notes": [
+    "Four required inputs for src/hardware_r02.py; no schematics or product photographs are needed.",
+    "Upstream branch URLs are locked by expected SHA-256 and byte count. Changes fail verification rather than silently altering the CAD.",
+    "Adafruit hardware READMEs select CC-BY-SA 3.0. The additional LSM6 MIT file is preserved without assuming it replaces the hardware-specific license.",
+    "Pololu STEP files are manufacturer references; no permission to redistribute the originals or their geometry is claimed."
+  ],
+  "files": [
+    {
+      "path": "Adafruit PCA9685 rev C.brd",
+      "url": "https://raw.githubusercontent.com/adafruit/Adafruit-16-Channel-PWM-Servo-Driver-PCB/master/Adafruit%20PCA9685%20rev%20C.brd",
+      "sha256": "803e6388dd025d2ef9312a7fbe731b7fd5edbd495ca3e93b6ade830a58212da0",
+      "bytes": 185629,
+      "role": "CAD input",
+      "license": "CC-BY-SA-3.0 (hardware README)"
+    },
+    {
+      "path": "Adafruit_LSM6DS3.brd",
+      "url": "https://raw.githubusercontent.com/adafruit/Adafruit-LSM6DS3TR-C-PCB/main/Adafruit_LSM6DS3.brd",
+      "sha256": "7a51838fd1cd4c5454fbd59fff928d67bd5fff31385b1db71daac461e2c5344d",
+      "bytes": 278981,
+      "role": "CAD input",
+      "license": "CC-BY-SA-3.0 (hardware README)"
+    },
+    {
+      "path": "Pololu-D24V50F5.step",
+      "url": "https://www.pololu.com/file/0J1437/d24v50f5-step-down-voltage-regulator.step",
+      "sha256": "1ae491b0447280613943202f74a5f2e6c53b0e6962b078a7f263601dbd28f8a9",
+      "bytes": 4783952,
+      "role": "CAD input",
+      "license": "Manufacturer reference; redistribution permission not established"
+    },
+    {
+      "path": "Pololu-D24V10Fx.step",
+      "url": "https://www.pololu.com/file/0J1375/pololu-1a-step-down-voltage-regulator-d24v10fx.step",
+      "sha256": "2862eeb6840b8f51f2a6ff7b44dec49e17504cca8bf9baf4e6f64296aa3ba77b",
+      "bytes": 3273957,
+      "role": "CAD input",
+      "license": "Manufacturer reference; redistribution permission not established"
+    },
+    {
+      "path": "notices/adafruit-pca9685/README.md",
+      "url": "https://raw.githubusercontent.com/adafruit/Adafruit-16-Channel-PWM-Servo-Driver-PCB/master/README.md",
+      "sha256": "3ec2a90b809dbec410275d1d2e6484f7c826aa68c3be50ce7c1ff8838736c908",
+      "bytes": 3383,
+      "role": "Original upstream notice"
+    },
+    {
+      "path": "notices/adafruit-pca9685/license.txt",
+      "url": "https://raw.githubusercontent.com/adafruit/Adafruit-16-Channel-PWM-Servo-Driver-PCB/master/license.txt",
+      "sha256": "1f63e1f4676a433423b2c2ff1ccd9e80093f341f10b81f0ac0106342bc7bbe89",
+      "bytes": 22597,
+      "role": "Original upstream notice"
+    },
+    {
+      "path": "notices/adafruit-lsm6ds3/README.md",
+      "url": "https://raw.githubusercontent.com/adafruit/Adafruit-LSM6DS3TR-C-PCB/main/README.md",
+      "sha256": "c158a0f76a54a00daaec00fbe92e63520e3914085b9e445d4d5faaa42bb6d526",
+      "bytes": 3156,
+      "role": "Original upstream notice"
+    },
+    {
+      "path": "notices/adafruit-lsm6ds3/license.txt",
+      "url": "https://raw.githubusercontent.com/adafruit/Adafruit-LSM6DS3TR-C-PCB/main/license.txt",
+      "sha256": "075dad5e5fc96c27014fabc269f4f5732909cffd178a486f546d982b6cf86b74",
+      "bytes": 22239,
+      "role": "Original upstream notice"
+    },
+    {
+      "path": "notices/adafruit-lsm6ds3/LICENSE",
+      "url": "https://raw.githubusercontent.com/adafruit/Adafruit-LSM6DS3TR-C-PCB/main/LICENSE",
+      "sha256": "e893365dfcb99ee9b2be1aa26b65888a8f1017373617232cad3caa0f65562afb",
+      "bytes": 1076,
+      "role": "Original upstream notice"
+    }
+  ]
+}

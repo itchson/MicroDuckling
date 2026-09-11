@@ -1,0 +1,27 @@
+name: Improvement proposal
+description: Suggest an improvement to the robot, tooling, simulation or documentation.
+title: "[Idea] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ideas from every discipline are welcome. Check the roadmap and existing issues for related work. A small fix can also go straight to a pull request.
+  - type: textarea
+    id: need
+    attributes:
+      label: What would this improve?
+      description: Describe the problem or opportunity and who it would help.
+    validations:
+      required: true
+  - type: textarea
+    id: approach
+    attributes:
+      label: Proposed approach
+      description: Explain the idea. Note relevant tradeoffs such as cost, sourcing, build difficulty, compatibility or maintenance. Sketches and alternative approaches are welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and a first useful check
+      description: Share any measurements, references or experiments, and suggest a small way to test the idea. It is fine to say what is still unknown.
